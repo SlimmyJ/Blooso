@@ -18,7 +18,31 @@ namespace Blooso.Repositories
 
         private List<User> GetDummyData()
             {
-            throw new NotImplementedException();
+            return new List<User>
+            {
+                new User
+                    {
+                        Id = 1,
+                        Name = "Jeroen",
+                        DateOfBirth = DateTime.Today,
+                        AreaCode = 8000,
+                    },
+                    new User
+                    {
+                        Id = 2,
+                        Name = "Bassie",
+                    },
+                    new User
+                    {
+                        Id = 3,
+                        Name = "Andrea",
+                    },
+                    new User
+                    {
+                        Id = 4,
+                        Name = "Libelle",
+                    }
+            };
             }
 
         /// <summary>
