@@ -16,9 +16,9 @@ namespace Blooso.Models
         public string Name { get; set; }
         public char Sex { get; set; }
 
-        public UserLocation Type { get; set; }
+        public UserLocation UserLocation { get; set; }
 
-        public int AreaCode { get; set; }
+    
 
         public DateTime DateOfBirth { get; set; }
 

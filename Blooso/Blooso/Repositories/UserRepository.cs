@@ -25,23 +25,26 @@ namespace Blooso.Repositories
                         Id = 1,
                         Name = "Jeroen",
                         DateOfBirth = DateTime.Today,
-                        AreaCode = 8000,
+                        Sex = 'm',
                     },
+
                     new User
                     {
                         Id = 2,
                         Name = "Bassie",
                     },
+
                     new User
                     {
                         Id = 3,
                         Name = "Andrea",
                     },
+
                     new User
-                    {
+                        {
                         Id = 4,
                         Name = "Libelle",
-                    }
+                        }
             };
             }
 
