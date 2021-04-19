@@ -1,17 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
-    x:Class="Blooso.Views.MatchOverviewPage"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:vm="clr-namespace:Blooso.ViewModels">
+<ContentPage x:Class="Blooso.Views.MatchOverviewPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Blooso.ViewModels">
     <ContentPage.BindingContext>
         <vm:MatchOverviewViewModel />
     </ContentPage.BindingContext>
-    <RefreshView Command="{Binding LoadUsersCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <CollectionView
-            x:Name="UserCollectionView"
-            ItemsSource="{Binding Users}"
-            SelectionMode="Single">
+    <RefreshView Command="{Binding LoadUsersCommand}"
+                 IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <CollectionView x:Name="UserCollectionView"
+                        ItemsSource="{Binding Users}"
+                        SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout>

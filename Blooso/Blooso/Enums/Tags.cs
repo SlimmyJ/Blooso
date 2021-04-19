@@ -24,7 +24,7 @@
         Pets = 20,
         Smoker = 21,
         Trekkie = 22,
-        Furry = 23, 
+        Furry = 23,
         Weeb = 24,
         Festivals = 25,
     }

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Blooso
-{ 
+﻿namespace Blooso
+{
     public enum Activities
     {
         Running = 1,
@@ -26,6 +22,5 @@ namespace Blooso
         Yoga = 18,
         Dancing = 19,
         Pilates = 20,
-        
     }
 }

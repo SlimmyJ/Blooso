@@ -1,6 +1,5 @@
 ﻿using System;
 
-using Blooso.ViewModels;
 using Blooso.Views;
 
 using Xamarin.Forms;

@@ -1,5 +1,4 @@
 ﻿using System;
-using Xamarin.Forms;
 
 namespace Blooso.Models
 {
@@ -10,7 +9,5 @@ namespace Blooso.Models
         public User Author { get; set; }
         public User Recipient { get; set; }
         public string Text { get; set; }
-
-
     }
 }

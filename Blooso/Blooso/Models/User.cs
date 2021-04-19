@@ -19,7 +19,6 @@ namespace Blooso.Models
 
         public bool IsInfected { get; set; }
 
-        
         public UserLocation UserLocation { get; set; }
 
         public DateTime DateOfBirth { get; set; }
@@ -33,7 +32,6 @@ namespace Blooso.Models
         public List<Message> Messages { get; set; }
 
         public List<User> UserLikes { get; set; }
-       public List<User> LikedByUser { get; set; }
-
+        public List<User> LikedByUser { get; set; }
     }
 }
