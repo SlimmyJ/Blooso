@@ -15,7 +15,11 @@ namespace Blooso.Models
 
         public string Name { get; set; }
         public char Sex { get; set; }
+        public bool IsVaccinated { get; set; }
 
+        public bool IsInfected { get; set; }
+
+        
         public UserLocation UserLocation { get; set; }
 
         public DateTime DateOfBirth { get; set; }

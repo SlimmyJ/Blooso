@@ -26,24 +26,63 @@ namespace Blooso.Repositories
                         Name = "Jeroen",
                         DateOfBirth = DateTime.Today,
                         Sex = 'm',
+                        UserLocation = new UserLocation(),
+                        FriendsList = new List<User>(),
+                        IsInfected = true,
+                        IsVaccinated = false,
+                        Messages = new List<Message>(),
+                        ActivityList = new List<Activity>(),
+                        UserTags = new List<Tag>(),
+
                     },
 
                     new User
                     {
                         Id = 2,
                         Name = "Bassie",
+                        DateOfBirth = DateTime.Today,
+                        Sex = 'm',
+                        UserLocation = new UserLocation(),
+                        FriendsList = new List<User>(),
+                        IsInfected = true,
+                        IsVaccinated = false,
+                        Messages = new List<Message>(),
+                        ActivityList = new List<Activity>(),
+                        UserTags = new List<Tag>(),
+
+
                     },
 
                     new User
                     {
                         Id = 3,
                         Name = "Andrea",
+                        DateOfBirth = DateTime.Today,
+                        Sex = 'f',
+                        UserLocation = new UserLocation(),
+                        FriendsList = new List<User>(),
+                        IsInfected = true,
+                        IsVaccinated = false,
+                        Messages = new List<Message>(),
+                        ActivityList = new List<Activity>(),
+                        UserTags = new List<Tag>(),
+
                     },
 
                     new User
                         {
                         Id = 4,
                         Name = "Libelle",
+                        DateOfBirth = DateTime.Today,
+                        Sex = 'f',
+                        UserLocation = new UserLocation(),
+                        FriendsList = new List<User>(),
+                        IsInfected = true,
+                        IsVaccinated = false,
+                        Messages = new List<Message>(),
+                        ActivityList = new List<Activity>(),
+                        UserTags = new List<Tag>(),
+
                         }
             };
         }
