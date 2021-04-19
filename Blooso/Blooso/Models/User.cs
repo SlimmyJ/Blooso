@@ -24,12 +24,16 @@ namespace Blooso.Models
 
         public DateTime DateOfBirth { get; set; }
 
-        public List<Activity> ActivityList { get; set; }
+        public List<Activities> ActivityList { get; set; }
 
         public List<User> FriendsList { get; set; }
 
-        public List<Tag> UserTags { get; set; }
+        public List<Tags> UserTags { get; set; }
 
         public List<Message> Messages { get; set; }
+
+        public List<User> UserLikes { get; set; }
+       public List<User> LikedByUser { get; set; }
+
     }
 }

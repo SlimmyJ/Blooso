@@ -1,22 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
+using Blooso.Interfaces;
 using Blooso.Models;
 
 namespace Blooso.Repositories
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
         private static UserRepository _userRepository;
 
         private UserRepository()
         {
-            _userlist = GetDummyData();
+            _userlist = FillListWithDummyData();
         }
 
-        private List<User> _userlist { get; set; }
+        private List<User> _userlist;
 
-        private List<User> GetDummyData()
+        /// <summary>
+        ///           Singleton pattern for UserRepository
+        /// </summary>
+        /// <returns>
+        /// </returns>
+
+        public static UserRepository GetRepository() => _userRepository ?? (_userRepository = new UserRepository());
+
+        public List<User> GetAllUsers()
+        {
+            return _userlist;
+        }
+
+        public User GetUser(int id)
+        {
+            return _userlist.FirstOrDefault(x => x.Id == id);
+        }
+
+        private List<User> FillListWithDummyData()
         {
             return new List<User>
             {
@@ -31,9 +52,15 @@ namespace Blooso.Repositories
                         IsInfected = true,
                         IsVaccinated = false,
                         Messages = new List<Message>(),
-                        ActivityList = new List<Activity>(),
-                        UserTags = new List<Tag>(),
-
+                        ActivityList = new List<Activities>()
+                        {
+                            Activities.Running,
+                            Activities.Basketball,
+                            Activities.Lacrosse,
+                            Activities.Minigolf,
+                            Activities.Sauna,
+                        },
+                        UserTags = new List<Tags>() {Tags.Arts, Tags.Books, Tags.Wine}
                     },
 
                     new User
@@ -47,10 +74,15 @@ namespace Blooso.Repositories
                         IsInfected = true,
                         IsVaccinated = false,
                         Messages = new List<Message>(),
-                        ActivityList = new List<Activity>(),
-                        UserTags = new List<Tag>(),
-
-
+                        ActivityList = new List<Activities>()    {
+                            Activities.Running,
+                            Activities.Basketball,
+                            Activities.Lacrosse,
+                            Activities.Squash,
+                            Activities.Sauna,
+                            Activities.Yoga,
+                        },
+                        UserTags = new List<Tags>() {Tags.Smoker, Tags.Books, Tags.Wine}
                     },
 
                     new User
@@ -64,9 +96,15 @@ namespace Blooso.Repositories
                         IsInfected = true,
                         IsVaccinated = false,
                         Messages = new List<Message>(),
-                        ActivityList = new List<Activity>(),
-                        UserTags = new List<Tag>(),
-
+                        ActivityList = new List<Activities>()  {
+                            Activities.Running,
+                            Activities.Handball,
+                            Activities.Lacrosse,
+                            Activities.Squash,
+                            Activities.Padel,
+                            Activities.Yoga,
+                        },
+                        UserTags = new List<Tags>() {Tags.Arts, Tags.Larping, Tags.Books, Tags.Wine}
                     },
 
                     new User
@@ -80,23 +118,17 @@ namespace Blooso.Repositories
                         IsInfected = true,
                         IsVaccinated = false,
                         Messages = new List<Message>(),
-                        ActivityList = new List<Activity>(),
-                        UserTags = new List<Tag>(),
-
+                        ActivityList = new List<Activities>() {
+                            Activities.Running,
+                            Activities.Handball,
+                            Activities.Lacrosse,
+                            Activities.Squash,
+                            Activities.Padel,
+                            Activities.Yoga,
+                        },
+                        UserTags = new List<Tags>(){Tags.Arts, Tags.Furry, Tags.Books, Tags.Wine},
                         }
             };
-        }
-
-        /// <summary>
-        ///           Singleton pattern for UserRepository
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        public static UserRepository GetRepository() => _userRepository ?? (_userRepository = new UserRepository());
-
-        public List<User> GetUserList()
-        {
-            return _userlist;
         }
     }
 }

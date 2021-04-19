@@ -1,52 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Shell x:Class="Blooso.AppShell"
-       xmlns="http://xamarin.com/schemas/2014/forms"
-       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       Title="Blooso">
+<Shell
+    x:Class="Blooso.AppShell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Blooso.Views;assembly=Blooso"
+    Title="Blooso">
     <Shell.Resources>
         <ResourceDictionary>
-            <Style x:Key="BaseStyle"
-                   TargetType="Element">
-                <Setter Property="Shell.BackgroundColor"
-                        Value="{StaticResource Primary}" />
-                <Setter Property="Shell.ForegroundColor"
-                        Value="White" />
-                <Setter Property="Shell.TitleColor"
-                        Value="White" />
-                <Setter Property="Shell.DisabledColor"
-                        Value="#B4FFFFFF" />
-                <Setter Property="Shell.UnselectedColor"
-                        Value="#95FFFFFF" />
-                <Setter Property="Shell.TabBarBackgroundColor"
-                        Value="{StaticResource Primary}" />
-                <Setter Property="Shell.TabBarForegroundColor"
-                        Value="White" />
-                <Setter Property="Shell.TabBarUnselectedColor"
-                        Value="#95FFFFFF" />
-                <Setter Property="Shell.TabBarTitleColor"
-                        Value="White" />
+            <!--#region Styles-->
+            <Style x:Key="StandardStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource BaseOrange}" />
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource LighterOrange}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="White" />
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarTitleColor" Value="White" />
+                <!--#endregion-->
             </Style>
-            <Style BasedOn="{StaticResource BaseStyle}"
-                   TargetType="TabBar" />
-            <Style BasedOn="{StaticResource BaseStyle}"
-                   TargetType="FlyoutItem" />
-            <Style Class="FlyoutItemLabelStyle"
-                   TargetType="Label">
-                <Setter Property="TextColor"
-                        Value="White" />
+            <!--#region FlyoutItemStyles-->
+            <Style Class="FlyoutItemLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
             </Style>
+            <Style
+                ApplyToDerivedTypes="True"
+                Class="FlyoutItemLayoutStyle"
+                TargetType="Layout">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{x:OnPlatform UWP={StaticResource BaseOrange}, iOS=White}" />
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource BleakOrange}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource BleakOrange}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <!--#endregion-->
         </ResourceDictionary>
     </Shell.Resources>
-    <FlyoutItem Title="About"
-                Icon="icon_about.png">
-        <ShellContent ContentTemplate="{DataTemplate local:AboutPage}"
-                      Route="AboutPage" />
+    <FlyoutItem Title="MainMenu">
+        <ShellContent ContentTemplate="{DataTemplate local:MainMenuPage}" Route="MainMenuPage" />
     </FlyoutItem>
-    <MenuItem Clicked="OnMenuItemClicked"
-              StyleClass="MenuItemLayoutStyle"
-              Text="Logout" />
-    <TabBar>
-        <ShellContent ContentTemplate="{DataTemplate local:LoginPage}"
-                      Route="LoginPage" />
-    </TabBar>
 </Shell>

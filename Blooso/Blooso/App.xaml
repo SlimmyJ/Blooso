@@ -7,7 +7,16 @@
     -->
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="Primary">#FFFFFF</Color>
+            <!--#region Colors-->
+            <Color x:Key="WhiteFill">#FFFFFF</Color>
+            <Color x:Key="BaseOrange">#ff8c42</Color>
+            <Color x:Key="DarkerOrange">#c65d11</Color>
+            <Color x:Key="LighterOrange">#ffbd70</Color>
+            <Color x:Key="BleakOrange">#F9C784</Color>
+            <Color x:Key="AccentBlue">#4E598C</Color>
+            <Color x:Key="TextBlack">Black</Color>
+            <!--#endregion-->
+            <!--#region Buttons-->
             <Style TargetType="Button">
                 <Setter Property="TextColor"
                         Value="White" />
@@ -17,7 +26,7 @@
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
                                     <Setter Property="BackgroundColor"
-                                            Value="{StaticResource Primary}" />
+                                            Value="{StaticResource AccentBlue}" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Disabled">
@@ -30,6 +39,7 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
+            <!--#endregion-->
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -1,5 +1,8 @@
 ﻿using System;
 
+using Blooso.ViewModels;
+using Blooso.Views;
+
 using Xamarin.Forms;
 
 namespace Blooso
@@ -14,6 +17,7 @@ namespace Blooso
         public AppShell()
         {
             InitializeComponent();
+            Routing.RegisterRoute(nameof(MatchOverviewPage), typeof(MatchOverviewPage));
         }
     }
 }
