@@ -4,20 +4,20 @@ using System.Collections.Generic;
 using Blooso.Models;
 
 namespace Blooso.Repositories
-    {
+{
     public class UserRepository
-        {
+    {
         private static UserRepository _userRepository;
 
         private UserRepository()
-            {
+        {
             _userlist = GetDummyData();
-            }
+        }
 
         private List<User> _userlist { get; set; }
 
         private List<User> GetDummyData()
-            {
+        {
             return new List<User>
             {
                 new User
@@ -46,7 +46,7 @@ namespace Blooso.Repositories
                         Name = "Libelle",
                         }
             };
-            }
+        }
 
         /// <summary>
         ///           Singleton pattern for UserRepository
@@ -56,8 +56,8 @@ namespace Blooso.Repositories
         public static UserRepository GetRepository() => _userRepository ?? (_userRepository = new UserRepository());
 
         public List<User> GetUserList()
-            {
+        {
             return _userlist;
-            }
         }
     }
+}
