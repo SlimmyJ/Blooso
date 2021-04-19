@@ -1,24 +1,9 @@
-﻿using System;
-
-using Blooso.Services;
-using Blooso.Views;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms;
 
 namespace Blooso
     {
     public partial class App : Application
         {
-
-        public App()
-            {
-            InitializeComponent();
-
-            DependencyService.Register<MockDataStore>();
-            MainPage = new AppShell();
-            }
-
         protected override void OnStart()
             {
             }
@@ -29,6 +14,14 @@ namespace Blooso
 
         protected override void OnResume()
             {
+            }
+
+        public App()
+            {
+            InitializeComponent();
+
+            //DependencyService.Register<MockDataStore>();
+            MainPage = new AppShell();
             }
         }
     }
