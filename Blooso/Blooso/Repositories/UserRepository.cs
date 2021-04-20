@@ -14,9 +14,12 @@ namespace Blooso.Repositories
         private UserRepository()
         {
             _userlist = FillListWithDummyData();
+            CurrentlyLoggedInUser = GetUser(1);
         }
 
         private List<User> _userlist;
+
+        public User CurrentlyLoggedInUser { get; set; }
 
         /// <summary>
         ///           Singleton pattern for UserRepository
@@ -25,6 +28,11 @@ namespace Blooso.Repositories
         /// </returns>
 
         public static UserRepository GetRepository() => _userRepository ?? (_userRepository = new UserRepository());
+
+        public User GetCurrentlyLoggedInUser()
+        {
+            return CurrentlyLoggedInUser;
+        }
 
         public List<User> GetAllUsers()
         {

@@ -14,6 +14,7 @@ namespace Blooso.ViewModels
     public class MatchDetailViewModel: BaseViewModel
     {
         private IUserRepository userRepo;
+        
 
         private User userDetail;
         public User UserDetail
@@ -48,13 +49,19 @@ namespace Blooso.ViewModels
         public MatchDetailViewModel()
         {
             UserDetail = new User();
-            userRepo = UserRepository.GetRepository();
+            userRepo = UserRepository.GetRepository();            
         }
 
-        private void AddUserToFavourites(object obj)
+        private async void AddUserToFavourites()
         {
-            //TODO
-            throw new NotImplementedException();
+            //TODO           
+            var loggedInUser = userRepo.GetCurrentlyLoggedInUser();
+
+            if(loggedInUser.Id != UserDetail.Id)
+                loggedInUser.FriendsList.Add(UserDetail);
+
+            await Shell.Current.GoToAsync("..");
+
         }
 
         private void LoadUser(int value)

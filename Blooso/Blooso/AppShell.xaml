@@ -64,8 +64,9 @@
         </ResourceDictionary>
     </Shell.Resources>
     <TabBar>
-        <ShellContent Title="About" Icon="icon_about.png" Route="AboutPage" ContentTemplate="{DataTemplate local:MainMenuPage}" />
-        <ShellContent Title="Browse" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:MatchOverviewPage}" />
+        <ShellContent Title="Profile" Icon="icon_about.png" Route="AboutPage" ContentTemplate="{DataTemplate local:MainMenuPage}" />
+        <ShellContent Title="Friendlist" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:FriendlistPage}" />
+        <ShellContent Title="Messages" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:MatchOverviewPage}" />
     </TabBar>
 
     <!--

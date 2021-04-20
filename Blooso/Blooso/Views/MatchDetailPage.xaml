@@ -46,7 +46,7 @@
 
 
                 <Button Grid.Row="5" Grid.ColumnSpan="2"
-                        Text="Add to favourites"
+                        Text="Add to friendlist"
                         Margin="0,40"
                         Command="{Binding AddUserToFavouritesCommand}"
                         />
