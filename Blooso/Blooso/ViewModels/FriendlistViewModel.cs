@@ -1,43 +1,42 @@
-﻿using System;
-using System.Collections.ObjectModel;
-
-using Blooso.Interfaces;
+﻿using Blooso.Interfaces;
 using Blooso.Models;
 using Blooso.Repositories;
 using Blooso.Views;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Text;
 using Xamarin.Forms;
 
 namespace Blooso.ViewModels
 {
-    public class MatchOverviewViewModel : BaseViewModel
+    public class FriendlistViewModel: BaseViewModel
     {
-        private ObservableCollection<User> _users;
+        private ObservableCollection<User> friendList;
 
-        public ObservableCollection<User> Users
+        public ObservableCollection<User> FriendList
         {
-            get { return _users; }
-            set
-            {
-                _users = value;
-                OnPropertyChanged(nameof(Users));
+            get { return friendList; }
+            set 
+            { 
+                friendList = value;
+                OnPropertyChanged(nameof(FriendList));
             }
         }
 
         private IUserRepository _userRepository;
 
-        public MatchOverviewViewModel()
+        public FriendlistViewModel()
         {
-            Users = new ObservableCollection<User>();
+            FriendList = new ObservableCollection<User>();
             _userRepository = UserRepository.GetRepository();
+
             LoadUsers();
         }
 
         public Command LoadUsersCommand => new Command(LoadUsers);
         public Command<User> ItemTappedCommand => new Command<User>(ItemTapped);
-        public Command PerformSearchCommand => new Command<string>((string query) =>
-            {
-                Users = new ObservableCollection<User>(_userRepository.GetSearchResults(query));
-            });
+
 
         public void LoadUsers()
         {
@@ -45,8 +44,8 @@ namespace Blooso.ViewModels
 
             try
             {
-                var users = _userRepository.GetAllUsers();
-                Users = new ObservableCollection<User>(users);
+                var currentUser = _userRepository.GetCurrentlyLoggedInUser();
+                FriendList = new ObservableCollection<User>(currentUser.FriendsList);
             }
             catch (Exception e)
             {
@@ -58,6 +57,7 @@ namespace Blooso.ViewModels
                 IsBusy = false;
             }
         }
+
         private async void ItemTapped(User user)
         {
             await Shell.Current.GoToAsync($"{nameof(MatchDetailPage)}?{nameof(MatchDetailViewModel.UserId)}={user.Id}");

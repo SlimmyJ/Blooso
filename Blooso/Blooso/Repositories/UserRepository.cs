@@ -14,9 +14,12 @@ namespace Blooso.Repositories
         private UserRepository()
         {
             _userlist = FillListWithDummyData();
+            CurrentlyLoggedInUser = GetUser(1);
         }
 
         private List<User> _userlist;
+
+        public User CurrentlyLoggedInUser { get; set; }
 
         /// <summary>
         ///           Singleton pattern for UserRepository
@@ -25,6 +28,11 @@ namespace Blooso.Repositories
         /// </returns>
 
         public static UserRepository GetRepository() => _userRepository ?? (_userRepository = new UserRepository());
+
+        public User GetCurrentlyLoggedInUser()
+        {
+            return CurrentlyLoggedInUser;
+        }
 
         public List<User> GetAllUsers()
         {
@@ -35,6 +43,12 @@ namespace Blooso.Repositories
         {
             return _userlist.FirstOrDefault(x => x.Id == id);
         }
+        public List<User> GetSearchResults(string queryString)
+        {
+            var normalizedQuery = queryString?.ToLower() ?? "";
+            return _userlist.Where(f => f.ToString().ToLowerInvariant().Contains(normalizedQuery)).ToList();
+        }
+
 
         private List<User> FillListWithDummyData()
         {
@@ -112,9 +126,9 @@ namespace Blooso.Repositories
                         Name = "Libelle",
                         DateOfBirth = DateTime.Today,
                         Sex = 'f',
-                        UserLocation = new UserLocation(),
+                        UserLocation = new UserLocation(9000),
                         FriendsList = new List<User>(),
-                        IsInfected = true,
+                        IsInfected = false,
                         IsVaccinated = false,
                         Messages = new List<Message>(),
                         ActivityList = new List<Activities>() {

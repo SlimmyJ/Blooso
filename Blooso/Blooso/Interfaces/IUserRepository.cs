@@ -9,5 +9,7 @@ namespace Blooso.Interfaces
         List<User> GetAllUsers();
 
         User GetUser(int id);
+        User GetCurrentlyLoggedInUser();
+        List<User> GetSearchResults(string queryString);
     }
 }
