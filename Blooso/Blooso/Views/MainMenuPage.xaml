@@ -9,8 +9,9 @@
     <RefreshView>
         <StackLayout BackgroundColor="{StaticResource BaseOrange}">
             <Button Command="{Binding LoadUsersCommand}"
+                    Margin="0,20"
                     HorizontalOptions="Center"
-                    Text="Click me"
+                    Text="Find matches!"
                     VerticalOptions="Center" />
         </StackLayout>
     </RefreshView>

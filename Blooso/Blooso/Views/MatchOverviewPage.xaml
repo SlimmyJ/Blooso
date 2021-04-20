@@ -19,6 +19,16 @@
                         <Label Text="{Binding DateOfBirth}" />
                         <Label Text="{Binding IsInfected}" />
                         <Label Text="{Binding IsVaccinated}" />
+
+                        <!--Code to act on user gestures -->
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                                        NumberOfTapsRequired="1"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MatchOverviewViewModel}},Path=ItemTappedCommand}"
+                                        CommandParameter="{Binding .}">
+                                <!--CommandParameter is used to pass an object with the command. "." is used to select the root, in this case, the whole object-->
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
