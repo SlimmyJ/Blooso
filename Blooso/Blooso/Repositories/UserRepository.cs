@@ -46,7 +46,7 @@ namespace Blooso.Repositories
         public List<User> GetSearchResults(string queryString)
         {
             var normalizedQuery = queryString?.ToLower() ?? "";
-            return _userlist.Where(f => f.Name.ToLowerInvariant().Contains(normalizedQuery)).ToList();
+            return _userlist.Where(f => f.ToString().ToLowerInvariant().Contains(normalizedQuery)).ToList();
         }
 
 
@@ -126,9 +126,9 @@ namespace Blooso.Repositories
                         Name = "Libelle",
                         DateOfBirth = DateTime.Today,
                         Sex = 'f',
-                        UserLocation = new UserLocation(),
+                        UserLocation = new UserLocation(9000),
                         FriendsList = new List<User>(),
-                        IsInfected = true,
+                        IsInfected = false,
                         IsVaccinated = false,
                         Messages = new List<Message>(),
                         ActivityList = new List<Activities>() {

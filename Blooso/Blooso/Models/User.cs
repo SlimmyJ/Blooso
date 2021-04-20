@@ -33,5 +33,28 @@ namespace Blooso.Models
 
         public List<User> UserLikes { get; set; }
         public List<User> LikedByUser { get; set; }
+
+
+        public override string ToString()
+        {
+            var isInfected = IsInfected ? "infected" : "clean";
+
+            var activities = "";
+            foreach (var activity in ActivityList)
+            {
+                activities += $"{activity }";
+            }
+
+            var tags = "";
+            foreach (var tag in UserTags)
+            {
+                tags += $"{tag }";
+            }
+
+            var toString = $"{Name} {DateOfBirth} {Sex} {isInfected} {UserLocation.AreaCode} {activities} {tags}";
+
+
+            return toString;
+        }
     }
 }
