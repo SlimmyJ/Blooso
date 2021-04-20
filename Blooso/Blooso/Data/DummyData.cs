@@ -34,7 +34,7 @@ namespace Blooso.Data
             for (int i = 0; i < 15; i++)
             {
                 var temp = userFaker.Generate();
-                temp.Id = i + 1;
+                temp.Id = 1;
                 dummyList.Add(temp);
             }
 
