@@ -1,44 +1,37 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="Blooso.Views.MainMenuPage"
+﻿<ContentPage x:Class="Blooso.Views.MainMenuPage"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:Blooso.ViewModels;assembly=Blooso">
     <ContentPage.BindingContext>
         <viewModels:MainMenuViewModel />
     </ContentPage.BindingContext>
-    <RefreshView>        
-            <StackLayout BackgroundColor="{StaticResource WhiteFill}">
-                <Grid Margin="0,20,0,0"
-                      RowDefinitions="*,*"
-                      ColumnDefinitions="*,*">
-
+    <RefreshView>
+        <StackLayout BackgroundColor="{StaticResource WhiteFill}">
+            <Grid Margin="0,20,0,0"
+                  ColumnDefinitions="*,*"
+                  RowDefinitions="*,*">
                 <Button Grid.Row="1"
-                            Grid.Column="0" 
-                            Command="{Binding LoadUsersCommand}"                       
-                            HorizontalOptions="Center"
-                            Text="Edit Profile"
-                            VerticalOptions="Center"
-                            Margin="5"/>
+                        Grid.Column="0"
+                        Margin="5"
+                        Command="{Binding LoadUsersCommand}"
+                        HorizontalOptions="Center"
+                        Text="Edit Profile"
+                        VerticalOptions="Center" />
                 <Button Grid.Row="1"
-                            Grid.Column="1" 
-                            Command="{Binding LoadUsersCommand}"                       
-                            HorizontalOptions="Center"
-                            Text="Find matches!"
-                            VerticalOptions="Center"
-                            Margin="5"/>
-                
-                <Label Grid.Row =" 0"
-                           Grid.Column="0"
-                           Grid.ColumnSpan="2"
-                           Text="Welcome to Blooso"
-                           Margin="5"
-                           HorizontalTextAlignment="Center"
-                           FontSize="Large"/>
-
-
-
-
+                        Grid.Column="1"
+                        Margin="5"
+                        Command="{Binding LoadUsersCommand}"
+                        HorizontalOptions="Center"
+                        Text="Find matches!"
+                        VerticalOptions="Center" />
+                <Label Grid.Row=" 0"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="2"
+                       Margin="5"
+                       FontSize="Large"
+                       HorizontalTextAlignment="Center"
+                       Text="Welcome to Blooso" />
             </Grid>
-            </StackLayout>        
+        </StackLayout>
     </RefreshView>
 </ContentPage>

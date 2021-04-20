@@ -43,12 +43,12 @@ namespace Blooso.Repositories
         {
             return _userlist.FirstOrDefault(x => x.Id == id);
         }
+
         public List<User> GetSearchResults(string queryString)
         {
             var normalizedQuery = queryString?.ToLower() ?? "";
             return _userlist.Where(f => f.ToString().ToLowerInvariant().Contains(normalizedQuery)).ToList();
         }
-
 
         private List<User> FillListWithDummyData()
         {

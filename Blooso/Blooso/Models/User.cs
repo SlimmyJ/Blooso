@@ -34,7 +34,6 @@ namespace Blooso.Models
         public List<User> UserLikes { get; set; }
         public List<User> LikedByUser { get; set; }
 
-
         public override string ToString()
         {
             var isInfected = IsInfected ? "infected" : "clean";
@@ -52,7 +51,6 @@ namespace Blooso.Models
             }
 
             var toString = $"{Name} {DateOfBirth} {Sex} {isInfected} {UserLocation.AreaCode} {activities} {tags}";
-
 
             return toString;
         }

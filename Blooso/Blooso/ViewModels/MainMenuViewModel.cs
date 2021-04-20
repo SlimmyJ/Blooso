@@ -21,8 +21,6 @@ namespace Blooso.ViewModels
             CurrentUser = userRepo.GetUser(1);
         }
 
-        
-
         private async void LoadUsers()
         {
             await Shell.Current.GoToAsync(nameof(MatchOverviewPage));
