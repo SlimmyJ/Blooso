@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+
 using Blooso.Models;
+
 using Bogus;
+
 using Newtonsoft.Json;
 
 namespace Blooso.Data
@@ -23,14 +26,16 @@ namespace Blooso.Data
                 .RuleFor(x => x.DateOfBirth, x => x.Person.DateOfBirth)
                 .RuleFor(x => x.ActivityList, GetActivities())
                 .RuleFor(x => x.UserTags, GetUserTags())
-                .RuleFor(x => x.UserPicture, x => x.Image.LoremPixelUrl("People"));
+                .RuleFor(x => x.UserPicture, x => x.Image.PicsumUrl());
 
             //var user = JsonConvert.SerializeObject(userFaker.Generate());
             //Debug.WriteLine($" TEST:: {user}");
 
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 15; i++)
             {
-                dummyList.Add(userFaker.Generate());
+                var temp = userFaker.Generate();
+                temp.Id = i + 1;
+                dummyList.Add(temp);
             }
 
             return dummyList;

@@ -23,6 +23,13 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid Padding="10">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MatchOverviewViewModel}}, Path=ItemTappedCommand}"
+                                    CommandParameter="{Binding .}"
+                                    NumberOfTapsRequired="2" />
+
+                            </Grid.GestureRecognizers>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
@@ -35,7 +42,7 @@
                                 Grid.RowSpan="2"
                                 Aspect="AspectFill"
                                 HeightRequest="60"
-                                Source="https://placekitten.com/300/300"
+                                Source="{Binding UserPicture}"
                                 WidthRequest="60" />
                             <Label
                                 Grid.Column="1"
