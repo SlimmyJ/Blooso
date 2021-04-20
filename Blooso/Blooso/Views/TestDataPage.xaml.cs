@@ -19,6 +19,7 @@ namespace Blooso.Views
             InitializeComponent();
             _testData = new TestData();
             _testData.MakeTestData();
+            //_testData.GetRandomActivities();
         }
     }
 }

@@ -20,7 +20,6 @@ namespace Blooso.Models
 
         public bool IsInfected { get; set; }
 
-        public string UserLocationString { get; set; }
         public UserLocation UserLocation { get; set; }
 
         public DateTime DateOfBirth { get; set; }
