@@ -19,7 +19,7 @@ namespace Blooso.Repositories
 
             _dummyData = new DummyData();
             _userlist = FillListWithBogusData();
-            CurrentlyLoggedInUser = GetUser(2);
+            CurrentlyLoggedInUser = GetUser(1);
         }
 
         private List<User> _userlist;

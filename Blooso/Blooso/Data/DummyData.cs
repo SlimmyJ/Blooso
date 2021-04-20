@@ -26,7 +26,9 @@ namespace Blooso.Data
                 .RuleFor(x => x.DateOfBirth, x => x.Person.DateOfBirth)
                 .RuleFor(x => x.ActivityList, GetActivities())
                 .RuleFor(x => x.UserTags, GetUserTags())
+                .RuleFor(x => x.FriendsList, new List<User>())
                 .RuleFor(x => x.UserPicture, x => x.Image.PicsumUrl());
+            
 
             //var user = JsonConvert.SerializeObject(userFaker.Generate());
             //Debug.WriteLine($" TEST:: {user}");
@@ -34,7 +36,7 @@ namespace Blooso.Data
             for (int i = 0; i < 15; i++)
             {
                 var temp = userFaker.Generate();
-                temp.Id = 1;
+                temp.Id = i + 1;
                 dummyList.Add(temp);
             }
 
