@@ -8,6 +8,7 @@
     </ContentPage.BindingContext>
     <RefreshView>
         <StackLayout BackgroundColor="{StaticResource BaseOrange}">
+            <Label Text="Release 1"/>
             <Button Command="{Binding LoadUsersCommand}"
                     HorizontalOptions="Center"
                     Text="Click me"
