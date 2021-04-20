@@ -63,8 +63,23 @@
             <!--#endregion-->
         </ResourceDictionary>
     </Shell.Resources>
-    <FlyoutItem Title="MainMenu">
+    <TabBar>
+        <ShellContent Title="About" Icon="icon_about.png" Route="AboutPage" ContentTemplate="{DataTemplate local:MainMenuPage}" />
+        <ShellContent Title="Browse" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:MatchOverviewPage}" />
+    </TabBar>
+
+    <!--
+        If you would like to navigate to this content you can do so by calling
+        await Shell.Current.GoToAsync("//LoginPage");
+    -->
+    <TabBar>
+        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:MainMenuPage}" />
+    </TabBar>
+    <!--<FlyoutItem Title="MainMenu">
         <ShellContent ContentTemplate="{DataTemplate local:MainMenuPage}"
                       Route="MainMenuPage" />
     </FlyoutItem>
+    <TabBar>
+        <ShellContent Route="MainMenuPage" ContentTemplate="{DataTemplate local:MainMenuPage}" />
+    </TabBar>-->
 </Shell>
