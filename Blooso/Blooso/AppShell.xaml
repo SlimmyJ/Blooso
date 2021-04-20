@@ -67,4 +67,8 @@
         <ShellContent ContentTemplate="{DataTemplate local:MainMenuPage}"
                       Route="MainMenuPage" />
     </FlyoutItem>
+    <FlyoutItem Title="Test data page">
+        <ShellContent ContentTemplate="{DataTemplate local:TestDataPage}"
+                      Route="TestDataPage" />
+    </FlyoutItem>
 </Shell>
