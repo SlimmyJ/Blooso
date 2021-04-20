@@ -34,7 +34,10 @@ namespace Blooso.ViewModels
 
         public Command LoadUsersCommand => new Command(LoadUsers);
         public Command<User> ItemTappedCommand => new Command<User>(ItemTapped);
-
+        public Command PerformSearchCommand => new Command<string>((string query) =>
+            {
+                Users = new ObservableCollection<User>(_userRepository.GetSearchResults(query));
+            });
 
         public void LoadUsers()
         {
