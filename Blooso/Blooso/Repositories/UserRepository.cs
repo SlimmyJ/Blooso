@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using Blooso.Data;
 using Blooso.Interfaces;
 using Blooso.Models;
 
@@ -10,10 +10,13 @@ namespace Blooso.Repositories
     public class UserRepository : IUserRepository
     {
         private static UserRepository _userRepository;
+        private DummyData _dummyData;
 
         private UserRepository()
         {
-            _userlist = FillListWithDummyData();
+            //_userlist = FillListWithDummyData();
+            _dummyData = new DummyData();
+            _userlist = FillListWithBogusData();
             CurrentlyLoggedInUser = GetUser(1);
         }
 
@@ -43,12 +46,17 @@ namespace Blooso.Repositories
         {
             return _userlist.FirstOrDefault(x => x.Id == id);
         }
+
         public List<User> GetSearchResults(string queryString)
         {
             var normalizedQuery = queryString?.ToLower() ?? "";
             return _userlist.Where(f => f.ToString().ToLowerInvariant().Contains(normalizedQuery)).ToList();
         }
 
+        private List<User> FillListWithBogusData()
+        {
+            return _dummyData.MakeTestData();
+        }
 
         private List<User> FillListWithDummyData()
         {

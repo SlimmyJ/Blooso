@@ -20,6 +20,8 @@ namespace Blooso.Models
 
         public bool IsInfected { get; set; }
 
+        public string UserPicture { get; set; }
+
         public UserLocation UserLocation { get; set; }
 
         public DateTime DateOfBirth { get; set; }
@@ -34,7 +36,6 @@ namespace Blooso.Models
 
         public List<User> UserLikes { get; set; }
         public List<User> LikedByUser { get; set; }
-
 
         public override string ToString()
         {
@@ -53,7 +54,6 @@ namespace Blooso.Models
             }
 
             var toString = $"{Name} {DateOfBirth} {Sex} {isInfected} {UserLocation.AreaCode} {activities} {tags}";
-
 
             return toString;
         }
