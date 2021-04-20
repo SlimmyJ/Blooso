@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Blooso;
 
 namespace Blooso.Models
 {
@@ -9,8 +10,8 @@ namespace Blooso.Models
 
         public int Id
         {
-            get { return _id; }
-            set { _id = value; }
+            get => _id;
+            set => _id = value;
         }
 
         public string Name { get; set; }
@@ -18,6 +19,8 @@ namespace Blooso.Models
         public bool IsVaccinated { get; set; }
 
         public bool IsInfected { get; set; }
+
+        public string UserPicture { get; set; }
 
         public UserLocation UserLocation { get; set; }
 
