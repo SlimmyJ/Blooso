@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Application x:Class="Blooso.App"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+<Application
+    x:Class="Blooso.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <!--
         Define global resources and styles here, that apply to all pages in your app.
     -->
@@ -15,29 +16,38 @@
             <Color x:Key="BleakOrange">#F9C784</Color>
             <Color x:Key="AccentBlue">#4E598C</Color>
             <Color x:Key="TextBlack">Black</Color>
+            <Color x:Key="CollectionViewColor">#80ffffff</Color>
             <!--#endregion-->
             <!--#region Buttons-->
+            <Style TargetType="CollectionView">
+                <Setter Property="BackgroundColor" Value="{StaticResource CollectionViewColor}" />
+
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="DimGray" />
+            </Style>
             <Style TargetType="Button">
-                <Setter Property="TextColor"
-                        Value="White" />
+                <Setter Property="TextColor" Value="White" />
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor"
-                                            Value="{StaticResource AccentBlue}" />
+                                    <Setter Property="BackgroundColor" Value="{StaticResource AccentBlue}" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Disabled">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor"
-                                            Value="#332196F3" />
+                                    <Setter Property="BackgroundColor" Value="#332196F3" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>
                     </VisualStateGroupList>
                 </Setter>
+            </Style>
+            <Style x:Key="MyStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
             </Style>
             <!--#endregion-->
         </ResourceDictionary>
