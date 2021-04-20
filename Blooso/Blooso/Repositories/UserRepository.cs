@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using Blooso.Data;
 using Blooso.Interfaces;
 using Blooso.Models;
@@ -15,10 +16,10 @@ namespace Blooso.Repositories
         private UserRepository()
         {
             //_userlist = FillListWithDummyData();
-            CurrentlyLoggedInUser = GetUser(1);
+
             _dummyData = new DummyData();
             _userlist = FillListWithBogusData();
-            
+            CurrentlyLoggedInUser = GetUser(1);
         }
 
         private List<User> _userlist;

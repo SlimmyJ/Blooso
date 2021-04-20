@@ -16,8 +16,6 @@ namespace Blooso.ViewModels
         public MainMenuViewModel()
         {
             userRepo = UserRepository.GetRepository();
-
-            //temp hardcoded voor login systeem
             CurrentUser = userRepo.GetUser(1);
         }
 
