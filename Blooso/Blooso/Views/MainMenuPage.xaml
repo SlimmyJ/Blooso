@@ -1,44 +1,44 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="Blooso.Views.MainMenuPage"
+﻿<ContentPage x:Class="Blooso.Views.MainMenuPage"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:Blooso.ViewModels;assembly=Blooso">
     <ContentPage.BindingContext>
         <viewModels:MainMenuViewModel />
     </ContentPage.BindingContext>
-    <RefreshView>        
-            <StackLayout BackgroundColor="{StaticResource WhiteFill}">
-                <Grid Margin="0,20,0,0"
-                      RowDefinitions="*,*"
-                      ColumnDefinitions="*,*">
-
-                <Button Grid.Row="1"
-                            Grid.Column="0" 
-                            Command="{Binding LoadUsersCommand}"                       
-                            HorizontalOptions="Center"
-                            Text="Edit Profile"
-                            VerticalOptions="Center"
-                            Margin="5"/>
-                <Button Grid.Row="1"
-                            Grid.Column="1" 
-                            Command="{Binding LoadUsersCommand}"                       
-                            HorizontalOptions="Center"
-                            Text="Find matches!"
-                            VerticalOptions="Center"
-                            Margin="5"/>
-                
-                <Label Grid.Row =" 0"
-                           Grid.Column="0"
-                           Grid.ColumnSpan="2"
-                           Text="Welcome to Blooso"
-                           Margin="5"
-                           HorizontalTextAlignment="Center"
-                           FontSize="Large"/>
-
-
-
-
-            </Grid>
-            </StackLayout>        
-    </RefreshView>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding LogUserOutCommand}"
+                     Text="Log out" />
+    </ContentPage.ToolbarItems>
+    <FlexLayout Direction="Column">
+        <!--  Header  -->
+        <Label BackgroundColor="{StaticResource BaseOrange}"
+               FontAttributes="Bold"
+               FontSize="Large"
+               HorizontalTextAlignment="Center"
+               Text="BLOOSO"
+               TextColor="{StaticResource WhiteFill}" />
+        <!--  Body  -->
+        <FlexLayout AlignContent="SpaceEvenly"
+                    Direction="Column"
+                    FlexLayout.Grow="1"
+                    Visual="Material">
+            <!--  Content  -->
+            <Image Source="{Binding CurrentUser.UserPicture}" />
+            <Button BackgroundColor="{StaticResource DarkerOrange}"
+                    BorderColor="{StaticResource AccentBlue}"
+                    HorizontalOptions="Center"
+                    Text="Edit Profile"
+                    VerticalOptions="Center" />
+            <Button BackgroundColor="{StaticResource DarkerOrange}"
+                    Command="{Binding LoadUsersCommand}"
+                    Text="Matches" />
+            <BoxView Color="{StaticResource AccentBlue}" />
+        </FlexLayout>
+        <!--  Footer  -->
+        <Label BackgroundColor="{StaticResource BleakOrange}"
+               FontSize="Large"
+               HorizontalTextAlignment="Center"
+               Text=""
+               TextColor="{StaticResource WhiteFill}" />
+    </FlexLayout>
 </ContentPage>

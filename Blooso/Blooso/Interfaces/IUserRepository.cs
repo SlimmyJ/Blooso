@@ -9,7 +9,15 @@ namespace Blooso.Interfaces
         List<User> GetAllUsers();
 
         User GetUser(int id);
+
         User GetCurrentlyLoggedInUser();
+
+        void SetCurrentlyLoggedInUser(int id);
+
         List<User> GetSearchResults(string queryString);
+
+        bool DoesUserExist(int id);
+
+        List<User> GetMatchResults();
     }
 }

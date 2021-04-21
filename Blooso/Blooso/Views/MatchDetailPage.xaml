@@ -1,58 +1,121 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:vm="clr-namespace:Blooso.ViewModels"
-             x:Class="Blooso.Views.MatchDetailPage">
-
+<ContentPage x:Class="Blooso.Views.MatchDetailPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Blooso.ViewModels">
     <ContentPage.BindingContext>
-        <vm:MatchDetailViewModel/>
+        <vm:MatchDetailViewModel />
     </ContentPage.BindingContext>
-        
     <ContentPage.Content>
-        <StackLayout>
-            <Grid ColumnDefinitions="*,3*"
-                  RowDefinitions="3*,*,*,*,*,3*"
-                  Margin="10"                  
-                  >
-
-                <Label Grid.Row="0" Grid.ColumnSpan="2"
-                    Text="Match Details: "
-                    VerticalOptions="CenterAndExpand" 
-                    HorizontalOptions="CenterAndExpand"
-                    FontSize="Medium"
-                    FontAttributes="Bold"/>
-
-                <Label Grid.Row="1" Text="Name"
-                       VerticalOptions="Center"/>
-                <Label Grid.Row="2" Text="Date of Birth"
-                       VerticalOptions="Center"/>
-                <Label Grid.Row="3" Text="Gender"
-                       VerticalOptions="Center"/>
-                <Label Grid.Row="4" Text="Infected?"
-                       VerticalOptions="Center"/>
-
-                <Label Grid.Row="1" Grid.Column="1"                                             
-                       Text="{Binding UserDetail.Name}"/>
-                <Label Grid.Row="2" Grid.Column="1"                                  
-                       Text="{Binding UserDetail.DateOfBirth}"
-                       />
-                <Label Grid.Row="3" Grid.Column="1"                                         
-                        Text="{Binding UserDetail.Sex}"
-                       />
-                <CheckBox Grid.Row="4" Grid.Column="1"                       
-                       HorizontalOptions="End"  
-                          IsChecked="{Binding UserDetail.IsInfected}"
-                          />
-
-
-                <Button Grid.Row="5" Grid.ColumnSpan="2"
-                        Text="Add to friendlist"
-                        Margin="0,40"
-                        Command="{Binding AddUserToFavouritesCommand}"
-                        />
-
-
-            </Grid>
-        </StackLayout>
+        <Grid BackgroundColor="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <!--  1. Profile picture  -->
+            <Image Grid.Row="0"
+                   Source="{Binding UserDetail.UserPicture}"
+                   VerticalOptions="Start" />
+            <!--  2. Contact information frame  -->
+            <StackLayout Grid.Row="0"
+                         VerticalOptions="End">
+                <Frame CornerRadius="40">
+                    <!--  Blocks: 3 and 4  -->
+                    <Grid Padding="25,10,25,0"
+                          RowSpacing="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <!--  3. Phone & message buttons  -->
+                        <Button Grid.Row="0"
+                                Grid.Column="1"
+                                HorizontalOptions="End"
+                                ImageSource="Phone"
+                                Style="{StaticResource stlContactBtn}" />
+                        <Button Grid.Row="0"
+                                Grid.Column="2"
+                                HorizontalOptions="Start"
+                                ImageSource="Correo"
+                                Style="{StaticResource stlContactBtn}" />
+                        <!--  4. Contact information  -->
+                        <Label Grid.Row="0"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="3"
+                               FontAttributes="Bold"
+                               FontSize="30"
+                               Text="{Binding UserDetail.Name}" />
+                        <Label Grid.Row="1"
+                               Grid.Column="0"
+                               FontSize="16"
+                               Text="Ghent, Belgium"
+                               TextColor="#a5a2a2" />
+                        <Label Grid.Row="2"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="3"
+                               Padding="0,10,0,0"
+                               FontSize="16">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span FontAttributes="Bold"
+                                          Text="I dream about travel and wine every day. Please like me." />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <!--  4. Contact information: Board inforation  -->
+                        <Label Grid.Row="3"
+                               Grid.Column="0"
+                               Style="{StaticResource stlBoardTitle}"
+                               Text="Likes" />
+                        <Label Grid.Row="4"
+                               Grid.Column="0"
+                               Style="{StaticResource stlBoardDesc}"
+                               Text="678" />
+                        <Label Grid.Row="3"
+                               Grid.Column="1"
+                               Style="{StaticResource stlBoardTitle}"
+                               Text="Activities">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MatchDetailViewModel}}, Path=ActivityTappedAccount}"
+                                                      CommandParameter="{Binding .}"
+                                                      NumberOfTapsRequired="2" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Grid.Row="4"
+                               Grid.Column="1"
+                               Style="{StaticResource stlBoardDesc}"
+                               Text="4" />
+                        <Label Grid.Row="3"
+                               Grid.Column="2"
+                               Style="{StaticResource stlBoardTitle}"
+                               Text="Friends" />
+                        <Label Grid.Row="4"
+                               Grid.Column="2"
+                               Style="{StaticResource stlBoardDesc}"
+                               Text="67k" />
+                        <!--  4. Contact information: Follow button  -->
+                        <Button Grid.Row="5"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                Margin="0,20,0,2"
+                                BackgroundColor="{StaticResource AccentBlue}"
+                                Command="{Binding .AddUserToFavouritesCommand}"
+                                FontAttributes="Bold"
+                                FontSize="17"
+                                HeightRequest="45"
+                                Text="Add Friend"
+                                TextColor="White" />
+                    </Grid>
+                </Frame>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

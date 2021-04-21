@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using Blooso.Data;
 using Blooso.Interfaces;
 using Blooso.Models;
 
@@ -10,11 +11,12 @@ namespace Blooso.Repositories
     public class UserRepository : IUserRepository
     {
         private static UserRepository _userRepository;
+        private DummyData _dummyData;
 
         private UserRepository()
         {
-            _userlist = FillListWithDummyData();
-            CurrentlyLoggedInUser = GetUser(1);
+            _dummyData = new DummyData();
+            _userlist = FillListWithBogusData();
         }
 
         private List<User> _userlist;
@@ -34,6 +36,18 @@ namespace Blooso.Repositories
             return CurrentlyLoggedInUser;
         }
 
+        public void SetCurrentlyLoggedInUser(int id)
+        {
+            if (id == 0)
+            {
+                CurrentlyLoggedInUser = new User();
+            }
+            else
+            {
+                CurrentlyLoggedInUser = GetUser(id);
+            }
+        }
+
         public List<User> GetAllUsers()
         {
             return _userlist;
@@ -43,12 +57,43 @@ namespace Blooso.Repositories
         {
             return _userlist.FirstOrDefault(x => x.Id == id);
         }
+
         public List<User> GetSearchResults(string queryString)
         {
             var normalizedQuery = queryString?.ToLower() ?? "";
-            return _userlist.Where(f => f.Name.ToLowerInvariant().Contains(normalizedQuery)).ToList();
+            return _userlist.Where(f => f.ToString().ToLowerInvariant().Contains(normalizedQuery)).ToList();
         }
 
+        public List<User> GetMatchResults()
+        {
+            var matches = new List<User>();
+
+            foreach (var user in _userlist)
+            {
+                if (user.IsInfected == CurrentlyLoggedInUser.IsInfected)
+                {
+                    matches.Add(user);
+                }
+            }
+
+            return matches;
+        }
+
+        public bool DoesUserExist(int id)
+        {
+            foreach (var user in _userlist)
+            {
+                if (user.Id == id)
+                    return true;
+            }
+
+            return false;
+        }
+
+        private List<User> FillListWithBogusData()
+        {
+            return _dummyData.GenerateDummyData();
+        }
 
         private List<User> FillListWithDummyData()
         {
@@ -64,7 +109,7 @@ namespace Blooso.Repositories
                         FriendsList = new List<User>(),
                         IsInfected = true,
                         IsVaccinated = false,
-                        Messages = new List<Message>(),
+                        ProfileCommentsList = new List<Message>(),
                         ActivityList = new List<Activities>()
                         {
                             Activities.Running,
@@ -86,7 +131,7 @@ namespace Blooso.Repositories
                         FriendsList = new List<User>(),
                         IsInfected = true,
                         IsVaccinated = false,
-                        Messages = new List<Message>(),
+                        ProfileCommentsList = new List<Message>(),
                         ActivityList = new List<Activities>()    {
                             Activities.Running,
                             Activities.Basketball,
@@ -108,7 +153,7 @@ namespace Blooso.Repositories
                         FriendsList = new List<User>(),
                         IsInfected = true,
                         IsVaccinated = false,
-                        Messages = new List<Message>(),
+                        ProfileCommentsList = new List<Message>(),
                         ActivityList = new List<Activities>()  {
                             Activities.Running,
                             Activities.Handball,
@@ -126,11 +171,11 @@ namespace Blooso.Repositories
                         Name = "Libelle",
                         DateOfBirth = DateTime.Today,
                         Sex = 'f',
-                        UserLocation = new UserLocation(),
+                        UserLocation = new UserLocation(9000),
                         FriendsList = new List<User>(),
-                        IsInfected = true,
+                        IsInfected = false,
                         IsVaccinated = false,
-                        Messages = new List<Message>(),
+                        ProfileCommentsList = new List<Message>(),
                         ActivityList = new List<Activities>() {
                             Activities.Running,
                             Activities.Handball,

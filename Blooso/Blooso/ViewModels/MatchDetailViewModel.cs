@@ -1,22 +1,28 @@
-﻿using Blooso.Interfaces;
+﻿using System;
+using System.Diagnostics;
+
+using Blooso.Interfaces;
 using Blooso.Models;
 using Blooso.Repositories;
-using Blooso.Views;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
+
 using Xamarin.Forms;
 
 namespace Blooso.ViewModels
 {
     [QueryProperty(nameof(UserId), nameof(UserId))]
-    public class MatchDetailViewModel: BaseViewModel
+    public class MatchDetailViewModel : BaseViewModel
     {
         private IUserRepository userRepo;
-        
 
         private User userDetail;
+
+        public Command ActivityTappedAccount => new Command(ActivityTapped);
+
+        private void ActivityTapped()
+        {
+            Application.Current.MainPage.DisplayAlert("TODO", "List of activities", "OK"); ;
+        }
+
         public User UserDetail
         {
             get
@@ -31,6 +37,7 @@ namespace Blooso.ViewModels
         }
 
         private int userId;
+
         public int UserId
         {
             get
@@ -44,24 +51,23 @@ namespace Blooso.ViewModels
                 LoadUser(value);
             }
         }
+
         public Command AddUserToFavouritesCommand => new Command(AddUserToFavourites);
-       
+
         public MatchDetailViewModel()
         {
             UserDetail = new User();
-            userRepo = UserRepository.GetRepository();            
+            userRepo = UserRepository.GetRepository();
         }
 
         private async void AddUserToFavourites()
         {
-            //TODO           
             var loggedInUser = userRepo.GetCurrentlyLoggedInUser();
 
-            if(loggedInUser.Id != UserDetail.Id)
+            if (loggedInUser.Id != UserDetail.Id)
                 loggedInUser.FriendsList.Add(UserDetail);
 
             await Shell.Current.GoToAsync("..");
-
         }
 
         private void LoadUser(int value)
@@ -75,7 +81,5 @@ namespace Blooso.ViewModels
                 Debug.WriteLine("failed to load item");
             }
         }
-       
-
     }
 }

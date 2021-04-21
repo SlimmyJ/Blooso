@@ -9,8 +9,8 @@ namespace Blooso.Models
 
         public int Id
         {
-            get { return _id; }
-            set { _id = value; }
+            get => _id;
+            set => _id = value;
         }
 
         public string Name { get; set; }
@@ -18,6 +18,8 @@ namespace Blooso.Models
         public bool IsVaccinated { get; set; }
 
         public bool IsInfected { get; set; }
+
+        public string UserPicture { get; set; }
 
         public UserLocation UserLocation { get; set; }
 
@@ -29,9 +31,29 @@ namespace Blooso.Models
 
         public List<Tags> UserTags { get; set; }
 
-        public List<Message> Messages { get; set; }
+        public List<Message> ProfileCommentsList { get; set; }
 
-        public List<User> UserLikes { get; set; }
-        public List<User> LikedByUser { get; set; }
+        //public string ShortBio { get; set; }
+
+        public override string ToString()
+        {
+            var isInfected = IsInfected ? "infected" : "clean";
+
+            var activities = "";
+            foreach (var activity in ActivityList)
+            {
+                activities += $"{activity }";
+            }
+
+            var tags = "";
+            foreach (var tag in UserTags)
+            {
+                tags += $"{tag }";
+            }
+
+            var toString = $"{Name} {DateOfBirth} gender {Sex} {isInfected} {UserLocation.AreaCode} {activities} {tags}";
+
+            return toString;
+        }
     }
 }

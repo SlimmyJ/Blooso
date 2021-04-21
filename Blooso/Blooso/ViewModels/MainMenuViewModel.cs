@@ -1,4 +1,6 @@
-﻿using Blooso.Interfaces;
+﻿using System.Windows.Input;
+
+using Blooso.Interfaces;
 using Blooso.Models;
 using Blooso.Repositories;
 using Blooso.Views;
@@ -11,17 +13,14 @@ namespace Blooso.ViewModels
     {
         private IUserRepository userRepo;
         public User CurrentUser { get; set; }
-        public Command LoadUsersCommand => new Command(LoadUsers);
+        public ICommand LoadUsersCommand => new Command(LoadUsers);
+        public ICommand LogUserOutCommand => new Command(LogUserOut);
 
         public MainMenuViewModel()
         {
             userRepo = UserRepository.GetRepository();
-
-            //temp hardcoded voor login systeem
-            CurrentUser = userRepo.GetUser(1);
+            CurrentUser = userRepo.GetCurrentlyLoggedInUser();
         }
-
-        
 
         private async void LoadUsers()
         {
@@ -31,6 +30,13 @@ namespace Blooso.ViewModels
         public User GetCurrentUser()
         {
             return CurrentUser;
+        }
+
+        private async void LogUserOut()
+        {
+            userRepo.SetCurrentlyLoggedInUser(0);
+
+            await Shell.Current.GoToAsync(nameof(LoginPage));
         }
     }
 }

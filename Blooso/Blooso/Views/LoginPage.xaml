@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Blooso.ViewModels"
+             x:Class="Blooso.Views.LoginPage">
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical"
+                     Padding="30"
+                     Spacing="40">
+            <BoxView HeightRequest="10" />
+            <Frame BackgroundColor="#BF043055"
+                   HasShadow="False">
+                <StackLayout Orientation="Vertical"
+                             Spacing="10">
+                    <Entry x:Name="Email"
+                           Text="{Binding Id}"
+                           Placeholder="Id"
+                           PlaceholderColor="White"
+                           HeightRequest="40"
+                           Keyboard="Numeric"
+                           TextColor="White" />
+                    <Entry x:Name="Password"
+                           Text="{Binding Password}"
+                           Placeholder="Password"
+                           PlaceholderColor="White"
+                           HeightRequest="40"
+                           IsPassword="True"
+                           TextColor="White" />
+                </StackLayout>
+            </Frame>
+            <Button Command="{Binding SubmitCommand}"
+                    Text="Login"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="#088da5" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

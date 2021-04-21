@@ -18,6 +18,8 @@ namespace Blooso
             InitializeComponent();
             Routing.RegisterRoute(nameof(MatchOverviewPage), typeof(MatchOverviewPage));
             Routing.RegisterRoute(nameof(MatchDetailPage), typeof(MatchDetailPage));
+            Routing.RegisterRoute(nameof(MainMenuPage), typeof(MainMenuPage));
+            Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
         }
     }
 }

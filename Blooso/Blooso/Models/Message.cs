@@ -8,6 +8,8 @@ namespace Blooso.Models
         public DateTime CreatedAt { get; set; }
         public User Author { get; set; }
         public User Recipient { get; set; }
+        public bool Private { get; set; }
+        public bool IsPositiveReview { get; set; }
         public string Text { get; set; }
     }
 }
