@@ -2,53 +2,40 @@
 <ContentPage x:Class="Blooso.Views.MatchDetailPage"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:media="clr-namespace:Windows.UI.Xaml.Media;assembly=Windows.Foundation.UniversalApiContract"
              xmlns:vm="clr-namespace:Blooso.ViewModels">
     <ContentPage.BindingContext>
         <vm:MatchDetailViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <Grid Margin="10"
-                  ColumnDefinitions="*,3*"
-                  RowDefinitions="3*,*,*,*,*,3*">
-                <Label Grid.Row="0"
-                       Grid.ColumnSpan="2"
-                       FontAttributes="Bold"
-                       FontSize="Medium"
-                       HorizontalOptions="CenterAndExpand"
-                       Text="Match Details: "
-                       VerticalOptions="CenterAndExpand" />
-                <Label Grid.Row="1"
-                       Text="Name"
+        <FlexLayout AlignItems="Center"
+                    Direction="Column"
+                    JustifyContent="SpaceEvenly">
+            <FlexLayout.BindingContext>
+                <Binding Path=".UserDetail" />
+            </FlexLayout.BindingContext>
+            <Frame Padding="0"
+                   CornerRadius="100"
+                   HeightRequest="100"
+                   HorizontalOptions="Center"
+                   IsClippedToBounds="True"
+                   WidthRequest="100">
+                <Image HorizontalOptions="Center"
+                       Source="{Binding UserPicture}"
                        VerticalOptions="Center" />
-                <Label Grid.Row="2"
-                       Text="Date of Birth"
-                       VerticalOptions="Center" />
-                <Label Grid.Row="3"
-                       Text="Gender"
-                       VerticalOptions="Center" />
-                <Label Grid.Row="4"
-                       Text="Infected?"
-                       VerticalOptions="Center" />
-                <Label Grid.Row="1"
-                       Grid.Column="1"
-                       Text="{Binding UserDetail.Name}" />
-                <Label Grid.Row="2"
-                       Grid.Column="1"
-                       Text="{Binding UserDetail.DateOfBirth}" />
-                <Label Grid.Row="3"
-                       Grid.Column="1"
-                       Text="{Binding UserDetail.Sex}" />
-                <CheckBox Grid.Row="4"
-                          Grid.Column="1"
-                          HorizontalOptions="End"
-                          IsChecked="{Binding UserDetail.IsInfected}" />
-                <Button Grid.Row="5"
-                        Grid.ColumnSpan="2"
-                        Margin="0,40"
-                        Command="{Binding AddUserToFavouritesCommand}"
-                        Text="Add to friendlist" />
-            </Grid>
-        </StackLayout>
+            </Frame>
+            <Label FontSize="Large">
+                <Label.Text>
+                    <Binding Path=".Name" />
+                </Label.Text>
+            </Label>
+            <Label FontSize="Subtitle">
+                <Label.Text>
+                    <Binding Path=".DateOfBirth" />
+                </Label.Text>
+            </Label>
+            <Button Text="Message user" />
+            <Label Text="Brugge" />
+        </FlexLayout>
     </ContentPage.Content>
 </ContentPage>

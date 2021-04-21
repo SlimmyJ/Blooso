@@ -5,33 +5,40 @@
     <ContentPage.BindingContext>
         <viewModels:MainMenuViewModel />
     </ContentPage.BindingContext>
-    <RefreshView>
-        <StackLayout BackgroundColor="{StaticResource WhiteFill}">
-            <Grid Margin="0,20,0,0"
-                  ColumnDefinitions="*,*"
-                  RowDefinitions="*,*">
-                <Button Grid.Row="1"
-                        Grid.Column="0"
-                        Margin="5"
-                        Command="{Binding LoadUsersCommand}"
-                        HorizontalOptions="Center"
-                        Text="Edit Profile"
-                        VerticalOptions="Center" />
-                <Button Grid.Row="1"
-                        Grid.Column="1"
-                        Margin="5"
-                        Command="{Binding LoadUsersCommand}"
-                        HorizontalOptions="Center"
-                        Text="Find matches!"
-                        VerticalOptions="Center" />
-                <Label Grid.Row=" 0"
-                       Grid.Column="0"
-                       Grid.ColumnSpan="2"
-                       Margin="5"
-                       FontSize="Large"
-                       HorizontalTextAlignment="Center"
-                       Text="Welcome to Blooso" />
-            </Grid>
-        </StackLayout>
-    </RefreshView>
+    <FlexLayout Direction="Column">
+        <!--  Header  -->
+        <Label BackgroundColor="{StaticResource BaseOrange}"
+               FontAttributes="Bold"
+               FontSize="Large"
+               HorizontalTextAlignment="Center"
+               Text="BLOOSO"
+               TextColor="{StaticResource WhiteFill}" />
+        <!--  Body  -->
+        <FlexLayout AlignContent="SpaceEvenly"
+                    FlexLayout.Grow="1"
+                    Visual="Material">
+            <!--  Content  -->
+            <CarouselView ItemsSource="{Binding CurrentUser.UserPicture}"
+                          Scale="10" />
+            <Button BackgroundColor="{StaticResource DarkerOrange}"
+                    BorderColor="{StaticResource AccentBlue}"
+                    Text="Edit Profile" />
+            <Button BackgroundColor="{StaticResource DarkerOrange}"
+                    Command="{Binding LoadUsersCommand}"
+                    Text="Matches" />
+            <!--  Navigation items  -->
+            <BoxView FlexLayout.Basis="50"
+                     FlexLayout.Order="-1"
+                     Color="{StaticResource BaseOrange}" />
+            <!--  Aside items  -->
+            <BoxView FlexLayout.Basis="50"
+                     Color="{StaticResource DarkerOrange}" />
+        </FlexLayout>
+        <!--  Footer  -->
+        <Label BackgroundColor="{StaticResource BleakOrange}"
+               FontSize="Large"
+               HorizontalTextAlignment="Center"
+               Text="FOOTER"
+               TextColor="{StaticResource WhiteFill}" />
+    </FlexLayout>
 </ContentPage>

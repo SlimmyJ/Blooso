@@ -1,59 +1,34 @@
-<Shell x:Class="Blooso.AppShell"
-       xmlns="http://xamarin.com/schemas/2014/forms"
-       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:local="clr-namespace:Blooso.Views;assembly=Blooso"
-       Title="Blooso">
+<Shell
+    x:Class="Blooso.AppShell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Blooso.Views;assembly=Blooso"
+    Title="Blooso"
+    BackgroundColor="#FFFF8C42">
     <Shell.Resources>
-        <ResourceDictionary>
-            <!--#region Styles-->
-            <!--#region FlyoutItemStyles-->
-            <Style ApplyToDerivedTypes="True"
-                   Class="FlyoutItemLayoutStyle"
-                   TargetType="Layout">
-                <Setter Property="VisualStateManager.VisualStateGroups">
-                    <VisualStateGroupList>
-                        <VisualStateGroup x:Name="CommonStates">
-                            <VisualState x:Name="Normal">
-                                <VisualState.Setters>
-                                    <Setter Property="BackgroundColor"
-                                            Value="{x:OnPlatform UWP={StaticResource BaseOrange}, iOS=White}" />
-                                    <Setter TargetName="FlyoutItemLabel"
-                                            Property="Label.TextColor"
-                                            Value="{StaticResource BleakOrange}" />
-                                </VisualState.Setters>
-                            </VisualState>
-                            <VisualState x:Name="Selected">
-                                <VisualState.Setters>
-                                    <Setter Property="BackgroundColor"
-                                            Value="{StaticResource BleakOrange}" />
-                                </VisualState.Setters>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateGroupList>
-                </Setter>
-            </Style>
-            <!--#endregion-->
-        </ResourceDictionary>
+        <ResourceDictionary />
     </Shell.Resources>
     <TabBar>
-        <ShellContent Title="Profile"
-                      Icon="icon_about.png"
-                      Route="AboutPage"
-                      ContentTemplate="{DataTemplate local:MainMenuPage}" />
-        <ShellContent Title="Friendlist"
-                      Icon="icon_feed.png"
-                      ContentTemplate="{DataTemplate local:FriendlistPage}" />
-        <ShellContent Title="Messages"
-                      Icon="icon_feed.png"
-                      ContentTemplate="{DataTemplate local:MatchOverviewPage}" />
+        <ShellContent
+            Title="Profile"
+            ContentTemplate="{DataTemplate local:MainMenuPage}"
+            Icon="icon_about.png"
+            Route="AboutPage" />
+        <ShellContent
+            Title="Friendlist"
+            ContentTemplate="{DataTemplate local:FriendlistPage}"
+            Icon="icon_feed.png" />
+        <ShellContent
+            Title="Messages"
+            ContentTemplate="{DataTemplate local:MatchOverviewPage}"
+            Icon="icon_feed.png" />
     </TabBar>
     <!--
         If you would like to navigate to this content you can do so by calling
         await Shell.Current.GoToAsync("//LoginPage");
     -->
     <TabBar>
-        <ShellContent Route="LoginPage"
-                      ContentTemplate="{DataTemplate local:MainMenuPage}" />
+        <ShellContent ContentTemplate="{DataTemplate local:MainMenuPage}" Route="LoginPage" />
     </TabBar>
     <!--<FlyoutItem Title="MainMenu">
         <ShellContent ContentTemplate="{DataTemplate local:MainMenuPage}"
