@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage x:Class="Blooso.Views.MatchDetailPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:Blooso.ViewModels"
-             x:Class="Blooso.Views.MatchDetailPage">
+             xmlns:vm="clr-namespace:Blooso.ViewModels">
     <ContentPage.BindingContext>
         <vm:MatchDetailViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <Grid ColumnDefinitions="*,3*"
-                  RowDefinitions="3*,*,*,*,*,3*"
-                  Margin="10">
+            <Grid Margin="10"
+                  ColumnDefinitions="*,3*"
+                  RowDefinitions="3*,*,*,*,*,3*">
                 <Label Grid.Row="0"
                        Grid.ColumnSpan="2"
-                       Text="Match Details: "
-                       VerticalOptions="CenterAndExpand"
-                       HorizontalOptions="CenterAndExpand"
+                       FontAttributes="Bold"
                        FontSize="Medium"
-                       FontAttributes="Bold" />
+                       HorizontalOptions="CenterAndExpand"
+                       Text="Match Details: "
+                       VerticalOptions="CenterAndExpand" />
                 <Label Grid.Row="1"
                        Text="Name"
                        VerticalOptions="Center" />
@@ -45,9 +45,9 @@
                           IsChecked="{Binding UserDetail.IsInfected}" />
                 <Button Grid.Row="5"
                         Grid.ColumnSpan="2"
-                        Text="Add to friendlist"
                         Margin="0,40"
-                        Command="{Binding AddUserToFavouritesCommand}" />
+                        Command="{Binding AddUserToFavouritesCommand}"
+                        Text="Add to friendlist" />
             </Grid>
         </StackLayout>
     </ContentPage.Content>
