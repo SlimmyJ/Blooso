@@ -51,7 +51,7 @@ namespace Blooso.Models
                 tags += $"{tag }";
             }
 
-            var toString = $"{Name} {DateOfBirth} {Sex} {isInfected} {UserLocation.AreaCode} {activities} {tags}";
+            var toString = $"{Name} {DateOfBirth} gender {Sex} {isInfected} {UserLocation.AreaCode} {activities} {tags}";
 
             return toString;
         }
