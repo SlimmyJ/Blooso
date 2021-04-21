@@ -1,4 +1,5 @@
 ﻿using Blooso.Views;
+
 using Xamarin.Forms;
 
 namespace Blooso

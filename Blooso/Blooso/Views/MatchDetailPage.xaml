@@ -11,9 +11,9 @@
         <FlexLayout AlignItems="Center"
                     Direction="Column"
                     JustifyContent="SpaceEvenly">
-            <FlexLayout.BindingContext>
+            <!--<FlexLayout.BindingContext>
                 <Binding Path=".UserDetail" />
-            </FlexLayout.BindingContext>
+            </FlexLayout.BindingContext>-->
             <Frame Padding="0"
                    CornerRadius="100"
                    HeightRequest="100"
@@ -21,20 +21,22 @@
                    IsClippedToBounds="True"
                    WidthRequest="100">
                 <Image HorizontalOptions="Center"
-                       Source="{Binding UserPicture}"
+                       Source="{Binding .UserDetail.UserPicture}"
                        VerticalOptions="Center" />
             </Frame>
             <Label FontSize="Large">
                 <Label.Text>
-                    <Binding Path=".Name" />
+                    <Binding Path=".UserDetail.Name" />
                 </Label.Text>
             </Label>
             <Label FontSize="Subtitle">
                 <Label.Text>
-                    <Binding Path=".DateOfBirth" />
+                    <Binding Path=".UserDetail.DateOfBirth" />
                 </Label.Text>
             </Label>
             <Button Text="Message user" />
+            <Button Command="{Binding AddUserToFavouritesCommand}"
+                    Text="Message user" />
             <Label Text="Brugge" />
         </FlexLayout>
     </ContentPage.Content>
