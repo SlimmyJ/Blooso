@@ -38,7 +38,7 @@ namespace Blooso.Repositories
 
         public void SetCurrentlyLoggedInUser(int id)
         {
-            if(id == 0)
+            if (id == 0)
             {
                 CurrentlyLoggedInUser = new User();
             }
@@ -70,13 +70,11 @@ namespace Blooso.Repositories
 
             foreach (var user in _userlist)
             {
-                if(user.IsInfected == CurrentlyLoggedInUser.IsInfected)
+                if (user.IsInfected == CurrentlyLoggedInUser.IsInfected)
                 {
                     matches.Add(user);
                 }
             }
-
-
 
             return matches;
         }

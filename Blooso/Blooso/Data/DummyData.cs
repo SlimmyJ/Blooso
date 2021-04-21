@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
 
 using Blooso.Models;
 
 using Bogus;
-
-using Newtonsoft.Json;
 
 namespace Blooso.Data
 {

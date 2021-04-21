@@ -1,9 +1,10 @@
-﻿using Blooso.Interfaces;
+﻿using System.Windows.Input;
+
+using Blooso.Interfaces;
 using Blooso.Models;
 using Blooso.Repositories;
 using Blooso.Views;
-using System;
-using System.Windows.Input;
+
 using Xamarin.Forms;
 
 namespace Blooso.ViewModels
@@ -15,7 +16,6 @@ namespace Blooso.ViewModels
         public ICommand LoadUsersCommand => new Command(LoadUsers);
         public ICommand LogUserOutCommand => new Command(LogUserOut);
 
-        
         public MainMenuViewModel()
         {
             userRepo = UserRepository.GetRepository();
@@ -35,9 +35,8 @@ namespace Blooso.ViewModels
         private async void LogUserOut()
         {
             userRepo.SetCurrentlyLoggedInUser(0);
-            
+
             await Shell.Current.GoToAsync(nameof(LoginPage));
         }
-
     }
 }

@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
-using Xamarin.Forms;
+
 using Blooso.Interfaces;
 using Blooso.Repositories;
+
+using Xamarin.Forms;
 
 namespace Blooso.ViewModels
 {
@@ -49,7 +49,7 @@ namespace Blooso.ViewModels
         {
             if (!DoesUserExist())
             {
-                //DisplayInvalidLoginPrompt();                
+                //DisplayInvalidLoginPrompt();
                 await Application.Current.MainPage.DisplayAlert("Login Failed", "UserId or Password incorrect", "OK");
             }
             else
@@ -60,7 +60,6 @@ namespace Blooso.ViewModels
                 Application.Current.MainPage = new AppShell();
                 await Shell.Current.GoToAsync("MainMenuPage");
             }
-            
         }
 
         private bool DoesUserExist()

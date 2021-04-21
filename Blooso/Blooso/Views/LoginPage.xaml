@@ -6,14 +6,11 @@
     <ContentPage.BindingContext>
         <vm:LoginViewModel />
     </ContentPage.BindingContext>
-    
     <ContentPage.Content>
-        
         <StackLayout Orientation="Vertical"
                      Padding="30"
                      Spacing="40">
             <BoxView HeightRequest="10" />
-
             <Frame BackgroundColor="#BF043055"
                    HasShadow="False">
                 <StackLayout Orientation="Vertical"
