@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Blooso.ViewModels;assembly=Blooso"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+             xmlns:controls="clr-namespace:Blooso.Controls;assembly=Blooso"
+             x:Class="Blooso.Views.EditProfilePage">
+    <ContentPage.BindingContext>
+        <viewModels:EditProfileViewModel />
+    </ContentPage.BindingContext>
+    <FlexLayout Direction="Column">
+        <Image Source="{Binding CurrentUser.UserPicture}"
+               Margin="0,20,0,20" />
+        <!--change name-->
+        <Label Text="Change name" />
+        <controls:BorderlessEntry Placeholder="{Binding CurrentUser.Name}" />
+        <!--change sex-->
+        <Label Text="Change sex(again??)" />
+        <controls:BorderlessPicker x:Name="SexPicker"
+                                   Title="Select your new sex">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:Char}">
+                    <x:String>Male</x:String>
+                    <x:String>Female</x:String>
+                    <x:String>Gender Fluid</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </controls:BorderlessPicker>
+        <!--vaccinated?-->
+        <StackLayout Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding CurrentUser.IsVaccinated}"
+                      Color="{StaticResource TextBlack}" />
+            <Label Text="Are you vaccinated?"
+                   HorizontalTextAlignment="Center" />
+        </StackLayout>
+        <!--infected?-->
+        <StackLayout Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding CurrentUser.IsInfected}"
+                      Color="{StaticResource TextBlack}" />
+            <Label Text="Are you infected?"
+                   HorizontalTextAlignment="Center" />
+        </StackLayout>
+    </FlexLayout>
+</ContentPage>

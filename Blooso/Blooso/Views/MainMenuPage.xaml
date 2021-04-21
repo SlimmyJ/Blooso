@@ -26,6 +26,7 @@
             <Image Source="{Binding CurrentUser.UserPicture}" />
             <Button BackgroundColor="{StaticResource DarkerOrange}"
                     BorderColor="{StaticResource AccentBlue}"
+                    Command="{Binding EditProfileCommand}"
                     HorizontalOptions="Center"
                     Text="Edit Profile"
                     VerticalOptions="Center" />

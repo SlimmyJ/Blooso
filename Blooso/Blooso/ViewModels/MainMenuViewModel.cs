@@ -12,9 +12,9 @@ namespace Blooso.ViewModels
     public class MainMenuViewModel : BaseViewModel
     {
         private IUserRepository userRepo;
-        public User CurrentUser { get; set; }
         public ICommand LoadUsersCommand => new Command(LoadUsers);
         public ICommand LogUserOutCommand => new Command(LogUserOut);
+        public ICommand EditProfileCommand => new Command(EditProfile);
 
         public MainMenuViewModel()
         {
@@ -37,6 +37,11 @@ namespace Blooso.ViewModels
             userRepo.SetCurrentlyLoggedInUser(0);
 
             await Shell.Current.GoToAsync(nameof(LoginPage));
+        }
+
+        private async void EditProfile(object obj)
+        {
+            await Shell.Current.GoToAsync("EditProfilePage");
         }
     }
 }

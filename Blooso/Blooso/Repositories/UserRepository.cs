@@ -38,14 +38,7 @@ namespace Blooso.Repositories
 
         public void SetCurrentlyLoggedInUser(int id)
         {
-            if (id == 0)
-            {
-                CurrentlyLoggedInUser = new User();
-            }
-            else
-            {
-                CurrentlyLoggedInUser = GetUser(id);
-            }
+            CurrentlyLoggedInUser = id == 0 ? new User() : GetUser(id);
         }
 
         public List<User> GetAllUsers()
@@ -66,6 +59,8 @@ namespace Blooso.Repositories
 
         public List<User> GetMatchResults()
         {
+            // LINQ version: return _userlist.Where(user => user.IsInfected == CurrentlyLoggedInUser.IsInfected).ToList();
+
             var matches = new List<User>();
 
             foreach (var user in _userlist)
@@ -81,6 +76,7 @@ namespace Blooso.Repositories
 
         public bool DoesUserExist(int id)
         {
+            // LINQ version return _userlist.Any(user => user.Id == id);
             foreach (var user in _userlist)
             {
                 if (user.Id == id)

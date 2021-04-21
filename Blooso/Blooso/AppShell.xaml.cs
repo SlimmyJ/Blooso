@@ -20,6 +20,7 @@ namespace Blooso
             Routing.RegisterRoute(nameof(MatchDetailPage), typeof(MatchDetailPage));
             Routing.RegisterRoute(nameof(MainMenuPage), typeof(MainMenuPage));
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
+            Routing.RegisterRoute(nameof(EditProfilePage), typeof(EditProfilePage));
         }
     }
 }

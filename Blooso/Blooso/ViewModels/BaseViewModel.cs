@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Blooso.Interfaces;
+using Blooso.Models;
+using Blooso.Repositories;
 
 namespace Blooso.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
+        public User CurrentUser { get; set; }
+        protected IUserRepository userRepo;
+
         private bool isBusy = false;
 
         public bool IsBusy
@@ -19,8 +25,8 @@ namespace Blooso.ViewModels
 
         public string Title
         {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
+            get => _title;
+            set => SetProperty(ref _title, value);
         }
 
         protected bool SetProperty<T>(ref T backingStore, T value,

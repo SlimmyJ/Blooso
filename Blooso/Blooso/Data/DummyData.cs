@@ -15,7 +15,7 @@ namespace Blooso.Data
             var dummyList = new List<User>();
             var userFaker = new Faker<User>()
                 .RuleFor(x => x.Name, x => x.Person.FullName)
-                .RuleFor(x => x.Sex, z => z.PickRandom('M', 'F', 'X'))
+                .RuleFor(x => x.Sex, x => x.PickRandom("Male", "Female", "Gender Fluid"))
                 .RuleFor(x => x.IsVaccinated, x => x.Random.Bool())
                 .RuleFor(x => x.IsInfected, x => x.Random.Bool())
                 .RuleFor(x => x.UserLocation, new UserLocation())
