@@ -20,8 +20,8 @@ namespace Blooso.Data
                 .RuleFor(x => x.IsInfected, x => x.Random.Bool())
                 .RuleFor(x => x.UserLocation, new UserLocation())
                 .RuleFor(x => x.DateOfBirth, x => x.Person.DateOfBirth)
-                .RuleFor(x => x.ActivityList, GetFifteenRandomActivities())
-                .RuleFor(x => x.UserTags, GetTwentyRandomUserTags())
+                .RuleFor(x => x.ActivityList, new List<Activities>())
+                .RuleFor(x => x.UserTags, new List<Tags>())
                 .RuleFor(x => x.FriendsList, new List<User>());
 
             //var user = JsonConvert.SerializeObject(userFaker.Generate());
@@ -32,28 +32,29 @@ namespace Blooso.Data
                 var temp = userFaker.Generate();
                 temp.Id = i + 1;
                 temp.UserPicture = $"a{i}.jpg";
+                temp.ActivityList = GetRandomActivities(10);
+                temp.UserTags = GetRandomUserTags(12);
                 dummyList.Add(temp);
             }
 
             return dummyList;
         }
 
-        public List<Activities> GetFifteenRandomActivities()
+        public List<Activities> GetRandomActivities(int amount)
         {
             var rand = new Random();
             var newList = Enum.GetValues(typeof(Activities)).Cast<Activities>().ToList();
-            var fifteenRandomActivitieses = newList.OrderBy(x => rand.Next()).Take(15).ToList();
+            var randomActivities = newList.OrderBy(x => rand.Next()).Take(amount).ToList();
 
-            return fifteenRandomActivitieses;
+            return randomActivities;
         }
-
-        public List<Tags> GetTwentyRandomUserTags()
+        public List<Tags> GetRandomUserTags(int amount)
         {
             var rand = new Random();
             var newList = Enum.GetValues(typeof(Tags)).Cast<Tags>().ToList();
-            var twentyRandomUserTags = newList.OrderBy(x => rand.Next()).Take(20).ToList();
+            var randomUserTags = newList.OrderBy(x => rand.Next()).Take(amount).ToList();
 
-            return twentyRandomUserTags;
+            return randomUserTags;
         }
     }
 }
