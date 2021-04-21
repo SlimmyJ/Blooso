@@ -16,5 +16,6 @@ namespace Blooso.Interfaces
 
         List<User> GetSearchResults(string queryString);
         bool DoesUserExist(int id);
+        List<User> GetMatchResults();
     }
 }

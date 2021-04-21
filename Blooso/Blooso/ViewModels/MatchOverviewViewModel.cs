@@ -47,7 +47,7 @@ namespace Blooso.ViewModels
 
             try
             {
-                var users = _userRepository.GetAllUsers();
+                var users = _userRepository.GetMatchResults();
                 Users = new ObservableCollection<User>(users);
             }
             catch (Exception e)
