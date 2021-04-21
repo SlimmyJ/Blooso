@@ -26,6 +26,8 @@
             FlexLayout.Grow="1"
             Visual="Material">
             <!--  Content  -->
+            <Label Text="{Binding CurrentUser.Name}" />
+
             <Image Source="{Binding CurrentUser.UserPicture}" />
             <Button
                 BackgroundColor="{StaticResource DarkerOrange}"
