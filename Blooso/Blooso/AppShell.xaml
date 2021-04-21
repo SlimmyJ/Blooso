@@ -52,7 +52,7 @@
         await Shell.Current.GoToAsync("//LoginPage");
     -->
     <TabBar>
-        <ShellContent Route="LoginPage"
+        <ShellContent Route="MainMenuPage"
                       ContentTemplate="{DataTemplate local:MainMenuPage}" />
     </TabBar>
     <!--<FlyoutItem Title="MainMenu">

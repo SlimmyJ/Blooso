@@ -16,7 +16,7 @@ namespace Blooso.ViewModels
         public MainMenuViewModel()
         {
             userRepo = UserRepository.GetRepository();
-            CurrentUser = userRepo.GetUser(1);
+            CurrentUser = userRepo.GetCurrentlyLoggedInUser();
         }
 
         private async void LoadUsers()

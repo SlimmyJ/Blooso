@@ -30,7 +30,7 @@
                        Margin="5"
                        FontSize="Large"
                        HorizontalTextAlignment="Center"
-                       Text="Welcome to Blooso" />
+                       Text="{Binding CurrentUser.Name}" />
             </Grid>
         </StackLayout>
     </RefreshView>

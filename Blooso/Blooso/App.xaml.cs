@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Blooso.Views;
+using Xamarin.Forms;
 
 namespace Blooso
 {
@@ -21,7 +22,17 @@ namespace Blooso
             InitializeComponent();
 
             //DependencyService.Register<MockDataStore>();
-            MainPage = new AppShell();
+            //MainPage = new AppShell();
+            MainPage = new LoginPage();
+            //var isLogged = Xamarin.Essentials.SecureStorage.GetAsync("isLogged").Result;
+            //if (isLogged == "1")
+            //{
+            //    MainPage = new AppShell();
+            //}
+            //else
+            //{
+            //    MainPage = new LoginPage();
+            //}
         }
     }
 }

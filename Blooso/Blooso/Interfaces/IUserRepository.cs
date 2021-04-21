@@ -12,6 +12,8 @@ namespace Blooso.Interfaces
 
         User GetCurrentlyLoggedInUser();
 
+        void SetCurrentlyLoggedInUser(int id);
+
         List<User> GetSearchResults(string queryString);
     }
 }
