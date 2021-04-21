@@ -44,17 +44,15 @@ namespace Blooso.ViewModels
             try
             {
                 var currentUser = _userRepository.GetCurrentlyLoggedInUser();
-                if(currentUser.FriendsList != null)
+                if (currentUser.FriendsList != null)
                 {
                     FriendList = new ObservableCollection<User>(currentUser.FriendsList);
                 }
-                
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
-                
             }
             finally
             {

@@ -14,7 +14,17 @@ namespace Blooso.ViewModels
     {
         private IUserRepository userRepo;
 
+
         private User userDetail;
+
+        
+        public Command ActivityTappedAccount => new Command(ActivityTapped);
+
+        private void ActivityTapped()
+        {
+            Application.Current.MainPage.DisplayAlert("TODO", "List of activities", "OK"); ;
+        }
+
 
         public User UserDetail
         {
