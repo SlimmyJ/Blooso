@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 
 using Blooso.Interfaces;
 using Blooso.Models;
@@ -14,9 +13,19 @@ namespace Blooso.ViewModels
     {
         private ObservableCollection<User> _users;
 
+        public IUserRepository UserRepository;
+
+        public MatchOverviewViewModel()
+        {
+            Users = new ObservableCollection<User>();
+            UserRepository = new UserRepository();
+            UserRepository = Repositories.UserRepository.GetRepository();
+            LoadUsers();
+        }
+
         public ObservableCollection<User> Users
         {
-            get { return _users; }
+            get => _users;
             set
             {
                 _users = value;
@@ -24,46 +33,26 @@ namespace Blooso.ViewModels
             }
         }
 
-        private IUserRepository _userRepository;
-
-        public MatchOverviewViewModel()
-        {
-            Users = new ObservableCollection<User>();
-            _userRepository = UserRepository.GetRepository();
-            LoadUsers();
-        }
-
         public Command LoadUsersCommand => new Command(LoadUsers);
-        public Command<User> ItemTappedCommand => new Command<User>(ItemTapped);
 
-        public Command PerformSearchCommand => new Command<string>((string query) =>
-            {
-                Users = new ObservableCollection<User>(_userRepository.GetSearchResults(query));
-            });
-
-        public void LoadUsers()
+        public Command PerformSearchCommand => new Command<string>(query =>
         {
-            IsBusy = true;
+            Users = new ObservableCollection<User>(UserRepository.GetSearchResults(query));
+        });
 
-            try
-            {
-                var users = _userRepository.GetMatchResults();
-                Users = new ObservableCollection<User>(users);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
+        public Command<User> ItemTappedCommand => new Command<User>(ItemTapped);
 
         private async void ItemTapped(User user)
         {
             await Shell.Current.GoToAsync($"{nameof(MatchDetailPage)}?{nameof(MatchDetailViewModel.UserId)}={user.Id}");
+        }
+
+        public void LoadUsers()
+        {
+            IsBusy = true;
+            var users = UserRepository.GetMatchResults();
+            Users = new ObservableCollection<User>(users);
+            IsBusy = false;
         }
     }
 }

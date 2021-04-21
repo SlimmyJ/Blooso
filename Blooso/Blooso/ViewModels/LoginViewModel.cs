@@ -1,23 +1,30 @@
 ﻿using System;
 using System.Windows.Input;
-
 using Blooso.Interfaces;
 using Blooso.Repositories;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Blooso.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
+        private readonly IUserRepository _repository;
         public Action DisplayInvalidLoginPrompt;
-        private IUserRepository _repository;
 
         private int id;
 
+        private string password;
+
+        public LoginViewModel()
+        {
+            SubmitCommand = new Command(OnSubmit);
+            _repository = UserRepository.GetRepository();
+        }
+
         public int Id
         {
-            get { return id; }
+            get => id;
             set
             {
                 id = value;
@@ -25,11 +32,9 @@ namespace Blooso.ViewModels
             }
         }
 
-        private string password;
-
         public string Password
         {
-            get { return password; }
+            get => password;
             set
             {
                 password = value;
@@ -38,12 +43,6 @@ namespace Blooso.ViewModels
         }
 
         public ICommand SubmitCommand { protected set; get; }
-
-        public LoginViewModel()
-        {
-            SubmitCommand = new Command(OnSubmit);
-            _repository = UserRepository.GetRepository();
-        }
 
         public async void OnSubmit()
         {
@@ -54,7 +53,7 @@ namespace Blooso.ViewModels
             }
             else
             {
-                await Xamarin.Essentials.SecureStorage.SetAsync("isLogged", "1");
+                await SecureStorage.SetAsync("isLogged", "1");
                 _repository.SetCurrentlyLoggedInUser(Id);
 
                 Application.Current.MainPage = new AppShell();

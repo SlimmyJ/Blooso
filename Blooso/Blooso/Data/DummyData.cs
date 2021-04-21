@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using Blooso.Models;
-
 using Bogus;
 
 namespace Blooso.Data
@@ -34,6 +32,7 @@ namespace Blooso.Data
                 temp.UserPicture = $"a{i}.jpg";
                 temp.ActivityList = GetRandomActivities(10);
                 temp.UserTags = GetRandomUserTags(12);
+                temp.ShortBio = "";
                 dummyList.Add(temp);
             }
 
@@ -48,6 +47,7 @@ namespace Blooso.Data
 
             return randomActivities;
         }
+
         public List<Tags> GetRandomUserTags(int amount)
         {
             var rand = new Random();

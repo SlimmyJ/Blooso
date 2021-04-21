@@ -1,26 +1,25 @@
 ﻿using System.Windows.Input;
-
 using Blooso.Interfaces;
 using Blooso.Models;
 using Blooso.Repositories;
 using Blooso.Views;
-
 using Xamarin.Forms;
 
 namespace Blooso.ViewModels
 {
     public class MainMenuViewModel : BaseViewModel
     {
-        private IUserRepository userRepo;
-        public User CurrentUser { get; set; }
-        public ICommand LoadUsersCommand => new Command(LoadUsers);
-        public ICommand LogUserOutCommand => new Command(LogUserOut);
+        private readonly IUserRepository userRepo;
 
         public MainMenuViewModel()
         {
             userRepo = UserRepository.GetRepository();
             CurrentUser = userRepo.GetCurrentlyLoggedInUser();
         }
+
+        public User CurrentUser { get; set; }
+        public ICommand LoadUsersCommand => new Command(LoadUsers);
+        public ICommand LogUserOutCommand => new Command(LogUserOut);
 
         private async void LoadUsers()
         {

@@ -26,6 +26,6 @@
         Trekkie = 22,
         Furry = 23,
         Weeb = 24,
-        Festivals = 25,
+        Festivals = 25
     }
 }

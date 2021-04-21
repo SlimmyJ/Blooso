@@ -21,6 +21,6 @@
         Football = 17,
         Yoga = 18,
         Dancing = 19,
-        Pilates = 20,
+        Pilates = 20
     }
 }

@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Blooso.Models
 {
     public class User
     {
-        private int _id;
-
-        public int Id
-        {
-            get => _id;
-            set => _id = value;
-        }
+        public int Id { get; set; }
 
         public string Name { get; set; }
         public char Sex { get; set; }
@@ -37,21 +32,14 @@ namespace Blooso.Models
 
         public override string ToString()
         {
-            var isInfected = IsInfected ? "infected" : "clean";
+            string isInfected;
+            isInfected = IsInfected ? "infected" : "clean";
 
-            var activities = "";
-            foreach (var activity in ActivityList)
-            {
-                activities += $"{activity }";
-            }
+            var activities = ActivityList.Aggregate("", (current, activity) => current + $"{activity}");
+            var tags = UserTags.Aggregate("", (current, tag) => current + $"{tag}");
 
-            var tags = "";
-            foreach (var tag in UserTags)
-            {
-                tags += $"{tag }";
-            }
-
-            var toString = $"{Name} {DateOfBirth} gender {Sex} {isInfected} {UserLocation.AreaCode} {activities} {tags}";
+            var toString =
+                $"{Name} {DateOfBirth} gender {Sex} {isInfected} {UserLocation.AreaCode} {activities} {tags}";
 
             return toString;
         }

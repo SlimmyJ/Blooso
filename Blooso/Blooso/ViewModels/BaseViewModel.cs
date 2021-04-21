@@ -7,7 +7,8 @@ namespace Blooso.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        private bool isBusy = false;
+        private string _title = string.Empty;
+        private bool isBusy;
 
         public bool IsBusy
         {
@@ -15,15 +16,13 @@ namespace Blooso.ViewModels
             set => SetProperty(ref isBusy, value);
         }
 
-        private string _title = string.Empty;
-
         public string Title
         {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
+            get => _title;
+            set => SetProperty(ref _title, value);
         }
 
-        protected bool SetProperty<T>(ref T backingStore, T value,
+        public bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName] string propertyName = "",
             Action onChanged = null)
         {
@@ -43,10 +42,8 @@ namespace Blooso.ViewModels
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             var changed = PropertyChanged;
-            if (changed == null)
-                return;
 
-            changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            changed?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         #endregion INotifyPropertyChanged

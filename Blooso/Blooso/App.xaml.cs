@@ -6,6 +6,12 @@ namespace Blooso
 {
     public partial class App : Application
     {
+        public App()
+        {
+            InitializeComponent();
+            MainPage = new LoginPage();
+        }
+
         protected override void OnStart()
         {
         }
@@ -16,24 +22,6 @@ namespace Blooso
 
         protected override void OnResume()
         {
-        }
-
-        public App()
-        {
-            InitializeComponent();
-
-            //DependencyService.Register<MockDataStore>();
-            //MainPage = new AppShell();
-            MainPage = new LoginPage();
-            //var isLogged = Xamarin.Essentials.SecureStorage.GetAsync("isLogged").Result;
-            //if (isLogged == "1")
-            //{
-            //    MainPage = new AppShell();
-            //}
-            //else
-            //{
-            //    MainPage = new LoginPage();
-            //}
         }
     }
 }

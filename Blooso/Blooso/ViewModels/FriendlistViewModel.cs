@@ -1,30 +1,17 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-
 using Blooso.Interfaces;
 using Blooso.Models;
 using Blooso.Repositories;
 using Blooso.Views;
-
 using Xamarin.Forms;
 
 namespace Blooso.ViewModels
 {
     public class FriendlistViewModel : BaseViewModel
     {
+        private readonly IUserRepository _userRepository;
         private ObservableCollection<User> friendList;
-
-        public ObservableCollection<User> FriendList
-        {
-            get { return friendList; }
-            set
-            {
-                friendList = value;
-                OnPropertyChanged(nameof(FriendList));
-            }
-        }
-
-        private IUserRepository _userRepository;
 
         public FriendlistViewModel()
         {
@@ -32,6 +19,16 @@ namespace Blooso.ViewModels
             _userRepository = UserRepository.GetRepository();
 
             LoadUsers();
+        }
+
+        public ObservableCollection<User> FriendList
+        {
+            get => friendList;
+            set
+            {
+                friendList = value;
+                OnPropertyChanged(nameof(FriendList));
+            }
         }
 
         public Command LoadUsersCommand => new Command(LoadUsers);
@@ -45,9 +42,7 @@ namespace Blooso.ViewModels
             {
                 var currentUser = _userRepository.GetCurrentlyLoggedInUser();
                 if (currentUser.FriendsList != null)
-                {
                     FriendList = new ObservableCollection<User>(currentUser.FriendsList);
-                }
             }
             catch (Exception e)
             {
