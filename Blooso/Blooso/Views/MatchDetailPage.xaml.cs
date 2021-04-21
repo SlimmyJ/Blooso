@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using System;
+
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Blooso.Views
@@ -9,6 +11,11 @@ namespace Blooso.Views
         public MatchDetailPage()
         {
             InitializeComponent();
+        }
+
+        private void OnMatchDetailProfileImageButtonClicked(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

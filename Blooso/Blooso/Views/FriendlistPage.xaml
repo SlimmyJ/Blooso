@@ -3,6 +3,20 @@
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:Blooso.ViewModels">
+    <!--#region Resources-->
+    <ContentPage.Resources>
+        <SwipeItems x:Key="SwipeItems">
+            <SwipeItem BackgroundColor="LightGreen"
+                       IconImageSource="favorite.png"
+                       Invoked="OnFavoriteSwipeItemInvoked"
+                       Text="Favorite" />
+            <SwipeItem BackgroundColor="LightPink"
+                       IconImageSource="delete.png"
+                       Invoked="OnDeleteSwipeItemInvoked"
+                       Text="Delete" />
+        </SwipeItems>
+    </ContentPage.Resources>
+    <!--#endregion-->
     <ContentPage.BindingContext>
         <vm:FriendlistViewModel />
     </ContentPage.BindingContext>
@@ -14,11 +28,24 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout>
-                        <Label Text="{Binding Name}" />
-                        <Label Text="{Binding Sex}" />
-                        <Label Text="{Binding DateOfBirth}" />
-                        <Label Text="{Binding IsInfected}" />
-                        <Label Text="{Binding IsVaccinated}" />
+                        <SwipeView LeftItems="{StaticResource SwipeItems}">
+                            <Grid BackgroundColor="LightGray"
+                                  HeightRequest="60"
+                                  WidthRequest="300">
+                                <Label HorizontalOptions="Center"
+                                       Text="Swipe right"
+                                       VerticalOptions="Center" />
+                            </Grid>
+                        </SwipeView>
+                        <SwipeView BottomItems="{StaticResource SwipeItems}">
+                            <Grid BackgroundColor="LightGray"
+                                  HeightRequest="60"
+                                  WidthRequest="300">
+                                <Label HorizontalOptions="Center"
+                                       Text="Swipe up"
+                                       VerticalOptions="Center" />
+                            </Grid>
+                        </SwipeView>
                         <!--  Code to act on user gestures  -->
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:FriendlistViewModel}}, Path=ItemTappedCommand}"

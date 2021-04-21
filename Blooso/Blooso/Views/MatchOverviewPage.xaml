@@ -9,11 +9,11 @@
     <RefreshView Command="{Binding LoadUsersCommand}"
                  IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
         <StackLayout>
-            <SearchBar x:Name="searchBar"
+            <SearchBar x:Name="SearchBar"
                        Margin="0,0,0,40"
                        Placeholder="Search"
                        SearchCommand="{Binding PerformSearchCommand}"
-                       SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}" />
+                       SearchCommandParameter="{Binding Text, Source={x:Reference SearchBar}}" />
             <CollectionView x:Name="UserCollectionView"
                             ItemsSource="{Binding Users}"
                             SelectionMode="Single"
