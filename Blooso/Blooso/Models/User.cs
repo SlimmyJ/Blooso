@@ -13,7 +13,10 @@ namespace Blooso.Models
 
         public string Name
         {
-            get { return _name; }
+            get
+            {
+                return _name;
+            }
             set
             {
                 _name = value;
@@ -54,14 +57,10 @@ namespace Blooso.Models
 
         public override string ToString()
         {
-            string isInfected;
-            isInfected = IsInfected ? "infected" : "clean";
-
+            var isInfected = IsInfected ? "infected" : "clean";
             var activities = ActivityList.Aggregate("", (current, activity) => current + $"{activity}");
             var tags = UserTags.Aggregate("", (current, tag) => current + $"{tag}");
-
-            var toString =
-                $"{Name} {DateOfBirth} gender {Sex} {isInfected} {UserLocation.AreaCode} {activities} {tags}";
+            var toString = $"{Name} {DateOfBirth} gender {Sex} {isInfected} {UserLocation.AreaCode} {activities} {tags}";
 
             return toString;
         }

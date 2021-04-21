@@ -5,23 +5,39 @@ using Blooso.Models;
 using Blooso.Repositories;
 using Blooso.Views;
 
+using Bogus.Extensions;
+
 using Xamarin.Forms;
 
 namespace Blooso.ViewModels
 {
     public class MainMenuViewModel : BaseViewModel
     {
-        private readonly IUserRepository userRepo;
+        private readonly IUserRepository _userRepo;
 
         public MainMenuViewModel()
         {
-            userRepo = UserRepository.GetRepository();
-            CurrentUser = userRepo.GetCurrentlyLoggedInUser();
+            _userRepo = UserRepository.GetRepository();
+            CurrentUser = _userRepo.GetCurrentlyLoggedInUser();
         }
 
         public User CurrentUser { get; set; }
 
-        public ICommand LogUserOutCommand => new Command(LogUserOut);
+        public ICommand LogUserOutCommand
+        {
+            get { return new Command(LogUserOut); }
+        }
+
+        public ICommand GetMatchesCommand
+        {
+            get { return new Command(GetMatches); }
+        }
+
+        private async void GetMatches()
+        {
+            _userRepo.GetMatchResults();
+            await Shell.Current.GoToAsync(nameof(MatchOverviewPage));
+        }
 
         public User GetCurrentUser()
         {
@@ -30,7 +46,7 @@ namespace Blooso.ViewModels
 
         private async void LogUserOut()
         {
-            userRepo.SetCurrentlyLoggedInUser(0);
+            _userRepo.SetCurrentlyLoggedInUser(0);
 
             await Shell.Current.GoToAsync(nameof(LoginPage));
         }

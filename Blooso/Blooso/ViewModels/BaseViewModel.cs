@@ -8,12 +8,12 @@ namespace Blooso.ViewModels
     public class BaseViewModel : INotifyPropertyChanged
     {
         private string _title = string.Empty;
-        private bool isBusy;
+        private bool _isBusy;
 
         public bool IsBusy
         {
-            get => isBusy;
-            set => SetProperty(ref isBusy, value);
+            get => _isBusy;
+            set => SetProperty(ref _isBusy, value);
         }
 
         public string Title

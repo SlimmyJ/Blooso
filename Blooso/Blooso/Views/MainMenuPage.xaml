@@ -2,6 +2,7 @@
     x:Class="Blooso.Views.MainMenuPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Blooso.ViewModels;assembly=Blooso"
     xmlns:viewModels="clr-namespace:Blooso.ViewModels;assembly=Blooso">
     <ContentPage.BindingContext>
         <viewModels:MainMenuViewModel />
@@ -29,10 +30,15 @@
             <Button
                 BackgroundColor="{StaticResource DarkerOrange}"
                 BorderColor="{StaticResource AccentBlue}"
+                CornerRadius="40"
                 HorizontalOptions="Center"
                 Text="Edit Profile"
                 VerticalOptions="Center" />
-            <Button BackgroundColor="{StaticResource DarkerOrange}" Text="Matches" />
+            <Button
+                BackgroundColor="{StaticResource DarkerOrange}"
+                Command="{Binding .GetMatchesCommand}"
+                CornerRadius="40"
+                Text="Matches" />
             <BoxView Color="{StaticResource AccentBlue}" />
         </FlexLayout>
         <!--  Footer  -->

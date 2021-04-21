@@ -14,9 +14,9 @@ namespace Blooso.ViewModels
         private readonly IUserRepository _repository;
         public Action DisplayInvalidLoginPrompt;
 
-        private int id;
+        private int _id;
 
-        private string password;
+        private string _password;
 
         public LoginViewModel()
         {
@@ -26,20 +26,20 @@ namespace Blooso.ViewModels
 
         public int Id
         {
-            get => id;
+            get => _id;
             set
             {
-                id = value;
+                _id = value;
                 OnPropertyChanged(nameof(Id));
             }
         }
 
         public string Password
         {
-            get => password;
+            get => _password;
             set
             {
-                password = value;
+                _password = value;
                 OnPropertyChanged(nameof(Password));
             }
         }
