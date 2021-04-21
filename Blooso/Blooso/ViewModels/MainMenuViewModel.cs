@@ -20,13 +20,8 @@ namespace Blooso.ViewModels
         }
 
         public User CurrentUser { get; set; }
-        public ICommand LoadUsersCommand => new Command(LoadUsers);
-        public ICommand LogUserOutCommand => new Command(LogUserOut);
 
-        private async void LoadUsers()
-        {
-            await Shell.Current.GoToAsync(nameof(MatchOverviewPage));
-        }
+        public ICommand LogUserOutCommand => new Command(LogUserOut);
 
         public User GetCurrentUser()
         {

@@ -6,8 +6,7 @@
         <viewModels:MainMenuViewModel />
     </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding LogUserOutCommand}"
-                     Text="Log out" />
+        <ToolbarItem Command="{Binding LogUserOutCommand}" />
     </ContentPage.ToolbarItems>
     <FlexLayout Direction="Column">
         <!--  Header  -->
@@ -30,7 +29,6 @@
                     Text="Edit Profile"
                     VerticalOptions="Center" />
             <Button BackgroundColor="{StaticResource DarkerOrange}"
-                    Command="{Binding .LoadUsersCommand}"
                     Text="Matches" />
             <BoxView Color="{StaticResource AccentBlue}" />
         </FlexLayout>

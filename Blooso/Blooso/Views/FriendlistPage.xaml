@@ -8,7 +8,7 @@
             <SwipeItem BackgroundColor="LightGreen"
                        Invoked="OnFavoriteSwipeItemInvoked"
                        Text="Favorite" />
-            <SwipeItem BackgroundColor="LightPink"
+            <SwipeItem BackgroundColor="{StaticResource AccentBlue}"
                        Invoked="OnDeleteSwipeItemInvoked"
                        Text="Delete" />
         </SwipeItems>
@@ -24,7 +24,7 @@
             <DataTemplate>
                 <StackLayout>
                     <SwipeView LeftItems="{StaticResource SwipeItems}">
-                        <Grid BackgroundColor="LightGray"
+                        <Grid BackgroundColor="{StaticResource BleakOrange}"
                               HeightRequest="60"
                               WidthRequest="300">
                             <Label HorizontalOptions="Center"
