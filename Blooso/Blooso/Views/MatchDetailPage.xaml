@@ -38,6 +38,7 @@
             <Button Command="{Binding AddUserToFavouritesCommand}"
                     Text="Message user" />
             <Label Text="Brugge" />
+            <CollectionView />
         </FlexLayout>
     </ContentPage.Content>
 </ContentPage>

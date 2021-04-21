@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using Blooso;
 
 namespace Blooso.Models
@@ -32,10 +33,7 @@ namespace Blooso.Models
 
         public List<Tags> UserTags { get; set; }
 
-        public List<Message> Messages { get; set; }
-
-        public List<User> UserLikes { get; set; }
-        public List<User> LikedByUser { get; set; }
+        public List<Message> ProfileCommentsList { get; set; }
 
         public override string ToString()
         {

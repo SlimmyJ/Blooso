@@ -76,7 +76,7 @@ namespace Blooso.Repositories
                         FriendsList = new List<User>(),
                         IsInfected = true,
                         IsVaccinated = false,
-                        Messages = new List<Message>(),
+                        ProfileCommentsList = new List<Message>(),
                         ActivityList = new List<Activities>()
                         {
                             Activities.Running,
@@ -98,7 +98,7 @@ namespace Blooso.Repositories
                         FriendsList = new List<User>(),
                         IsInfected = true,
                         IsVaccinated = false,
-                        Messages = new List<Message>(),
+                        ProfileCommentsList = new List<Message>(),
                         ActivityList = new List<Activities>()    {
                             Activities.Running,
                             Activities.Basketball,
@@ -120,7 +120,7 @@ namespace Blooso.Repositories
                         FriendsList = new List<User>(),
                         IsInfected = true,
                         IsVaccinated = false,
-                        Messages = new List<Message>(),
+                        ProfileCommentsList = new List<Message>(),
                         ActivityList = new List<Activities>()  {
                             Activities.Running,
                             Activities.Handball,
@@ -142,7 +142,7 @@ namespace Blooso.Repositories
                         FriendsList = new List<User>(),
                         IsInfected = false,
                         IsVaccinated = false,
-                        Messages = new List<Message>(),
+                        ProfileCommentsList = new List<Message>(),
                         ActivityList = new List<Activities>() {
                             Activities.Running,
                             Activities.Handball,
