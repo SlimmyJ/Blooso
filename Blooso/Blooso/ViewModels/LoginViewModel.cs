@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Windows.Input;
+
 using Blooso.Interfaces;
 using Blooso.Repositories;
+
 using Xamarin.Essentials;
 using Xamarin.Forms;
 

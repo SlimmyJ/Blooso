@@ -1,8 +1,7 @@
-﻿<ContentPage
-    x:Class="Blooso.Views.MatchDetailPage"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:vm="clr-namespace:Blooso.ViewModels">
+﻿<ContentPage x:Class="Blooso.Views.MatchDetailPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Blooso.ViewModels">
     <ContentPage.BindingContext>
         <vm:MatchDetailViewModel />
     </ContentPage.BindingContext>
@@ -12,16 +11,16 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <ImageButton
-                Grid.Row="0"
-                HorizontalOptions="Center"
-                Source="{Binding UserDetail.UserPicture}"
-                Style="{StaticResource StlProfilePicture}"
-                VerticalOptions="CenterAndExpand" />
+            <ImageButton Grid.Row="0"
+                         HorizontalOptions="Center"
+                         Source="{Binding UserDetail.UserPicture}"
+                         Style="{StaticResource StlProfilePicture}"
+                         VerticalOptions="CenterAndExpand" />
             <StackLayout VerticalOptions="End">
                 <Frame CornerRadius="40">
                     <!--  Blocks: 3 and 4  -->
-                    <Grid Padding="25,10,25,0" RowSpacing="0">
+                    <Grid Padding="25,10,25,0"
+                          RowSpacing="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
@@ -36,96 +35,86 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <!--  3. Phone & message buttons  -->
-                        <Button
-                            Grid.Row="0"
-                            Grid.Column="1"
-                            HorizontalOptions="End"
-                            ImageSource="Phone"
-                            Style="{StaticResource StlContactBtn}" />
-                        <Button
-                            Grid.Row="0"
-                            Grid.Column="2"
-                            HorizontalOptions="Start"
-                            ImageSource="Correo"
-                            Style="{StaticResource StlContactBtn}" />
+                        <Button Grid.Row="0"
+                                Grid.Column="1"
+                                HorizontalOptions="End"
+                                ImageSource="Phone"
+                                Style="{StaticResource StlContactBtn}" />
+                        <Button Grid.Row="0"
+                                Grid.Column="2"
+                                HorizontalOptions="Start"
+                                ImageSource="Correo"
+                                Style="{StaticResource StlContactBtn}" />
                         <!--  4. Contact information  -->
-                        <Label
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            Grid.ColumnSpan="3"
-                            FontAttributes="Bold"
-                            FontSize="30"
-                            Text="{Binding UserDetail.Name}" />
-                        <Label
-                            Grid.Row="1"
-                            Grid.Column="0"
-                            FontSize="16"
-                            Text="Ghent, Belgium"
-                            TextColor="#a5a2a2" />
-                        <Label
-                            Grid.Row="2"
-                            Grid.Column="0"
-                            Grid.ColumnSpan="3"
-                            Padding="0,10,0,0"
-                            FontSize="16">
+                        <Label Grid.Row="0"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="3"
+                               FontAttributes="Bold"
+                               FontSize="30"
+                               Text="{Binding UserDetail.Name}" />
+                        <Label Grid.Row="1"
+                               Grid.Column="0"
+                               FontSize="16"
+                               Text="Ghent, Belgium"
+                               TextColor="#a5a2a2" />
+                        <Label Grid.Row="2"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="3"
+                               Padding="0,10,0,0"
+                               FontSize="16">
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span FontAttributes="Bold" Text="Looking for a friend to play tennis or squash! Add me!" />
+                                    <Span FontAttributes="Bold"
+                                          Text="Looking for a friend to play tennis or squash! Add me!" />
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
                         <!--  4. Contact information: Board inforation  -->
-                        <Label
-                            Grid.Row="3"
-                            Grid.Column="0"
-                            Style="{StaticResource StlBoardTitle}"
-                            Text="Likes" />
-                        <Label
-                            Grid.Row="4"
-                            Grid.Column="0"
-                            Style="{StaticResource StlBoardDesc}"
-                            Text="678" />
-                        <Label
-                            Grid.Row="3"
-                            Grid.Column="1"
-                            Style="{StaticResource StlBoardTitle}"
-                            Text="Activities">
+                        <Label Grid.Row="3"
+                               Grid.Column="0"
+                               Style="{StaticResource StlBoardTitle}"
+                               Text="Likes" />
+                        <Label Grid.Row="4"
+                               Grid.Column="0"
+                               Style="{StaticResource StlBoardDesc}"
+                               Text="678" />
+                        <Label Grid.Row="3"
+                               Grid.Column="1"
+                               Style="{StaticResource StlBoardTitle}"
+                               Text="Activities">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MatchDetailViewModel}}, Path=ActivityTappedAccount}" NumberOfTapsRequired="2">
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MatchDetailViewModel}}, Path=ActivityTappedAccount}"
+                                                      NumberOfTapsRequired="2">
                                     <TapGestureRecognizer.CommandParameter>
                                         <Binding Path=".ActivityTappedAccount" />
                                     </TapGestureRecognizer.CommandParameter>
                                 </TapGestureRecognizer>
                             </Label.GestureRecognizers>
                         </Label>
-                        <Label
-                            Grid.Row="4"
-                            Grid.Column="1"
-                            Style="{StaticResource StlBoardDesc}"
-                            Text="4" />
-                        <Label
-                            Grid.Row="3"
-                            Grid.Column="2"
-                            Style="{StaticResource StlBoardTitle}"
-                            Text="Friends" />
-                        <Label
-                            Grid.Row="4"
-                            Grid.Column="2"
-                            Style="{StaticResource StlBoardDesc}"
-                            Text="67k" />
+                        <Label Grid.Row="4"
+                               Grid.Column="1"
+                               Style="{StaticResource StlBoardDesc}"
+                               Text="4" />
+                        <Label Grid.Row="3"
+                               Grid.Column="2"
+                               Style="{StaticResource StlBoardTitle}"
+                               Text="Friends" />
+                        <Label Grid.Row="4"
+                               Grid.Column="2"
+                               Style="{StaticResource StlBoardDesc}"
+                               Text="67k" />
                         <!--  4. Contact information: Follow button  -->
-                        <Button
-                            Grid.Row="5"
-                            Grid.Column="0"
-                            Grid.ColumnSpan="3"
-                            Margin="0,20,0,2"
-                            BackgroundColor="{StaticResource AccentBlue}"
-                            Command="{Binding AddUserToFavouritesCommand}"
-                            FontAttributes="Bold"
-                            FontSize="17"
-                            HeightRequest="45"
-                            Text="Add Friend"
-                            TextColor="White" />
+                        <Button Grid.Row="5"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                Margin="0,20,0,2"
+                                BackgroundColor="{StaticResource AccentBlue}"
+                                Command="{Binding AddUserToFavouritesCommand}"
+                                FontAttributes="Bold"
+                                FontSize="17"
+                                HeightRequest="45"
+                                Text="Add Friend"
+                                TextColor="White" />
                     </Grid>
                 </Frame>
             </StackLayout>

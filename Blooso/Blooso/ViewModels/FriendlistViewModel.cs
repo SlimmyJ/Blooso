@@ -31,12 +31,7 @@ namespace Blooso.ViewModels
         public FriendlistViewModel()
         {
             _userRepository = UserRepository.GetRepository();
-
             FriendList = _userRepository.GetCurrentlyLoggedInUser().FriendList;
-
-            //LoadUsers();
-
-            OnPropertyChanged(nameof(FriendList));
         }
 
         private async void ItemTapped(User user)

@@ -30,7 +30,7 @@
                     Text="Edit Profile"
                     VerticalOptions="Center" />
             <Button BackgroundColor="{StaticResource DarkerOrange}"
-                    Command="{Binding LoadUsersCommand}"
+                    Command="{Binding .LoadUsersCommand}"
                     Text="Matches" />
             <BoxView Color="{StaticResource AccentBlue}" />
         </FlexLayout>
