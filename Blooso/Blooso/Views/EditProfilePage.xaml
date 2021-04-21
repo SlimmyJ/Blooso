@@ -17,9 +17,10 @@
         <!--change sex-->
         <Label Text="Change sex(again??)" />
         <controls:BorderlessPicker x:Name="SexPicker"
-                                   Title="Select your new sex">
+                                   Title="Select your new sex"
+                                   SelectedIndex="{Binding CurrentUser.Sex}">
             <Picker.ItemsSource>
-                <x:Array Type="{x:Type x:Char}">
+                <x:Array Type="{x:Type x:String}">
                     <x:String>Male</x:String>
                     <x:String>Female</x:String>
                     <x:String>Gender Fluid</x:String>
