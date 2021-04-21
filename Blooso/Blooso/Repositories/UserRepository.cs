@@ -64,6 +64,23 @@ namespace Blooso.Repositories
             return _userlist.Where(f => f.ToString().ToLowerInvariant().Contains(normalizedQuery)).ToList();
         }
 
+        public List<User> GetMatchResults()
+        {
+            var matches = new List<User>();
+
+            foreach (var user in _userlist)
+            {
+                if(user.IsInfected == CurrentlyLoggedInUser.IsInfected)
+                {
+                    matches.Add(user);
+                }
+            }
+
+
+
+            return matches;
+        }
+
         public bool DoesUserExist(int id)
         {
             foreach (var user in _userlist)
