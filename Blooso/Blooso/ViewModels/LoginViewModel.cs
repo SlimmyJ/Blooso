@@ -47,14 +47,25 @@ namespace Blooso.ViewModels
 
         public async void OnSubmit()
         {
-            //if (id != 1 || password != "log")
-            //{
-            //    DisplayInvalidLoginPrompt();
-            //}
-            await Xamarin.Essentials.SecureStorage.SetAsync("isLogged", "1");
-            _repository.SetCurrentlyLoggedInUser(Id);
-            Application.Current.MainPage = new AppShell();
-            await Shell.Current.GoToAsync("MainMenuPage");
+            if (!DoesUserExist())
+            {
+                //DisplayInvalidLoginPrompt();                
+                await Application.Current.MainPage.DisplayAlert("Login Failed", "UserId or Password incorrect", "OK");
+            }
+            else
+            {
+                await Xamarin.Essentials.SecureStorage.SetAsync("isLogged", "1");
+                _repository.SetCurrentlyLoggedInUser(Id);
+
+                Application.Current.MainPage = new AppShell();
+                await Shell.Current.GoToAsync("MainMenuPage");
+            }
+            
+        }
+
+        private bool DoesUserExist()
+        {
+            return _repository.DoesUserExist(Id);
         }
     }
 }

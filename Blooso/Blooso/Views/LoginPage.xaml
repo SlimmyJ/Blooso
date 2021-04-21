@@ -6,7 +6,9 @@
     <ContentPage.BindingContext>
         <vm:LoginViewModel />
     </ContentPage.BindingContext>
+    
     <ContentPage.Content>
+        
         <StackLayout Orientation="Vertical"
                      Padding="30"
                      Spacing="40">

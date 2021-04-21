@@ -6,6 +6,10 @@
     <ContentPage.BindingContext>
         <viewModels:MainMenuViewModel />
     </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem  Text="Log out"
+                      Command="{Binding LogUserOutCommand}"/>
+    </ContentPage.ToolbarItems>
     <FlexLayout Direction="Column">
         <!--  Header  -->
         <Label
