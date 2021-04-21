@@ -15,11 +15,8 @@ namespace Blooso.Repositories
 
         private UserRepository()
         {
-            //_userlist = FillListWithDummyData();
-
             _dummyData = new DummyData();
             _userlist = FillListWithBogusData();
-            CurrentlyLoggedInUser = GetUser(1);
         }
 
         private List<User> _userlist;
@@ -37,6 +34,11 @@ namespace Blooso.Repositories
         public User GetCurrentlyLoggedInUser()
         {
             return CurrentlyLoggedInUser;
+        }
+
+        public void SetCurrentlyLoggedInUser(int id)
+        {
+            CurrentlyLoggedInUser = GetUser(id);
         }
 
         public List<User> GetAllUsers()
@@ -57,7 +59,7 @@ namespace Blooso.Repositories
 
         private List<User> FillListWithBogusData()
         {
-            return _dummyData.MakeTestData();
+            return _dummyData.GenerateDummyData();
         }
 
         private List<User> FillListWithDummyData()

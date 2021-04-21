@@ -14,7 +14,7 @@ namespace Blooso.Data
 {
     public class DummyData
     {
-        public List<User> MakeTestData()
+        public List<User> GenerateDummyData()
         {
             var dummyList = new List<User>();
             var userFaker = new Faker<User>()
@@ -24,41 +24,40 @@ namespace Blooso.Data
                 .RuleFor(x => x.IsInfected, x => x.Random.Bool())
                 .RuleFor(x => x.UserLocation, new UserLocation())
                 .RuleFor(x => x.DateOfBirth, x => x.Person.DateOfBirth)
-                .RuleFor(x => x.ActivityList, GetActivities())
-                .RuleFor(x => x.UserTags, GetUserTags())
-                .RuleFor(x => x.FriendsList, new List<User>())
-                .RuleFor(x => x.UserPicture, x => x.Image.PicsumUrl());
-            
+                .RuleFor(x => x.ActivityList, GetFifteenRandomActivities())
+                .RuleFor(x => x.UserTags, GetTwentyRandomUserTags())
+                .RuleFor(x => x.FriendsList, new List<User>());
 
             //var user = JsonConvert.SerializeObject(userFaker.Generate());
             //Debug.WriteLine($" TEST:: {user}");
 
-            for (int i = 0; i < 15; i++)
+            for (var i = 0; i < 20; i++)
             {
                 var temp = userFaker.Generate();
                 temp.Id = i + 1;
+                temp.UserPicture = $"a{i}.jpg";
                 dummyList.Add(temp);
             }
 
             return dummyList;
         }
 
-        public List<Activities> GetActivities()
+        public List<Activities> GetFifteenRandomActivities()
         {
-            var newList = Enum.GetValues(typeof(Activities)).Cast<Activities>().ToList();
             var rand = new Random();
-            var sevenRandom = newList.OrderBy(x => rand.Next()).Take(7).ToList();
+            var newList = Enum.GetValues(typeof(Activities)).Cast<Activities>().ToList();
+            var fifteenRandomActivitieses = newList.OrderBy(x => rand.Next()).Take(15).ToList();
 
-            return sevenRandom;
+            return fifteenRandomActivitieses;
         }
 
-        public List<Tags> GetUserTags()
+        public List<Tags> GetTwentyRandomUserTags()
         {
-            var newList = Enum.GetValues(typeof(Tags)).Cast<Tags>().ToList();
             var rand = new Random();
-            var twentyRandom = newList.OrderBy(x => rand.Next()).Take(20).ToList();
-            Console.WriteLine(string.Join(", ", twentyRandom));
-            return twentyRandom;
+            var newList = Enum.GetValues(typeof(Tags)).Cast<Tags>().ToList();
+            var twentyRandomUserTags = newList.OrderBy(x => rand.Next()).Take(20).ToList();
+
+            return twentyRandomUserTags;
         }
     }
 }

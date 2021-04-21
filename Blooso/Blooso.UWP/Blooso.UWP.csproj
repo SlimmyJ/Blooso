@@ -104,6 +104,26 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="a0.jpg" />
+    <Content Include="a1.jpg" />
+    <Content Include="a10.jpg" />
+    <Content Include="a11.jpg" />
+    <Content Include="a12.jpg" />
+    <Content Include="a13.jpg" />
+    <Content Include="a14.jpg" />
+    <Content Include="a15.jpg" />
+    <Content Include="a16.jpg" />
+    <Content Include="a17.jpg" />
+    <Content Include="a18.jpg" />
+    <Content Include="a19.jpg" />
+    <Content Include="a2.jpg" />
+    <Content Include="a3.jpg" />
+    <Content Include="a4.jpg" />
+    <Content Include="a5.jpg" />
+    <Content Include="a6.jpg" />
+    <Content Include="a7.jpg" />
+    <Content Include="a8.jpg" />
+    <Content Include="a9.jpg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
@@ -148,7 +168,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
-    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.12"/>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.12" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +177,7 @@
       <Name>Blooso</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
