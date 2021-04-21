@@ -8,6 +8,7 @@
     <Shell.Resources>
         <ResourceDictionary />
     </Shell.Resources>
+    
     <TabBar>
         <ShellContent
             Title="Profile"

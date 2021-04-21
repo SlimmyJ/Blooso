@@ -38,7 +38,14 @@ namespace Blooso.Repositories
 
         public void SetCurrentlyLoggedInUser(int id)
         {
-            CurrentlyLoggedInUser = GetUser(id);
+            if(id == 0)
+            {
+                CurrentlyLoggedInUser = new User();
+            }
+            else
+            {
+                CurrentlyLoggedInUser = GetUser(id);
+            }
         }
 
         public List<User> GetAllUsers()
@@ -55,6 +62,17 @@ namespace Blooso.Repositories
         {
             var normalizedQuery = queryString?.ToLower() ?? "";
             return _userlist.Where(f => f.ToString().ToLowerInvariant().Contains(normalizedQuery)).ToList();
+        }
+
+        public bool DoesUserExist(int id)
+        {
+            foreach (var user in _userlist)
+            {
+                if (user.Id == id)
+                    return true;
+            }
+
+            return false;
         }
 
         private List<User> FillListWithBogusData()
