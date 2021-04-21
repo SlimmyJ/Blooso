@@ -50,7 +50,7 @@ namespace Blooso.ViewModels
             if (!DoesUserExist())
             {
                 //DisplayInvalidLoginPrompt();
-                await Application.Current.MainPage.DisplayAlert("Login Failed", "UserId or Password incorrect", "OK");
+                await Application.Current.MainPage.DisplayAlert("Login Failed", "Id or Password incorrect", "OK");
             }
             else
             {

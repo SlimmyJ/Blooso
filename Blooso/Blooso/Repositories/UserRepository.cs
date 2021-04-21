@@ -61,7 +61,7 @@ namespace Blooso.Repositories
         public List<User> GetSearchResults(string queryString)
         {
             var normalizedQuery = queryString?.ToLower() ?? "";
-            return _userlist.Where(f => f.ToString().ToLowerInvariant().Contains(normalizedQuery)).ToList();
+            return GetMatchResults().Where(f => f.ToString().ToLowerInvariant().Contains(normalizedQuery)).ToList();
         }
 
         public List<User> GetMatchResults()
@@ -70,13 +70,32 @@ namespace Blooso.Repositories
 
             foreach (var user in _userlist)
             {
-                if (user.IsInfected == CurrentlyLoggedInUser.IsInfected)
+                if(user.Id != CurrentlyLoggedInUser.Id)
                 {
-                    matches.Add(user);
-                }
+                    if (user.IsInfected == CurrentlyLoggedInUser.IsInfected)
+                    {
+                        if (CountOverlapInActivitiesList(user.ActivityList) > 4 && CountOverlapInTagsList(user.UserTags) > 4)
+                        {
+                            matches.Add(user);
+                        }
+                    }
+                }                
             }
 
             return matches;
+        }
+
+        public int CountOverlapInTagsList(List<Tags> list)
+        {
+            IEnumerable<Tags> overlap = list.Intersect(CurrentlyLoggedInUser.UserTags);
+            var result = overlap.Count();
+            return result;
+        }
+        public int CountOverlapInActivitiesList(List<Activities> list)
+        {
+            IEnumerable<Activities> overlap = list.Intersect(CurrentlyLoggedInUser.ActivityList);
+            var result = overlap.Count();
+            return result;
         }
 
         public bool DoesUserExist(int id)
