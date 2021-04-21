@@ -1,5 +1,5 @@
-﻿using System;
-using Blooso.Views;
+﻿using Blooso.Views;
+
 using Xamarin.Forms;
 
 namespace Blooso
@@ -13,11 +13,6 @@ namespace Blooso
             Routing.RegisterRoute(nameof(MatchDetailPage), typeof(MatchDetailPage));
             Routing.RegisterRoute(nameof(MainMenuPage), typeof(MainMenuPage));
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
-        }
-
-        private async void OnMenuItemClicked(object sender, EventArgs e)
-        {
-            await Current.GoToAsync("//LoginPage");
         }
     }
 }

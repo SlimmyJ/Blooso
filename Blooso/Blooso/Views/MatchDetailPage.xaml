@@ -109,12 +109,15 @@
                                 Grid.ColumnSpan="3"
                                 Margin="0,20,0,2"
                                 BackgroundColor="{StaticResource AccentBlue}"
-                                Command="{Binding ..AddUserToFavouritesCommand}"
                                 FontAttributes="Bold"
                                 FontSize="17"
                                 HeightRequest="45"
                                 Text="Add Friend"
-                                TextColor="White" />
+                                TextColor="White">
+                            <Button.Command>
+                                <Binding Path=".AddUserToFavouritesCommand" />
+                            </Button.Command>
+                        </Button>
                     </Grid>
                 </Frame>
             </StackLayout>

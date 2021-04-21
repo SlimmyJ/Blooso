@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application x:Class="Blooso.App"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
@@ -70,10 +70,6 @@
             </Style>
             <Style x:Key="StlMainFrame"
                    TargetType="Frame">
-                <Setter Property="TranslationY"
-                        Value="{OnPlatform iOS='-150', Android='-33'}" />
-                <Setter Property="HeightRequest"
-                        Value="{OnPlatform Android='228'}" />
                 <Setter Property="HasShadow"
                         Value="False" />
             </Style>

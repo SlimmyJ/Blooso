@@ -5,74 +5,51 @@
     <ContentPage.BindingContext>
         <vm:MatchOverviewViewModel />
     </ContentPage.BindingContext>
-    <RefreshView Command="{Binding LoadUsersCommand}"
-                 IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <StackLayout>
-            <SearchBar x:Name="SearchBar"
-                       Margin="0,0,0,40"
-                       Placeholder="Search"
-                       SearchCommand="{Binding PerformSearchCommand}"
-                       SearchCommandParameter="{Binding Text, Source={x:Reference SearchBar}}" />
-            <CollectionView x:Name="UserCollectionView"
-                            ItemsSource="{Binding Users}"
-                            SelectionMode="Single"
-                            Visual="Material">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Padding="10">
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MatchOverviewViewModel}}, Path=ItemTappedCommand}"
-                                                      CommandParameter="{Binding .}"
-                                                      NumberOfTapsRequired="2" />
-                            </Grid.GestureRecognizers>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Image Grid.RowSpan="2"
-                                   Aspect="AspectFill"
-                                   HeightRequest="60"
-                                   Source="{Binding UserPicture}"
-                                   WidthRequest="60" />
-                            <Label Grid.Row="0"
-                                   Grid.Column="1"
-                                   FontAttributes="Bold"
-                                   Text="{Binding Name}"
-                                   TextColor="{StaticResource TextBlack}" />
-                            <Label Grid.Row="1"
-                                   Grid.Column="1"
-                                   FontAttributes="Italic"
-                                   Text="{Binding Sex}"
-                                   TextColor="Teal"
-                                   VerticalOptions="End" />
-                        </Grid>
-                        <!--<StackLayout>
-                            <Label Text="{Binding Name}"
-                                   Style="{StaticResource MyStyle}" />
-                            <Label Text="{Binding Sex}" />
-                            <Label Text="{Binding DateOfBirth}" />
-                            <Label Text="{Binding IsInfected}" />
-                            <Label Text="{Binding IsVaccinated}" />
-                        -->
-                        <!--  Code to act on user gestures  -->
-                        <!--
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MatchOverviewViewModel}}, Path=ItemTappedCommand}"
-                                                      CommandParameter="{Binding .}"
-                                                      NumberOfTapsRequired="1">
-                        -->
-                        <!--  CommandParameter is used to pass an object with the command. "." is used to select the root, in this case, the whole object  -->
-                        <!--
-                                </TapGestureRecognizer>
-                            </StackLayout.GestureRecognizers>
-                        </StackLayout>-->
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </StackLayout>
-    </RefreshView>
+    <StackLayout>
+        <SearchBar x:Name="SearchBar"
+                   Margin="0,0,0,40"
+                   Placeholder="Search"
+                   SearchCommand="{Binding PerformSearchCommand}"
+                   SearchCommandParameter="{Binding Text, Source={x:Reference SearchBar}}" />
+        <CollectionView x:Name="UserCollectionView"
+                        ItemsSource="{Binding Users}"
+                        SelectionMode="Single"
+                        Visual="Material">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MatchOverviewViewModel}}, Path=ItemTappedCommand}"
+                                                  CommandParameter="{Binding .}"
+                                                  NumberOfTapsRequired="2" />
+                        </Grid.GestureRecognizers>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.RowSpan="2"
+                               Aspect="AspectFill"
+                               HeightRequest="60"
+                               Source="{Binding UserPicture}"
+                               WidthRequest="60" />
+                        <Label Grid.Row="0"
+                               Grid.Column="1"
+                               FontAttributes="Bold"
+                               Text="{Binding Name}"
+                               TextColor="{StaticResource TextBlack}" />
+                        <Label Grid.Row="1"
+                               Grid.Column="1"
+                               FontAttributes="Italic"
+                               Text="{Binding Sex}"
+                               TextColor="Teal"
+                               VerticalOptions="End" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
 </ContentPage>

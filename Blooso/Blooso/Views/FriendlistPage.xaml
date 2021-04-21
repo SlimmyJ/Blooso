@@ -1,6 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
-<ContentPage x:Class="Blooso.Views.FriendlistPage"
+﻿<ContentPage x:Class="Blooso.Views.FriendlistPage"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:Blooso.ViewModels">
@@ -47,10 +45,9 @@
                         </SwipeView>
                         <!--  Code to act on user gestures  -->
                         <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:FriendlistViewModel}}, Path=OnItemTappedCommand}"
-                                CommandParameter="{Binding .}"
-                                NumberOfTapsRequired="1">
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:FriendlistViewModel}}, Path=OnItemTappedCommand}"
+                                                  CommandParameter="{Binding .}"
+                                                  NumberOfTapsRequired="1">
                                 <!--  CommandParameter is used to pass an object with the command. "." is used to select the root, in this case, the whole object  -->
                             </TapGestureRecognizer>
                         </StackLayout.GestureRecognizers>

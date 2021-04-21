@@ -1,6 +1,7 @@
 <Shell x:Class="Blooso.AppShell"
        xmlns="http://xamarin.com/schemas/2014/forms"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:Blooso.Views;assembly=Blooso"
        Title="Blooso"
        BackgroundColor="#FFFF8C42">
     <Shell.Resources>
@@ -23,7 +24,7 @@
         await Shell.Current.GoToAsync("//LoginPage");
     -->
     <TabBar>
-        <ShellContent ContentTemplate="{DataTemplate local:LoginPage}"
-                      Route="LoginPage" />
+        <ShellContent ContentTemplate="{DataTemplate local:MainMenuPage}"
+                      Route="MainMenuPage" />
     </TabBar>
 </Shell>
