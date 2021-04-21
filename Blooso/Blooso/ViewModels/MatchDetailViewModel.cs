@@ -11,6 +11,16 @@ namespace Blooso.ViewModels
     {
         private User _userDetail;
 
+        public User UserDetail
+        {
+            get => _userDetail;
+            set
+            {
+                _userDetail = value;
+                OnPropertyChanged(nameof(UserDetail));
+            }
+        }
+
         private int _userId;
         public IUserRepository UserRepo;
 
@@ -21,16 +31,6 @@ namespace Blooso.ViewModels
         }
 
         public Command ActivityTappedAccount => new Command(ActivityTapped);
-
-        public User UserDetail
-        {
-            get => _userDetail;
-            set
-            {
-                _userDetail = value;
-                OnPropertyChanged(nameof(UserDetail));
-            }
-        }
 
         public int UserId
         {
@@ -52,8 +52,7 @@ namespace Blooso.ViewModels
         private async void AddUserToFavourites()
         {
             var loggedInUser = UserRepo.GetCurrentlyLoggedInUser();
-
-            if (loggedInUser.Id != UserDetail.Id) loggedInUser.FriendsList.Add(UserDetail);
+            if (loggedInUser.Id != UserDetail.Id) loggedInUser.FriendList.Add(UserDetail);
             await Shell.Current.GoToAsync("..");
         }
 

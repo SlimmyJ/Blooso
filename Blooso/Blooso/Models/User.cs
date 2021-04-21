@@ -1,14 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Blooso.Models
 {
-    public class User
+    public class User : ObservableObject
     {
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        private string _name { get; set; }
+
+        public string Name
+        {
+            get { return _name; }
+            set
+            {
+                _name = value;
+                OnPropertyChanged(nameof(FriendList));
+            }
+        }
+
         public char Sex { get; set; }
         public bool IsVaccinated { get; set; }
 
@@ -22,7 +34,17 @@ namespace Blooso.Models
 
         public List<Activities> ActivityList { get; set; }
 
-        public List<User> FriendsList { get; set; }
+        private ObservableCollection<User> _friendList;
+
+        public ObservableCollection<User> FriendList
+        {
+            get { return _friendList; }
+            set
+            {
+                _friendList = value;
+                OnPropertyChanged(nameof(FriendList));
+            }
+        }
 
         public List<Tags> UserTags { get; set; }
 

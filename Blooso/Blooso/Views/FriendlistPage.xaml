@@ -17,43 +17,31 @@
     <ContentPage.BindingContext>
         <vm:FriendlistViewModel />
     </ContentPage.BindingContext>
-    <RefreshView Command="{Binding LoadUsersCommand}"
-                 IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <CollectionView x:Name="UserCollectionView"
-                        ItemsSource="{Binding FriendList}"
-                        SelectionMode="Single">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout>
-                        <SwipeView LeftItems="{StaticResource SwipeItems}">
-                            <Grid BackgroundColor="LightGray"
-                                  HeightRequest="60"
-                                  WidthRequest="300">
-                                <Label HorizontalOptions="Center"
-                                       Text="Swipe right"
-                                       VerticalOptions="Center" />
-                            </Grid>
-                        </SwipeView>
-                        <SwipeView BottomItems="{StaticResource SwipeItems}">
-                            <Grid BackgroundColor="LightGray"
-                                  HeightRequest="60"
-                                  WidthRequest="300">
-                                <Label HorizontalOptions="Center"
-                                       Text="Swipe up"
-                                       VerticalOptions="Center" />
-                            </Grid>
-                        </SwipeView>
-                        <!--  Code to act on user gestures  -->
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:FriendlistViewModel}}, Path=OnItemTappedCommand}"
-                                                  CommandParameter="{Binding .}"
-                                                  NumberOfTapsRequired="1">
-                                <!--  CommandParameter is used to pass an object with the command. "." is used to select the root, in this case, the whole object  -->
-                            </TapGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </RefreshView>
+    <CollectionView x:Name="UserCollectionView"
+                    ItemsSource="{Binding FriendList}"
+                    SelectionMode="Single">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <StackLayout>
+                    <SwipeView LeftItems="{StaticResource SwipeItems}">
+                        <Grid BackgroundColor="LightGray"
+                              HeightRequest="60"
+                              WidthRequest="300">
+                            <Label HorizontalOptions="Center"
+                                   Text="{Binding Name}"
+                                   VerticalOptions="Center" />
+                        </Grid>
+                    </SwipeView>
+                    <!--  Code to act on user gestures  -->
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:FriendlistViewModel}}, Path=ItemTappedCommand}"
+                                              CommandParameter="{Binding .}"
+                                              NumberOfTapsRequired="1">
+                            <!--  CommandParameter is used to pass an object with the command. "." is used to select the root, in this case, the whole object  -->
+                        </TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>

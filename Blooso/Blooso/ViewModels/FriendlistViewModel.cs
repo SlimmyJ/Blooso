@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+
 using Blooso.Interfaces;
 using Blooso.Models;
 using Blooso.Repositories;
 using Blooso.Views;
+
 using Xamarin.Forms;
 
 namespace Blooso.ViewModels
@@ -11,28 +13,36 @@ namespace Blooso.ViewModels
     public class FriendlistViewModel : BaseViewModel
     {
         private readonly IUserRepository _userRepository;
-        private ObservableCollection<User> friendList;
-
-        public FriendlistViewModel()
-        {
-            FriendList = new ObservableCollection<User>();
-            _userRepository = UserRepository.GetRepository();
-
-            LoadUsers();
-        }
+        private ObservableCollection<User> _friendList;
 
         public ObservableCollection<User> FriendList
         {
-            get => friendList;
+            get => _friendList;
             set
             {
-                friendList = value;
+                _friendList = value;
                 OnPropertyChanged(nameof(FriendList));
             }
         }
 
         public Command LoadUsersCommand => new Command(LoadUsers);
         public Command<User> ItemTappedCommand => new Command<User>(ItemTapped);
+
+        public FriendlistViewModel()
+        {
+            _userRepository = UserRepository.GetRepository();
+
+            FriendList = _userRepository.GetCurrentlyLoggedInUser().FriendList;
+
+            //LoadUsers();
+
+            OnPropertyChanged(nameof(FriendList));
+        }
+
+        private async void ItemTapped(User user)
+        {
+            await Shell.Current.GoToAsync($"{nameof(MatchDetailPage)}?{nameof(MatchDetailViewModel.UserId)}={user.Id}");
+        }
 
         public void LoadUsers()
         {
@@ -41,8 +51,13 @@ namespace Blooso.ViewModels
             try
             {
                 var currentUser = _userRepository.GetCurrentlyLoggedInUser();
-                if (currentUser.FriendsList != null)
-                    FriendList = new ObservableCollection<User>(currentUser.FriendsList);
+                if (currentUser.FriendList != null)
+                {
+                    foreach (var temp in currentUser.FriendList)
+                    {
+                        FriendList.Add(temp);
+                    }
+                }
             }
             catch (Exception e)
             {
@@ -53,11 +68,6 @@ namespace Blooso.ViewModels
             {
                 IsBusy = false;
             }
-        }
-
-        private async void ItemTapped(User user)
-        {
-            await Shell.Current.GoToAsync($"{nameof(MatchDetailPage)}?{nameof(MatchDetailViewModel.UserId)}={user.Id}");
         }
     }
 }

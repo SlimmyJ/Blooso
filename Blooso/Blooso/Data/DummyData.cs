@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+
 using Blooso.Models;
+
 using Bogus;
 
 namespace Blooso.Data
@@ -20,7 +23,7 @@ namespace Blooso.Data
                 .RuleFor(x => x.DateOfBirth, x => x.Person.DateOfBirth)
                 .RuleFor(x => x.ActivityList, new List<Activities>())
                 .RuleFor(x => x.UserTags, new List<Tags>())
-                .RuleFor(x => x.FriendsList, new List<User>());
+                .RuleFor(x => x.FriendList, new ObservableCollection<User>());
 
             //var user = JsonConvert.SerializeObject(userFaker.Generate());
             //Debug.WriteLine($" TEST:: {user}");
