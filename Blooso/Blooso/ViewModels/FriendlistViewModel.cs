@@ -1,24 +1,24 @@
-﻿using Blooso.Interfaces;
+﻿using System;
+using System.Collections.ObjectModel;
+
+using Blooso.Interfaces;
 using Blooso.Models;
 using Blooso.Repositories;
 using Blooso.Views;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
+
 using Xamarin.Forms;
 
 namespace Blooso.ViewModels
 {
-    public class FriendlistViewModel: BaseViewModel
+    public class FriendlistViewModel : BaseViewModel
     {
         private ObservableCollection<User> friendList;
 
         public ObservableCollection<User> FriendList
         {
             get { return friendList; }
-            set 
-            { 
+            set
+            {
                 friendList = value;
                 OnPropertyChanged(nameof(FriendList));
             }
@@ -36,7 +36,6 @@ namespace Blooso.ViewModels
 
         public Command LoadUsersCommand => new Command(LoadUsers);
         public Command<User> ItemTappedCommand => new Command<User>(ItemTapped);
-
 
         public void LoadUsers()
         {

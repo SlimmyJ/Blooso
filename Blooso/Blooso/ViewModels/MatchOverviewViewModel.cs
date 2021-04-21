@@ -5,6 +5,7 @@ using Blooso.Interfaces;
 using Blooso.Models;
 using Blooso.Repositories;
 using Blooso.Views;
+
 using Xamarin.Forms;
 
 namespace Blooso.ViewModels
@@ -34,6 +35,7 @@ namespace Blooso.ViewModels
 
         public Command LoadUsersCommand => new Command(LoadUsers);
         public Command<User> ItemTappedCommand => new Command<User>(ItemTapped);
+
         public Command PerformSearchCommand => new Command<string>((string query) =>
             {
                 Users = new ObservableCollection<User>(_userRepository.GetSearchResults(query));
@@ -58,6 +60,7 @@ namespace Blooso.ViewModels
                 IsBusy = false;
             }
         }
+
         private async void ItemTapped(User user)
         {
             await Shell.Current.GoToAsync($"{nameof(MatchDetailPage)}?{nameof(MatchDetailViewModel.UserId)}={user.Id}");

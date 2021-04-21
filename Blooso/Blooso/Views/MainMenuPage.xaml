@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="Blooso.Views.MainMenuPage"
+﻿<ContentPage x:Class="Blooso.Views.MainMenuPage"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:Blooso.ViewModels;assembly=Blooso">
@@ -9,31 +8,29 @@
     <RefreshView>
         <StackLayout BackgroundColor="{StaticResource WhiteFill}">
             <Grid Margin="0,20,0,0"
-                  RowDefinitions="*,*"
-                  ColumnDefinitions="*,*">
-
+                  ColumnDefinitions="*,*"
+                  RowDefinitions="*,*">
                 <Button Grid.Row="1"
                         Grid.Column="0"
+                        Margin="5"
                         Command="{Binding LoadUsersCommand}"
                         HorizontalOptions="Center"
                         Text="Edit Profile"
-                        VerticalOptions="Center"
-                        Margin="5" />
+                        VerticalOptions="Center" />
                 <Button Grid.Row="1"
                         Grid.Column="1"
+                        Margin="5"
                         Command="{Binding LoadUsersCommand}"
                         HorizontalOptions="Center"
                         Text="Find matches!"
-                        VerticalOptions="Center"
-                        Margin="5" />
-
+                        VerticalOptions="Center" />
                 <Label Grid.Row=" 0"
                        Grid.Column="0"
                        Grid.ColumnSpan="2"
-                       Text="Welcome to Blooso"
                        Margin="5"
+                       FontSize="Large"
                        HorizontalTextAlignment="Center"
-                       FontSize="Large" />
+                       Text="Welcome to Blooso" />
             </Grid>
         </StackLayout>
     </RefreshView>

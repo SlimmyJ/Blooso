@@ -1,57 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:Blooso.ViewModels"
              x:Class="Blooso.Views.MatchDetailPage">
-
     <ContentPage.BindingContext>
-        <vm:MatchDetailViewModel/>
+        <vm:MatchDetailViewModel />
     </ContentPage.BindingContext>
-        
     <ContentPage.Content>
         <StackLayout>
             <Grid ColumnDefinitions="*,3*"
                   RowDefinitions="3*,*,*,*,*,3*"
-                  Margin="10"                  
-                  >
-
-                <Label Grid.Row="0" Grid.ColumnSpan="2"
-                    Text="Match Details: "
-                    VerticalOptions="CenterAndExpand" 
-                    HorizontalOptions="CenterAndExpand"
-                    FontSize="Medium"
-                    FontAttributes="Bold"/>
-
-                <Label Grid.Row="1" Text="Name"
-                       VerticalOptions="Center"/>
-                <Label Grid.Row="2" Text="Date of Birth"
-                       VerticalOptions="Center"/>
-                <Label Grid.Row="3" Text="Gender"
-                       VerticalOptions="Center"/>
-                <Label Grid.Row="4" Text="Infected?"
-                       VerticalOptions="Center"/>
-
-                <Label Grid.Row="1" Grid.Column="1"                                             
-                       Text="{Binding UserDetail.Name}"/>
-                <Label Grid.Row="2" Grid.Column="1"                                  
-                       Text="{Binding UserDetail.DateOfBirth}"
-                       />
-                <Label Grid.Row="3" Grid.Column="1"                                         
-                        Text="{Binding UserDetail.Sex}"
-                       />
-                <CheckBox Grid.Row="4" Grid.Column="1"                       
-                       HorizontalOptions="End"  
-                          IsChecked="{Binding UserDetail.IsInfected}"
-                          />
-
-
-                <Button Grid.Row="5" Grid.ColumnSpan="2"
+                  Margin="10">
+                <Label Grid.Row="0"
+                       Grid.ColumnSpan="2"
+                       Text="Match Details: "
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand"
+                       FontSize="Medium"
+                       FontAttributes="Bold" />
+                <Label Grid.Row="1"
+                       Text="Name"
+                       VerticalOptions="Center" />
+                <Label Grid.Row="2"
+                       Text="Date of Birth"
+                       VerticalOptions="Center" />
+                <Label Grid.Row="3"
+                       Text="Gender"
+                       VerticalOptions="Center" />
+                <Label Grid.Row="4"
+                       Text="Infected?"
+                       VerticalOptions="Center" />
+                <Label Grid.Row="1"
+                       Grid.Column="1"
+                       Text="{Binding UserDetail.Name}" />
+                <Label Grid.Row="2"
+                       Grid.Column="1"
+                       Text="{Binding UserDetail.DateOfBirth}" />
+                <Label Grid.Row="3"
+                       Grid.Column="1"
+                       Text="{Binding UserDetail.Sex}" />
+                <CheckBox Grid.Row="4"
+                          Grid.Column="1"
+                          HorizontalOptions="End"
+                          IsChecked="{Binding UserDetail.IsInfected}" />
+                <Button Grid.Row="5"
+                        Grid.ColumnSpan="2"
                         Text="Add to friendlist"
                         Margin="0,40"
-                        Command="{Binding AddUserToFavouritesCommand}"
-                        />
-
-
+                        Command="{Binding AddUserToFavouritesCommand}" />
             </Grid>
         </StackLayout>
     </ContentPage.Content>

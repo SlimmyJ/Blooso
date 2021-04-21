@@ -6,7 +6,6 @@
     <ContentPage.BindingContext>
         <vm:MatchOverviewViewModel />
     </ContentPage.BindingContext>
-    
     <RefreshView Command="{Binding LoadUsersCommand}"
                  IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
         <StackLayout>
@@ -14,28 +13,23 @@
                        x:Name="searchBar"
                        Margin="0,0,0,40"
                        SearchCommand="{Binding PerformSearchCommand}"
-                       SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
-            
+                       SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}" />
             <CollectionView x:Name="UserCollectionView"
                             ItemsSource="{Binding Users}"
                             SelectionMode="Single">
-
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
-
                             <Label Text="{Binding Name}" />
                             <Label Text="{Binding Sex}" />
                             <Label Text="{Binding DateOfBirth}" />
                             <Label Text="{Binding IsInfected}" />
                             <Label Text="{Binding IsVaccinated}" />
-
                             <!--Code to act on user gestures -->
                             <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer
-                                            NumberOfTapsRequired="1"
-                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MatchOverviewViewModel}},Path=ItemTappedCommand}"
-                                            CommandParameter="{Binding .}">
+                                <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MatchOverviewViewModel}},Path=ItemTappedCommand}"
+                                                      CommandParameter="{Binding .}">
                                     <!--CommandParameter is used to pass an object with the command. "." is used to select the root, in this case, the whole object-->
                                 </TapGestureRecognizer>
                             </StackLayout.GestureRecognizers>
