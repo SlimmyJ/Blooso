@@ -124,6 +124,8 @@
     <Content Include="a7.jpg" />
     <Content Include="a8.jpg" />
     <Content Include="a9.jpg" />
+    <Content Include="Correo.png" />
+    <Content Include="Phone.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />

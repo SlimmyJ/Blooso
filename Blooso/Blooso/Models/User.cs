@@ -35,6 +35,8 @@ namespace Blooso.Models
 
         public List<Message> ProfileCommentsList { get; set; }
 
+        //public string ShortBio { get; set; } 
+      
         public override string ToString()
         {
             var isInfected = IsInfected ? "infected" : "clean";
