@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-
 using Blooso.Interfaces;
 using Blooso.Models;
 using Blooso.Repositories;
