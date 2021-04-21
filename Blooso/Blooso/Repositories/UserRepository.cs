@@ -55,7 +55,7 @@ namespace Blooso.Repositories
 
         private List<User> FillListWithBogusData()
         {
-            return _dummyData.MakeTestData();
+            return _dummyData.GenerateDummyData();
         }
 
         private List<User> FillListWithDummyData()

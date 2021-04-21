@@ -18,10 +18,8 @@ namespace Blooso.ViewModels
             userRepo = UserRepository.GetRepository();
 
             //temp hardcoded voor login systeem
-            CurrentUser = userRepo.GetUser(1);
+            //CurrentUser = userRepo.GetUser(1);
         }
-
-        
 
         private async void LoadUsers()
         {
