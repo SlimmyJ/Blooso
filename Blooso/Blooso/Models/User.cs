@@ -5,14 +5,7 @@ namespace Blooso.Models
 {
     public class User
     {
-        private int _id;
-
-        public int Id
-        {
-            get => _id;
-            set => _id = value;
-        }
-
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Sex { get; set; }
         public bool IsVaccinated { get; set; }
@@ -21,7 +14,7 @@ namespace Blooso.Models
 
         public string UserPicture { get; set; }
 
-        public UserLocation UserLocation { get; set; }
+        public string UserLocation { get; set; }
 
         public DateTime DateOfBirth { get; set; }
 
@@ -51,7 +44,7 @@ namespace Blooso.Models
                 tags += $"{tag }";
             }
 
-            var toString = $"{Name} {DateOfBirth} gender {Sex} {isInfected} {UserLocation.AreaCode} {activities} {tags}";
+            var toString = $"{Name} {DateOfBirth} gender {Sex} {isInfected} {UserLocation} {activities} {tags}";
 
             return toString;
         }

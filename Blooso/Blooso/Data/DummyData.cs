@@ -18,7 +18,7 @@ namespace Blooso.Data
                 .RuleFor(x => x.Sex, x => x.PickRandom("Male", "Female", "Gender Fluid"))
                 .RuleFor(x => x.IsVaccinated, x => x.Random.Bool())
                 .RuleFor(x => x.IsInfected, x => x.Random.Bool())
-                .RuleFor(x => x.UserLocation, new UserLocation())
+                .RuleFor(x => x.UserLocation, x => x.Person.Address.City)
                 .RuleFor(x => x.DateOfBirth, x => x.Person.DateOfBirth)
                 .RuleFor(x => x.ActivityList, new List<Activities>())
                 .RuleFor(x => x.UserTags, new List<Tags>())

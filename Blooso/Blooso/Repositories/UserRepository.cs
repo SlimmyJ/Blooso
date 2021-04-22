@@ -59,8 +59,6 @@ namespace Blooso.Repositories
 
         public List<User> GetMatchResults()
         {
-            // LINQ version: return _userlist.Where(user => user.IsInfected == CurrentlyLoggedInUser.IsInfected).ToList();
-
             var matches = new List<User>();
 
             foreach (var user in _userlist)
@@ -76,7 +74,6 @@ namespace Blooso.Repositories
 
         public bool DoesUserExist(int id)
         {
-            // LINQ version return _userlist.Any(user => user.Id == id);
             foreach (var user in _userlist)
             {
                 if (user.Id == id)
@@ -91,98 +88,98 @@ namespace Blooso.Repositories
             return _dummyData.GenerateDummyData();
         }
 
-        private List<User> FillListWithDummyData()
-        {
-            return new List<User>
-            {
-                new User
-                    {
-                        Id = 1,
-                        Name = "Jeroen",
-                        DateOfBirth = DateTime.Today,
-                        Sex = "Male",
-                        UserLocation = new UserLocation(),
-                        FriendsList = new List<User>(),
-                        IsInfected = true,
-                        IsVaccinated = false,
-                        ProfileCommentsList = new List<Message>(),
-                        ActivityList = new List<Activities>()
-                        {
-                            Activities.Running,
-                            Activities.Basketball,
-                            Activities.Lacrosse,
-                            Activities.Minigolf,
-                            Activities.Sauna,
-                        },
-                        UserTags = new List<Tags>() {Tags.Arts, Tags.Books, Tags.Wine}
-                    },
+        //private List<User> FillListWithDummyData()
+        //{
+        //    return new List<User>
+        //    {
+        //        new User
+        //            {
+        //                Id = 1,
+        //                Name = "Jeroen",
+        //                DateOfBirth = DateTime.Today,
+        //                Sex = "Male",
+        //                UserLocation = new UserLocation(),
+        //                FriendsList = new List<User>(),
+        //                IsInfected = true,
+        //                IsVaccinated = false,
+        //                ProfileCommentsList = new List<Message>(),
+        //                ActivityList = new List<Activities>()
+        //                {
+        //                    Activities.Running,
+        //                    Activities.Basketball,
+        //                    Activities.Lacrosse,
+        //                    Activities.Minigolf,
+        //                    Activities.Sauna,
+        //                },
+        //                UserTags = new List<Tags>() {Tags.Arts, Tags.Books, Tags.Wine}
+        //            },
 
-                    new User
-                    {
-                        Id = 2,
-                        Name = "Bassie",
-                        DateOfBirth = DateTime.Today,
-                        Sex = "Male",
-                        UserLocation = new UserLocation(),
-                        FriendsList = new List<User>(),
-                        IsInfected = true,
-                        IsVaccinated = false,
-                        ProfileCommentsList = new List<Message>(),
-                        ActivityList = new List<Activities>()    {
-                            Activities.Running,
-                            Activities.Basketball,
-                            Activities.Lacrosse,
-                            Activities.Squash,
-                            Activities.Sauna,
-                            Activities.Yoga,
-                        },
-                        UserTags = new List<Tags>() {Tags.Smoker, Tags.Books, Tags.Wine}
-                    },
+        //            new User
+        //            {
+        //                Id = 2,
+        //                Name = "Bassie",
+        //                DateOfBirth = DateTime.Today,
+        //                Sex = "Male",
+        //                UserLocation = new UserLocation(),
+        //                FriendsList = new List<User>(),
+        //                IsInfected = true,
+        //                IsVaccinated = false,
+        //                ProfileCommentsList = new List<Message>(),
+        //                ActivityList = new List<Activities>()    {
+        //                    Activities.Running,
+        //                    Activities.Basketball,
+        //                    Activities.Lacrosse,
+        //                    Activities.Squash,
+        //                    Activities.Sauna,
+        //                    Activities.Yoga,
+        //                },
+        //                UserTags = new List<Tags>() {Tags.Smoker, Tags.Books, Tags.Wine}
+        //            },
 
-                    new User
-                    {
-                        Id = 3,
-                        Name = "Andrea",
-                        DateOfBirth = DateTime.Today,
-                        Sex = "Female",
-                        UserLocation = new UserLocation(),
-                        FriendsList = new List<User>(),
-                        IsInfected = true,
-                        IsVaccinated = false,
-                        ProfileCommentsList = new List<Message>(),
-                        ActivityList = new List<Activities>()  {
-                            Activities.Running,
-                            Activities.Handball,
-                            Activities.Lacrosse,
-                            Activities.Squash,
-                            Activities.Padel,
-                            Activities.Yoga,
-                        },
-                        UserTags = new List<Tags>() {Tags.Arts, Tags.Larping, Tags.Books, Tags.Wine}
-                    },
+        //            new User
+        //            {
+        //                Id = 3,
+        //                Name = "Andrea",
+        //                DateOfBirth = DateTime.Today,
+        //                Sex = "Female",
+        //                UserLocation = new UserLocation(),
+        //                FriendsList = new List<User>(),
+        //                IsInfected = true,
+        //                IsVaccinated = false,
+        //                ProfileCommentsList = new List<Message>(),
+        //                ActivityList = new List<Activities>()  {
+        //                    Activities.Running,
+        //                    Activities.Handball,
+        //                    Activities.Lacrosse,
+        //                    Activities.Squash,
+        //                    Activities.Padel,
+        //                    Activities.Yoga,
+        //                },
+        //                UserTags = new List<Tags>() {Tags.Arts, Tags.Larping, Tags.Books, Tags.Wine}
+        //            },
 
-                    new User
-                        {
-                        Id = 4,
-                        Name = "Libelle",
-                        DateOfBirth = DateTime.Today,
-                        Sex = "Female",
-                        UserLocation = new UserLocation(9000),
-                        FriendsList = new List<User>(),
-                        IsInfected = false,
-                        IsVaccinated = false,
-                        ProfileCommentsList = new List<Message>(),
-                        ActivityList = new List<Activities>() {
-                            Activities.Running,
-                            Activities.Handball,
-                            Activities.Lacrosse,
-                            Activities.Squash,
-                            Activities.Padel,
-                            Activities.Yoga,
-                        },
-                        UserTags = new List<Tags>(){Tags.Arts, Tags.Furry, Tags.Books, Tags.Wine},
-                        }
-            };
-        }
+        //            new User
+        //                {
+        //                Id = 4,
+        //                Name = "Libelle",
+        //                DateOfBirth = DateTime.Today,
+        //                Sex = "Female",
+        //                UserLocation = new UserLocation(9000),
+        //                FriendsList = new List<User>(),
+        //                IsInfected = false,
+        //                IsVaccinated = false,
+        //                ProfileCommentsList = new List<Message>(),
+        //                ActivityList = new List<Activities>() {
+        //                    Activities.Running,
+        //                    Activities.Handball,
+        //                    Activities.Lacrosse,
+        //                    Activities.Squash,
+        //                    Activities.Padel,
+        //                    Activities.Yoga,
+        //                },
+        //                UserTags = new List<Tags>(){Tags.Arts, Tags.Furry, Tags.Books, Tags.Wine},
+        //                }
+        //    };
+        //}
     }
 }

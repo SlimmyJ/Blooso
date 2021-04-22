@@ -16,7 +16,7 @@ namespace Blooso.ViewModels
 
         public ObservableCollection<User> Users
         {
-            get { return _users; }
+            get => _users;
             set
             {
                 _users = value;

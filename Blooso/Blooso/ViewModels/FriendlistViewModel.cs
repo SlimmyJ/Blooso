@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-
+using System.Windows.Input;
 using Blooso.Interfaces;
 using Blooso.Models;
 using Blooso.Repositories;
 using Blooso.Views;
-
 using Xamarin.Forms;
 
 namespace Blooso.ViewModels
@@ -16,7 +15,7 @@ namespace Blooso.ViewModels
 
         public ObservableCollection<User> FriendList
         {
-            get { return friendList; }
+            get => friendList;
             set
             {
                 friendList = value;
@@ -25,17 +24,15 @@ namespace Blooso.ViewModels
         }
 
         private IUserRepository _userRepository;
+        public ICommand LoadUsersCommand => new Command(LoadUsers);
+        public Command<User> ItemTappedCommand => new Command<User>(ItemTapped);
 
         public FriendlistViewModel()
         {
             FriendList = new ObservableCollection<User>();
             _userRepository = UserRepository.GetRepository();
-
             LoadUsers();
         }
-
-        public Command LoadUsersCommand => new Command(LoadUsers);
-        public Command<User> ItemTappedCommand => new Command<User>(ItemTapped);
 
         public void LoadUsers()
         {

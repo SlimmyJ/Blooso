@@ -1,7 +1,6 @@
 ﻿using System;
-
 using Blooso.Views;
-
+using Blooso.Views.EditProfile;
 using Xamarin.Forms;
 
 namespace Blooso
@@ -21,6 +20,8 @@ namespace Blooso
             Routing.RegisterRoute(nameof(MainMenuPage), typeof(MainMenuPage));
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
             Routing.RegisterRoute(nameof(EditProfilePage), typeof(EditProfilePage));
+            Routing.RegisterRoute(nameof(EditActivityListPage), typeof(EditActivityListPage));
+            Routing.RegisterRoute(nameof(EditUserTagsListPage), typeof(EditUserTagsListPage));
         }
     }
 }
