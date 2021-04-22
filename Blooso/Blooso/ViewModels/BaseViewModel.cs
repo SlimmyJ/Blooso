@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Blooso.Interfaces;
+using Blooso.Models;
+using Blooso.Repositories;
 
 namespace Blooso.ViewModels
 {
@@ -9,6 +12,10 @@ namespace Blooso.ViewModels
     {
         private string _title = string.Empty;
         private bool _isBusy;
+        public User CurrentUser { get; set; }
+        protected IUserRepository userRepo;
+
+        private bool isBusy = false;
 
         public bool IsBusy
         {

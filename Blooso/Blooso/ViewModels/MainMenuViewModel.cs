@@ -1,5 +1,4 @@
 ﻿using System.Windows.Input;
-
 using Blooso.Interfaces;
 using Blooso.Models;
 using Blooso.Repositories;
@@ -47,6 +46,11 @@ namespace Blooso.ViewModels
             _userRepo.SetCurrentlyLoggedInUser(0);
 
             await Shell.Current.GoToAsync(nameof(LoginPage));
+        }
+
+        private async void EditProfile(object obj)
+        {
+            await Shell.Current.GoToAsync(nameof(EditProfilePage));
         }
     }
 }

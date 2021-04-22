@@ -31,7 +31,7 @@ namespace Blooso.Models
 
         public string UserPicture { get; set; }
 
-        public UserLocation UserLocation { get; set; }
+        public string UserLocation { get; set; }
 
         public DateTime DateOfBirth { get; set; }
         public List<Tags> UserTags { get; set; }
@@ -68,7 +68,7 @@ namespace Blooso.Models
             var isInfected = IsInfected ? "infected" : "clean";
             var activities = ActivityList.Aggregate("", (current, activity) => current + $"{activity}");
             var tags = UserTags.Aggregate("", (current, tag) => current + $"{tag}");
-            var toString = $"{Name} {DateOfBirth} gender {Sex} {isInfected} {UserLocation.AreaCode} {activities} {tags}";
+            var toString = $"{Name} {DateOfBirth} gender {Sex} {isInfected} {UserLocation} {activities} {tags}";
 
             return toString;
         }
