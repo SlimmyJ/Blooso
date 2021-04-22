@@ -21,11 +21,11 @@
                         Background="White">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <FlexLayout>
-                        <Frame BorderColor="Black" CornerRadius="25">
-                            <Label Text="{Binding}" />
-                        </Frame>
-                    </FlexLayout>
+                    <FlexLayout JustifyContent="SpaceEvenly">
+                            <Frame BorderColor="LightSlateGray" CornerRadius="25">
+                                <Label Text="{Binding}" FontSize="12" />
+                            </Frame>
+                        </FlexLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
