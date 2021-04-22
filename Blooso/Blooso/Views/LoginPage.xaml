@@ -24,6 +24,7 @@
                             VerticalOptions="Center" />
                         <Entry
                             x:Name="EntryUserLogin"
+                            Keyboard="Numeric"
                             Placeholder="Help"
                             PlaceholderColor="DimGray"
                             Text="{Binding Id}"
