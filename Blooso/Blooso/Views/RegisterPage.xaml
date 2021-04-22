@@ -8,7 +8,7 @@
     NavigationPage.HasNavigationBar="False"
     mc:Ignorable="d">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="White">
+        <StackLayout BackgroundColor="{StaticResource WhiteFill}">
             <Image
                 HeightRequest="200"
                 HorizontalOptions="EndAndExpand"
@@ -33,32 +33,30 @@
                 Margin="20,10,20,10"
                 IsPassword="True"
                 Placeholder="Password" />
-            <Grid Margin="20,40,20,20">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="5.5*" />
-                    <ColumnDefinition Width="4.5*" />
-                </Grid.ColumnDefinitions>
-                <Frame
-                    Grid.Column="1"
-                    Padding="15"
-                    BackgroundColor="#FA6400"
-                    CornerRadius="35">
-                    <StackLayout Orientation="Horizontal">
+            <Grid ColumnDefinitions="*" RowDefinitions="*">
+                <StackLayout
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand">
+                    <NeoButton
+                        Margin="20,10,20,10"
+                        BackgroundColor="{StaticResource AccentBlue}"
+                        CornerRadius="20"
+                        Elevation="0.45"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
                         <Label
-                            FontSize="Medium"
-                            HorizontalOptions="EndAndExpand"
-                            Text="SIGN UP"
-                            TextColor="White"
-                            VerticalOptions="Center" />
-                        <Image
-                            HeightRequest="30"
-                            HorizontalOptions="CenterAndExpand"
-                            Source="rightarrow.png" />
-                    </StackLayout>
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer x:Name="TapSignup" />
-                    </Frame.GestureRecognizers>
-                </Frame>
+                            Margin="20,10,20,10"
+                            FontSize="Large"
+                            HorizontalOptions="Center"
+                            Text="Register"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center" />
+
+                    </NeoButton>
+                </StackLayout>
+
             </Grid>
             <Label
                 Margin="20"
