@@ -5,8 +5,6 @@ using Blooso.Models;
 using Blooso.Repositories;
 using Blooso.Views;
 
-using Bogus.Extensions;
-
 using Xamarin.Forms;
 
 namespace Blooso.ViewModels

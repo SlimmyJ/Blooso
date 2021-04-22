@@ -5,10 +5,10 @@
     <!--#region Resources-->
     <ContentPage.Resources>
         <SwipeItems x:Key="SwipeItems">
-            <SwipeItem BackgroundColor="LightGreen"
-                       Invoked="OnFavoriteSwipeItemInvoked"
-                       Text="Favorite" />
             <SwipeItem BackgroundColor="{StaticResource AccentBlue}"
+                       Invoked="OnFavoriteSwipeItemInvoked"
+                       Text="Message" />
+            <SwipeItem BackgroundColor="OrangeRed"
                        Invoked="OnDeleteSwipeItemInvoked"
                        Text="Delete" />
         </SwipeItems>

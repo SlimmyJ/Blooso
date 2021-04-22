@@ -1,43 +1,61 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="Blooso.Views.LoginPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:Blooso.ViewModels"
-             x:Class="Blooso.Views.LoginPage">
+             xmlns:vm="clr-namespace:Blooso.ViewModels">
     <ContentPage.BindingContext>
         <vm:LoginViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical"
-                     Padding="30"
-                     Spacing="40">
-            <BoxView HeightRequest="10" />
-            <Frame BackgroundColor="#BF043055"
-                   HasShadow="False">
-                <StackLayout Orientation="Vertical"
-                             Spacing="10">
-                    <Entry x:Name="Email"
-                           Text="{Binding Id}"
-                           Placeholder="Id"
-                           PlaceholderColor="White"
-                           HeightRequest="40"
-                           Keyboard="Numeric"
-                           TextColor="White" />
-                    <Entry x:Name="Password"
-                           Text="{Binding Password}"
-                           Placeholder="Password"
-                           PlaceholderColor="White"
-                           HeightRequest="40"
-                           IsPassword="True"
-                           TextColor="White" />
+        <StackLayout Padding="20"
+                     Orientation="Vertical"
+                     Spacing="80"
+                     VerticalOptions="Center">
+            <StackLayout Spacing="20">
+                <NeoFrame BackgroundColor="{StaticResource BleakOrange}"
+                          CornerRadius="40">
+                    <StackLayout HorizontalOptions="Center">
+                        <Label Padding="0,10,0,10"
+                               HorizontalTextAlignment="Center"
+                               Text="Username"
+                               VerticalOptions="Center" />
+                        <Entry x:Name="EntryUserLogin"
+                               PlaceholderColor="DimGray"
+                               Text="{Binding Id}"
+                               TextColor="Black" />
+                    </StackLayout>
+                </NeoFrame>
+                <NeoFrame BackgroundColor="{StaticResource BleakOrange}"
+                          CornerRadius="40">
+                    <StackLayout HorizontalOptions="Center"
+                                 VerticalOptions="Center">
+                        <Label Padding="0,10,0,10"
+                               HorizontalTextAlignment="Center"
+                               Text="Password"
+                               VerticalOptions="Center" />
+                        <Entry x:Name="EntryUserPassword"
+                               IsPassword="True"
+                               Placeholder="Password"
+                               PlaceholderColor="DimGray"
+                               Text="{Binding Password}"
+                               TextColor="White" />
+                    </StackLayout>
+                </NeoFrame>
+            </StackLayout>
+            <NeoButton BackgroundColor="{StaticResource AccentBlue}"
+                       Command="{Binding SubmitCommand}"
+                       CornerRadius="40,40,40,40"
+                       Elevation=".25">
+                <StackLayout Padding="30"
+                             HorizontalOptions="Center"
+                             Orientation="Vertical"
+                             VerticalOptions="Center">
+                    <Label FontSize="Large"
+                           Text="Login"
+                           TextColor="White"
+                           VerticalOptions="EndAndExpand" />
                 </StackLayout>
-            </Frame>
-            <Button Command="{Binding SubmitCommand}"
-                    Text="Login"
-                    TextColor="White"
-                    FontAttributes="Bold"
-                    FontSize="Large"
-                    HorizontalOptions="FillAndExpand"
-                    BackgroundColor="#088da5" />
+            </NeoButton>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
