@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using Blooso.ViewModels;
+using System;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Blooso.Views
@@ -6,9 +8,25 @@ namespace Blooso.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
+        public LoginViewModel loginVM;
         public LoginPage()
         {
             InitializeComponent();
+            loginVM = new LoginViewModel();
+            UserId.Completed += (object sender, EventArgs e) =>
+            {
+                Password.Focus();
+            };
+
+            Password.Completed += (object sender, EventArgs e) =>
+            {
+                loginVM.SubmitCommand.Execute(null);
+            };
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
         }
     }
 }

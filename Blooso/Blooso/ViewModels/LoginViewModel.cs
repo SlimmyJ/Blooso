@@ -10,7 +10,7 @@ namespace Blooso.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
-        public Action DisplayInvalidLoginPrompt;
+        //public Action DisplayInvalidLoginPrompt;
         private IUserRepository _repository;
 
         private int id;

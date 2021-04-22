@@ -15,7 +15,7 @@
                    HasShadow="False">
                 <StackLayout Orientation="Vertical"
                              Spacing="10">
-                    <Entry x:Name="Email"
+                    <Entry x:Name="UserId"
                            Text="{Binding Id}"
                            Placeholder="Id"
                            PlaceholderColor="White"
