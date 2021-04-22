@@ -34,10 +34,12 @@ namespace Blooso.Models
         public UserLocation UserLocation { get; set; }
 
         public DateTime DateOfBirth { get; set; }
+        public List<Tags> UserTags { get; set; }
 
         public List<Activities> ActivityList { get; set; }
 
         private ObservableCollection<User> _friendList;
+        private ObservableCollection<Message> _userFeedMessages;
 
         public ObservableCollection<User> FriendList
         {
@@ -49,9 +51,15 @@ namespace Blooso.Models
             }
         }
 
-        public List<Tags> UserTags { get; set; }
-
-        public List<Message> ProfileCommentsList { get; set; }
+        public ObservableCollection<Message> UserFeedMessages
+        {
+            get { return _userFeedMessages; }
+            set
+            {
+                _userFeedMessages = value;
+                OnPropertyChanged(nameof(UserFeedMessages));
+            }
+        }
 
         public string ShortBio { get; set; }
 

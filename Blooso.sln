@@ -7,7 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blooso.UWP", "Blooso\Blooso
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blooso.Android", "Blooso\Blooso.Android\Blooso.Android.csproj", "{E3D00E9A-0D75-497B-88B2-AA7DDAA276A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blooso", "Blooso\Blooso\Blooso.csproj", "{56C02523-2720-4C8B-B1D2-6BFA792D025F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blooso", "Blooso\Blooso\Blooso.csproj", "{56C02523-2720-4C8B-B1D2-6BFA792D025F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blooso.Tests", "Blooso.Tests\Blooso.Tests.csproj", "{8F9E5977-29C2-4F3E-92FA-D4FD09B5B76D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +95,22 @@ Global
 		{56C02523-2720-4C8B-B1D2-6BFA792D025F}.Release|x86.ActiveCfg = Release|Any CPU
 		{56C02523-2720-4C8B-B1D2-6BFA792D025F}.Release|x86.Build.0 = Release|Any CPU
 		{56C02523-2720-4C8B-B1D2-6BFA792D025F}.Release|x86.Deploy.0 = Release|Any CPU
+		{8F9E5977-29C2-4F3E-92FA-D4FD09B5B76D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F9E5977-29C2-4F3E-92FA-D4FD09B5B76D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F9E5977-29C2-4F3E-92FA-D4FD09B5B76D}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{8F9E5977-29C2-4F3E-92FA-D4FD09B5B76D}.Debug|ARM.Build.0 = Debug|Any CPU
+		{8F9E5977-29C2-4F3E-92FA-D4FD09B5B76D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8F9E5977-29C2-4F3E-92FA-D4FD09B5B76D}.Debug|x64.Build.0 = Debug|Any CPU
+		{8F9E5977-29C2-4F3E-92FA-D4FD09B5B76D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8F9E5977-29C2-4F3E-92FA-D4FD09B5B76D}.Debug|x86.Build.0 = Debug|Any CPU
+		{8F9E5977-29C2-4F3E-92FA-D4FD09B5B76D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F9E5977-29C2-4F3E-92FA-D4FD09B5B76D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F9E5977-29C2-4F3E-92FA-D4FD09B5B76D}.Release|ARM.ActiveCfg = Release|Any CPU
+		{8F9E5977-29C2-4F3E-92FA-D4FD09B5B76D}.Release|ARM.Build.0 = Release|Any CPU
+		{8F9E5977-29C2-4F3E-92FA-D4FD09B5B76D}.Release|x64.ActiveCfg = Release|Any CPU
+		{8F9E5977-29C2-4F3E-92FA-D4FD09B5B76D}.Release|x64.Build.0 = Release|Any CPU
+		{8F9E5977-29C2-4F3E-92FA-D4FD09B5B76D}.Release|x86.ActiveCfg = Release|Any CPU
+		{8F9E5977-29C2-4F3E-92FA-D4FD09B5B76D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

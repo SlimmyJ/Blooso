@@ -1,4 +1,7 @@
-﻿using Blooso.Interfaces;
+﻿using System;
+using System.Collections.ObjectModel;
+
+using Blooso.Interfaces;
 using Blooso.Models;
 using Blooso.Repositories;
 
@@ -21,13 +24,28 @@ namespace Blooso.ViewModels
             }
         }
 
+        public string UserInput { get; set; }
+
+        private ObservableCollection<Message> _userFeed;
+
+        public ObservableCollection<Message> UserFeed
+        {
+            get => _userFeed;
+            set
+            {
+                _userFeed = value;
+                OnPropertyChanged(nameof(UserFeed));
+            }
+        }
+
         private int _userId;
-        public IUserRepository UserRepo;
+        private IUserRepository userRepo;
 
         public MatchDetailViewModel()
         {
             UserDetail = new User();
-            UserRepo = UserRepository.GetRepository();
+            UserFeed = new ObservableCollection<Message>();
+            userRepo = UserRepository.GetRepository();
         }
 
         public Command ActivityTappedAccount => new Command(ActivityTapped);
@@ -44,6 +62,22 @@ namespace Blooso.ViewModels
 
         public Command AddUserToFavouritesCommand => new Command(AddUserToFavourites);
 
+        public Command OnPressSendMessage => new Command(SendMessage);
+
+        private void SendMessage()
+        {
+            var wallmessage = new Message
+            {
+                Recipient = UserDetail,
+                Text = UserInput,
+                Author = userRepo.GetCurrentlyLoggedInUser(),
+                IsPositiveReview = true,
+                CreatedAt = DateTime.Now
+            };
+
+            UserDetail.UserFeedMessages.Add(wallmessage);
+        }
+
         private void ActivityTapped()
         {
             Application.Current.MainPage.DisplayAlert("TODO", "List of activities", "OK");
@@ -51,14 +85,15 @@ namespace Blooso.ViewModels
 
         private async void AddUserToFavourites()
         {
-            var loggedInUser = UserRepo.GetCurrentlyLoggedInUser();
+            var loggedInUser = userRepo.GetCurrentlyLoggedInUser();
             if (loggedInUser.Id != UserDetail.Id) loggedInUser.FriendList.Add(UserDetail);
             await Shell.Current.GoToAsync("..");
         }
 
         private void LoadUser(int value)
         {
-            UserDetail = UserRepo.GetUser(value);
+            UserDetail = userRepo.GetUser(value);
+            UserFeed = UserDetail.UserFeedMessages;
         }
     }
 }

@@ -28,6 +28,13 @@ namespace Blooso.ViewModels
         public Command LoadUsersCommand => new Command(LoadUsers);
         public Command<User> ItemTappedCommand => new Command<User>(ItemTapped);
 
+        public Command<User> FriendListSwipeCommand => new Command<User>(SendMessageToUser);
+
+        private async void SendMessageToUser(User user)
+        {
+            await Shell.Current.GoToAsync($"{nameof(UserFeedPage)}?{nameof(UserFeedViewModel)}={user.Id}");
+        }
+
         public FriendlistViewModel()
         {
             _userRepository = UserRepository.GetRepository();

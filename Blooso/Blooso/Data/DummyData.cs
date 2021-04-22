@@ -23,7 +23,8 @@ namespace Blooso.Data
                 .RuleFor(x => x.DateOfBirth, x => x.Person.DateOfBirth)
                 .RuleFor(x => x.ActivityList, new List<Activities>())
                 .RuleFor(x => x.UserTags, new List<Tags>())
-                .RuleFor(x => x.FriendList, new ObservableCollection<User>());
+                .RuleFor(x => x.FriendList, new ObservableCollection<User>())
+                .RuleFor(x => x.UserFeedMessages, new ObservableCollection<Message>());
 
             //var user = JsonConvert.SerializeObject(userFaker.Generate());
             //Debug.WriteLine($" TEST:: {user}");
@@ -36,6 +37,7 @@ namespace Blooso.Data
                 temp.ActivityList = GetRandomActivities(10);
                 temp.UserTags = GetRandomUserTags(12);
                 temp.ShortBio = "";
+
                 dummyList.Add(temp);
             }
 

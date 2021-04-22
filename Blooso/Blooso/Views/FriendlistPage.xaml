@@ -6,10 +6,9 @@
     <ContentPage.Resources>
         <SwipeItems x:Key="SwipeItems">
             <SwipeItem BackgroundColor="{StaticResource AccentBlue}"
-                       Invoked="OnFavoriteSwipeItemInvoked"
+                       Command="{Binding OnSwipeFriendListMessage}"
                        Text="Message" />
             <SwipeItem BackgroundColor="OrangeRed"
-                       Invoked="OnDeleteSwipeItemInvoked"
                        Text="Delete" />
         </SwipeItems>
     </ContentPage.Resources>
