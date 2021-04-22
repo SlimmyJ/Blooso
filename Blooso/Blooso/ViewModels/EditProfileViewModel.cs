@@ -14,8 +14,8 @@ namespace Blooso.ViewModels
 
         public EditProfileViewModel()
         {
-            userRepo = UserRepository.GetRepository();
-            CurrentUser = userRepo.GetCurrentlyLoggedInUser();
+            _userRepo = UserRepository.GetRepository();
+            CurrentUser = _userRepo.GetCurrentlyLoggedInUser();
         }
 
         private async void EditActivityList(object obj)
