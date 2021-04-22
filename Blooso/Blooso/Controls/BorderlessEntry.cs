@@ -1,9 +1,15 @@
-﻿using Xamarin.Forms;
-
-namespace Blooso.Controls
+﻿namespace Blooso.Controls
 {
+    #region
+
+    using Xamarin.Forms;
+
+    #endregion
+
     /// <summary>
-    /// entry without borders
+    ///     entry without borders
     /// </summary>
-    public class BorderlessEntry : Entry { }
+    public class BorderlessEntry : Entry
+    {
+    }
 }

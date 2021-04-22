@@ -1,42 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-
-using Blooso.Models;
-
-using Bogus;
-
-namespace Blooso.Data
+﻿namespace Blooso.Data
 {
+    #region
+
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Linq;
+
+    using Blooso.Models;
+
+    using Bogus;
+
+    #endregion
+
     public class DummyData
     {
         public List<User> GenerateDummyData()
         {
             var dummyList = new List<User>();
-            var userFaker = new Faker<User>()
-                .RuleFor(x => x.Name, x => x.Person.FullName)
+            var userFaker = new Faker<User>().RuleFor(x => x.Name, x => x.Person.FullName)
                 .RuleFor(x => x.Sex, x => x.PickRandom("Male", "Female", "Gender Fluid"))
-                .RuleFor(x => x.IsVaccinated, x => x.Random.Bool())
-                .RuleFor(x => x.IsInfected, x => x.Random.Bool())
+                .RuleFor(x => x.IsVaccinated, x => x.Random.Bool()).RuleFor(x => x.IsInfected, x => x.Random.Bool())
                 .RuleFor(x => x.UserLocation, x => x.Person.Address.City)
                 .RuleFor(x => x.DateOfBirth, x => x.Person.DateOfBirth)
-                .RuleFor(x => x.ActivityList, new List<Activities>())
-                .RuleFor(x => x.UserTags, new List<Tags>())
-                .RuleFor(x => x.FriendList, new ObservableCollection<User>())
-                .RuleFor(x => x.UserFeedMessages, new ObservableCollection<Message>());
+                .RuleFor(x => x.ActivityList, new List<Activities>()).RuleFor(x => x.UserTags, new List<Tags>())
+                .RuleFor(x => x.FriendList, new ObservableCollection<User>()).RuleFor(
+                    x => x.UserFeedMessages,
+                    new ObservableCollection<Message>());
 
-            //var user = JsonConvert.SerializeObject(userFaker.Generate());
-            //Debug.WriteLine($" TEST:: {user}");
-
+            // var user = JsonConvert.SerializeObject(userFaker.Generate());
+            // Debug.WriteLine($" TEST:: {user}");
             for (var i = 0; i < 20; i++)
             {
                 var temp = userFaker.Generate();
                 temp.Id = i + 1;
                 temp.UserPicture = $"a{i}.jpg";
-                temp.ActivityList = GetRandomActivities(10);
-                temp.UserTags = GetRandomUserTags(12);
-                temp.ShortBio = "";
+                temp.ActivityList = this.GetRandomActivities(10);
+                temp.UserTags = this.GetRandomUserTags(12);
+                temp.ShortBio = string.Empty;
 
                 dummyList.Add(temp);
             }

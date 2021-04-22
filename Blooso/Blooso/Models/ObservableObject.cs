@@ -1,7 +1,11 @@
-﻿using System.ComponentModel;
-
-namespace Blooso.Models
+﻿namespace Blooso.Models
 {
+    #region
+
+    using System.ComponentModel;
+
+    #endregion
+
     public abstract class ObservableObject : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

@@ -2,11 +2,11 @@
 {
     public class UserLocation
     {
-        public int AreaCode { get; set; }
-
         public UserLocation(int areaCode = 8000)
         {
-            AreaCode = areaCode;
+            this.AreaCode = areaCode;
         }
+
+        public int AreaCode { get; set; }
     }
 }

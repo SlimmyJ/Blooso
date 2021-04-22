@@ -1,75 +1,54 @@
-﻿using System;
-using System.Collections.ObjectModel;
-
-using Blooso.Interfaces;
-using Blooso.Models;
-using Blooso.Repositories;
-using Blooso.Views;
-
-using Xamarin.Forms;
-
-namespace Blooso.ViewModels
+﻿namespace Blooso.ViewModels
 {
+    #region
+
+    using System.Collections.ObjectModel;
+
+    using Blooso.Interfaces;
+    using Blooso.Models;
+    using Blooso.Repositories;
+    using Blooso.Views;
+
+    using Xamarin.Forms;
+
+    #endregion
+
     public class FriendlistViewModel : BaseViewModel
     {
-        private readonly IUserRepository _userRepository;
-        private ObservableCollection<User> _friendList;
+        public FriendlistViewModel()
+        {
+        }
 
         public ObservableCollection<User> FriendList
         {
-            get => _friendList;
+            get
+            {
+                return CurrentUser.FriendList;
+            }
+
             set
             {
-                _friendList = value;
-                OnPropertyChanged(nameof(FriendList));
+                this.CurrentUser.FriendList = value;
+                this.OnPropertyChanged(nameof(this.FriendList));
             }
         }
 
-        public Command LoadUsersCommand => new Command(LoadUsers);
-        public Command<User> ItemTappedCommand => new Command<User>(ItemTapped);
-
-        public Command<User> FriendListSwipeCommand => new Command<User>(SendMessageToUser);
-
-        private async void SendMessageToUser(User user)
+        public Command<User> FriendListSwipeCommand
         {
-            await Shell.Current.GoToAsync($"{nameof(UserFeedPage)}?{nameof(UserFeedViewModel)}={user.Id}");
-        }
-
-        public FriendlistViewModel()
-        {
-            _userRepository = UserRepository.GetRepository();
-            FriendList = _userRepository.GetCurrentlyLoggedInUser().FriendList;
+            get
+            {
+                return new Command<User>(this.SendMessageToUser);
+            }
         }
 
         private async void ItemTapped(User user)
         {
-            await Shell.Current.GoToAsync($"{nameof(MatchDetailPage)}?{nameof(MatchDetailViewModel.UserId)}={user.Id}");
+            await Shell.Current.GoToAsync($"{nameof(MatchDetailPage)}?{nameof(MatchDetailViewModel.DetailedUserId)}={user.Id}");
         }
 
-        public void LoadUsers()
+        private async void SendMessageToUser(User user)
         {
-            IsBusy = true;
-
-            try
-            {
-                var currentUser = _userRepository.GetCurrentlyLoggedInUser();
-                if (currentUser.FriendList != null)
-                {
-                    foreach (var temp in currentUser.FriendList)
-                    {
-                        FriendList.Add(temp);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-            finally
-            {
-                IsBusy = false;
-            }
+            await Shell.Current.GoToAsync($"{nameof(UserFeedPage)}?{nameof(UserFeedViewModel)}={user.Id}");
         }
     }
 }

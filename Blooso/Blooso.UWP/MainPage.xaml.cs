@@ -7,7 +7,7 @@
         {
             this.InitializeComponent();
 
-            LoadApplication(new Blooso.App());
+            this.LoadApplication(new Blooso.App());
         }
     }
 }

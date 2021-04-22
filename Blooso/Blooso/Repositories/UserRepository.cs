@@ -1,89 +1,93 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-using Blooso.Data;
-using Blooso.Interfaces;
-using Blooso.Models;
-
-namespace Blooso.Repositories
+﻿namespace Blooso.Repositories
 {
+    #region
+
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using Blooso.Data;
+    using Blooso.Interfaces;
+    using Blooso.Models;
+
+    #endregion
+
     public class UserRepository : IUserRepository
     {
-        private static UserRepository _userRepository;
+        private static UserRepository userRepository;
+
         private readonly DummyData _dummyData;
 
         private readonly List<User> _userlist;
 
         public UserRepository()
         {
-            _dummyData = new DummyData();
-            _userlist = FillListWithBogusData();
+            this._dummyData = new DummyData();
+            this._userlist = this.FillListWithBogusData();
         }
 
         public User CurrentlyLoggedInUser { get; set; }
 
-        public User GetCurrentlyLoggedInUser()
+        public static UserRepository GetRepository()
         {
-            return CurrentlyLoggedInUser;
+            return userRepository ?? (userRepository = new UserRepository());
         }
 
-        public void SetCurrentlyLoggedInUser(int id)
+        public int CountOverlapInActivitiesList(IEnumerable<Activities> list)
         {
-            CurrentlyLoggedInUser = id == 0 ? new User() : GetUser(id);
+            var overlap = list.Intersect(this.CurrentlyLoggedInUser.ActivityList);
+            var result = overlap.Count();
+            return result;
         }
 
-        public User GetUser(int id)
+        public int CountOverlapInTagsList(IEnumerable<Tags> list)
         {
-            return _userlist.FirstOrDefault(x => x.Id == id);
-        }
-
-        public List<User> GetSearchResults(string queryString)
-        {
-            var normalizedQuery = queryString?.ToLower() ?? "";
-            return GetMatchResults().Where(f => f.ToString().ToLowerInvariant().Contains(normalizedQuery)).ToList();
-        }
-
-        public List<User> GetMatchResults()
-        {
-            return _userlist
-                .Where(user => user.Id != CurrentlyLoggedInUser.Id)
-                .Where(user => user.IsInfected == CurrentlyLoggedInUser.IsInfected)
-                .Where(user =>
-                    CountOverlapInActivitiesList(user.ActivityList) > 4 && CountOverlapInTagsList(user.UserTags) > 4)
-                .ToList();
+            var overlap = list.Intersect(this.CurrentlyLoggedInUser.UserTags);
+            var result = overlap.Count();
+            return result;
         }
 
         public bool DoesUserExist(int id)
         {
-            foreach (var user in _userlist)
+            foreach (var user in this._userlist)
                 if (user.Id == id)
                     return true;
 
             return false;
         }
 
-        public static UserRepository GetRepository()
+        public User GetCurrentlyLoggedInUser()
         {
-            return _userRepository ?? (_userRepository = new UserRepository());
+            return this.CurrentlyLoggedInUser;
         }
 
-        public int CountOverlapInTagsList(List<Tags> list)
+        public List<User> GetMatchResults()
         {
-            var overlap = list.Intersect(CurrentlyLoggedInUser.UserTags);
-            var result = overlap.Count();
-            return result;
+            return this._userlist.Where(user => !user.Id.Equals(this.CurrentlyLoggedInUser.Id))
+                .Where(user => user.IsInfected == this.CurrentlyLoggedInUser.IsInfected).Where(
+                    user => this.CountOverlapInActivitiesList(user.ActivityList) > 4
+                            && this.CountOverlapInTagsList(user.UserTags) > 4).ToList();
         }
 
-        public int CountOverlapInActivitiesList(List<Activities> list)
+        public List<User> GetSearchResults(string queryString)
         {
-            var overlap = list.Intersect(CurrentlyLoggedInUser.ActivityList);
-            var result = overlap.Count();
-            return result;
+            var normalizedQuery = queryString?.ToLower() ?? string.Empty;
+            return this.GetMatchResults().Where(f => f.ToString().ToLowerInvariant().Contains(normalizedQuery))
+                .ToList();
+        }
+
+        public User GetUser(int id)
+        {
+            return this._userlist.FirstOrDefault(x => x.Id == id);
+        }
+
+        public void SetCurrentlyLoggedInUser(int id)
+        {
+            this.CurrentlyLoggedInUser = id == 0 ? new User() : this.GetUser(id);
         }
 
         private List<User> FillListWithBogusData()
         {
-            return _dummyData.GenerateDummyData();
+            return this._dummyData.GenerateDummyData();
         }
     }
 }

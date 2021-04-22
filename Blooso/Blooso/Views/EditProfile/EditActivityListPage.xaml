@@ -1,28 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage x:Class="Blooso.Views.EditProfile.EditActivityListPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModels="clr-namespace:Blooso.ViewModels;assembly=Blooso"
-             x:Class="Blooso.Views.EditProfile.EditActivityListPage">
+             xmlns:viewModels="clr-namespace:Blooso.ViewModels;assembly=Blooso">
     <ContentPage.BindingContext>
         <viewModels:EditActivityListViewModel />
     </ContentPage.BindingContext>
     <StackLayout>
-        <StackLayout BackgroundColor="#ededed"
-                     Padding="10,20">
-            <Label Text="Activities let us match you up with people that have the same interestss. Add 3-5 to your profile to make better connections."
-                   FontAttributes="None" />
+        <StackLayout Padding="10,20"
+                     BackgroundColor="#ededed">
+            <Label FontAttributes="None"
+                   Text="Activities let us find people with similar interests to yours. Add 3 to 5 activities of your choice to your profile and get better matches." />
         </StackLayout>
         <CollectionView x:Name="ActivityListView"
+                        Background="White"
                         ItemsSource="{Binding Activities}"
-                        SelectionMode="Single"
-                        Background="White">
+                        SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <FlexLayout JustifyContent="SpaceEvenly">
                         <Frame BorderColor="LightSlateGray"
                                CornerRadius="25">
-                            <Label Text="{Binding}"
-                                   FontSize="12" />
+                            <Label FontSize="12"
+                                   Text="{Binding}" />
                         </Frame>
                     </FlexLayout>
                 </DataTemplate>

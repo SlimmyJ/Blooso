@@ -16,7 +16,7 @@
                           Elevation="0.60">
                     <Image Margin="20"
                            Aspect="AspectFill"
-                           Source="{Binding UserDetail.UserPicture}" />
+                           Source="{Binding DetailedUserId.UserPicture}" />
                 </NeoFrame>
                 <NeoFrame BackgroundColor="{StaticResource LighterOrange}"
                           CornerRadius="40">
@@ -52,7 +52,7 @@
                                Grid.ColumnSpan="3"
                                FontAttributes="Bold"
                                FontSize="30"
-                               Text="{Binding UserDetail.Name}" />
+                               Text="{Binding DetailedUserId.Name}" />
                         <Label Grid.Row="1"
                                Grid.Column="0"
                                FontSize="16"
@@ -130,7 +130,7 @@
                 <NeoFrame BackgroundColor="{StaticResource DarkerOrange}"
                           CornerRadius="40">
                     <StackLayout>
-                        <CollectionView ItemsSource="{Binding UserDetail.UserFeedMessages}">
+                        <CollectionView ItemsSource="{Binding DetailedUserId.UserFeedMessages}">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <StackLayout HorizontalOptions="Center"

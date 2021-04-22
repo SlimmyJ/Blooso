@@ -1,99 +1,88 @@
-﻿using System;
-using System.Collections.ObjectModel;
-
-using Blooso.Interfaces;
-using Blooso.Models;
-using Blooso.Repositories;
-
-using Xamarin.Forms;
-
-namespace Blooso.ViewModels
+﻿namespace Blooso.ViewModels
 {
-    [QueryProperty(nameof(UserId), nameof(UserId))]
+    #region
+
+    using System;
+    using System.Collections.ObjectModel;
+    using System.Windows.Input;
+
+    using Blooso.Models;
+    using Blooso.Repositories;
+
+    using Xamarin.Forms;
+
+    #endregion
+
+    [QueryProperty(nameof(DetailedUserId), nameof(DetailedUserId))]
     public class MatchDetailViewModel : BaseViewModel
     {
-        private User _userDetail;
-
-        public User UserDetail
+        public MatchDetailViewModel()
         {
-            get => _userDetail;
+            this.DetailUserFeed = new ObservableCollection<Message>();
+            this.UserRepo = UserRepository.GetRepository();
+        }
+
+        private int _detailedUserId;
+
+        public int DetailedUserId
+        {
+            get
+            {
+                return this._detailedUserId;
+            }
             set
             {
-                _userDetail = value;
-                OnPropertyChanged(nameof(UserDetail));
+                this._detailedUserId = value;
+                this.DetailedUser = this.UserRepo.GetUser(value);
+            }
+        }
+
+        public new User DetailedUser { get; set; }
+
+        public ICommand AddUserToFavouritesCommand
+        {
+            get
+            {
+                return new Command(this.AddUserToFavourites);
+            }
+        }
+
+        public ICommand OnPressSendMessage
+        {
+            get
+            {
+                return new Command(this.SendMessage);
             }
         }
 
         public string UserInput { get; set; }
 
-        private ObservableCollection<Message> _userFeed;
-
-        public ObservableCollection<Message> UserFeed
+        private async void AddUserToFavourites()
         {
-            get => _userFeed;
-            set
+            var loggedInUser = this.UserRepo.GetCurrentlyLoggedInUser();
+            if (loggedInUser.Id == this.DetailedUser.Id)
             {
-                _userFeed = value;
-                OnPropertyChanged(nameof(UserFeed));
             }
-        }
-
-        private int _userId;
-        private IUserRepository userRepo;
-
-        public MatchDetailViewModel()
-        {
-            UserDetail = new User();
-            UserFeed = new ObservableCollection<Message>();
-            userRepo = UserRepository.GetRepository();
-        }
-
-        public Command ActivityTappedAccount => new Command(ActivityTapped);
-
-        public int UserId
-        {
-            get => _userId;
-            set
+            else
             {
-                _userId = value;
-                LoadUser(value);
+                loggedInUser.FriendList.Add(this.DetailedUser);
             }
+
+            await Shell.Current.GoToAsync("..");
         }
-
-        public Command AddUserToFavouritesCommand => new Command(AddUserToFavourites);
-
-        public Command OnPressSendMessage => new Command(SendMessage);
 
         private void SendMessage()
         {
             var wallmessage = new Message
             {
-                Recipient = UserDetail,
-                Text = UserInput,
-                Author = userRepo.GetCurrentlyLoggedInUser(),
+                Recipient = this.DetailedUser,
+                Text = this.UserInput,
+                Author = this.UserRepo.GetCurrentlyLoggedInUser(),
                 IsPositiveReview = true,
                 CreatedAt = DateTime.Now
             };
 
-            UserDetail.UserFeedMessages.Add(wallmessage);
-        }
-
-        private void ActivityTapped()
-        {
-            Application.Current.MainPage.DisplayAlert("TODO", "List of activities", "OK");
-        }
-
-        private async void AddUserToFavourites()
-        {
-            var loggedInUser = userRepo.GetCurrentlyLoggedInUser();
-            if (loggedInUser.Id != UserDetail.Id) loggedInUser.FriendList.Add(UserDetail);
-            await Shell.Current.GoToAsync("..");
-        }
-
-        private void LoadUser(int value)
-        {
-            UserDetail = userRepo.GetUser(value);
-            UserFeed = UserDetail.UserFeedMessages;
+            this.DetailedUser.UserFeedMessages.Add(wallmessage);
         }
     }
 }

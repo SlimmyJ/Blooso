@@ -1,30 +1,31 @@
-﻿using System;
-
-using Blooso.ViewModels;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-namespace Blooso.Views
+﻿namespace Blooso.Views
 {
+    #region
+
+    using System;
+
+    using Blooso.ViewModels;
+
+    using Xamarin.Forms;
+    using Xamarin.Forms.Xaml;
+
+    #endregion
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        public LoginViewModel loginVM;
+        public LoginViewModel LoginVm;
 
         public LoginPage()
         {
-            InitializeComponent();
-            loginVM = new LoginViewModel();
-            EntryUserLogin.Completed += (object sender, EventArgs e) =>
-            {
-                EntryUserPassword.Focus();
-            };
+            this.InitializeComponent();
+            this.LoginVm = new LoginViewModel();
+            this.EntryUserLogin.Completed += (object sender, EventArgs e) => { this.EntryUserPassword.Focus(); };
 
-            EntryUserLogin.Completed += (object sender, EventArgs e) =>
-            {
-                loginVM.SubmitCommand.Execute(null);
-            };
+            this.EntryUserLogin.Completed += (object sender, EventArgs e) =>
+                {
+                    this.LoginVm.SubmitCommand.Execute(null);
+                };
         }
 
         protected override bool OnBackButtonPressed()

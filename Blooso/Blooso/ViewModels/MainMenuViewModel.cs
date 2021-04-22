@@ -1,62 +1,75 @@
-﻿using System.Windows.Input;
-
-using Blooso.Interfaces;
-using Blooso.Models;
-using Blooso.Repositories;
-using Blooso.Views;
-
-using Xamarin.Forms;
-
-namespace Blooso.ViewModels
+﻿namespace Blooso.ViewModels
 {
+    #region
+
+    using System.Windows.Input;
+
+    using Blooso.Models;
+    using Blooso.Repositories;
+    using Blooso.Views;
+
+    using Xamarin.Forms;
+
+    #endregion
+
     public class MainMenuViewModel : BaseViewModel
     {
-        private readonly IUserRepository _userRepo;
-
         public MainMenuViewModel()
         {
-            _userRepo = UserRepository.GetRepository();
-            CurrentUser = _userRepo.GetCurrentlyLoggedInUser();
+            this.UserRepo = UserRepository.GetRepository();
+            this.CurrentUser = this.UserRepo.GetCurrentlyLoggedInUser();
         }
 
-        public User CurrentUser { get; set; }
+        public new User CurrentUser { get; private set; }
 
-        public ICommand LogUserOutCommand
+        #region Commands
+
+        public ICommand EditProfileCommand
         {
-            get { return new Command(LogUserOut); }
+            get
+            {
+                return new Command(this.EditProfile);
+            }
         }
 
         public ICommand GetMatchesCommand
         {
-            get { return new Command(GetMatches); }
+            get
+            {
+                return new Command(this.GetMatches);
+            }
         }
 
-        public ICommand EditProfileCommand
+        public ICommand LogUserOutCommand
         {
-            get { return new Command(EditProfile); }
+            get
+            {
+                return new Command(this.LogUserOut);
+            }
         }
 
-        private async void GetMatches()
-        {
-            _userRepo.GetMatchResults();
-            await Shell.Current.GoToAsync(nameof(MatchOverviewPage));
-        }
+        #endregion
 
         public User GetCurrentUser()
         {
-            return CurrentUser;
-        }
-
-        private async void LogUserOut()
-        {
-            _userRepo.SetCurrentlyLoggedInUser(0);
-
-            await Shell.Current.GoToAsync(nameof(LoginPage));
+            return this.CurrentUser;
         }
 
         private async void EditProfile(object obj)
         {
-            await Shell.Current.GoToAsync(nameof(EditProfilePage));
+            await Shell.Current.GoToAsync("EditProfilePage");
+        }
+
+        private async void GetMatches()
+        {
+            await Shell.Current.GoToAsync(nameof(MatchOverviewPage));
+        }
+
+        private async void LogUserOut()
+        {
+            this.UserRepo.SetCurrentlyLoggedInUser(0);
+
+            await Shell.Current.GoToAsync("LoginPage");
         }
     }
 }

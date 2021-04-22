@@ -1,21 +1,25 @@
-﻿using System.Collections.Generic;
-
-using Blooso.Models;
-
-namespace Blooso.Interfaces
+﻿namespace Blooso.Interfaces
 {
+    #region
+
+    using System.Collections.Generic;
+
+    using Blooso.Models;
+
+    #endregion
+
     public interface IUserRepository
     {
-        User GetUser(int id);
+        bool DoesUserExist(int id);
 
         User GetCurrentlyLoggedInUser();
 
-        void SetCurrentlyLoggedInUser(int id);
+        List<User> GetMatchResults();
 
         List<User> GetSearchResults(string queryString);
 
-        bool DoesUserExist(int id);
+        User GetUser(int id);
 
-        List<User> GetMatchResults();
+        void SetCurrentlyLoggedInUser(int id);
     }
 }

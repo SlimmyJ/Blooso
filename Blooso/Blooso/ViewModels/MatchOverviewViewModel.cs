@@ -1,58 +1,62 @@
-﻿using System.Collections.ObjectModel;
-
-using Blooso.Interfaces;
-using Blooso.Models;
-using Blooso.Repositories;
-using Blooso.Views;
-
-using Xamarin.Forms;
-
-namespace Blooso.ViewModels
+﻿namespace Blooso.ViewModels
 {
+    #region
+
+    using System.Windows.Input;
+    using System.Collections.ObjectModel;
+
+    using Blooso.Interfaces;
+    using Blooso.Models;
+    using Blooso.Repositories;
+    using Blooso.Views;
+
+    using Xamarin.Forms;
+
+    #endregion
+
     public class MatchOverviewViewModel : BaseViewModel
     {
-        private ObservableCollection<User> _users;
-
-        public IUserRepository UserRepository;
-
         public MatchOverviewViewModel()
         {
-            Users = new ObservableCollection<User>();
-            UserRepository = new UserRepository();
-            UserRepository = Repositories.UserRepository.GetRepository();
-            LoadUsers();
         }
 
-        public ObservableCollection<User> Users
+        public ICommand OnSingleTapUserInOverViewCommand
         {
-            get => _users;
-            set
+            get
             {
-                _users = value;
-                OnPropertyChanged(nameof(Users));
+                return new Command<User>(this.ItemTapped);
             }
         }
 
-        public Command LoadUsersCommand => new Command(LoadUsers);
-
-        public Command PerformSearchCommand => new Command<string>(query =>
+        public Command PerformSearchCommand
         {
-            Users = new ObservableCollection<User>(UserRepository.GetSearchResults(query));
-        });
-
-        public Command<User> ItemTappedCommand => new Command<User>(ItemTapped);
-
-        private async void ItemTapped(User user)
-        {
-            await Shell.Current.GoToAsync($"{nameof(MatchDetailPage)}?{nameof(MatchDetailViewModel.UserId)}={user.Id}");
+            get
+            {
+                return new Command<string>(
+                    execute: delegate (string query)
+                        {
+                            this.MatchesObservableCollection = new ObservableCollection<User>(this.UserRepo.GetSearchResults(query));
+                        });
+            }
         }
 
-        public void LoadUsers()
+        public ObservableCollection<User> MatchesObservableCollection
         {
-            IsBusy = true;
-            var users = UserRepository.GetMatchResults();
-            Users = new ObservableCollection<User>(users);
-            IsBusy = false;
+            get
+            {
+                return this.MatchesObservableCollection;
+            }
+
+            set
+            {
+                this.MatchesObservableCollection = value;
+                this.OnPropertyChanged(nameof(this.MatchesObservableCollection));
+            }
+        }
+
+        public async void ItemTapped(User user)
+        {
+            await Shell.Current.GoToAsync($"{nameof(MatchDetailPage)}?{nameof(MatchDetailViewModel.DetailedUserId)}={user.Id}");
         }
     }
 }

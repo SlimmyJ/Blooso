@@ -1,11 +1,13 @@
-﻿using Blooso.Interfaces;
-using Blooso.Models;
-
-namespace Blooso.ViewModels
+﻿namespace Blooso.ViewModels
 {
+    #region
+
+    using Blooso.Interfaces;
+    using Blooso.Models;
+
+    #endregion
+
     public class RegisterViewModel : BaseViewModel
     {
-        public IUserRepository UserRepository;
-        public User UserToBeRegistered;
     }
 }

@@ -11,15 +11,15 @@
                    Placeholder="Search"
                    SearchCommand="{Binding PerformSearchCommand}"
                    SearchCommandParameter="{Binding Text, Source={x:Reference SearchBar}}" />
-        <CollectionView x:Name="UserCollectionView"
-                        ItemsSource="{Binding Users}"
+        <CollectionView x:Name="UserMatchesCollectionView"
+                        ItemsSource="{Binding DetailedUser}"
                         SelectionMode="Single"
                         Visual="Material">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid Padding="10">
                         <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MatchOverviewViewModel}}, Path=ItemTappedCommand}"
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MatchOverviewViewModel}}, Path=OnSingleTapUserInOverViewCommand}"
                                                   CommandParameter="{Binding .}"
                                                   NumberOfTapsRequired="2" />
                         </Grid.GestureRecognizers>

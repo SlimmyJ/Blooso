@@ -1,61 +1,69 @@
-﻿using System.Windows.Input;
-
-using Blooso.Interfaces;
-using Blooso.Repositories;
-
-using Xamarin.Essentials;
-using Xamarin.Forms;
-
-namespace Blooso.ViewModels
+﻿namespace Blooso.ViewModels
 {
+    #region
+
+    using System.Windows.Input;
+
+    using Blooso.Repositories;
+
+    using Xamarin.Essentials;
+    using Xamarin.Forms;
+
+    #endregion
+
     public class LoginViewModel : BaseViewModel
     {
-        //public Action DisplayInvalidLoginPrompt;
-        private IUserRepository _repository;
-
         private int _id;
 
         private string _password;
 
         public LoginViewModel()
         {
-            SubmitCommand = new Command(OnSubmit);
-            _repository = UserRepository.GetRepository();
+            this.SubmitCommand = new Command(this.OnSubmit);
+            this.UserRepo = UserRepository.GetRepository();
         }
 
         public int Id
         {
-            get => _id;
+            get
+            {
+                return this._id;
+            }
+
             set
             {
-                _id = value;
-                OnPropertyChanged(nameof(Id));
+                this._id = value;
+                this.OnPropertyChanged(nameof(this.Id));
             }
         }
 
         public string Password
         {
-            get => _password;
+            get
+            {
+                return this._password;
+            }
+
             set
             {
-                _password = value;
-                OnPropertyChanged(nameof(Password));
+                this._password = value;
+                this.OnPropertyChanged(nameof(this.Password));
             }
         }
 
-        public ICommand SubmitCommand { protected set; get; }
+        public ICommand SubmitCommand { get; protected set; }
 
         public async void OnSubmit()
         {
-            if (!DoesUserExist())
+            if (!this.DoesUserExist())
             {
-                //DisplayInvalidLoginPrompt();
+                // DisplayInvalidLoginPrompt();
                 await Application.Current.MainPage.DisplayAlert("Login Failed", "Id or Password incorrect", "OK");
             }
             else
             {
                 await SecureStorage.SetAsync("isLogged", "1");
-                _repository.SetCurrentlyLoggedInUser(Id);
+                this.UserRepo.SetCurrentlyLoggedInUser(this.Id);
 
                 Application.Current.MainPage = new AppShell();
                 await Shell.Current.GoToAsync("MainMenuPage");
@@ -64,7 +72,7 @@ namespace Blooso.ViewModels
 
         private bool DoesUserExist()
         {
-            return _repository.DoesUserExist(Id);
+            return this.UserRepo.DoesUserExist(this.Id);
         }
     }
 }
