@@ -41,16 +41,6 @@ namespace Blooso.Models
         private ObservableCollection<User> _friendList;
         private ObservableCollection<Message> _userFeedMessages;
 
-        public ObservableCollection<User> FriendList
-        {
-            get { return _friendList; }
-            set
-            {
-                _friendList = value;
-                OnPropertyChanged(nameof(FriendList));
-            }
-        }
-
         public ObservableCollection<Message> UserFeedMessages
         {
             get { return _userFeedMessages; }
@@ -58,6 +48,16 @@ namespace Blooso.Models
             {
                 _userFeedMessages = value;
                 OnPropertyChanged(nameof(UserFeedMessages));
+            }
+        }
+
+        public ObservableCollection<User> FriendList
+        {
+            get { return _friendList; }
+            set
+            {
+                _friendList = value;
+                OnPropertyChanged(nameof(FriendList));
             }
         }
 

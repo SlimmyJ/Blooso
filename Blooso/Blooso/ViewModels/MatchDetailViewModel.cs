@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 using Blooso.Interfaces;
 using Blooso.Models;
@@ -12,6 +13,18 @@ namespace Blooso.ViewModels
     [QueryProperty(nameof(UserId), nameof(UserId))]
     public class MatchDetailViewModel : BaseViewModel
     {
+        private int _userId;
+
+        public int UserId
+        {
+            get => _userId;
+            set
+            {
+                _userId = value;
+                LoadUser(value);
+            }
+        }
+
         private User _userDetail;
 
         public User UserDetail
@@ -38,7 +51,6 @@ namespace Blooso.ViewModels
             }
         }
 
-        private int _userId;
         private IUserRepository userRepo;
 
         public MatchDetailViewModel()
@@ -49,16 +61,6 @@ namespace Blooso.ViewModels
         }
 
         public Command ActivityTappedAccount => new Command(ActivityTapped);
-
-        public int UserId
-        {
-            get => _userId;
-            set
-            {
-                _userId = value;
-                LoadUser(value);
-            }
-        }
 
         public Command AddUserToFavouritesCommand => new Command(AddUserToFavourites);
 
@@ -75,7 +77,9 @@ namespace Blooso.ViewModels
                 CreatedAt = DateTime.Now
             };
 
-            UserDetail.UserFeedMessages.Add(wallmessage);
+            userRepo.AddMessageToUserFeed(UserDetail.Id, wallmessage);
+
+            var users = userRepo.GetAllUsers();
         }
 
         private void ActivityTapped()

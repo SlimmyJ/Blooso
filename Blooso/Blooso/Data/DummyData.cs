@@ -11,9 +11,9 @@ namespace Blooso.Data
 {
     public class DummyData
     {
-        public List<User> GenerateDummyData()
+        public ObservableCollection<User> GenerateDummyData()
         {
-            var dummyList = new List<User>();
+            var dummyList = new ObservableCollection<User>();
             var userFaker = new Faker<User>()
                 .RuleFor(x => x.Name, x => x.Person.FullName)
                 .RuleFor(x => x.Sex, z => z.PickRandom('M', 'F', 'X'))

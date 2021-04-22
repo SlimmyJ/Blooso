@@ -17,5 +17,9 @@ namespace Blooso.Interfaces
         bool DoesUserExist(int id);
 
         List<User> GetMatchResults();
+
+        List<User> GetAllUsers();
+
+        void AddMessageToUserFeed(int userDetailId, Message wallmessage);
     }
 }

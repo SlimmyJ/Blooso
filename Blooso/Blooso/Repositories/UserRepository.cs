@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 using Blooso.Data;
@@ -12,7 +13,7 @@ namespace Blooso.Repositories
         private static UserRepository _userRepository;
         private readonly DummyData _dummyData;
 
-        private readonly List<User> _userlist;
+        private readonly ObservableCollection<User> _userlist;
 
         public UserRepository()
         {
@@ -37,6 +38,21 @@ namespace Blooso.Repositories
             return _userlist.FirstOrDefault(x => x.Id == id);
         }
 
+        public List<User> GetAllUsers()
+        {
+            return GetAllUsersObservable().ToList();
+        }
+
+        public ObservableCollection<User> GetAllUsersObservable()
+        {
+            return _userlist;
+        }
+
+        public void AddMessageToUserFeed(int userDetailId, Message wallmessage)
+        {
+            GetUser(userDetailId).UserFeedMessages.Add(wallmessage);
+        }
+
         public List<User> GetSearchResults(string queryString)
         {
             var normalizedQuery = queryString?.ToLower() ?? "";
@@ -55,11 +71,7 @@ namespace Blooso.Repositories
 
         public bool DoesUserExist(int id)
         {
-            foreach (var user in _userlist)
-                if (user.Id == id)
-                    return true;
-
-            return false;
+            return _userlist.Any(user => user.Id == id);
         }
 
         public static UserRepository GetRepository()
@@ -69,7 +81,7 @@ namespace Blooso.Repositories
 
         public int CountOverlapInTagsList(List<Tags> list)
         {
-            var overlap = list.Intersect(CurrentlyLoggedInUser.UserTags);
+            IEnumerable<Tags> overlap = list.Intersect(CurrentlyLoggedInUser.UserTags);
             var result = overlap.Count();
             return result;
         }
@@ -81,7 +93,7 @@ namespace Blooso.Repositories
             return result;
         }
 
-        private List<User> FillListWithBogusData()
+        private ObservableCollection<User> FillListWithBogusData()
         {
             return _dummyData.GenerateDummyData();
         }

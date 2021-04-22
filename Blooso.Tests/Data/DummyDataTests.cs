@@ -3,6 +3,7 @@ using Blooso.Data;
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace Blooso.Data.Tests
     {
         private DummyData testData = new DummyData();
         private User testUser = new User();
-        private List<User> testUsers = new List<User>();
+        private ObservableCollection<User> testUsers = new ObservableCollection<User>();
 
         [TestMethod()]
         public void GenerateDummyDataTestDoesNotReturnEmpty()

@@ -13,13 +13,12 @@ namespace Blooso.ViewModels
     {
         private ObservableCollection<User> _users;
 
-        public IUserRepository UserRepository;
+        private IUserRepository _userRepository;
 
         public MatchOverviewViewModel()
         {
             Users = new ObservableCollection<User>();
-            UserRepository = new UserRepository();
-            UserRepository = Repositories.UserRepository.GetRepository();
+            _userRepository = UserRepository.GetRepository();
             LoadUsers();
         }
 
@@ -37,7 +36,7 @@ namespace Blooso.ViewModels
 
         public Command PerformSearchCommand => new Command<string>(query =>
         {
-            Users = new ObservableCollection<User>(UserRepository.GetSearchResults(query));
+            Users = new ObservableCollection<User>(_userRepository.GetSearchResults(query));
         });
 
         public Command<User> ItemTappedCommand => new Command<User>(ItemTapped);
@@ -50,7 +49,7 @@ namespace Blooso.ViewModels
         public void LoadUsers()
         {
             IsBusy = true;
-            var users = UserRepository.GetMatchResults();
+            var users = _userRepository.GetMatchResults();
             Users = new ObservableCollection<User>(users);
             IsBusy = false;
         }
