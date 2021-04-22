@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Blooso.Views.RegisterPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <Image
+                HeightRequest="200"
+                HorizontalOptions="EndAndExpand"
+                Source="shape.png" />
+            <Label
+                Margin="20"
+                FontAttributes="Bold"
+                FontSize="Title"
+                Text="Create Account"
+                TextColor="#2C2C2C" />
+            <Entry
+                x:Name="EntUsername"
+                Margin="20,10,20,10"
+                Placeholder="Full Name" />
+            <Entry
+                x:Name="EntEmail"
+                Margin="20,10,20,10"
+                Keyboard="Email"
+                Placeholder="Email" />
+            <Entry
+                x:Name="EntPassword"
+                Margin="20,10,20,10"
+                IsPassword="True"
+                Placeholder="Password" />
+            <Grid Margin="20,40,20,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5.5*" />
+                    <ColumnDefinition Width="4.5*" />
+                </Grid.ColumnDefinitions>
+                <Frame
+                    Grid.Column="1"
+                    Padding="15"
+                    BackgroundColor="#FA6400"
+                    CornerRadius="35">
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                            FontSize="Medium"
+                            HorizontalOptions="EndAndExpand"
+                            Text="SIGN UP"
+                            TextColor="White"
+                            VerticalOptions="Center" />
+                        <Image
+                            HeightRequest="30"
+                            HorizontalOptions="CenterAndExpand"
+                            Source="rightarrow.png" />
+                    </StackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="TapSignup" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </Grid>
+            <Label
+                Margin="20"
+                HorizontalOptions="Center"
+                VerticalOptions="EndAndExpand">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span
+                            FontSize="Small"
+                            Text="Already have an account? "
+                            TextColor="#2C2C2C" />
+                        <Span
+                            FontSize="Small"
+                            Text=" Sign in "
+                            TextColor="#FA6400">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer x:Name="SpanSignin" />
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

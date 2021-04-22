@@ -74,7 +74,7 @@
                     Grid.Row="1"
                     Grid.Column="1"
                     BackgroundColor="{StaticResource AccentBlue}"
-                    CornerRadius="20,70,20,20"
+                    CornerRadius="70,70,70,70"
                     Elevation=".25">
                     <StackLayout
                         Padding="30"
@@ -96,7 +96,7 @@
                 <NeoButton
                     Grid.Row="2"
                     BackgroundColor="{StaticResource AccentBlue}"
-                    CornerRadius="20,20,70,20"
+                    CornerRadius="20,20,20,20"
                     Elevation=".25">
                     <StackLayout
                         Padding="30"
@@ -116,7 +116,7 @@
                     Grid.Row="2"
                     Grid.Column="1"
                     BackgroundColor="{StaticResource AccentBlue}"
-                    CornerRadius="20,20,20,70"
+                    CornerRadius="40,40,40,40"
                     Elevation=".25">
                     <StackLayout
                         Padding="30"

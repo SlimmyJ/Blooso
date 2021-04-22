@@ -1,18 +1,24 @@
 ﻿<ContentPage x:Class="Blooso.Views.MatchDetailPage"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:Blooso.ViewModels">
+             xmlns:vm="clr-namespace:Blooso.ViewModels"
+             BackgroundColor="{StaticResource WhiteFill}">
     <ContentPage.BindingContext>
         <vm:MatchDetailViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <!--  1. Profile picture  -->
-        <Grid BackgroundColor="{StaticResource WhiteFill}">
-            <Image Aspect="AspectFill"
-                   Source="{Binding UserDetail.UserPicture}"
-                   VerticalOptions="StartAndExpand" />
-            <Frame CornerRadius="40"
-                   Style="{StaticResource stlMainFrame}">
+        <StackLayout BackgroundColor="{StaticResource WhiteFill}"
+                     VerticalOptions="Center">
+            <NeoFrame BackgroundColor="{StaticResource LighterOrange}"
+                      CornerRadius="50"
+                      Elevation="0.60">
+                <Image Margin="20"
+                       Aspect="AspectFill"
+                       Source="{Binding UserDetail.UserPicture}" />
+            </NeoFrame>
+            <NeoFrame BackgroundColor="{StaticResource LighterOrange}"
+                      CornerRadius="40">
                 <!--  Blocks: 3 and 4  -->
                 <Grid RowSpacing="1">
                     <Grid.ColumnDefinitions>
@@ -27,18 +33,17 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <!--  3. Phone & message buttons  -->
-                    <Button Grid.Row="0"
-                            Grid.Column="1"
-                            HorizontalOptions="End"
-                            ImageSource="Phone"
-                            Style="{StaticResource stlContactBtn}" />
-                    <Button Grid.Row="0"
-                            Grid.Column="2"
-                            HorizontalOptions="Start"
-                            ImageSource="Correo"
-                            Style="{StaticResource stlContactBtn}" />
+                    <!--  Icons  -->
+                    <StackLayout Grid.Row="0"
+                                 Grid.Column="2"
+                                 Orientation="Horizontal">
+                        <Button ImageSource="Phone"
+                                Style="{StaticResource stlContactBtn}" />
+                        <Button ImageSource="Correo"
+                                Style="{StaticResource stlContactBtn}" />
+                    </StackLayout>
                     <!--  4. Contact information  -->
                     <Label Grid.Row="0"
                            Grid.Column="0"
@@ -96,24 +101,21 @@
                     <Label Grid.Row="4"
                            Grid.Column="2"
                            Style="{StaticResource stlBoardDesc}"
-                           Text="67k" />
+                           Text="24" />
                     <!--  4. Contact information: Follow button  -->
-                    <NeoButton Grid.Row="5"
-                               Grid.Column="0"
-                               Grid.ColumnSpan="3"
-                               BackgroundColor="{StaticResource AccentBlue}"
-                               Command="{Binding AddUserToFavouritesCommand}"
-                               CornerRadius="10"
-                               Elevation=".25">
-                        <StackLayout Padding="15"
-                                     HorizontalOptions="Center"
-                                     VerticalOptions="Center">
-                            <Label Text="Add                                 friend"
-                                   TextColor="                                 White" />
-                        </StackLayout>
-                    </NeoButton>
                 </Grid>
-            </Frame>
-        </Grid>
+            </NeoFrame>
+            <NeoButton BackgroundColor="{StaticResource AccentBlue}"
+                       Command="{Binding AddUserToFavouritesCommand}"
+                       CornerRadius="10"
+                       Elevation=".35">
+                <StackLayout Padding="20"
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center">
+                    <Label Text="Add friend"
+                           TextColor="White" />
+                </StackLayout>
+            </NeoButton>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

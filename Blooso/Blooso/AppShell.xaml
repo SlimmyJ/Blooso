@@ -15,7 +15,7 @@
         <ShellContent Title="Friendlist"
                       ContentTemplate="{DataTemplate local:FriendlistPage}"
                       Icon="icon_feed.png" />
-        <ShellContent Title="Messages"
+        <ShellContent Title="Feed"
                       ContentTemplate="{DataTemplate local:MatchOverviewPage}"
                       Icon="icon_feed.png" />
     </TabBar>
