@@ -24,7 +24,7 @@ namespace Blooso.Models
             }
         }
 
-        public char Sex { get; set; }
+        public string Sex { get; set; }
         public bool IsVaccinated { get; set; }
 
         public bool IsInfected { get; set; }

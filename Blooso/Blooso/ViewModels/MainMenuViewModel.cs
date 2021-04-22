@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+
 using Blooso.Interfaces;
 using Blooso.Models;
 using Blooso.Repositories;
@@ -28,6 +29,11 @@ namespace Blooso.ViewModels
         public ICommand GetMatchesCommand
         {
             get { return new Command(GetMatches); }
+        }
+
+        public ICommand EditProfileCommand
+        {
+            get { return new Command(EditProfile); }
         }
 
         private async void GetMatches()

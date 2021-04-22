@@ -65,6 +65,7 @@
                 <NeoButton Grid.Row="1"
                            Grid.Column="1"
                            BackgroundColor="{StaticResource AccentBlue}"
+                           Command="{Binding EditProfileCommand}"
                            CornerRadius="70,70,70,70"
                            Elevation=".25">
                     <StackLayout Padding="30"
