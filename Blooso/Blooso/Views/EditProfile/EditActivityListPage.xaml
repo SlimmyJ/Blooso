@@ -3,18 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:Blooso.ViewModels;assembly=Blooso"
              x:Class="Blooso.Views.EditProfile.EditActivityListPage">
-
     <ContentPage.BindingContext>
         <viewModels:EditActivityListViewModel />
     </ContentPage.BindingContext>
-
     <StackLayout>
         <StackLayout BackgroundColor="#ededed"
                      Padding="10,20">
             <Label Text="Activities let us match you up with people that have the same interestss. Add 3-5 to your profile to make better connections."
                    FontAttributes="None" />
         </StackLayout>
-
         <CollectionView x:Name="ActivityListView"
                         ItemsSource="{Binding Activities}"
                         SelectionMode="Single"
@@ -22,10 +19,12 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <FlexLayout JustifyContent="SpaceEvenly">
-                            <Frame BorderColor="LightSlateGray" CornerRadius="25">
-                                <Label Text="{Binding}" FontSize="12" />
-                            </Frame>
-                        </FlexLayout>
+                        <Frame BorderColor="LightSlateGray"
+                               CornerRadius="25">
+                            <Label Text="{Binding}"
+                                   FontSize="12" />
+                        </Frame>
+                    </FlexLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

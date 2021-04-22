@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage
-    x:Class="Blooso.Views.UserFeedPage"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:viewModels="clr-namespace:Blooso.ViewModels;assembly=Blooso"
-    Title="Feed">
+<ContentPage x:Class="Blooso.Views.UserFeedPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Blooso.ViewModels;assembly=Blooso"
+             Title="Feed">
     <ContentPage.BindingContext>
         <viewModels:UserFeedViewModel />
     </ContentPage.BindingContext>
@@ -17,7 +16,8 @@
                         <VisualState x:Name="Normal" />
                         <VisualState x:Name="Selected">
                             <VisualState.Setters>
-                                <Setter Property="BackgroundColor" Value="{StaticResource BaseOrange}" />
+                                <Setter Property="BackgroundColor"
+                                        Value="{StaticResource BaseOrange}" />
                             </VisualState.Setters>
                         </VisualState>
                     </VisualStateGroup>
@@ -30,22 +30,22 @@
         <ToolbarItem Text="Add" />
     </ContentPage.ToolbarItems>
     <!--  Display notes in a list  -->
-    <CollectionView
-        x:Name="collectionView"
-        ItemsSource="{Binding Title}"
-        SelectionMode="Single">
+    <CollectionView x:Name="collectionView"
+                    ItemsSource="{Binding Title}"
+                    SelectionMode="Single">
         <CollectionView.ItemsLayout>
-            <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+            <LinearItemsLayout ItemSpacing="10"
+                               Orientation="Vertical" />
         </CollectionView.ItemsLayout>
         <!--  Define the appearance of each item in the list  -->
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <StackLayout>
-                    <Label FontSize="Medium" Text="{Binding}" />
-                    <Label
-                        FontSize="Small"
-                        Text="{Binding}"
-                        TextColor="{StaticResource TextBlack}" />
+                    <Label FontSize="Medium"
+                           Text="{Binding}" />
+                    <Label FontSize="Small"
+                           Text="{Binding}"
+                           TextColor="{StaticResource TextBlack}" />
                 </StackLayout>
             </DataTemplate>
         </CollectionView.ItemTemplate>

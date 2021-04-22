@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using Blooso.Interfaces;
+﻿using Blooso.Interfaces;
 using Blooso.Models;
 
 namespace Blooso.ViewModels

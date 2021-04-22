@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+
 using Blooso.Interfaces;
 using Blooso.Models;
-using Blooso.Repositories;
 
 namespace Blooso.ViewModels
 {

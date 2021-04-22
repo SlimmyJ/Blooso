@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Blooso.ViewModels
+﻿namespace Blooso.ViewModels
 {
-    class EditUserTagsListViewModel
+    internal class EditUserTagsListViewModel
     {
     }
 }

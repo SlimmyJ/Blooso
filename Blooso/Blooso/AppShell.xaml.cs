@@ -1,6 +1,6 @@
-﻿using System;
-using Blooso.Views;
+﻿using Blooso.Views;
 using Blooso.Views.EditProfile;
+
 using Xamarin.Forms;
 
 namespace Blooso

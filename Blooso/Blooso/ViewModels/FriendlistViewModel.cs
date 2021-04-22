@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
+
 using Blooso.Interfaces;
 using Blooso.Models;
 using Blooso.Repositories;
 using Blooso.Views;
+
 using Xamarin.Forms;
 
 namespace Blooso.ViewModels

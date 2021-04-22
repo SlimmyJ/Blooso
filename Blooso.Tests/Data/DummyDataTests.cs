@@ -1,12 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Blooso.Data;
+﻿using System.Collections.Generic;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Blooso.Models;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Blooso.Data.Tests
 {
