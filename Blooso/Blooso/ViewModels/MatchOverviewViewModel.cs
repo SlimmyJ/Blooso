@@ -18,13 +18,7 @@
     {
         private new IUserRepository UserRepo;
 
-        public MatchOverviewViewModel()
-        {
-            this.UserRepo = UserRepository.GetRepository();
-            this.MatchesObservableCollection = new ObservableCollection<User>(this.UserRepo.GetMatchResults());
-        }
-
-        public ObservableCollection<User> MatchesObservableCollection
+        public ObservableCollection<User> Users
         {
             get => this.MatchesObservableCollection;
 
@@ -35,22 +29,34 @@
             }
         }
 
+        public MatchOverviewViewModel()
+        {
+            Users = new ObservableCollection<User>();
+            _userRepo = new UserRepository();
+            _userRepo = Repositories.UserRepository.GetRepository();
+            LoadUsers();
+        }
+
         public ICommand OnSingleTapUserInOverViewCommand => new Command<User>(this.ItemTapped);
 
         public Command PerformSearchCommand
         {
-            get
-            {
-                return new Command<string>(
-                    query => this.MatchesObservableCollection =
-                                 new ObservableCollection<User>(this.UserRepo.GetSearchResults(query)));
-            }
+            Users = new ObservableCollection<User>(_userRepo.GetSearchResults(query));
+        });
+
+        public Command<User> ItemTappedCommand => new Command<User>(ItemTapped);
+
+        private async void ItemTapped(User user)
+        {
+            await Shell.Current.GoToAsync($"{nameof(MatchDetailPage)}?{nameof(MatchDetailViewModel.UserId)}={user.Id}");
         }
 
         public async void ItemTapped(User user)
         {
-            await Shell.Current.GoToAsync(
-                $"{nameof(MatchDetailPage)}?{nameof(MatchDetailViewModel.DetailedUserId)}={user.Id}");
+            IsBusy = true;
+            var users = _userRepo.GetMatchResults();
+            Users = new ObservableCollection<User>(users);
+            IsBusy = false;
         }
     }
 }

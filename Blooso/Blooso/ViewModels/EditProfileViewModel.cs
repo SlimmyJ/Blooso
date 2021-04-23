@@ -14,8 +14,8 @@
     {
         public EditProfileViewModel()
         {
-            this.UserRepo = UserRepository.GetRepository();
-            this.CurrentUser = this.UserRepo.GetCurrentlyLoggedInUser();
+            _userRepo = UserRepository.GetRepository();
+            CurrentUser = _userRepo.GetCurrentlyLoggedInUser();
         }
 
         public ICommand EditActivityListCommand => new Command(this.EditActivityList);

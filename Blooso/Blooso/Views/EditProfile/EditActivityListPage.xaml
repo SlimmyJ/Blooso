@@ -8,26 +8,71 @@
         <viewModels:EditActivityListViewModel />
     </ContentPage.BindingContext>
     <StackLayout>
-        <StackLayout Padding="10,20"
-                     BackgroundColor="#ededed">
-            <Label FontAttributes="None"
-                   Text="Activities let us find people with similar interests to yours. Add 3 to 5 activities of your choice to your profile and get better matches." />
+        <StackLayout BackgroundColor="#ededed"
+                     Padding="10,20">
+            <Label Text="Let us match you up with people that like the same activities. Add more to your profile to make better connections."
+                   FontAttributes="None" />
         </StackLayout>
-        <CollectionView x:Name="ActivityListView"
-                        Background="White"
-                        ItemsSource="{Binding Activities}"
-                        SelectionMode="Single">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <FlexLayout JustifyContent="SpaceEvenly">
+
+        <!--Users chosen activities-->
+        <StackLayout Margin="0,40,0,0">
+            <Label Text="Your favorite activities"
+                   HorizontalOptions="Center"
+                   Padding="20,5"
+                   FontAttributes="Italic"
+                   BackgroundColor="#ededed" />
+            <FlexLayout BindableLayout.ItemsSource="{Binding UserActivities}"
+                        Wrap="Wrap"
+                        JustifyContent="SpaceEvenly"
+                        Padding="10">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
                         <Frame BorderColor="LightSlateGray"
-                               CornerRadius="25">
-                            <Label FontSize="12"
-                                   Text="{Binding}" />
+                               CornerRadius="25"
+                               Padding="10">
+                            <Label Text="{Binding}"
+                                   FontSize="12">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EditActivityListViewModel}}, Path=DeleteActivityFromListCommand}"
+                                                          CommandParameter="{Binding .}"
+                                                          NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
                         </Frame>
-                    </FlexLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+        </StackLayout>
+
+        <!--All activities-->
+        <StackLayout VerticalOptions="EndAndExpand"
+                     Margin="0,0,0,80">
+            <Label Text="All activities"
+                   HorizontalOptions="Center"
+                   Padding="20,5"
+                   FontAttributes="Italic"
+                   BackgroundColor="#ededed" />
+            <FlexLayout BindableLayout.ItemsSource="{Binding Activities}"
+                        Wrap="Wrap"
+                        JustifyContent="SpaceEvenly"
+                        Padding="10">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="LightSlateGray"
+                               CornerRadius="25"
+                               Padding="10">
+                            <Label Text="{Binding}"
+                                   FontSize="12">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EditActivityListViewModel}}, Path=AddToActivityListCommand}"
+                                                          CommandParameter="{Binding .}"
+                                                          NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Frame>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+        </StackLayout>
     </StackLayout>
 </ContentPage>

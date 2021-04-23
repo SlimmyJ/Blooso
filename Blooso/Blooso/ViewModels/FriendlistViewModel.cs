@@ -13,9 +13,7 @@
 
     public class FriendlistViewModel : BaseViewModel
     {
-        public FriendlistViewModel()
-        {
-        }
+        private ObservableCollection<User> _friendList;
 
         public ObservableCollection<User> FriendList
         {
@@ -30,6 +28,12 @@
 
         public Command<User> FriendListSwipeCommand => new Command<User>(this.SendMessageToUser);
 
+        public FriendlistViewModel()
+        {
+            _userRepo = UserRepository.GetRepository();
+            FriendList = _userRepo.GetCurrentlyLoggedInUser().FriendList;
+        }
+
         private async void ItemTapped(User user)
         {
             await Shell.Current.GoToAsync(
@@ -38,7 +42,28 @@
 
         private async void SendMessageToUser(User user)
         {
-            await Shell.Current.GoToAsync($"{nameof(UserFeedPage)}?{nameof(UserFeedViewModel)}={user.Id}");
+            IsBusy = true;
+
+            try
+            {
+                var currentUser = _userRepo.GetCurrentlyLoggedInUser();
+                if (currentUser.FriendList != null)
+                {
+                    foreach (var temp in currentUser.FriendList)
+                    {
+                        FriendList.Add(temp);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
     }
 }

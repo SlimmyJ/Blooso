@@ -14,28 +14,18 @@
 
     public class MainMenuViewModel : BaseViewModel
     {
+        public User CurrentUser { get; set; }
+
+        public ICommand LogUserOutCommand => new Command(LogUserOut);
+
+        public ICommand GetMatchesCommand => new Command(GetMatches);
+
+        public ICommand EditProfileCommand => new Command(EditProfile);
+
         public MainMenuViewModel()
         {
             this.UserRepo = UserRepository.GetRepository();
             this.CurrentUser = this.UserRepo.GetCurrentlyLoggedInUser();
-        }
-
-        public new User CurrentUser { get; private set; }
-
-        public ICommand EditProfileCommand => new Command(this.EditProfile);
-
-        public ICommand GetMatchesCommand => new Command(this.GetMatches);
-
-        public ICommand LogUserOutCommand => new Command(this.LogUserOut);
-
-        public User GetCurrentUser()
-        {
-            return this.CurrentUser;
-        }
-
-        private async void EditProfile(object obj)
-        {
-            await Shell.Current.GoToAsync("EditProfilePage");
         }
 
         private async void GetMatches()
