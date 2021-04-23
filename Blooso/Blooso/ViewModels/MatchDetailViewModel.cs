@@ -75,12 +75,6 @@ namespace Blooso.ViewModels
                 CreatedAt = DateTime.Now
             };
 
-            var friend = new User
-            {
-                Name = "Michiel"
-            };
-
-            UserDetail.FriendList.Add(friend);
             UserDetail.UserFeedMessages.Add(wallMessage);
         }
 

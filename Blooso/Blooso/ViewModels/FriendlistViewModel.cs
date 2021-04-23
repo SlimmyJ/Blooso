@@ -36,7 +36,8 @@ namespace Blooso.ViewModels
         public FriendlistViewModel()
         {
             _userRepo = UserRepository.GetRepository();
-            FriendList = _userRepo.GetCurrentlyLoggedInUser().FriendList;
+            var friends = _userRepo.GetCurrentlyLoggedInUser().FriendList;
+            FriendList = new ObservableCollection<User>(friends);
         }
 
         private async void ItemTapped(User user)

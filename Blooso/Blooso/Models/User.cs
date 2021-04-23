@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 namespace Blooso.Models
@@ -25,6 +25,7 @@ namespace Blooso.Models
         }
 
         public string Sex { get; set; }
+
         public bool IsVaccinated { get; set; }
 
         public bool IsInfected { get; set; }
@@ -34,16 +35,17 @@ namespace Blooso.Models
         public string UserLocation { get; set; }
 
         public DateTime DateOfBirth { get; set; }
-        public List<Tags> UserTags { get; set; }
 
-        public List<Activities> ActivityList { get; set; }
+        [NotMapped] 
+        public List<Tags> UserTags { get; set; } = new List<Tags>();
 
-        private ICollection<User> _friendList;
-        private ICollection<Message> _userFeedMessages;
+        [NotMapped] 
+        public List<Activities> ActivityList { get; set; } = new List<Activities>();
 
+        private ICollection<User> _friendList = new List<User>();
         public ICollection<User> FriendList
         {
-            get { return _friendList; }
+            get => _friendList;
             set
             {
                 _friendList = value;
@@ -51,9 +53,10 @@ namespace Blooso.Models
             }
         }
 
+        private ICollection<Message> _userFeedMessages = new List<Message>();
         public ICollection<Message> UserFeedMessages
         {
-            get { return _userFeedMessages; }
+            get => _userFeedMessages;
             set
             {
                 _userFeedMessages = value;

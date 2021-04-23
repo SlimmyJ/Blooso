@@ -2,6 +2,8 @@
 {
     public class UserLocation
     {
+        public int Id { get; set; }
+
         public int AreaCode { get; set; }
 
         public UserLocation(int areaCode = 8000)

@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Blooso.Data;
+﻿using Blooso.Data;
 using Blooso.Interfaces;
 using Blooso.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Blooso.Repositories
 {
@@ -17,7 +16,9 @@ namespace Blooso.Repositories
         public UserRepository()
         {
             _dummyData = new DummyData();
-            _userList = FillListWithBogusData();
+            //_userList = FillListWithBogusData();
+            FillDBOneTime();
+            _userList = GetAllUsers();
         }
 
         public User CurrentlyLoggedInUser { get; set; }
@@ -48,18 +49,14 @@ namespace Blooso.Repositories
             return _userList
                 .Where(user => user.Id != CurrentlyLoggedInUser.Id)
                 .Where(user => user.IsInfected == CurrentlyLoggedInUser.IsInfected)
-                .Where(user =>
-                    CountOverlapInActivitiesList(user.ActivityList) > 4 && CountOverlapInTagsList(user.UserTags) > 4)
+                //.Where(user =>
+                //    CountOverlapInActivitiesList(user.ActivityList) > 4 && CountOverlapInTagsList(user.UserTags) > 4)
                 .ToList();
         }
 
         public bool DoesUserExist(int id)
         {
-            foreach (var user in _userList)
-                if (user.Id == id)
-                    return true;
-
-            return false;
+            return _userList.Any(user => user.Id == id);
         }
 
         public static UserRepository GetRepository()
@@ -86,11 +83,24 @@ namespace Blooso.Repositories
             return _dummyData.GenerateDummyData();
         }
 
-        private async Task FillDBOneTime()
+        public List<User> GetAllUsers()
         {
             using (var dbContext = new BloosoContext())
             {
-                await dbContext.Users.AddRangeAsync(FillListWithBogusData());
+                return dbContext.Users.ToList();
+            }
+        }
+
+        private async void FillDBOneTime()
+        {
+            using (var dbContext = new BloosoContext())
+            {
+                if (!dbContext.Users.Any())
+                {
+                    List<User> users = FillListWithBogusData();
+                    await dbContext.Users.AddRangeAsync(users);
+                    await dbContext.SaveChangesAsync();
+                }
             }
         }
     }

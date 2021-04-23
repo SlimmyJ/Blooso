@@ -18,6 +18,14 @@ namespace Blooso.Data
             Database.EnsureCreated();
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().HasMany(x => x.FriendList);
+            modelBuilder.Entity<User>().HasMany(x => x.UserFeedMessages);
+            modelBuilder.Entity<Message>().HasOne(x => x.Author);
+            modelBuilder.Entity<Message>().HasOne(x => x.Recipient);
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Blooso.sqlite");
