@@ -1,34 +1,36 @@
-﻿<ContentPage x:Class="Blooso.Views.MatchDetailPage"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:Blooso.ViewModels"
-             xmlns:controls="clr-namespace:Blooso.Controls;assembly=Blooso"
-             BackgroundColor="{StaticResource White}">
+﻿<ContentPage
+    x:Class="Blooso.Views.MatchDetailPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Blooso.Controls;assembly=Blooso"
+    xmlns:vm="clr-namespace:Blooso.ViewModels"
+    BackgroundColor="{StaticResource White}">
     <ContentPage.BindingContext>
         <vm:MatchDetailViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout BackgroundColor="{StaticResource White}"
-                         VerticalOptions="Center">
-                <!--Profile picture-->
-                <Frame Padding="0"
-                       Margin="0,40"
-                       Background="red"
-                       CornerRadius="100"
-                       HorizontalOptions="Center"
-                       IsClippedToBounds="True"
-                       WidthRequest="128">
+            <StackLayout BackgroundColor="{StaticResource White}" VerticalOptions="Center">
+                <!--  Profile picture  -->
+                <Frame
+                    Margin="0,40"
+                    Padding="0"
+                    Background="red"
+                    CornerRadius="100"
+                    HorizontalOptions="Center"
+                    IsClippedToBounds="True"
+                    WidthRequest="128">
                     <Image Source="{Binding UserDetail.UserPicture}" />
                 </Frame>
 
-                <NeoFrame BackgroundColor="{StaticResource White}"
-                          CornerRadius="30"
-                          HeightRequest="250"
-                          Padding="5,0"
-                          Margin="0,0,0,10">
+                <NeoFrame
+                    Margin="0,0,0,10"
+                    Padding="5,0"
+                    BackgroundColor="{StaticResource White}"
+                    CornerRadius="30"
+                    HeightRequest="250">
 
-                    <Grid Margin="20">
+                    <Grid Margin="15">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
@@ -43,105 +45,102 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <!--  Icons  -->
-                        <!--<StackLayout Grid.Row="0"
-                                     Grid.Column="2"
-                                     Orientation="Horizontal">
-                            <Button ImageSource="Phone"
-                                    Style="{StaticResource stlContactBtn}" />
-                            <Button Command="{Binding OnPressSendMessage}"
-                                    ImageSource="Correo"
-                                    Style="{StaticResource stlContactBtn}" />
-                        </StackLayout>-->
-                        <!--  4. Contact information  -->
-                        <Label Grid.Row="0"
-                               Grid.Column="0"
-                               Grid.ColumnSpan="3"
-                               FontAttributes="Bold"
-                               FontSize="30"
-                               Text="{Binding UserDetail.Name}" />
-                        <Label Grid.Row="1"
-                               Grid.Column="0"
-                               FontSize="16"
-                               Text="Ghent, Belgium"
-                               TextColor="#a5a2a2" />
-                        <Label Grid.Row="2"
-                               Grid.Column="0"
-                               Grid.ColumnSpan="3"
-                               Padding="0,10,0,0"
-                               FontSize="16">
+
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            FontAttributes="Bold"
+                            FontSize="30"
+                            Text="{Binding UserDetail.Name}" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            FontSize="16"
+                            Text="Ghent, Belgium"
+                            TextColor="#a5a2a2" />
+                        <Label
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            Padding="0,10,0,0"
+                            FontSize="16">
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span FontAttributes="Bold"
-                                          Text="Looking for a friend to play tennis or squash! Add me!" />
+                                    <Span FontAttributes="Bold" Text="Looking for a friend to play tennis or squash! Add me!" />
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
                         <!--  4. Contact information: Board information  -->
-                        <Label Grid.Row="3"
-                               Grid.Column="0"
-                               Style="{StaticResource stlBoardTitle}"
-                               Text="Likes" />
-                        <Label Grid.Row="4"
-                               Grid.Column="0"
-                               Style="{StaticResource stlBoardDesc}"
-                               Text="{Binding UserDetail.UserTags.Count}" />
-                        <Label Grid.Row="3"
-                               Grid.Column="1"
-                               Style="{StaticResource stlBoardTitle}"
-                               Text="Activities">
+                        <Label
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Style="{StaticResource stlBoardTitle}"
+                            Text="Likes" />
+                        <Label
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Style="{StaticResource stlBoardDesc}"
+                            Text="{Binding UserDetail.UserTags.Count}" />
+                        <Label
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            Style="{StaticResource stlBoardTitle}"
+                            Text="Activities">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MatchDetailViewModel}}, Path=ActivityTappedAccount}"
-                                    NumberOfTapsRequired="2">
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MatchDetailViewModel}}, Path=ActivityTappedAccount}" NumberOfTapsRequired="2">
                                     <TapGestureRecognizer.CommandParameter>
                                         <Binding Path=".ActivityTappedAccount" />
                                     </TapGestureRecognizer.CommandParameter>
                                 </TapGestureRecognizer>
                             </Label.GestureRecognizers>
                         </Label>
-                        <Label Grid.Row="4"
-                               Grid.Column="1"
-                               Style="{StaticResource stlBoardDesc}"
-                               Text="{Binding UserDetail.ActivityList.Count}" />
-                        <Label Grid.Row="3"
-                               Grid.Column="2"
-                               Style="{StaticResource stlBoardTitle}"
-                               Text="Friends" />
-                        <Label Grid.Row="4"
-                               Grid.Column="2"
-                               Style="{StaticResource stlBoardDesc}"
-                               Text="{Binding UserDetail.FriendList.Count}" />
+                        <Label
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            Style="{StaticResource stlBoardDesc}"
+                            Text="{Binding UserDetail.ActivityList.Count}" />
+                        <Label
+                            Grid.Row="3"
+                            Grid.Column="2"
+                            Style="{StaticResource stlBoardTitle}"
+                            Text="Friends" />
+                        <Label
+                            Grid.Row="4"
+                            Grid.Column="2"
+                            Style="{StaticResource stlBoardDesc}"
+                            Text="{Binding UserDetail.FriendList.Count}" />
                         <!--  4. Contact information: Follow button  -->
                     </Grid>
                 </NeoFrame>
-                <NeoButton BackgroundColor="{StaticResource Purple}"
-                           Command="{Binding AddUserToFavouritesCommand}"
-                           CornerRadius="10"
-                           Elevation=".35">
-                    <StackLayout Padding="20"
-                                 HorizontalOptions="Center"
-                                 VerticalOptions="Center">
-                        <Label Text="Add friend"
-                               TextColor="White" />
+                <NeoButton
+                    BackgroundColor="{StaticResource Purple}"
+                    Command="{Binding AddUserToFavouritesCommand}"
+                    CornerRadius="10"
+                    Elevation=".35">
+                    <StackLayout
+                        Padding="20"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center">
+                        <Label Text="Add friend" TextColor="White" />
                     </StackLayout>
                 </NeoButton>
-                <Grid ColumnDefinitions="*,*"
-                      Margin="5,20">
-                    <controls:BorderlessEntry x:Name="EntryMessageField"
-                                              Placeholder="Enter message"
-                                              FontSize="Small"
-                                              Text="{Binding UserInput}"
-                                              VerticalTextAlignment="Center" />
-                    <NeoButton Command="{Binding OnPressSendMessage}"
-                               Grid.Column="1">
-                        <Image Source="sendicon.png" HeightRequest="30"
-                               HorizontalOptions="End"  />
+                <Grid Margin="5,20" ColumnDefinitions="*,*">
+                    <controls:BorderlessEntry
+                        x:Name="EntryMessageField"
+                        FontSize="Small"
+                        Placeholder="Enter message"
+                        Text="{Binding UserInput}"
+                        VerticalTextAlignment="Center" />
+                    <NeoButton Grid.Column="1" Command="{Binding OnPressSendMessage}">
+                        <Image
+                            HeightRequest="30"
+                            HorizontalOptions="End"
+                            Source="sendicon.png" />
                     </NeoButton>
                 </Grid>
                 <!--#region User wall / Message Feed-->
-                <NeoFrame BackgroundColor="{StaticResource Orange}"
-                          CornerRadius="40">
+                <NeoFrame BackgroundColor="{StaticResource Orange}" CornerRadius="40">
                     <StackLayout>
                         <CollectionView ItemsSource="{Binding UserDetail.UserFeedMessages}">
                             <CollectionView.ItemTemplate>
@@ -167,14 +166,14 @@
                                             Text="{Binding Author.Name}"
                                             TextColor="{StaticResource Black}" />
                                         <Label
-                                            Grid.RowSpan="2"
                                             Grid.Row="1"
+                                            Grid.RowSpan="2"
                                             Grid.Column="1"
                                             FontAttributes="Italic"
-                                            VerticalOptions="Center"
                                             FontSize="Small"
                                             Text="{Binding Text}"
-                                            TextColor="DimGray" />
+                                            TextColor="DimGray"
+                                            VerticalOptions="Center" />
 
                                     </Grid>
                                 </DataTemplate>
@@ -185,7 +184,8 @@
                 <!--#endregion-->
 
 
-                <!--#region User wall / Message Feed--><!--
+                <!--#region User wall / Message Feed-->
+                <!--
                 <NeoFrame BackgroundColor="{StaticResource Orange}"
                           CornerRadius="40">
                     <StackLayout>
@@ -203,7 +203,8 @@
                         </CollectionView>
                     </StackLayout>
                 </NeoFrame>
-                --><!--#endregion-->
+                -->
+                <!--#endregion-->
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

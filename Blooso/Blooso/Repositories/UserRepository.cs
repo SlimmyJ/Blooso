@@ -75,11 +75,9 @@
         {
             // TODO: Uncomment relation after fixing tags and activities
             return this._userList.Where(user => user.Id != this.CurrentlyLoggedInUser.Id)
-                .Where(user => user.IsInfected == this.CurrentlyLoggedInUser.IsInfected)
-
-                // .Where(user =>
-                // CountOverlapInActivitiesList(user.ActivityList) > 4 && CountOverlapInTagsList(user.UserTags) > 4)
-                .ToList();
+                .Where(user => user.IsInfected == this.CurrentlyLoggedInUser.IsInfected).Where(
+                    user => this.CountOverlapInActivitiesList(user.ActivityList) > 4
+                            && this.CountOverlapInTagsList(user.UserTags) > 4).ToList();
         }
 
         public List<User> GetSearchResults(string queryString)

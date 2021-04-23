@@ -23,5 +23,10 @@ namespace Blooso.Data.Tests
             testUsers = testData.GenerateDummyData();
             Assert.IsNotNull(testUser);
         }
+
+        public void ActivityTester()
+        {
+            testUsers = testData.GenerateDummyData();
+        }
     }
 }

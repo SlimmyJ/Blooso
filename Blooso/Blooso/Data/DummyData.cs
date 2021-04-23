@@ -1,64 +1,114 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using Blooso.Models;
-using Bogus;
-
-namespace Blooso.Data
+﻿namespace Blooso.Data
 {
+    #region
+
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Linq;
+
+    using Blooso.Models;
+
+    using Bogus;
+
+    #endregion
+
     public class DummyData
     {
         public List<User> GenerateDummyData()
         {
             var dummyList = new List<User>();
-            var userFaker = new Faker<User>()
-                .RuleFor(x => x.Name, x => x.Person.FullName)
+            var userFaker = new Faker<User>().RuleFor(x => x.Name, x => x.Person.FullName)
                 .RuleFor(x => x.Sex, x => x.PickRandom("Male", "Female", "Gender Fluid"))
-                .RuleFor(x => x.IsVaccinated, x => x.Random.Bool())
-                .RuleFor(x => x.IsInfected, x => x.Random.Bool())
+                .RuleFor(x => x.IsVaccinated, x => x.Random.Bool()).RuleFor(x => x.IsInfected, x => x.Random.Bool())
                 .RuleFor(x => x.UserLocation, x => x.Person.Address.City)
-                .RuleFor(x => x.DateOfBirth, x => x.Person.DateOfBirth)
-                .RuleFor(x => x.ActivityList, new List<Activities>())
-                .RuleFor(x => x.UserTags, new List<Tags>())
-                .RuleFor(x => x.FriendList, new ObservableCollection<User>())
+                .RuleFor(x => x.DateOfBirth, x => x.Person.DateOfBirth).RuleFor(x => x.Activities, new List<Activity>())
+                .RuleFor(x => x.Tags, new List<Tag>()).RuleFor(x => x.FriendList, new ObservableCollection<User>())
                 .RuleFor(x => x.UserFeedMessages, new ObservableCollection<Message>());
 
-            //var user = JsonConvert.SerializeObject(userFaker.Generate());
-            //Debug.WriteLine($" TEST:: {user}");
-
+            // var user = JsonConvert.SerializeObject(userFaker.Generate());
+            // Debug.WriteLine($" TEST:: {user}");
             for (var i = 0; i < 20; i++)
             {
-                var temp = userFaker.Generate();
-                temp.Id = i + 1;
-                temp.UserPicture = $"a{i}.jpg";
-                temp.ActivityList = GetRandomActivities(10);
-                temp.UserTags = GetRandomUserTags(12);
-                temp.ShortBio = "";
-                temp.Password = "log";
+                var tempuser = userFaker.Generate();
+                tempuser.Id = i + 1;
+                tempuser.UserPicture = $"a{i}.jpg";
+                tempuser.Activities = this.GetRandomActivities(10);
+                tempuser.Tags = this.GetRandomUserTags(12);
+                tempuser.ShortBio = string.Empty;
+                tempuser.Password = "log";
 
-                dummyList.Add(temp);
+                dummyList.Add(tempuser);
             }
 
             return dummyList;
         }
 
-        public List<Activities> GetRandomActivities(int amount)
+        public List<Activity> GetRandomActivities(int amount)
         {
             var rand = new Random();
-            var newList = Enum.GetValues(typeof(Activities)).Cast<Activities>().ToList();
-            var randomActivities = newList.OrderBy(x => rand.Next()).Take(amount).ToList();
+            var newList = new List<Activity>
+                          {
+                              new Activity(1, "Running"),
+                              new Activity(2, "Walking"),
+                              new Activity(3, "Tennis"),
+                              new Activity(4, "Golf"),
+                              new Activity(5, "Padel"),
+                              new Activity(6, "Minigolf"),
+                              new Activity(7, "Camping"),
+                              new Activity(8, "Basketball"),
+                              new Activity(9, "Cycling"),
+                              new Activity(10, "Handball"),
+                              new Activity(11, "Climbing"),
+                              new Activity(12, "Squash"),
+                              new Activity(13, "Fitness"),
+                              new Activity(14, "Sauna"),
+                              new Activity(15, "Lacrosse"),
+                              new Activity(16, "Polo"),
+                              new Activity(17, "Football"),
+                              new Activity(18, "Yoga"),
+                              new Activity(19, "Dancing"),
+                              new Activity(20, "Pilates")
+                          };
 
-            return randomActivities;
+            var randomActivities = newList.OrderBy(x => rand.Next()).Take(amount);
+
+            return (List<Activity>)randomActivities;
         }
 
-        public List<Tags> GetRandomUserTags(int amount)
+        public List<Tag> GetRandomUserTags(int amount)
         {
             var rand = new Random();
-            var newList = Enum.GetValues(typeof(Tags)).Cast<Tags>().ToList();
-            var randomUserTags = newList.OrderBy(x => rand.Next()).Take(amount).ToList();
+            var newList = new List<Tag>
+                          {
+                              new Tag(1, "Outdoors"),
+                              new Tag(2, "Talking"),
+                              new Tag(3, "Wine"),
+                              new Tag(4, "Clubbing"),
+                              new Tag(5, "Travel"),
+                              new Tag(6, "Movies"),
+                              new Tag(7, "Music"),
+                              new Tag(8, "Larping"),
+                              new Tag(9, "Gaming"),
+                              new Tag(10, "Inked"),
+                              new Tag(11, "Photography"),
+                              new Tag(12, "Arts"),
+                              new Tag(13, "Polyamory"),
+                              new Tag(14, "Cooking"),
+                              new Tag(15, "Books"),
+                              new Tag(16, "Conspiracies"),
+                              new Tag(17, "FlatEarther"),
+                              new Tag(18, "Gambling"),
+                              new Tag(19, "Religion"),
+                              new Tag(20, "Pets"),
+                              new Tag(21, "Smoker"),
+                              new Tag(22, "Trekkie"),
+                              new Tag(23, "Furry"),
+                              new Tag(24, "Weeb"),
+                              new Tag(25, "Festivals")
+                          };
 
-            return randomUserTags;
+            return newList.OrderBy(x => rand.Next()).Take(amount).ToList();
         }
     }
 }
