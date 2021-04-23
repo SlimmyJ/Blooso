@@ -1,7 +1,9 @@
 ﻿using System.Collections.ObjectModel;
+
 using Blooso.Models;
 using Blooso.Repositories;
 using Blooso.Views;
+
 using Xamarin.Forms;
 
 namespace Blooso.ViewModels
@@ -44,7 +46,7 @@ namespace Blooso.ViewModels
         public void LoadUsers()
         {
             IsBusy = true;
-            var users = _userRepo.GetMatchResults();
+            var users = this._userRepo.GetAllUsers();
             Users = new ObservableCollection<User>(users);
             IsBusy = false;
         }

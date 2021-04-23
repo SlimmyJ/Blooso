@@ -1,6 +1,8 @@
 ﻿using System.Windows.Input;
+
 using Blooso.Repositories;
 using Blooso.Views;
+
 using Xamarin.Forms;
 
 namespace Blooso.ViewModels
@@ -21,7 +23,7 @@ namespace Blooso.ViewModels
 
         private async void GetMatches()
         {
-            _userRepo.GetMatchResults();
+            _userRepo.GetAllUsers();
             await Shell.Current.GoToAsync(nameof(MatchOverviewPage));
         }
 
