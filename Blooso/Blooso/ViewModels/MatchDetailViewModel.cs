@@ -62,9 +62,9 @@ namespace Blooso.ViewModels
 
         public Command AddUserToFavouritesCommand => new Command(AddUserToFavourites);
 
-        public Command OnPressSendMessage => new Command(SendMessage);
+        public Command OnPressSendMessage => new Command(SendMessageAsync);
 
-        private void SendMessage()
+        private async void SendMessageAsync()
         {
             var wallMessage = new Message
             {
@@ -76,6 +76,7 @@ namespace Blooso.ViewModels
             };
 
             UserDetail.UserFeedMessages.Add(wallMessage);
+            await userRepo.UpdateUser(UserDetail);
         }
 
         private void ActivityTapped()

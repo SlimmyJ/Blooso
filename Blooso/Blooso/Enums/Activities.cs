@@ -1,7 +1,26 @@
-﻿namespace Blooso
+﻿using Blooso.Models;
+using System.Collections.Generic;
+
+namespace Blooso
 {
+    public class Activity
+    {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public Activity(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
+
+        public ICollection<User> Users { get; set; }
+    }
+
     public enum Activities
     {
+        Unknown = 0,
         Running = 1,
         Walking = 2,
         Tennis = 3,

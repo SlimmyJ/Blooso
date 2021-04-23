@@ -36,13 +36,18 @@ namespace Blooso.Models
 
         public DateTime DateOfBirth { get; set; }
 
-        [NotMapped] 
+        public List<Tag> Tags { get; set; } = new List<Tag>();
+
+        public List<Activity> Activities { get; set; } = new List<Activity>();
+
+        [NotMapped]
         public List<Tags> UserTags { get; set; } = new List<Tags>();
 
-        [NotMapped] 
+        [NotMapped]
         public List<Activities> ActivityList { get; set; } = new List<Activities>();
 
         private ICollection<User> _friendList = new List<User>();
+
         public ICollection<User> FriendList
         {
             get => _friendList;
@@ -54,6 +59,7 @@ namespace Blooso.Models
         }
 
         private ICollection<Message> _userFeedMessages = new List<Message>();
+
         public ICollection<Message> UserFeedMessages
         {
             get => _userFeedMessages;

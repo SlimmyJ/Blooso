@@ -3,6 +3,7 @@ using Blooso.Interfaces;
 using Blooso.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Blooso.Repositories
 {
@@ -101,6 +102,15 @@ namespace Blooso.Repositories
                     await dbContext.Users.AddRangeAsync(users);
                     await dbContext.SaveChangesAsync();
                 }
+            }
+        }
+
+        public async Task UpdateUser(User user)
+        {
+            using (var dbContext = new BloosoContext())
+            {
+                dbContext.Update(user);
+                await dbContext.SaveChangesAsync();
             }
         }
     }
