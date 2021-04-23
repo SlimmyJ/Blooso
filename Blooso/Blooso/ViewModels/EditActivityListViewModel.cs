@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Blooso.Models;
 using Blooso.Repositories;
 using Xamarin.Forms;
 
@@ -63,8 +64,8 @@ namespace Blooso.ViewModels
 
         public void GetUserActivities()
         {
-            var activities = CurrentUser.ActivityList;
-            UserActivities = new ObservableCollection<Activities>(activities);
+            var activities = CurrentUser.Activities;
+            UserActivities = new ObservableCollection<Activity>(activities);
         }
 
         public void GetAllActivities()

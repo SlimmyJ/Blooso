@@ -38,16 +38,16 @@
             return _userRepository ?? (_userRepository = new UserRepository());
         }
 
-        public int CountOverlapInActivitiesList(List<Activities> list)
+        public int CountOverlapInActivitiesList(List<Activity> list)
         {
-            var overlap = list.Intersect(this.CurrentlyLoggedInUser.ActivityList);
+            var overlap = list.Intersect(this.CurrentlyLoggedInUser.Activities);
             var result = overlap.Count();
             return result;
         }
 
-        public int CountOverlapInTagsList(List<Tags> list)
+        public int CountOverlapInTagsList(List<Tag> list)
         {
-            var overlap = list.Intersect(this.CurrentlyLoggedInUser.UserTags);
+            var overlap = list.Intersect(this.CurrentlyLoggedInUser.Tags);
             var result = overlap.Count();
             return result;
         }
@@ -61,8 +61,27 @@
         {
             using (var dbContext = new BloosoContext())
             {
-                return dbContext.Users.Include(x => x.Activities).Include(x => x.Tags).Include(x => x.UserFeedMessages)
+                return dbContext.Users.
+                    Include(x => x.Activities)
+                    .Include(x => x.Tags)
+                    .Include(x => x.UserFeedMessages)
                     .ToList();
+            }
+        }
+
+        public List<Activity> GetAllActivities()
+        {
+            using (var dbContext = new BloosoContext())
+            {
+                return dbContext.Activities.ToList();
+            }
+        }
+
+        public List<Tag> GetAllTags()
+        {
+            using (var dbContext = new BloosoContext())
+            {
+                return dbContext.Tags.ToList();
             }
         }
 
@@ -76,8 +95,8 @@
             // TODO: Uncomment relation after fixing tags and activities
             return this._userList.Where(user => user.Id != this.CurrentlyLoggedInUser.Id)
                 .Where(user => user.IsInfected == this.CurrentlyLoggedInUser.IsInfected).Where(
-                    user => this.CountOverlapInActivitiesList(user.ActivityList) > 4
-                            && this.CountOverlapInTagsList(user.UserTags) > 4).ToList();
+                    user => this.CountOverlapInActivitiesList(user.Activities) > 4
+                            && this.CountOverlapInTagsList(user.Tags) > 4).ToList();
         }
 
         public List<User> GetSearchResults(string queryString)
