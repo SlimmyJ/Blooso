@@ -104,7 +104,7 @@ namespace Blooso.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Blooso3.sqlite");
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Blooso4.sqlite");
             optionsBuilder.UseSqlite($"FileName = {dbPath}");
         }
     }
