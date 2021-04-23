@@ -25,10 +25,7 @@
 
         public int Id
         {
-            get
-            {
-                return this._id;
-            }
+            get => this._id;
 
             set
             {
@@ -39,10 +36,7 @@
 
         public string Password
         {
-            get
-            {
-                return this._password;
-            }
+            get => this._password;
 
             set
             {

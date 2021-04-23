@@ -18,21 +18,9 @@
             this.CurrentUser = this.UserRepo.GetCurrentlyLoggedInUser();
         }
 
-        public ICommand EditActivityListCommand
-        {
-            get
-            {
-                return new Command(this.EditActivityList);
-            }
-        }
+        public ICommand EditActivityListCommand => new Command(this.EditActivityList);
 
-        public ICommand EditUserTagsListCommand
-        {
-            get
-            {
-                return new Command(this.EditUserTagsList);
-            }
-        }
+        public ICommand EditUserTagsListCommand => new Command(this.EditUserTagsList);
 
         private async void EditActivityList(object obj)
         {

@@ -22,29 +22,11 @@
 
         public new User CurrentUser { get; private set; }
 
-        public ICommand EditProfileCommand
-        {
-            get
-            {
-                return new Command(this.EditProfile);
-            }
-        }
+        public ICommand EditProfileCommand => new Command(this.EditProfile);
 
-        public ICommand GetMatchesCommand
-        {
-            get
-            {
-                return new Command(this.GetMatches);
-            }
-        }
+        public ICommand GetMatchesCommand => new Command(this.GetMatches);
 
-        public ICommand LogUserOutCommand
-        {
-            get
-            {
-                return new Command(this.LogUserOut);
-            }
-        }
+        public ICommand LogUserOutCommand => new Command(this.LogUserOut);
 
         public User GetCurrentUser()
         {

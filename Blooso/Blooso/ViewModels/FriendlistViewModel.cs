@@ -19,10 +19,7 @@
 
         public ObservableCollection<User> FriendList
         {
-            get
-            {
-                return this.CurrentUser.FriendList;
-            }
+            get => this.CurrentUser.FriendList;
 
             set
             {
@@ -31,13 +28,7 @@
             }
         }
 
-        public Command<User> FriendListSwipeCommand
-        {
-            get
-            {
-                return new Command<User>(this.SendMessageToUser);
-            }
-        }
+        public Command<User> FriendListSwipeCommand => new Command<User>(this.SendMessageToUser);
 
         private async void ItemTapped(User user)
         {

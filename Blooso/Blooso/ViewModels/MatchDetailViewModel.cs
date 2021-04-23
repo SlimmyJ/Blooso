@@ -27,22 +27,13 @@
             this.UserRepo = UserRepository.GetRepository();
         }
 
-        public ICommand AddUserToFavouritesCommand
-        {
-            get
-            {
-                return new Command(this.AddUserToFavourites);
-            }
-        }
+        public ICommand AddUserToFavouritesCommand => new Command(this.AddUserToFavourites);
 
         public new User DetailedUser { get; set; }
 
         public int DetailedUserId
         {
-            get
-            {
-                return this._detailedUserId;
-            }
+            get => this._detailedUserId;
 
             set
             {
@@ -51,13 +42,7 @@
             }
         }
 
-        public ICommand OnPressSendMessage
-        {
-            get
-            {
-                return new Command(this.SendMessage);
-            }
-        }
+        public ICommand OnPressSendMessage => new Command(this.SendMessage);
 
         public string UserInput { get; set; }
 

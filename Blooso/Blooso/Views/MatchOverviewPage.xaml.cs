@@ -4,12 +4,10 @@
 
     using System;
 
-    using Blooso.Interfaces;
+    using Blooso.Repositories.UserRepository;
 
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
-
-    using static Blooso.Repositories.UserRepository;
 
     #endregion
 

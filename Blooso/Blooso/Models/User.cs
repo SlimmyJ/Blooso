@@ -21,10 +21,7 @@
 
         public ObservableCollection<User> FriendList
         {
-            get
-            {
-                return this._friendList;
-            }
+            get => this._friendList;
 
             set
             {
@@ -47,10 +44,7 @@
 
         public ObservableCollection<Message> UserFeedMessages
         {
-            get
-            {
-                return this._userFeedMessages;
-            }
+            get => this._userFeedMessages;
 
             set
             {

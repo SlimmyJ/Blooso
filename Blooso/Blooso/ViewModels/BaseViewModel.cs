@@ -31,28 +31,16 @@
 
         public bool IsBusy
         {
-            get
-            {
-                return this._isBusy;
-            }
+            get => this._isBusy;
 
-            set
-            {
-                this.SetProperty(ref this._isBusy, value);
-            }
+            set => this.SetProperty(ref this._isBusy, value);
         }
 
         public string Title
         {
-            get
-            {
-                return this._title;
-            }
+            get => this._title;
 
-            set
-            {
-                this.SetProperty(ref this._title, value);
-            }
+            set => this.SetProperty(ref this._title, value);
         }
 
         public IUserRepository UserRepo { get; set; }
@@ -63,7 +51,10 @@
             [CallerMemberName] string propertyName = "",
             Action onChanged = null)
         {
-            if (EqualityComparer<T>.Default.Equals(backingStore, value)) return false;
+            if (EqualityComparer<T>.Default.Equals(backingStore, value))
+            {
+                return false;
+            }
 
             backingStore = value;
             onChanged?.Invoke();

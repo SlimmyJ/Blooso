@@ -26,10 +26,7 @@
 
         public ObservableCollection<User> MatchesObservableCollection
         {
-            get
-            {
-                return this.MatchesObservableCollection;
-            }
+            get => this.MatchesObservableCollection;
 
             set
             {
@@ -38,13 +35,7 @@
             }
         }
 
-        public ICommand OnSingleTapUserInOverViewCommand
-        {
-            get
-            {
-                return new Command<User>(this.ItemTapped);
-            }
-        }
+        public ICommand OnSingleTapUserInOverViewCommand => new Command<User>(this.ItemTapped);
 
         public Command PerformSearchCommand
         {

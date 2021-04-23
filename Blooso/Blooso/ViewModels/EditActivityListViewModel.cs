@@ -25,10 +25,7 @@
 
         public ObservableCollection<Activities> Activities
         {
-            get
-            {
-                return this._activities;
-            }
+            get => this._activities;
 
             set
             {
