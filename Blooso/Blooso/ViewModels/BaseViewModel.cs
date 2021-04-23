@@ -15,8 +15,6 @@ namespace Blooso.ViewModels
         public User CurrentUser { get; set; }
         protected IUserRepository _userRepo;
 
-        private bool isBusy = false;
-
         public bool IsBusy
         {
             get => _isBusy;

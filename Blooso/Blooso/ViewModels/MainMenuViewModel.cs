@@ -1,18 +1,12 @@
 ﻿using System.Windows.Input;
-
-using Blooso.Interfaces;
-using Blooso.Models;
 using Blooso.Repositories;
 using Blooso.Views;
-
 using Xamarin.Forms;
 
 namespace Blooso.ViewModels
 {
     public class MainMenuViewModel : BaseViewModel
     {
-        public User CurrentUser { get; set; }
-
         public ICommand LogUserOutCommand => new Command(LogUserOut);
 
         public ICommand GetMatchesCommand => new Command(GetMatches);

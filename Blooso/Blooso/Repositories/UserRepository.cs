@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading.Tasks;
 using Blooso.Data;
 using Blooso.Interfaces;
 using Blooso.Models;
@@ -12,12 +12,12 @@ namespace Blooso.Repositories
         private static UserRepository _userRepository;
         private readonly DummyData _dummyData;
 
-        private readonly List<User> _userlist;
+        private readonly List<User> _userList;
 
         public UserRepository()
         {
             _dummyData = new DummyData();
-            _userlist = FillListWithBogusData();
+            _userList = FillListWithBogusData();
         }
 
         public User CurrentlyLoggedInUser { get; set; }
@@ -34,7 +34,7 @@ namespace Blooso.Repositories
 
         public User GetUser(int id)
         {
-            return _userlist.FirstOrDefault(x => x.Id == id);
+            return _userList.FirstOrDefault(x => x.Id == id);
         }
 
         public List<User> GetSearchResults(string queryString)
@@ -45,7 +45,7 @@ namespace Blooso.Repositories
 
         public List<User> GetMatchResults()
         {
-            return _userlist
+            return _userList
                 .Where(user => user.Id != CurrentlyLoggedInUser.Id)
                 .Where(user => user.IsInfected == CurrentlyLoggedInUser.IsInfected)
                 .Where(user =>
@@ -55,7 +55,7 @@ namespace Blooso.Repositories
 
         public bool DoesUserExist(int id)
         {
-            foreach (var user in _userlist)
+            foreach (var user in _userList)
                 if (user.Id == id)
                     return true;
 
@@ -84,6 +84,14 @@ namespace Blooso.Repositories
         private List<User> FillListWithBogusData()
         {
             return _dummyData.GenerateDummyData();
+        }
+
+        private async Task FillDBOneTime()
+        {
+            using (var dbContext = new BloosoContext())
+            {
+                await dbContext.Users.AddRangeAsync(FillListWithBogusData());
+            }
         }
     }
 }

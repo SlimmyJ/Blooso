@@ -38,10 +38,10 @@ namespace Blooso.Models
 
         public List<Activities> ActivityList { get; set; }
 
-        private ObservableCollection<User> _friendList;
-        private ObservableCollection<Message> _userFeedMessages;
+        private ICollection<User> _friendList;
+        private ICollection<Message> _userFeedMessages;
 
-        public ObservableCollection<User> FriendList
+        public ICollection<User> FriendList
         {
             get { return _friendList; }
             set
@@ -51,7 +51,7 @@ namespace Blooso.Models
             }
         }
 
-        public ObservableCollection<Message> UserFeedMessages
+        public ICollection<Message> UserFeedMessages
         {
             get { return _userFeedMessages; }
             set

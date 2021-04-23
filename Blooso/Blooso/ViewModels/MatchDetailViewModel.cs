@@ -66,7 +66,7 @@ namespace Blooso.ViewModels
 
         private void SendMessage()
         {
-            var wallmessage = new Message
+            var wallMessage = new Message
             {
                 Recipient = UserDetail,
                 Text = UserInput,
@@ -75,7 +75,13 @@ namespace Blooso.ViewModels
                 CreatedAt = DateTime.Now
             };
 
-            UserDetail.UserFeedMessages.Add(wallmessage);
+            var friend = new User
+            {
+                Name = "Michiel"
+            };
+
+            UserDetail.FriendList.Add(friend);
+            UserDetail.UserFeedMessages.Add(wallMessage);
         }
 
         private void ActivityTapped()
@@ -93,7 +99,7 @@ namespace Blooso.ViewModels
         private void LoadUser(int value)
         {
             UserDetail = userRepo.GetUser(value);
-            UserFeed = UserDetail.UserFeedMessages;
+            UserFeed = new ObservableCollection<Message>(UserDetail.UserFeedMessages);
         }
     }
 }
