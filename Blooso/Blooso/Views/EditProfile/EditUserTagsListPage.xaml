@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Blooso.ViewModels;assembly=Blooso"
+             x:Class="Blooso.Views.EditProfile.EditUserTagsListPage">
+
+    <ContentPage.BindingContext>
+        <viewModels:EditUserTagsListViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout>
+        <StackLayout BackgroundColor="#ededed"
+                     Padding="10,20">
+            <Label Text="Tags let us match you up with people that have the same interests. Add more to your profile to make better connections."
+                   FontAttributes="None" />
+        </StackLayout>
+
+        <!--Users chosen tags-->
+        <StackLayout Margin="0,40,0,0">
+            <Label Text="Your favorite tags"
+                   HorizontalOptions="Center"
+                   Padding="20,5"
+                   FontAttributes="Italic"
+                   BackgroundColor="#ededed" />
+            <FlexLayout BindableLayout.ItemsSource="{Binding UserTags}"
+                        Wrap="Wrap"
+                        JustifyContent="SpaceEvenly"
+                        Padding="10">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="LightSlateGray"
+                               CornerRadius="25"
+                               Padding="10">
+                            <Label Text="{Binding}"
+                                   FontSize="12">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EditUserTagsListViewModel}}, Path=DeleteTagFromListCommand}"
+                                                          CommandParameter="{Binding .}"
+                                                          NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Frame>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+        </StackLayout>
+
+        <!--All tags-->
+        <StackLayout VerticalOptions="EndAndExpand"
+                     Margin="0,0,0,80">
+            <Label Text="All tags"
+                   HorizontalOptions="Center"
+                   Padding="20,5"
+                   FontAttributes="Italic"
+                   BackgroundColor="#ededed" />
+            <FlexLayout BindableLayout.ItemsSource="{Binding Tags}"
+                        Wrap="Wrap"
+                        JustifyContent="SpaceEvenly"
+                        Padding="10">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="LightSlateGray"
+                               CornerRadius="25"
+                               Padding="10">
+                            <Label Text="{Binding}"
+                                   FontSize="12">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EditUserTagsListViewModel}}, Path=AddToTagsListCommand}"
+                                                          CommandParameter="{Binding .}"
+                                                          NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Frame>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

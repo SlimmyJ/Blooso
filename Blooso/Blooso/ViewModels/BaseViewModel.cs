@@ -2,28 +2,32 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Blooso.Interfaces;
+using Blooso.Models;
+using Blooso.Repositories;
 
 namespace Blooso.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        private bool isBusy = false;
+        private string _title = string.Empty;
+        private bool _isBusy;
+        public User CurrentUser { get; set; }
+        protected IUserRepository _userRepo;
 
         public bool IsBusy
         {
-            get { return isBusy; }
-            set { SetProperty(ref isBusy, value); }
+            get => _isBusy;
+            set => SetProperty(ref _isBusy, value);
         }
-
-        private string title = string.Empty;
 
         public string Title
         {
-            get { return title; }
-            set { SetProperty(ref title, value); }
+            get => _title;
+            set => SetProperty(ref _title, value);
         }
 
-        protected bool SetProperty<T>(ref T backingStore, T value,
+        public bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName] string propertyName = "",
             Action onChanged = null)
         {
@@ -43,10 +47,8 @@ namespace Blooso.ViewModels
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             var changed = PropertyChanged;
-            if (changed == null)
-                return;
 
-            changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            changed?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         #endregion INotifyPropertyChanged

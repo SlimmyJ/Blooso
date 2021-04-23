@@ -1,0 +1,46 @@
+﻿<ContentPage x:Class="Blooso.Views.FriendlistPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Blooso.ViewModels">
+    <!--#region Resources-->
+    <ContentPage.Resources>
+        <SwipeItems x:Key="SwipeItems">
+            <SwipeItem BackgroundColor="{StaticResource AccentBlue}"
+                       Command="{Binding OnSwipeFriendListMessage}"
+                       Text="Message" />
+            <SwipeItem BackgroundColor="OrangeRed"
+                       Text="Delete" />
+        </SwipeItems>
+    </ContentPage.Resources>
+    <!--#endregion-->
+    <ContentPage.BindingContext>
+        <vm:FriendlistViewModel />
+    </ContentPage.BindingContext>
+    <CollectionView x:Name="UserCollectionView"
+                    ItemsSource="{Binding FriendList}"
+                    SelectionMode="Single">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <StackLayout>
+                    <SwipeView LeftItems="{StaticResource SwipeItems}">
+                        <Grid BackgroundColor="{StaticResource BleakOrange}"
+                              HeightRequest="60"
+                              WidthRequest="300">
+                            <Label HorizontalOptions="Center"
+                                   Text="{Binding Name}"
+                                   VerticalOptions="Center" />
+                        </Grid>
+                    </SwipeView>
+                    <!--  Code to act on user gestures  -->
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:FriendlistViewModel}}, Path=ItemTappedCommand}"
+                                              CommandParameter="{Binding .}"
+                                              NumberOfTapsRequired="1">
+                            <!--  CommandParameter is used to pass an object with the command. "." is used to select the root, in this case, the whole object  -->
+                        </TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>

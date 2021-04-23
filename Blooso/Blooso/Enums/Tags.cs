@@ -1,5 +1,22 @@
-﻿namespace Blooso
+﻿using System.Collections.Generic;
+using Blooso.Models;
+
+namespace Blooso
 {
+    public class Tag
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+
+        public ICollection<User> Users { get; set; }
+
+        public Tag(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
+    }
+
     public enum Tags
     {
         Outdoors = 1,
@@ -26,6 +43,6 @@
         Trekkie = 22,
         Furry = 23,
         Weeb = 24,
-        Festivals = 25,
+        Festivals = 25
     }
 }
