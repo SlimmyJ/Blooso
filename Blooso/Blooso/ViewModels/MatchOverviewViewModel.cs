@@ -1,14 +1,11 @@
-﻿namespace Blooso.ViewModels
+﻿using System.Collections.ObjectModel;
+using Blooso.Models;
+using Blooso.Repositories;
+using Blooso.Views;
+using Xamarin.Forms;
+
+namespace Blooso.ViewModels
 {
-    using System.Collections.ObjectModel;
-
-    using Blooso.Interfaces;
-    using Blooso.Models;
-    using Blooso.Repositories;
-    using Blooso.Views;
-
-    using Xamarin.Forms;
-
     public class MatchOverviewViewModel : BaseViewModel
     {
         private ObservableCollection<User> _users;
@@ -37,7 +34,7 @@
             new Command<string>(
                 query => { Users = new ObservableCollection<User>(_userRepo.GetSearchResults(query)); });
 
-        public Command<User> OnMatchTSingleTapCommand => new Command<User>(ItemTapped);
+        public Command<User> ItemTappedCommand => new Command<User>(ItemTapped);
 
         private async void ItemTapped(User user)
         {
@@ -51,16 +48,5 @@
             Users = new ObservableCollection<User>(users);
             IsBusy = false;
         }
-
-        public void GetUserTags(int id)
-        {
-            string todisplay;
-            
-            
-            
-            
-
-        }
-        }
-}
+    }
 }

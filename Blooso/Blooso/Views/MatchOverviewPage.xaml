@@ -45,21 +45,21 @@
                             Grid.Column="1"
                             FontAttributes="Bold"
                             Text="{Binding Name}"
-                            TextColor="{StaticResource TextBlack}" />
+                            TextColor="{StaticResource Black}" />
                         <Label
                             Grid.Row="1"
                             Grid.Column="1"
                             FontAttributes="Italic"
                             FontSize="Small"
                             Text="{Binding Sex}"
-                            TextColor="{StaticResource AccentBlue}" />
+                            TextColor="DimGray" />
                         <Label
                             Grid.Row="2"
                             Grid.Column="1"
                             FontAttributes="Italic"
                             FontSize="Small"
                             Text="{Binding UserTags [0], StringFormat='Likes: {0} and more!'}"
-                            TextColor="{StaticResource AccentBlue}" />
+                            TextColor="{StaticResource Orange}" />
 
                     </Grid>
                 </DataTemplate>

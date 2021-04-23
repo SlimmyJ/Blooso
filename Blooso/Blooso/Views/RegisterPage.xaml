@@ -8,7 +8,7 @@
     NavigationPage.HasNavigationBar="False"
     mc:Ignorable="d">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="{StaticResource WhiteFill}">
+        <StackLayout BackgroundColor="{StaticResource White}">
             <Image
                 HeightRequest="200"
                 HorizontalOptions="EndAndExpand"
@@ -41,7 +41,7 @@
                     VerticalOptions="CenterAndExpand">
                     <NeoButton
                         Margin="20,10,20,10"
-                        BackgroundColor="{StaticResource AccentBlue}"
+                        BackgroundColor="{StaticResource Purple}"
                         CornerRadius="20"
                         Elevation="0.45"
                         HorizontalOptions="FillAndExpand"

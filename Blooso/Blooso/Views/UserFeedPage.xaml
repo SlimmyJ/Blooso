@@ -17,7 +17,7 @@
                         <VisualState x:Name="Normal" />
                         <VisualState x:Name="Selected">
                             <VisualState.Setters>
-                                <Setter Property="BackgroundColor" Value="{StaticResource BaseOrange}" />
+                                <Setter Property="BackgroundColor" Value="{StaticResource Orange}" />
                             </VisualState.Setters>
                         </VisualState>
                     </VisualStateGroup>
@@ -31,7 +31,6 @@
     </ContentPage.ToolbarItems>
     <!--  Display notes in a list  -->
     <CollectionView
-        x:Name="collectionView"
         ItemsSource="{Binding Title}"
         SelectionMode="Single">
         <CollectionView.ItemsLayout>
@@ -45,7 +44,7 @@
                     <Label
                         FontSize="Small"
                         Text="{Binding}"
-                        TextColor="{StaticResource TextBlack}" />
+                        TextColor="{StaticResource Black}" />
                 </StackLayout>
             </DataTemplate>
         </CollectionView.ItemTemplate>

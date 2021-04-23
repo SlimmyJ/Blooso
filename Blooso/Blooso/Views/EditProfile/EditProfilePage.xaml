@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:Blooso.ViewModels;assembly=Blooso"
@@ -11,8 +12,18 @@
     </ContentPage.BindingContext>
 
     <FlexLayout Direction="Column">
-        <Image Source="{Binding CurrentUser.UserPicture}"
-               Margin="0,20,0,20" />
+
+        <!--Profile picture-->
+        <StackLayout>
+            <Frame Padding="0" 
+                   Margin="20"
+                   CornerRadius="100" 
+                   HorizontalOptions="Center"
+                   IsClippedToBounds="True"
+                   WidthRequest="120">
+                <Image Source="{Binding CurrentUser.UserPicture}" />
+            </Frame>
+        </StackLayout>
 
         <!--name-->
         <StackLayout Margin="0,10">
@@ -90,7 +101,7 @@
             <!--vaccinated-->
             <StackLayout Orientation="Horizontal">
                 <CheckBox IsChecked="{Binding CurrentUser.IsVaccinated}"
-                          Color="{StaticResource TextBlack}" />
+                          Color="{StaticResource Black}" />
                 <Label Text="Are you vaccinated?"
                        HorizontalTextAlignment="Center"
                        Padding="0,5" />
@@ -99,7 +110,7 @@
             <!--infected-->
             <StackLayout Orientation="Horizontal">
                 <CheckBox IsChecked="{Binding CurrentUser.IsInfected}"
-                          Color="{StaticResource TextBlack}" />
+                          Color="{StaticResource Black}" />
                 <Label Text="Are you infected?"
                        HorizontalTextAlignment="Center"
                        Padding="0,5" />
