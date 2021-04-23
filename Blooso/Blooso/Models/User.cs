@@ -13,16 +13,15 @@ namespace Blooso.Models
 
         public string Name
         {
-            get
-            {
-                return _name;
-            }
+            get => _name;
             set
             {
                 _name = value;
                 OnPropertyChanged(nameof(FriendList));
             }
         }
+
+        public string Password { get; set; }
 
         public string Sex { get; set; }
 

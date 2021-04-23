@@ -1,5 +1,7 @@
 ﻿using Blooso.Models;
 using System.Collections.Generic;
+using Blooso.Models;
+
 using System.Threading.Tasks;
 
 namespace Blooso.Interfaces
@@ -16,9 +18,7 @@ namespace Blooso.Interfaces
 
         List<User> GetSearchResults(string queryString);
 
-        List<User> GetMatchResults();
-
-        bool DoesUserExist(int id);
+        bool DoesUserExist(int id, string password);
 
         int CountOverlapInTagsList(List<Tags> list);
 

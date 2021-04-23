@@ -1,4 +1,6 @@
-﻿using Blooso.Data;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Blooso.Data;
 using Blooso.Interfaces;
 using Blooso.Models;
 using System.Collections.Generic;
@@ -57,9 +59,13 @@ namespace Blooso.Repositories
                 .ToList();
         }
 
-        public bool DoesUserExist(int id)
+        public bool DoesUserExist(int id, string password)
         {
-            return _userList.Any(user => user.Id == id);
+            foreach (var user in _userlist)
+                if (user.Id == id && user.Password == password)
+                    return true;
+
+            return false;
         }
 
         public static UserRepository GetRepository()

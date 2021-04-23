@@ -5,7 +5,7 @@
     <!--#region Resources-->
     <ContentPage.Resources>
         <SwipeItems x:Key="SwipeItems">
-            <SwipeItem BackgroundColor="{StaticResource AccentBlue}"
+            <SwipeItem BackgroundColor="{StaticResource Purple}"
                        Command="{Binding OnSwipeFriendListMessage}"
                        Text="Message" />
             <SwipeItem BackgroundColor="OrangeRed"
@@ -23,7 +23,7 @@
             <DataTemplate>
                 <StackLayout>
                     <SwipeView LeftItems="{StaticResource SwipeItems}">
-                        <Grid BackgroundColor="{StaticResource BleakOrange}"
+                        <Grid BackgroundColor="{StaticResource Orange}"
                               HeightRequest="60"
                               WidthRequest="300">
                             <Label HorizontalOptions="Center"
@@ -33,9 +33,10 @@
                     </SwipeView>
                     <!--  Code to act on user gestures  -->
                     <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:FriendlistViewModel}}, Path=ItemTappedCommand}"
-                                              CommandParameter="{Binding .}"
-                                              NumberOfTapsRequired="1">
+                        <TapGestureRecognizer
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:FriendlistViewModel}}, Path=ItemTappedCommand}"
+                            CommandParameter="{Binding .}"
+                            NumberOfTapsRequired="1">
                             <!--  CommandParameter is used to pass an object with the command. "." is used to select the root, in this case, the whole object  -->
                         </TapGestureRecognizer>
                     </StackLayout.GestureRecognizers>

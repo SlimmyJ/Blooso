@@ -1,7 +1,9 @@
 ﻿using Android.Content;
+
 using Blooso;
 using Blooso.Controls;
 using Blooso.Droid;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
