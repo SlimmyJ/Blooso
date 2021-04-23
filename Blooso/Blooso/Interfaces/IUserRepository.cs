@@ -20,9 +20,9 @@ namespace Blooso.Interfaces
 
         bool DoesUserExist(int id, string password);
 
-        int CountOverlapInTagsList(List<Tags> list);
+        int CountOverlapInTagsList(List<Tag> list);
 
-        int CountOverlapInActivitiesList(List<Activities> list);
+        int CountOverlapInActivitiesList(List<Activity> list);
 
         List<User> GetAllUsers();
 

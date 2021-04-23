@@ -1,16 +1,9 @@
-﻿namespace Blooso.ViewModels
-{
-    #region
-
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Linq;
-
-    using Blooso.Models;
-    using Blooso.Repositories;
-
-    using Xamarin.Forms;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
+using Blooso.Models;
+using Blooso.Repositories;
+using Xamarin.Forms;
 
     #endregion
 
@@ -89,7 +82,18 @@
             else
             {
                 Application.Current.MainPage.DisplayAlert("Hold up!", "You need at least one activity", "OK");
-            }
+        }
+
+        public void GetUserActivities()
+        {
+            var activities = CurrentUser.Activities;
+            UserActivities = new ObservableCollection<Activity>(activities);
+        }
+
+        public void GetAllActivities()
+        {
+            var activities = Enum.GetValues(typeof(Activities)).Cast<Activities>().ToList();
+            Activities = new ObservableCollection<Activities>(activities);
         }
     }
 }
