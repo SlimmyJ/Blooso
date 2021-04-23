@@ -11,7 +11,13 @@ namespace Blooso.ViewModels
 {
     public class MainMenuViewModel : BaseViewModel
     {
-        private readonly IUserRepository _userRepo;
+        public User CurrentUser { get; set; }
+
+        public ICommand LogUserOutCommand => new Command(LogUserOut);
+
+        public ICommand GetMatchesCommand => new Command(GetMatches);
+
+        public ICommand EditProfileCommand => new Command(EditProfile);
 
         public MainMenuViewModel()
         {
@@ -19,32 +25,10 @@ namespace Blooso.ViewModels
             CurrentUser = _userRepo.GetCurrentlyLoggedInUser();
         }
 
-        public User CurrentUser { get; set; }
-
-        public ICommand LogUserOutCommand
-        {
-            get { return new Command(LogUserOut); }
-        }
-
-        public ICommand GetMatchesCommand
-        {
-            get { return new Command(GetMatches); }
-        }
-
-        public ICommand EditProfileCommand
-        {
-            get { return new Command(EditProfile); }
-        }
-
         private async void GetMatches()
         {
             _userRepo.GetMatchResults();
             await Shell.Current.GoToAsync(nameof(MatchOverviewPage));
-        }
-
-        public User GetCurrentUser()
-        {
-            return CurrentUser;
         }
 
         private async void LogUserOut()

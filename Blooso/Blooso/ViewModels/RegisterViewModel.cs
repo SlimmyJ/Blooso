@@ -9,7 +9,6 @@ namespace Blooso.ViewModels
 {
     public class RegisterViewModel : BaseViewModel
     {
-        public IUserRepository UserRepository;
         public User UserToBeRegistered;
     }
 }

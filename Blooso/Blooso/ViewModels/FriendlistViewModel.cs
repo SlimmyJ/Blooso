@@ -11,7 +11,6 @@ namespace Blooso.ViewModels
 {
     public class FriendlistViewModel : BaseViewModel
     {
-        private readonly IUserRepository _userRepository;
         private ObservableCollection<User> _friendList;
 
         public ObservableCollection<User> FriendList
@@ -36,8 +35,8 @@ namespace Blooso.ViewModels
 
         public FriendlistViewModel()
         {
-            _userRepository = UserRepository.GetRepository();
-            FriendList = _userRepository.GetCurrentlyLoggedInUser().FriendList;
+            _userRepo = UserRepository.GetRepository();
+            FriendList = _userRepo.GetCurrentlyLoggedInUser().FriendList;
         }
 
         private async void ItemTapped(User user)
@@ -51,7 +50,7 @@ namespace Blooso.ViewModels
 
             try
             {
-                var currentUser = _userRepository.GetCurrentlyLoggedInUser();
+                var currentUser = _userRepo.GetCurrentlyLoggedInUser();
                 if (currentUser.FriendList != null)
                 {
                     foreach (var temp in currentUser.FriendList)

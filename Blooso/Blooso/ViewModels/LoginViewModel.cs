@@ -11,9 +11,6 @@ namespace Blooso.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
-        //public Action DisplayInvalidLoginPrompt;
-        private IUserRepository _repository;
-
         private int _id;
 
         private string _password;
@@ -21,7 +18,7 @@ namespace Blooso.ViewModels
         public LoginViewModel()
         {
             SubmitCommand = new Command(OnSubmit);
-            _repository = UserRepository.GetRepository();
+            _userRepo = UserRepository.GetRepository();
         }
 
         public int Id
@@ -56,7 +53,7 @@ namespace Blooso.ViewModels
             else
             {
                 await SecureStorage.SetAsync("isLogged", "1");
-                _repository.SetCurrentlyLoggedInUser(Id);
+                _userRepo.SetCurrentlyLoggedInUser(Id);
 
                 Application.Current.MainPage = new AppShell();
                 await Shell.Current.GoToAsync("MainMenuPage");
@@ -65,7 +62,7 @@ namespace Blooso.ViewModels
 
         private bool DoesUserExist()
         {
-            return _repository.DoesUserExist(Id);
+            return _userRepo.DoesUserExist(Id);
         }
     }
 }
