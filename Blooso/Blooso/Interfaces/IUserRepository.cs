@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-
 using Blooso.Models;
 
 namespace Blooso.Interfaces
@@ -14,7 +13,7 @@ namespace Blooso.Interfaces
 
         List<User> GetSearchResults(string queryString);
 
-        bool DoesUserExist(int id);
+        bool DoesUserExist(int id, string password);
 
         List<User> GetMatchResults();
     }

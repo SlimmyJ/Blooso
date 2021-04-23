@@ -13,16 +13,15 @@ namespace Blooso.Models
 
         public string Name
         {
-            get
-            {
-                return _name;
-            }
+            get => _name;
             set
             {
                 _name = value;
                 OnPropertyChanged(nameof(FriendList));
             }
         }
+
+        public string Password { get; set; }
 
         public string Sex { get; set; }
         public bool IsVaccinated { get; set; }
@@ -43,7 +42,7 @@ namespace Blooso.Models
 
         public ObservableCollection<User> FriendList
         {
-            get { return _friendList; }
+            get => _friendList;
             set
             {
                 _friendList = value;
@@ -53,7 +52,7 @@ namespace Blooso.Models
 
         public ObservableCollection<Message> UserFeedMessages
         {
-            get { return _userFeedMessages; }
+            get => _userFeedMessages;
             set
             {
                 _userFeedMessages = value;

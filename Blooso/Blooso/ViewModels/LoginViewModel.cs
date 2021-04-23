@@ -1,13 +1,11 @@
-﻿namespace Blooso.ViewModels
+﻿using System.Windows.Input;
+using Blooso.Repositories;
+using Xamarin.Essentials;
+using Xamarin.Forms;
+
+namespace Blooso.ViewModels
 {
     #region
-
-    using System.Windows.Input;
-
-    using Blooso.Repositories;
-
-    using Xamarin.Essentials;
-    using Xamarin.Forms;
 
     #endregion
 
@@ -64,7 +62,7 @@
 
         private bool DoesUserExist()
         {
-            return this._userRepo.DoesUserExist(this.Id);
+            return _userRepo.DoesUserExist(Id, Password);
         }
     }
 }

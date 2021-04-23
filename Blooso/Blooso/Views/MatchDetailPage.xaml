@@ -135,11 +135,57 @@
                                               VerticalTextAlignment="Center" />
                     <NeoButton Command="{Binding OnPressSendMessage}"
                                Grid.Column="1">
-                        <Image Source="sendicon.png" HeightRequest="50"
-                               HorizontalOptions="Center"  />
+                        <Image Source="sendicon.png" HeightRequest="30"
+                               HorizontalOptions="End"  />
                     </NeoButton>
                 </Grid>
                 <!--#region User wall / Message Feed-->
+                <NeoFrame BackgroundColor="{StaticResource Orange}"
+                          CornerRadius="40">
+                    <StackLayout>
+                        <CollectionView ItemsSource="{Binding UserDetail.UserFeedMessages}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Padding="10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Image
+                                            Grid.RowSpan="3"
+                                            Source="{Binding Author.UserPicture}"
+                                            WidthRequest="100" />
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            FontAttributes="Bold"
+                                            Text="{Binding Author.Name}"
+                                            TextColor="{StaticResource Black}" />
+                                        <Label
+                                            Grid.RowSpan="2"
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            FontAttributes="Italic"
+                                            VerticalOptions="Center"
+                                            FontSize="Small"
+                                            Text="{Binding Text}"
+                                            TextColor="DimGray" />
+
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                </NeoFrame>
+                <!--#endregion-->
+
+
+                <!--#region User wall / Message Feed--><!--
                 <NeoFrame BackgroundColor="{StaticResource Orange}"
                           CornerRadius="40">
                     <StackLayout>
@@ -157,7 +203,7 @@
                         </CollectionView>
                     </StackLayout>
                 </NeoFrame>
-                <!--#endregion-->
+                --><!--#endregion-->
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

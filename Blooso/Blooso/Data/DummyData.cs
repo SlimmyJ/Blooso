@@ -35,6 +35,7 @@ namespace Blooso.Data
                 temp.ActivityList = GetRandomActivities(10);
                 temp.UserTags = GetRandomUserTags(12);
                 temp.ShortBio = "";
+                temp.Password = "log";
 
                 dummyList.Add(temp);
             }

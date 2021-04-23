@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-
 using Blooso.Data;
 using Blooso.Interfaces;
 using Blooso.Models;
@@ -53,10 +52,10 @@ namespace Blooso.Repositories
                 .ToList();
         }
 
-        public bool DoesUserExist(int id)
+        public bool DoesUserExist(int id, string password)
         {
             foreach (var user in _userlist)
-                if (user.Id == id)
+                if (user.Id == id && user.Password == password)
                     return true;
 
             return false;
