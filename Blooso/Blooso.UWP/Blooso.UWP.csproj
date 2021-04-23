@@ -125,6 +125,11 @@
     <Content Include="a8.jpg" />
     <Content Include="a9.jpg" />
     <Content Include="Correo.png" />
+    <Content Include="editicon.png" />
+    <Content Include="find.png" />
+    <Content Include="iconedit_white.png" />
+    <Content Include="iconedit_whitealt.png" />
+    <Content Include="iconfind_whitealt.png" />
     <Content Include="Phone.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LargeTile.scale-100.png" />
