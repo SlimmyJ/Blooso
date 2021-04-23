@@ -40,14 +40,14 @@
 
         public int CountOverlapInActivitiesList(List<Activities> list)
         {
-            var overlap = list.Intersect(this.CurrentlyLoggedInUser.ActivityList);
+            var overlap = list.Intersect(this.CurrentlyLoggedInUser.Activities);
             var result = overlap.Count();
             return result;
         }
 
         public int CountOverlapInTagsList(List<Tags> list)
         {
-            var overlap = list.Intersect(this.CurrentlyLoggedInUser.UserTags);
+            var overlap = list.Intersect(this.CurrentlyLoggedInUser.Tags);
             var result = overlap.Count();
             return result;
         }

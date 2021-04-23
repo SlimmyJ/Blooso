@@ -6,6 +6,7 @@
     using System.Collections.ObjectModel;
     using System.Linq;
 
+    using Blooso.Models;
     using Blooso.Repositories;
 
     using Xamarin.Forms;
@@ -63,7 +64,7 @@
             var tags = this.CurrentUser.Tags;
             var tagList = tags.Select(tag => tag.Id).ToList();
 
-            this.UserTags = new ObservableCollection<Tags>(tagList);
+            UserTags = new ObservableCollection<Tags>();
         }
 
         private void AddToTagsList(Tags tag)

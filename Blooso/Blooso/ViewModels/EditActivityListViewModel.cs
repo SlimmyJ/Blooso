@@ -1,76 +1,95 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using Blooso.Repositories;
-using Xamarin.Forms;
-
-namespace Blooso.ViewModels
+﻿namespace Blooso.ViewModels
 {
+    #region
+
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Linq;
+
+    using Blooso.Models;
+    using Blooso.Repositories;
+
+    using Xamarin.Forms;
+
+    #endregion
+
     public class EditActivityListViewModel : BaseViewModel
     {
         private ObservableCollection<Activities> _activities;
 
-        public ObservableCollection<Activities> Activities
-        {
-            get => _activities;
-            set
-            {
-                _activities = value;
-                OnPropertyChanged(nameof(Activities));
-            }
-        }
-
-        private ObservableCollection<Activities> _userActivities;
-
-        public ObservableCollection<Activities> UserActivities
-        {
-            get => _userActivities;
-            set
-            {
-                _userActivities = value;
-                OnPropertyChanged(nameof(UserActivities));
-            }
-        }
-
-        public Command<Activities> AddToActivityListCommand => new Command<Activities>(AddToActivityList);
-        public Command<Activities> DeleteActivityFromListCommand => new Command<Activities>(DeleteActivityFromList);
+        private ObservableCollection<Activity> _userActivities;
 
         public EditActivityListViewModel()
         {
-            Activities = new ObservableCollection<Activities>();
-            UserActivities = new ObservableCollection<Activities>();
-            _userRepo = UserRepository.GetRepository();
-            CurrentUser = _userRepo.GetCurrentlyLoggedInUser();
-            GetUserActivities();
-            GetAllActivities();
+            this.Activities = new ObservableCollection<Activities>();
+            this.UserActivities = new ObservableCollection<Activities>();
+            this._userRepo = UserRepository.GetRepository();
+            this.CurrentUser = this._userRepo.GetCurrentlyLoggedInUser();
+            this.GetUserActivities();
+            this.GetAllActivities();
         }
 
-        private void AddToActivityList(Activities activity)
+        public ObservableCollection<Activities> Activities
         {
-            if (UserActivities.Contains(activity))
-                Application.Current.MainPage.DisplayAlert("Glitch in the matrix",
-                    "You can only have one of each as your favorite activity", "OK");
-            UserActivities.Add(activity);
+            get => this._activities;
+            set
+            {
+                this._activities = value;
+                this.OnPropertyChanged(nameof(this.Activities));
+            }
         }
 
-        private void DeleteActivityFromList(Activities activity)
-        {
-            if (UserActivities.Count != 1)
-                UserActivities.Remove(activity);
-            else
-                Application.Current.MainPage.DisplayAlert("Hold up!", "You need at least one activity", "OK");
-        }
+        public Command<Activities> AddToActivityListCommand => new Command<Activities>(this.AddToActivityList);
 
-        public void GetUserActivities()
+        public Command<Activities> DeleteActivityFromListCommand =>
+            new Command<Activities>(this.DeleteActivityFromList);
+
+        public ObservableCollection<Activities> UserActivities
         {
-            var activities = CurrentUser.ActivityList;
-            UserActivities = new ObservableCollection<Activities>(activities);
+            get => this._userActivities;
+            set
+            {
+                this._userActivities = value;
+                this.OnPropertyChanged(nameof(this.UserActivities));
+            }
         }
 
         public void GetAllActivities()
         {
             var activities = Enum.GetValues(typeof(Activities)).Cast<Activities>().ToList();
-            Activities = new ObservableCollection<Activities>(activities);
+            this.Activities = new ObservableCollection<Activities>(activities);
+        }
+
+        public void GetUserActivities()
+        {
+            List<Activity> activities = this.CurrentUser.Activities;
+            this._userActivities = new ObservableCollection<Activity>(activities);
+        }
+
+        private void AddToActivityList(Activities activity)
+        {
+            if (this.UserActivities.Contains(activity))
+            {
+                Application.Current.MainPage.DisplayAlert(
+                    "Glitch in the matrix",
+                    "You can only have one of each as your favorite activity",
+                    "OK");
+            }
+
+            this.UserActivities.Add(activity);
+        }
+
+        private void DeleteActivityFromList(Activities activity)
+        {
+            if (this.UserActivities.Count != 1)
+            {
+                this.UserActivities.Remove(activity);
+            }
+            else
+            {
+                Application.Current.MainPage.DisplayAlert("Hold up!", "You need at least one activity", "OK");
+            }
         }
     }
 }
