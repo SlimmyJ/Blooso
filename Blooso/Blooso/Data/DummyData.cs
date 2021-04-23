@@ -74,9 +74,9 @@
                               new Activity(20, "Pilates")
                           };
 
-            var randomActivities = newList.OrderBy(x => rand.Next()).Take(amount);
+             
 
-            return (List<Activity>)randomActivities;
+            return newList.OrderBy(x => rand.Next()).Take(amount).ToList();
         }
 
         public List<Tag> GetRandomUserTags(int amount)

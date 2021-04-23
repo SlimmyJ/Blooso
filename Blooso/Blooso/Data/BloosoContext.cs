@@ -12,7 +12,7 @@ namespace Blooso.Data
     {
         public DbSet<Message> Messages { get; set; }
 
-        public DbSet<Tag> Tags { get; set; }
+        public DbSet<Models.Tag> Tags { get; set; }
 
         public DbSet<Activity> Activities { get; set; }
 
@@ -32,7 +32,7 @@ namespace Blooso.Data
             modelBuilder.Entity<User>().HasMany(x => x.UserFeedMessages);
 
             modelBuilder.Entity<User>().HasMany(x => x.Tags);
-            modelBuilder.Entity<Tag>().HasMany(x => x.Users);
+            modelBuilder.Entity<Models.Tag>().HasMany(x => x.Users);
             modelBuilder.Entity<Activity>().HasMany(x => x.Users);
             modelBuilder.Entity<User>().HasMany(x => x.Activities);
 
@@ -74,37 +74,37 @@ namespace Blooso.Data
 
         private void SeedTags(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Tag>().HasData(
-                new Tag(1, "Outdoors"),
-                new Tag(2, "Talking"),
-                new Tag(3, "Wine"),
-                new Tag(4, "Clubbing"),
-                new Tag(5, "Travel"),
-                new Tag(6, "Movies"),
-                new Tag(7, "Music"),
-                new Tag(8, "Larping"),
-                new Tag(9, "Gaming"),
-                new Tag(10, "Inked"),
-                new Tag(11, "Photography"),
-                new Tag(12, "Arts"),
-                new Tag(13, "Polyamory"),
-                new Tag(14, "Cooking"),
-                new Tag(15, "Books"),
-                new Tag(16, "Conspiracies"),
-                new Tag(17, "FlatEarther"),
-                new Tag(18, "Gambling"),
-                new Tag(19, "Religion"),
-                new Tag(20, "Pets"),
-                new Tag(21, "Smoker"),
-                new Tag(22, "Trekkie"),
-                new Tag(23, "Furry"),
-                new Tag(24, "Weeb"),
-                new Tag(25, "Festivals"));
+            modelBuilder.Entity<Models.Tag>().HasData(
+                new Models.Tag(1, "Outdoors"),
+                new Models.Tag(2, "Talking"),
+                new Models.Tag(3, "Wine"),
+                new Models.Tag(4, "Clubbing"),
+                new Models.Tag(5, "Travel"),
+                new Models.Tag(6, "Movies"),
+                new Models.Tag(7, "Music"),
+                new Models.Tag(8, "Larping"),
+                new Models.Tag(9, "Gaming"),
+                new Models.Tag(10, "Inked"),
+                new Models.Tag(11, "Photography"),
+                new Models.Tag(12, "Arts"),
+                new Models.Tag(13, "Polyamory"),
+                new Models.Tag(14, "Cooking"),
+                new Models.Tag(15, "Books"),
+                new Models.Tag(16, "Conspiracies"),
+                new Models.Tag(17, "FlatEarther"),
+                new Models.Tag(18, "Gambling"),
+                new Models.Tag(19, "Religion"),
+                new Models.Tag(20, "Pets"),
+                new Models.Tag(21, "Smoker"),
+                new Models.Tag(22, "Trekkie"),
+                new Models.Tag(23, "Furry"),
+                new Models.Tag(24, "Weeb"),
+                new Models.Tag(25, "Festivals"));
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Blooso4.sqlite");
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Blooso5.sqlite");
             optionsBuilder.UseSqlite($"FileName = {dbPath}");
         }
     }

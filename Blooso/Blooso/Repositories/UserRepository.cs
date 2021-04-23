@@ -24,11 +24,11 @@
 
         public UserRepository()
         {
-            this._dummyData = new DummyData();
+            _dummyData = new DummyData();
 
             // _userList = FillListWithBogusData();
-            this.FillDBOneTime();
-            this._userList = this.GetAllUsers();
+            FillDBOneTime();
+            _userList = GetAllUsers();
         }
 
         public User CurrentlyLoggedInUser { get; set; }
@@ -40,21 +40,21 @@
 
         public int CountOverlapInActivitiesList(List<Activity> list)
         {
-            var overlap = list.Intersect(this.CurrentlyLoggedInUser.Activities);
+            var overlap = list.Intersect(CurrentlyLoggedInUser.Activities);
             var result = overlap.Count();
             return result;
         }
 
         public int CountOverlapInTagsList(List<Tag> list)
         {
-            var overlap = list.Intersect(this.CurrentlyLoggedInUser.Tags);
+            var overlap = list.Intersect(CurrentlyLoggedInUser.Tags);
             var result = overlap.Count();
             return result;
         }
 
         public bool DoesUserExist(int id, string password)
         {
-            return this._userList.Any(user => user.Id == id && user.Password == password);
+            return _userList.Any(user => user.Id == id && user.Password == password);
         }
 
         public List<User> GetAllUsers()
@@ -87,33 +87,34 @@
 
         public User GetCurrentlyLoggedInUser()
         {
-            return this.CurrentlyLoggedInUser;
+            return CurrentlyLoggedInUser;
         }
 
         public List<User> GetMatchResults()
         {
             // TODO: Uncomment relation after fixing tags and activities
-            return this._userList.Where(user => user.Id != this.CurrentlyLoggedInUser.Id)
-                .Where(user => user.IsInfected == this.CurrentlyLoggedInUser.IsInfected).Where(
-                    user => this.CountOverlapInActivitiesList(user.Activities) > 4
-                            && this.CountOverlapInTagsList(user.Tags) > 4).ToList();
+            return _userList.Where(user => user.Id != CurrentlyLoggedInUser.Id)
+                .Where(user => user.IsInfected == CurrentlyLoggedInUser.IsInfected)
+                .Where(user => CountOverlapInActivitiesList(user.Activities.ToList()) > 4
+                            && CountOverlapInTagsList(user.Tags.ToList()) > 4)
+                .ToList();
         }
 
         public List<User> GetSearchResults(string queryString)
         {
             var normalizedQuery = queryString?.ToLower() ?? string.Empty;
-            return this.GetMatchResults().Where(f => f.ToString().ToLowerInvariant().Contains(normalizedQuery))
+            return GetMatchResults().Where(f => f.ToString().ToLowerInvariant().Contains(normalizedQuery))
                 .ToList();
         }
 
         public User GetUser(int id)
         {
-            return this._userList.FirstOrDefault(x => x.Id == id);
+            return _userList.FirstOrDefault(x => x.Id == id);
         }
 
         public void SetCurrentlyLoggedInUser(int id)
         {
-            this.CurrentlyLoggedInUser = id == 0 ? new User() : this.GetUser(id);
+            CurrentlyLoggedInUser = id == 0 ? new User() : GetUser(id);
         }
 
         public async Task UpdateUser(User user)
@@ -132,7 +133,7 @@
             {
                 if (!dbContext.Users.Any())
                 {
-                    var users = this.FillListWithBogusData();
+                    var users = FillListWithBogusData();
                     await dbContext.Users.AddRangeAsync(users);
                     await dbContext.SaveChangesAsync();
                 }
@@ -141,7 +142,7 @@
 
         private List<User> FillListWithBogusData()
         {
-            return this._dummyData.GenerateDummyData();
+            return _dummyData.GenerateDummyData();
         }
     }
 }

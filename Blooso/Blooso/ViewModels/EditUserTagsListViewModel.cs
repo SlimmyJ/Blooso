@@ -5,7 +5,7 @@
     using System;
     using System.Collections.ObjectModel;
     using System.Linq;
-
+    using Blooso.Models;
     using Blooso.Repositories;
 
     using Xamarin.Forms;
@@ -14,25 +14,25 @@
 
     public class EditUserTagsListViewModel : BaseViewModel
     {
-        private ObservableCollection<Tags> _tags;
+        private ObservableCollection<Tag> _tags;
 
-        private ObservableCollection<Tags> _userTags;
+        private ObservableCollection<Tag> _userTags;
 
         public EditUserTagsListViewModel()
         {
-            this.Tags = new ObservableCollection<Tags>();
-            this.UserTags = new ObservableCollection<Tags>();
+            this.Tags = new ObservableCollection<Tag>();
+            this.UserTags = new ObservableCollection<Tag>();
             this._userRepo = UserRepository.GetRepository();
             this.CurrentUser = this._userRepo.GetCurrentlyLoggedInUser();
             this.GetUserTags();
             this.GetAllTags();
         }
 
-        public Command<Tags> AddToTagsListCommand => new Command<Tags>(this.AddToTagsList);
+        public Command<Tag> AddToTagsListCommand => new Command<Tag>(this.AddToTagsList);
 
-        public Command<Tags> DeleteTagFromListCommand => new Command<Tags>(this.DeleteTagFromList);
+        public Command<Tag> DeleteTagFromListCommand => new Command<Tag>(this.DeleteTagFromList);
 
-        public ObservableCollection<Tags> Tags
+        public ObservableCollection<Tag> Tags
         {
             get => this._tags;
             set
@@ -42,7 +42,7 @@
             }
         }
 
-        public ObservableCollection<Tags> UserTags
+        public ObservableCollection<Tag> UserTags
         {
             get => this._userTags;
             set
@@ -54,19 +54,17 @@
 
         public void GetAllTags()
         {
-            var tags = Enum.GetValues(typeof(Tags)).Cast<Tags>().ToList();
-            this.Tags = new ObservableCollection<Tags>(tags);
+            var tags = Enum.GetValues(typeof(Tag)).Cast<Tag>().ToList();
+            this.Tags = new ObservableCollection<Tag>(tags);
         }
 
         public void GetUserTags()
         {
-            var tags = this.CurrentUser.Tags;
-            var tagList = tags.Select(tag => tag.Id).ToList();
-
-            this.UserTags = new ObservableCollection<Tags>(tagList);
+            var tags = CurrentUser.Tags;
+            UserTags = new ObservableCollection<Tag>(tags);
         }
 
-        private void AddToTagsList(Tags tag)
+        private void AddToTagsList(Tag tag)
         {
             if (this.UserTags.Contains(tag))
             {
@@ -79,7 +77,7 @@
             this.UserTags.Add(tag);
         }
 
-        private void DeleteTagFromList(Tags tag)
+        private void DeleteTagFromList(Tag tag)
         {
             if (this.UserTags.Count != 1)
             {

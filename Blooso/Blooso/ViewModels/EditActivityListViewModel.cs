@@ -9,9 +9,9 @@ namespace Blooso.ViewModels
 {
     public class EditActivityListViewModel : BaseViewModel
     {
-        private ObservableCollection<Activities> _activities;
+        private ObservableCollection<Activity> _activities;
 
-        public ObservableCollection<Activities> Activities
+        public ObservableCollection<Activity> Activities
         {
             get => _activities;
             set
@@ -21,9 +21,9 @@ namespace Blooso.ViewModels
             }
         }
 
-        private ObservableCollection<Activities> _userActivities;
+        private ObservableCollection<Activity> _userActivities;
 
-        public ObservableCollection<Activities> UserActivities
+        public ObservableCollection<Activity> UserActivities
         {
             get => _userActivities;
             set
@@ -33,20 +33,20 @@ namespace Blooso.ViewModels
             }
         }
 
-        public Command<Activities> AddToActivityListCommand => new Command<Activities>(AddToActivityList);
-        public Command<Activities> DeleteActivityFromListCommand => new Command<Activities>(DeleteActivityFromList);
+        public Command<Activity> AddToActivityListCommand => new Command<Activity>(AddToActivityList);
+        public Command<Activity> DeleteActivityFromListCommand => new Command<Activity>(DeleteActivityFromList);
 
         public EditActivityListViewModel()
         {
-            Activities = new ObservableCollection<Activities>();
-            UserActivities = new ObservableCollection<Activities>();
+            Activities = new ObservableCollection<Activity>();
+            UserActivities = new ObservableCollection<Activity>();
             _userRepo = UserRepository.GetRepository();
             CurrentUser = _userRepo.GetCurrentlyLoggedInUser();
             GetUserActivities();
             GetAllActivities();
         }
 
-        private void AddToActivityList(Activities activity)
+        private void AddToActivityList(Activity activity)
         {
             if (UserActivities.Contains(activity))
                 Application.Current.MainPage.DisplayAlert("Glitch in the matrix",
@@ -54,7 +54,7 @@ namespace Blooso.ViewModels
             UserActivities.Add(activity);
         }
 
-        private void DeleteActivityFromList(Activities activity)
+        private void DeleteActivityFromList(Activity activity)
         {
             if (UserActivities.Count != 1)
                 UserActivities.Remove(activity);
@@ -70,8 +70,8 @@ namespace Blooso.ViewModels
 
         public void GetAllActivities()
         {
-            var activities = Enum.GetValues(typeof(Activities)).Cast<Activities>().ToList();
-            Activities = new ObservableCollection<Activities>(activities);
+            var activities = _userRepo.GetAllActivities();
+            Activities = new ObservableCollection<Activity>(activities);
         }
     }
 }

@@ -19,7 +19,7 @@
 
         private ICollection<Message> _userFeedMessages = new List<Message>();
 
-        public List<Activity> Activities { get; set; } = new List<Activity>();
+        public ICollection<Activity> Activities { get; set; } = new List<Activity>();
 
         public DateTime DateOfBirth { get; set; }
 
@@ -55,7 +55,7 @@
 
         public string ShortBio { get; set; }
 
-        public List<Tag> Tags { get; set; } = new List<Tag>();
+        public ICollection<Tag> Tags { get; set; } = new List<Tag>();
 
         public ICollection<Message> UserFeedMessages
         {
