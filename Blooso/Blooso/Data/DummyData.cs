@@ -20,10 +20,13 @@
             var dummyList = new List<User>();
             var userFaker = new Faker<User>().RuleFor(x => x.Name, x => x.Person.FullName)
                 .RuleFor(x => x.Sex, x => x.PickRandom("Male", "Female", "Gender Fluid"))
-                .RuleFor(x => x.IsVaccinated, x => x.Random.Bool()).RuleFor(x => x.IsInfected, x => x.Random.Bool())
+                .RuleFor(x => x.IsVaccinated, x => x.Random.Bool())
+                .RuleFor(x => x.IsInfected, x => x.Random.Bool())
                 .RuleFor(x => x.UserLocation, x => x.Person.Address.City)
-                .RuleFor(x => x.DateOfBirth, x => x.Person.DateOfBirth).RuleFor(x => x.Activities, new List<Activity>())
-                .RuleFor(x => x.Tags, new List<Tag>()).RuleFor(x => x.FriendList, new ObservableCollection<User>())
+                .RuleFor(x => x.DateOfBirth, x => x.Person.DateOfBirth)
+                .RuleFor(x => x.Activities, new List<Activity>())
+                .RuleFor(x => x.Tags, new List<Tag>())
+                .RuleFor(x => x.FriendList, new ObservableCollection<User>())
                 .RuleFor(x => x.UserFeedMessages, new ObservableCollection<Message>());
 
             // var user = JsonConvert.SerializeObject(userFaker.Generate());
