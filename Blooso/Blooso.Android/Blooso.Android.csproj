@@ -163,5 +163,8 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Correo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\templogoblooso.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

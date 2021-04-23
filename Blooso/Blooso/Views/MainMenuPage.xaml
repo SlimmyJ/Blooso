@@ -1,193 +1,186 @@
-﻿<ContentPage x:Class="Blooso.Views.MainMenuPage"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModels="clr-namespace:Blooso.ViewModels;assembly=Blooso">
-    <ContentPage.BindingContext>
-        <viewModels:MainMenuViewModel />
-    </ContentPage.BindingContext>
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding LogUserOutCommand}" />
-    </ContentPage.ToolbarItems>
-    <FlexLayout Direction="Column">
-        <!--  Header  -->
-        <!--  Body  -->
-        <FlexLayout AlignContent="Center"
-                    Direction="Column"
-                    FlexLayout.Grow="1"
-                    Visual="Material">
-            <Grid Padding="35"
-                  ColumnSpacing="12"
-                  HorizontalOptions="FillAndExpand"
-                  VerticalOptions="FillAndExpand">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="10*" />
-                    <RowDefinition Height="27*" />
-                    <RowDefinition Height="27*" />
-                    <RowDefinition Height="10*" />
-                    <RowDefinition Height="15*" />
-                    <RowDefinition Height="12*" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50*" />
-                    <ColumnDefinition Width="50*" />
-                </Grid.ColumnDefinitions>
-                <StackLayout Orientation="Vertical"
-                             Spacing="0">
-                    <Label FontFamily="RobotoCondensedRegular"
-                           FontSize="Title"
-                           Text="Home"
-                           TextColor="Black" />
-                    <Label FontFamily="RobotoCondensedBold"
-                           FontSize="Micro"
-                           Text="{Binding CurrentUser.Name}"
-                           TextColor="Black" />
-                </StackLayout>
-                <NeoButton Grid.Row="1"
-                           Grid.Column="0"
-                           BackgroundColor="{StaticResource AccentBlue}"
-                           Command="{Binding GetMatchesCommand}"
-                           CornerRadius="70,20,20,20"
-                           Elevation=".25">
-                    <StackLayout Padding="30"
-                                 HorizontalOptions="FillAndExpand"
-                                 Orientation="Vertical"
-                                 VerticalOptions="FillAndExpand">
-                        <Image HeightRequest="40"
-                               HorizontalOptions="Start"
-                               VerticalOptions="Start" />
-                        <Label FontFamily="RobotoCondensedBold"
-                               FontSize="Small"
-                               Text="Find Matches"
-                               TextColor="#95a3b8"
-                               VerticalOptions="EndAndExpand" />
-                    </StackLayout>
-                </NeoButton>
-                <NeoButton Grid.Row="1"
-                           Grid.Column="1"
-                           BackgroundColor="{StaticResource AccentBlue}"
-                           Command="{Binding EditProfileCommand}"
-                           CornerRadius="70,70,70,70"
-                           Elevation=".25">
-                    <StackLayout Padding="30"
-                                 HorizontalOptions="FillAndExpand"
-                                 Orientation="Vertical"
-                                 VerticalOptions="FillAndExpand">
-                        <Image HeightRequest="40"
-                               HorizontalOptions="Start"
-                               VerticalOptions="Start" />
-                        <Label FontFamily="RobotoCondensedBold"
-                               FontSize="Small"
-                               Text="Settings"
-                               TextColor="#95a3b8"
-                               VerticalOptions="EndAndExpand" />
-                    </StackLayout>
-                </NeoButton>
-                <NeoButton Grid.Row="2"
-                           BackgroundColor="{StaticResource AccentBlue}"
-                           CornerRadius="20,20,20,20"
-                           Elevation=".25">
-                    <StackLayout Padding="30"
-                                 HorizontalOptions="FillAndExpand"
-                                 Orientation="Vertical"
-                                 VerticalOptions="FillAndExpand">
-                        <Image HorizontalOptions="Start"
-                               VerticalOptions="Start" />
-                        <Label FontFamily="RobotoCondensedBold"
-                               FontSize="Small"
-                               Text="Activities"
-                               TextColor="#95a3b8"
-                               VerticalOptions="EndAndExpand" />
-                    </StackLayout>
-                </NeoButton>
-                <NeoButton Grid.Row="2"
-                           Grid.Column="1"
-                           BackgroundColor="{StaticResource AccentBlue}"
-                           CornerRadius="40,40,40,40"
-                           Elevation=".25">
-                    <StackLayout Padding="30"
-                                 HorizontalOptions="FillAndExpand"
-                                 Orientation="Vertical"
-                                 VerticalOptions="FillAndExpand">
-                        <Image HeightRequest="30"
-                               HorizontalOptions="Start"
-                               VerticalOptions="Center" />
-                        <Label FontFamily="RobotoCondensedBold"
-                               FontSize="Small"
-                               Text="Exit"
-                               TextColor="#95a3b8"
-                               VerticalOptions="EndAndExpand" />
-                    </StackLayout>
-                </NeoButton>
-                <Label Grid.Row="3"
-                       FontFamily="RobotoCondensedRegular"
-                       FontSize="Medium"
-                       Text="Activities"
-                       TextColor="Black"
-                       VerticalOptions="Center" />
-                <Label Grid.Row="3"
-                       Grid.ColumnSpan="2"
-                       FontFamily="RobotoCondensedRegular"
-                       FontSize="Micro"
-                       Text="You have no planned events."
-                       TextColor="Gray"
-                       VerticalOptions="End" />
-                <Label Grid.Row="3"
-                       Grid.Column="1"
-                       FontFamily="RobotoCondensedLight"
-                       FontSize="37"
-                       HorizontalOptions="End"
-                       Text="20°C"
-                       TextColor="Gray"
-                       VerticalOptions="Center" />
-                <StackLayout Grid.Row="5"
-                             Grid.ColumnSpan="2"
-                             Margin="0,12,0,0"
-                             Orientation="Horizontal"
-                             Spacing="20">
-                    <NeoButton BackgroundColor="#e3edf7"
-                               ClickMode="Toggle"
-                               CornerRadius="35"
-                               Elevation=".25"
-                               WidthRequest="80">
-                        <Image HeightRequest="40"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center" />
-                    </NeoButton>
-                    <NeoButton BackgroundColor="#e3edf7"
-                               ClickMode="Toggle"
-                               CornerRadius="35"
-                               Elevation=".25"
-                               WidthRequest="80">
-                        <Image HeightRequest="40"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center" />
-                    </NeoButton>
-                    <NeoButton BackgroundColor="#e3edf7"
-                               ClickMode="Toggle"
-                               CornerRadius="35"
-                               Elevation=".25"
-                               WidthRequest="80">
-                        <Image HeightRequest="40"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center" />
-                    </NeoButton>
-                    <NeoButton BackgroundColor="#e3edf7"
-                               ClickMode="Toggle"
-                               CornerRadius="35"
-                               Elevation=".25"
-                               WidthRequest="80">
-                        <Image HeightRequest="40"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center" />
-                    </NeoButton>
-                </StackLayout>
-            </Grid>
-        </FlexLayout>
-        <!--  Footer  -->
-        <Label BackgroundColor="{StaticResource BleakOrange}"
-               FontSize="Large"
-               HorizontalTextAlignment="Center"
-               Text=""
-               TextColor="{StaticResource WhiteFill}" />
-    </FlexLayout>
+﻿<ContentPage
+       x:Class="Blooso.Views.MainMenuPage"
+       xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:viewModels="clr-namespace:Blooso.ViewModels;assembly=Blooso">
+       <ContentPage.BindingContext>
+              <viewModels:MainMenuViewModel />
+       </ContentPage.BindingContext>
+       <ContentPage.ToolbarItems>
+              <ToolbarItem Command="{Binding LogUserOutCommand}" />
+       </ContentPage.ToolbarItems>
+       <FlexLayout Direction="Column">
+
+              <FlexLayout
+                     AlignContent="Center"
+                     Direction="Column"
+                     FlexLayout.Grow="1">
+                     <Grid
+                            Padding="20"
+                            ColumnSpacing="10"
+                            HorizontalOptions="FillAndExpand"
+                            RowSpacing="5"
+                            VerticalOptions="FillAndExpand">
+                            <Grid.RowDefinitions>
+                                   <RowDefinition Height="25*" />
+                                   <RowDefinition Height="10*" />
+                                   <RowDefinition Height="40*" />
+                                   <RowDefinition Height="40*" />
+                                   <RowDefinition Height="10*" />
+                                   <RowDefinition Height="15*" />
+                                   <RowDefinition Height="12*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                   <ColumnDefinition Width="50*" />
+                                   <ColumnDefinition Width="50*" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout>
+
+
+                                   <Label
+                                          FontFamily="RobotoCondensedRegular"
+                                          FontSize="Title"
+                                          Text="Welcome back,"
+                                          TextColor="Black" />
+                                   <Label
+                                          FontFamily="RobotoCondensedBold"
+                                          FontSize="Small"
+                                          Text="{Binding CurrentUser.Name}"
+                                          TextColor="Black" />
+
+                            </StackLayout>
+                            <Frame
+                                   Grid.Column="1"
+                                   Padding="0"
+                                   CornerRadius="60"
+                                   HeightRequest="200"
+                                   HorizontalOptions="End"
+                                   IsClippedToBounds="True"
+                                   WidthRequest="100">
+                                   <Image
+                                          HorizontalOptions="Center"
+                                          Source="{Binding CurrentUser.UserPicture}"
+                                          VerticalOptions="Center" />
+                            </Frame>
+                            <!--#region Buttons-->
+                            <NeoButton
+                                   Grid.Row="2"
+                                   Grid.Column="0"
+                                   BackgroundColor="{StaticResource AccentBlue}"
+                                   Command="{Binding GetMatchesCommand}"
+                                   CornerRadius="20,20,20,20"
+                                   Elevation=".25">
+                                   <StackLayout
+                                          Padding="30"
+                                          HorizontalOptions="FillAndExpand"
+                                          Orientation="Vertical"
+                                          VerticalOptions="FillAndExpand">
+                                          <Image
+                                                 HeightRequest="40"
+                                                 HorizontalOptions="Start"
+                                                 VerticalOptions="Start" />
+                                          <Label
+                                                 FontFamily="RobotoCondensedBold"
+                                                 FontSize="Small"
+                                                 Text="Find Matches"
+                                                 TextColor="#95a3b8"
+                                                 VerticalOptions="EndAndExpand" />
+                                   </StackLayout>
+                            </NeoButton>
+                            <NeoButton
+                                   Grid.Row="2"
+                                   Grid.Column="1"
+                                   BackgroundColor="{StaticResource AccentBlue}"
+                                   Command="{Binding EditProfileCommand}"
+                                   CornerRadius="20,20,20,20"
+                                   Elevation=".35">
+                                   <StackLayout
+                                          Padding="30"
+                                          HorizontalOptions="FillAndExpand"
+                                          Orientation="Vertical"
+                                          VerticalOptions="FillAndExpand">
+                                          <Image
+                                                 HeightRequest="40"
+                                                 HorizontalOptions="Start"
+                                                 VerticalOptions="Start" />
+                                          <Label
+                                                 FontFamily="RobotoCondensedBold"
+                                                 FontSize="Small"
+                                                 Text="Settings"
+                                                 TextColor="#95a3b8"
+                                                 VerticalOptions="EndAndExpand" />
+                                   </StackLayout>
+                            </NeoButton>
+                            <NeoButton
+                                   Grid.Row="3"
+                                   BackgroundColor="{StaticResource AccentBlue}"
+                                   CornerRadius="20,20,20,20"
+                                   Elevation=".25">
+                                   <StackLayout
+                                          Padding="30"
+                                          HorizontalOptions="FillAndExpand"
+                                          Orientation="Vertical"
+                                          VerticalOptions="FillAndExpand">
+                                          <Image HorizontalOptions="Start" VerticalOptions="Start" />
+                                          <Label
+                                                 FontFamily="RobotoCondensedBold"
+                                                 FontSize="Small"
+                                                 Text="Messages"
+                                                 TextColor="#95a3b8"
+                                                 VerticalOptions="EndAndExpand" />
+                                   </StackLayout>
+                            </NeoButton>
+                            <NeoButton
+                                   Grid.Row="3"
+                                   Grid.Column="1"
+                                   BackgroundColor="{StaticResource AccentBlue}"
+                                   CornerRadius="20,20,20,20"
+                                   Elevation=".35">
+                                   <StackLayout
+                                          Padding="30"
+                                          HorizontalOptions="FillAndExpand"
+                                          Orientation="Vertical"
+                                          VerticalOptions="FillAndExpand">
+                                          <Image
+                                                 HeightRequest="30"
+                                                 HorizontalOptions="Start"
+                                                 VerticalOptions="Center" />
+                                          <Label
+                                                 FontFamily="RobotoCondensedBold"
+                                                 FontSize="Small"
+                                                 Text="Log Out"
+                                                 TextColor="#95a3b8"
+                                                 VerticalOptions="EndAndExpand" />
+                                   </StackLayout>
+                            </NeoButton>
+                            <!--#endregion-->
+                            <Label
+                                   Grid.Row="5"
+                                   FontFamily="RobotoCondensedRegular"
+                                   FontSize="Medium"
+                                   Text="Messages"
+                                   TextColor="Black"
+                                   VerticalOptions="Center" />
+                            <Label
+                                   Grid.Row="5"
+                                   Grid.ColumnSpan="2"
+                                   FontFamily="RobotoCondensedRegular"
+                                   FontSize="Micro"
+                                   Text="You have no unread messages."
+                                   TextColor="Gray"
+                                   VerticalOptions="End" />
+                            <Label
+                                   Grid.Row="5"
+                                   Grid.Column="1"
+                                   FontFamily="RobotoCondensedLight"
+                                   FontSize="37"
+                                   HorizontalOptions="End"
+                                   Text="20°C"
+                                   TextColor="Gray"
+                                   VerticalOptions="Center" />
+
+                     </Grid>
+              </FlexLayout>
+
+       </FlexLayout>
 </ContentPage>

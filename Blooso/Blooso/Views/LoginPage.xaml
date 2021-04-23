@@ -3,6 +3,7 @@
     x:Class="Blooso.Views.LoginPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Blooso.Controls;assembly=Blooso"
     xmlns:vm="clr-namespace:Blooso.ViewModels">
     <ContentPage.BindingContext>
         <vm:LoginViewModel />
@@ -12,49 +13,66 @@
             Padding="20"
             BackgroundColor="{StaticResource WhiteFill}"
             Orientation="Vertical"
-            Spacing="80"
+            Spacing="20"
             VerticalOptions="Center">
-            <StackLayout Spacing="20">
-                <NeoFrame BackgroundColor="{StaticResource BleakOrange}" CornerRadius="40">
+            <StackLayout Spacing="0">
+                <Image Margin="20" Source="templogoblooso.png" />
+                <!--#region Region User ID-->
+                <NeoFrame BackgroundColor="{StaticResource BleakOrange}" CornerRadius="20,20,20,20">
                     <StackLayout HorizontalOptions="Center">
                         <Label
-                            Padding="0,10,0,10"
+                            Padding="20"
                             HorizontalTextAlignment="Center"
-                            Text="Username"
+                            Text="User ID"
                             VerticalOptions="Center" />
-                        <Entry
+                        <controls:BorderlessEntry
                             x:Name="EntryUserLogin"
+                            FontSize="Small"
+                            HorizontalOptions="Center"
                             Keyboard="Numeric"
-                            Placeholder="Help"
                             PlaceholderColor="DimGray"
                             Text="{Binding Id}"
-                            TextColor="Black" />
+                            TextColor="DimGray"
+                            TranslationY="-15"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center" />
                     </StackLayout>
                 </NeoFrame>
-                <NeoFrame BackgroundColor="{StaticResource BleakOrange}" CornerRadius="40">
+                <!--#endregion-->
+                <!--#region Region User Password-->
+                <NeoFrame
+                    Padding="0,25,0,0"
+                    BackgroundColor="{StaticResource BleakOrange}"
+                    CornerRadius="20,20,20,20">
                     <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
                         <Label
-                            Padding="0,10,0,10"
+                            Padding="25"
                             HorizontalTextAlignment="Center"
                             Text="Password"
                             VerticalOptions="Center" />
-                        <Entry
+                        <controls:BorderlessEntry
                             x:Name="EntryUserPassword"
+                            FontSize="Small"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
                             IsPassword="True"
-                            Placeholder="Password"
+                            Placeholder="Enter password"
                             PlaceholderColor="DimGray"
                             Text="{Binding Password}"
-                            TextColor="White" />
+                            TranslationY="-15"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center" />
                     </StackLayout>
                 </NeoFrame>
+                <!--#endregion-->
             </StackLayout>
             <NeoButton
                 BackgroundColor="{StaticResource AccentBlue}"
                 Command="{Binding SubmitCommand}"
-                CornerRadius="20,40,40,40"
+                CornerRadius="20"
                 Elevation=".25">
                 <StackLayout
-                    Padding="30"
+                    Padding="25"
                     HorizontalOptions="Center"
                     Orientation="Vertical"
                     VerticalOptions="Center">
