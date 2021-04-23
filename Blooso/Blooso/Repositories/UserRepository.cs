@@ -4,6 +4,7 @@ using Blooso.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Blooso.Repositories
 {
@@ -47,6 +48,7 @@ namespace Blooso.Repositories
 
         public List<User> GetMatchResults()
         {
+            // TODO: Uncomment relation after fixing tags and activities
             return _userList
                 .Where(user => user.Id != CurrentlyLoggedInUser.Id)
                 .Where(user => user.IsInfected == CurrentlyLoggedInUser.IsInfected)
@@ -88,10 +90,15 @@ namespace Blooso.Repositories
         {
             using (var dbContext = new BloosoContext())
             {
-                return dbContext.Users.ToList();
+                return dbContext.Users
+                    .Include(x => x.Activities)
+                    .Include(x => x.Tags)
+                    .Include(x => x.UserFeedMessages)
+                    .ToList();
             }
         }
 
+        // TODO: Put this in Seed.
         private async void FillDBOneTime()
         {
             using (var dbContext = new BloosoContext())

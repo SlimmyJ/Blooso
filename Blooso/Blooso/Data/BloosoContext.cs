@@ -37,6 +37,40 @@ namespace Blooso.Data
             modelBuilder.Entity<Message>().HasOne(x => x.Recipient);
 
             // Seed Data
+            SeedTags(modelBuilder);
+            SeedData(modelBuilder);
+
+            // TODO: Seed Users
+            // TODO: Fix relations with Activity and Tags
+        }
+
+        private void SeedData(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Activity>().HasData(
+                new Activity(1, "Running"),
+                new Activity(2, "Walking"),
+                new Activity(3, "Tennis"),
+                new Activity(4, "Golf"),
+                new Activity(5, "Padel"),
+                new Activity(6, "Minigolf"),
+                new Activity(7, "Camping"),
+                new Activity(8, "Basketball"),
+                new Activity(9, "Cycling"),
+                new Activity(10, "Handball"),
+                new Activity(11, "Climbing"),
+                new Activity(12, "Squash"),
+                new Activity(13, "Fitness"),
+                new Activity(14, "Sauna"),
+                new Activity(15, "Lacrosse"),
+                new Activity(16, "Polo"),
+                new Activity(17, "Football"),
+                new Activity(18, "Yoga"),
+                new Activity(19, "Dancing"),
+                new Activity(20, "Pilates"));
+        }
+
+        private void SeedTags(ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<Tag>().HasData(
                 new Tag(1, "Outdoors"),
                 new Tag(2, "Talking"),
@@ -63,33 +97,11 @@ namespace Blooso.Data
                 new Tag(23, "Furry"),
                 new Tag(24, "Weeb"),
                 new Tag(25, "Festivals"));
-
-            modelBuilder.Entity<Activity>().HasData(
-                new Activity(1, "Running"),
-                new Activity(2, "Walking"),
-                new Activity(3, "Tennis"),
-                new Activity(4, "Golf"),
-                new Activity(5, "Padel"),
-                new Activity(6, "Minigolf"),
-                new Activity(7, "Camping"),
-                new Activity(8, "Basketball"),
-                new Activity(9, "Cycling"),
-                new Activity(10, "Handball"),
-                new Activity(11, "Climbing"),
-                new Activity(12, "Squash"),
-                new Activity(13, "Fitness"),
-                new Activity(14, "Sauna"),
-                new Activity(15, "Lacrosse"),
-                new Activity(16, "Polo"),
-                new Activity(17, "Football"),
-                new Activity(18, "Yoga"),
-                new Activity(19, "Dancing"),
-                new Activity(20, "Pilates"));
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Blooso.sqlite");
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Blooso3.sqlite");
             optionsBuilder.UseSqlite($"FileName = {dbPath}");
         }
     }
