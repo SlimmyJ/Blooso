@@ -4,9 +4,7 @@
 
     using System.Collections.ObjectModel;
 
-    using Blooso.Interfaces;
     using Blooso.Models;
-    using Blooso.Repositories;
     using Blooso.Views;
 
     using Xamarin.Forms;
@@ -23,7 +21,7 @@
         {
             get
             {
-                return CurrentUser.FriendList;
+                return this.CurrentUser.FriendList;
             }
 
             set
@@ -43,7 +41,8 @@
 
         private async void ItemTapped(User user)
         {
-            await Shell.Current.GoToAsync($"{nameof(MatchDetailPage)}?{nameof(MatchDetailViewModel.DetailedUserId)}={user.Id}");
+            await Shell.Current.GoToAsync(
+                $"{nameof(MatchDetailPage)}?{nameof(MatchDetailViewModel.DetailedUserId)}={user.Id}");
         }
 
         private async void SendMessageToUser(User user)

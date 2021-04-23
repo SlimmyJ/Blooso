@@ -22,8 +22,6 @@
 
         public new User CurrentUser { get; private set; }
 
-        #region Commands
-
         public ICommand EditProfileCommand
         {
             get
@@ -47,8 +45,6 @@
                 return new Command(this.LogUserOut);
             }
         }
-
-        #endregion
 
         public User GetCurrentUser()
         {

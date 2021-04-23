@@ -2,8 +2,8 @@
 {
     #region
 
-    using System.Windows.Input;
     using System.Collections.ObjectModel;
+    using System.Windows.Input;
 
     using Blooso.Interfaces;
     using Blooso.Models;
@@ -16,28 +16,12 @@
 
     public class MatchOverviewViewModel : BaseViewModel
     {
+        private new IUserRepository UserRepo;
+
         public MatchOverviewViewModel()
         {
-        }
-
-        public ICommand OnSingleTapUserInOverViewCommand
-        {
-            get
-            {
-                return new Command<User>(this.ItemTapped);
-            }
-        }
-
-        public Command PerformSearchCommand
-        {
-            get
-            {
-                return new Command<string>(
-                    execute: delegate (string query)
-                        {
-                            this.MatchesObservableCollection = new ObservableCollection<User>(this.UserRepo.GetSearchResults(query));
-                        });
-            }
+            this.UserRepo = UserRepository.GetRepository();
+            this.MatchesObservableCollection = new ObservableCollection<User>(this.UserRepo.GetMatchResults());
         }
 
         public ObservableCollection<User> MatchesObservableCollection
@@ -54,9 +38,28 @@
             }
         }
 
+        public ICommand OnSingleTapUserInOverViewCommand
+        {
+            get
+            {
+                return new Command<User>(this.ItemTapped);
+            }
+        }
+
+        public Command PerformSearchCommand
+        {
+            get
+            {
+                return new Command<string>(
+                    query => this.MatchesObservableCollection =
+                                 new ObservableCollection<User>(this.UserRepo.GetSearchResults(query)));
+            }
+        }
+
         public async void ItemTapped(User user)
         {
-            await Shell.Current.GoToAsync($"{nameof(MatchDetailPage)}?{nameof(MatchDetailViewModel.DetailedUserId)}={user.Id}");
+            await Shell.Current.GoToAsync(
+                $"{nameof(MatchDetailPage)}?{nameof(MatchDetailViewModel.DetailedUserId)}={user.Id}");
         }
     }
 }

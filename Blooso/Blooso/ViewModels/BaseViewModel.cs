@@ -15,15 +15,17 @@
 
     public class BaseViewModel : INotifyPropertyChanged
     {
+        private bool _isBusy;
+
         private string _title = string.Empty;
 
-        private bool _isBusy;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public User CurrentUser { get; protected set; }
 
-        public User DetailedUser { get; set; }
-
         public ObservableCollection<Message> CurrentUserFeed { get; set; }
+
+        public User DetailedUser { get; set; }
 
         public ObservableCollection<Message> DetailUserFeed { get; set; }
 
@@ -33,6 +35,7 @@
             {
                 return this._isBusy;
             }
+
             set
             {
                 this.SetProperty(ref this._isBusy, value);
@@ -45,6 +48,7 @@
             {
                 return this._title;
             }
+
             set
             {
                 this.SetProperty(ref this._title, value);
@@ -59,10 +63,7 @@
             [CallerMemberName] string propertyName = "",
             Action onChanged = null)
         {
-            if (EqualityComparer<T>.Default.Equals(backingStore, value))
-            {
-                return false;
-            }
+            if (EqualityComparer<T>.Default.Equals(backingStore, value)) return false;
 
             backingStore = value;
             onChanged?.Invoke();
@@ -70,17 +71,11 @@
             return true;
         }
 
-        #region INotifyPropertyChanged
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             var changed = this.PropertyChanged;
 
             changed?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        #endregion INotifyPropertyChanged
     }
 }

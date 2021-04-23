@@ -14,18 +14,18 @@
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        public LoginViewModel LoginVm;
+        private LoginViewModel loginViewModel;
 
         public LoginPage()
         {
             this.InitializeComponent();
-            this.LoginVm = new LoginViewModel();
+            this.loginViewModel = new LoginViewModel();
             this.EntryUserLogin.Completed += (object sender, EventArgs e) => { this.EntryUserPassword.Focus(); };
 
             this.EntryUserLogin.Completed += (object sender, EventArgs e) =>
-                {
-                    this.LoginVm.SubmitCommand.Execute(null);
-                };
+            {
+                this.loginViewModel.SubmitCommand.Execute(null);
+            };
         }
 
         protected override bool OnBackButtonPressed()

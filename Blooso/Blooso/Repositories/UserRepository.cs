@@ -49,8 +49,12 @@
         public bool DoesUserExist(int id)
         {
             foreach (var user in this._userlist)
+            {
                 if (user.Id == id)
+                {
                     return true;
+                }
+            }
 
             return false;
         }

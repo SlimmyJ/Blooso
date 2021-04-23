@@ -84,8 +84,9 @@
                                Style="{StaticResource stlBoardTitle}"
                                Text="Activities">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MatchDetailViewModel}}, Path=ActivityTappedAccount}"
-                                                      NumberOfTapsRequired="2">
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MatchDetailViewModel}}, Path=ActivityTappedAccount}"
+                                    NumberOfTapsRequired="2">
                                     <TapGestureRecognizer.CommandParameter>
                                         <Binding Path=".ActivityTappedAccount" />
                                     </TapGestureRecognizer.CommandParameter>

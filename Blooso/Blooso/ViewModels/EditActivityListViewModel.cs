@@ -11,7 +11,7 @@
 
     public class EditActivityListViewModel : BaseViewModel
     {
-        private ObservableCollection<Activities> _activitieses;
+        private ObservableCollection<Activities> _activities;
 
         private IUserRepository _userRepo;
 
@@ -27,12 +27,12 @@
         {
             get
             {
-                return this._activitieses;
+                return this._activities;
             }
 
             set
             {
-                this._activitieses = value;
+                this._activities = value;
                 this.OnPropertyChanged(nameof(this.Activities));
             }
         }
