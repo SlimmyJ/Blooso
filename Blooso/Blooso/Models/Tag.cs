@@ -8,10 +8,10 @@
 
     public class Tag : ObservableObject
     {
-        public Tag(int id, string name)
+        public Tag(int id,string name)
         {
-            this.Id = id;
-            this.Name = name;
+            Id = id;
+           Name = name;
         }
 
         public int Id { get; set; }

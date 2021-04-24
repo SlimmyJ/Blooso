@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Blooso.Data;
+using Blooso.Repositories;
 
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,21 @@ namespace Blooso.Data.Tests
         public void ActivityTester()
         {
             testUsers = testData.GenerateDummyData();
+        }
+
+        [TestMethod()]
+        public void Repository_Activities_ReturnAllActivitiesFromDataBase()
+        {
+            // Arrange            
+            var repo = UserRepository.GetRepository();
+            var activities = new List<Activity>();
+
+            // Act
+            activities = repo.GetAllActivities();
+
+            // Assert
+            
+            Assert.IsNotNull(activities);
         }
     }
 }

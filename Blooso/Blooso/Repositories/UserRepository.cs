@@ -1,5 +1,6 @@
 ﻿namespace Blooso.Repositories
 {
+    using System;
     #region
 
     using System.Collections.Generic;
@@ -22,12 +23,13 @@
 
         private readonly List<User> _userList;
 
-        public UserRepository()
+        private UserRepository()
         {
             _dummyData = new DummyData();
 
             // _userList = FillListWithBogusData();
             FillDBOneTime();
+            FillUsersWithActivitiesAndTags();
             _userList = GetAllUsers();
         }
 
@@ -37,21 +39,6 @@
         {
             return _userRepository ?? (_userRepository = new UserRepository());
         }
-
-        public int CountOverlapInActivitiesList(List<Activity> list)
-        {
-            var overlap = list.Intersect(CurrentlyLoggedInUser.Activities);
-            var result = overlap.Count();
-            return result;
-        }
-
-        public int CountOverlapInTagsList(List<Tag> list)
-        {
-            var overlap = list.Intersect(CurrentlyLoggedInUser.Tags);
-            var result = overlap.Count();
-            return result;
-        }
-
         public bool DoesUserExist(int id, string password)
         {
             return _userList.Any(user => user.Id == id && user.Password == password);
@@ -65,6 +52,7 @@
                     Include(x => x.Activities)
                     .Include(x => x.Tags)
                     .Include(x => x.UserFeedMessages)
+                    .Include(x => x.FriendList)
                     .ToList();
             }
         }
@@ -95,9 +83,49 @@
             // TODO: Uncomment relation after fixing tags and activities
             return _userList.Where(user => user.Id != CurrentlyLoggedInUser.Id)
                 .Where(user => user.IsInfected == CurrentlyLoggedInUser.IsInfected)
-                .Where(user => CountOverlapInActivitiesList(user.Activities.ToList()) > 4
-                            && CountOverlapInTagsList(user.Tags.ToList()) > 4)
+                //.Where(user => CountOverlapInActivitiesList(user.Activities.ToList()) > 4
+                //            && CountOverlapInTagsList(user.Tags.ToList()) > 4)
                 .ToList();
+        }        
+
+        public int CountOverlapInActivitiesList(List<Activity> list)
+        {
+            var activitiesIds = GetActivityIdList(list);
+
+            var overlap = activitiesIds.Intersect(GetActivityIdList(CurrentlyLoggedInUser.Activities.ToList()));
+            var result = overlap.Count();
+            return result;
+        }
+
+        public int CountOverlapInTagsList(List<Tag> list)
+        {
+            var tagsIds = GetTagIdList(list);
+
+            var overlap = tagsIds.Intersect(GetTagIdList(CurrentlyLoggedInUser.Tags.ToList()));
+
+            var result = overlap.Count();
+            return result;
+        }
+        //GENERIC?! But how????!
+        public List<int> GetActivityIdList(List<Activity> list)
+        {
+            var result = new List<int>();
+
+            foreach (var item in list)
+            {
+                result.Add(item.Id);
+            }
+            return result;
+        }
+        public List<int> GetTagIdList(List<Tag> list)
+        {
+            var result = new List<int>();
+
+            foreach (var item in list)
+            {
+                result.Add(item.Id);
+            }
+            return result;
         }
 
         public List<User> GetSearchResults(string queryString)
@@ -126,6 +154,13 @@
             }
         }
 
+
+
+        /*
+         * 
+         * * Databasa stuff
+         * *
+         */
         // TODO: Put this in Seed.
         private async void FillDBOneTime()
         {
@@ -139,10 +174,44 @@
                 }
             }
         }
-
         private List<User> FillListWithBogusData()
         {
             return _dummyData.GenerateDummyData();
         }
+        //async task -> warnings
+        private async void FillUsersWithActivitiesAndTags()
+        {
+            using (var dbContext = new BloosoContext())
+            {
+                var users = GetAllUsers();
+
+                foreach (var user in users)
+                {
+                    user.Activities = GetRandomActivities(10);                    
+                    user.Tags = GetRandomUserTags(12);
+                }
+
+                dbContext.Users.UpdateRange(users);
+                await dbContext.SaveChangesAsync();
+            }           
+
+        }
+        private List<Activity> GetRandomActivities(int amount)
+        {
+            var rand = new Random();
+            //var newList = new List<Activity>();
+            var newList = GetAllActivities();
+
+            return newList.OrderBy(x => rand.Next()).Take(amount).ToList();
+        }
+        private List<Tag> GetRandomUserTags(int amount)
+        {
+            var rand = new Random();
+            //var newList = new List<Tag>();
+            var newList = GetAllTags();
+
+            return newList.OrderBy(x => rand.Next()).Take(amount).ToList();
+        }
+
     }
 }

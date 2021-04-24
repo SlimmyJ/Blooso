@@ -1,6 +1,6 @@
 ﻿using Blooso.Models;
 using System.Collections.Generic;
-using Blooso.Models;
+
 
 using System.Threading.Tasks;
 
@@ -15,6 +15,8 @@ namespace Blooso.Interfaces
         void SetCurrentlyLoggedInUser(int id);
 
         User GetUser(int id);
+
+        List<User> GetMatchResults();
 
         List<User> GetSearchResults(string queryString);
 
