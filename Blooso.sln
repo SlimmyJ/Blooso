@@ -9,7 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blooso.Android", "Blooso\Bl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blooso", "Blooso\Blooso\Blooso.csproj", "{56C02523-2720-4C8B-B1D2-6BFA792D025F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blooso.Tests", "Blooso.Tests\Blooso.Tests.csproj", "{8F9E5977-29C2-4F3E-92FA-D4FD09B5B76D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blooso.Tests", "Blooso.Tests\Blooso.Tests.csproj", "{8F9E5977-29C2-4F3E-92FA-D4FD09B5B76D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{512F3396-EC9D-4438-95A0-0A8F58F952FC}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

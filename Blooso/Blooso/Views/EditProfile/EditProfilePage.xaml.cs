@@ -1,4 +1,4 @@
-﻿namespace Blooso.Views
+﻿namespace Blooso.Views.EditProfile
 {
     #region
 

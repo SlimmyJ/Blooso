@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application
     x:Class="Blooso.App"
     xmlns="http://xamarin.com/schemas/2014/forms"
@@ -19,7 +18,6 @@
             <Color x:Key="TextBlack">Black</Color>
             <Color x:Key="CollectionViewColor">#80ffbd20</Color>-->
             <!--#endregion-->
-
             <!--#region Colors-->
             <Color x:Key="White">#fcfbf7</Color>
             <Color x:Key="Orange">#ef941e</Color>
@@ -29,7 +27,6 @@
             <Color x:Key="Purple">#4E598C</Color>
             <Color x:Key="Black">Black</Color>
             <!--#endregion-->
-
             <!--#region Buttons-->
             <Style TargetType="CollectionView">
                 <Setter Property="BackgroundColor" Value="{StaticResource White}" />

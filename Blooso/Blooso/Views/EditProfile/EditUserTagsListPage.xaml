@@ -1,40 +1,36 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModels="clr-namespace:Blooso.ViewModels;assembly=Blooso"
-             x:Class="Blooso.Views.EditProfile.EditUserTagsListPage">
-
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Blooso.Views.EditProfile.EditUserTagsListPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:Blooso.ViewModels;assembly=Blooso">
     <ContentPage.BindingContext>
         <viewModels:EditUserTagsListViewModel />
     </ContentPage.BindingContext>
-
     <StackLayout>
-        <StackLayout BackgroundColor="#ededed"
-                     Padding="10,20">
-            <Label
-                Text="Tags let us match you up with people that have the same interests. Add more to your profile to make better connections."
-                FontAttributes="None" />
+        <StackLayout Padding="10,20" BackgroundColor="#ededed">
+            <Label FontAttributes="None" Text="Tags let us match you up with people that have the same interests. Add more to your profile to make better connections." />
         </StackLayout>
-
-        <!--Users chosen tags-->
+        <!--  Users chosen tags  -->
         <StackLayout Margin="0,40,0,0">
-            <Label Text="Your favorite tags"
-                   HorizontalOptions="Center"
-                   Padding="20,5"
-                   FontAttributes="Italic"
-                   BackgroundColor="#ededed" />
-            <FlexLayout BindableLayout.ItemsSource="{Binding UserTags}"
-                        Wrap="Wrap"
-                        JustifyContent="SpaceEvenly"
-                        Padding="10">
+            <Label
+                Padding="20,5"
+                BackgroundColor="#ededed"
+                FontAttributes="Italic"
+                HorizontalOptions="Center"
+                Text="Your favorite tags" />
+            <FlexLayout
+                Padding="10"
+                BindableLayout.ItemsSource="{Binding UserTags}"
+                JustifyContent="SpaceEvenly"
+                Wrap="Wrap">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
-                        <Frame BorderColor="LightSlateGray"
-                               CornerRadius="25"
-                               Padding="10">
-                            <Label Text="{Binding}"
-                                   FontSize="12">
+                        <Frame
+                            Padding="10"
+                            BorderColor="LightSlateGray"
+                            CornerRadius="25">
+                            <Label FontSize="12" Text="{Binding}">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EditUserTagsListViewModel}}, Path=DeleteTagFromListCommand}"
@@ -47,26 +43,26 @@
                 </BindableLayout.ItemTemplate>
             </FlexLayout>
         </StackLayout>
-
-        <!--All tags-->
-        <StackLayout VerticalOptions="EndAndExpand"
-                     Margin="0,0,0,80">
-            <Label Text="All tags"
-                   HorizontalOptions="Center"
-                   Padding="20,5"
-                   FontAttributes="Italic"
-                   BackgroundColor="#ededed" />
-            <FlexLayout BindableLayout.ItemsSource="{Binding Tags}"
-                        Wrap="Wrap"
-                        JustifyContent="SpaceEvenly"
-                        Padding="10">
+        <!--  All tags  -->
+        <StackLayout Margin="0,0,0,80" VerticalOptions="EndAndExpand">
+            <Label
+                Padding="20,5"
+                BackgroundColor="#ededed"
+                FontAttributes="Italic"
+                HorizontalOptions="Center"
+                Text="All tags" />
+            <FlexLayout
+                Padding="10"
+                BindableLayout.ItemsSource="{Binding Tags}"
+                JustifyContent="SpaceEvenly"
+                Wrap="Wrap">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
-                        <Frame BorderColor="LightSlateGray"
-                               CornerRadius="25"
-                               Padding="10">
-                            <Label Text="{Binding}"
-                                   FontSize="12">
+                        <Frame
+                            Padding="10"
+                            BorderColor="LightSlateGray"
+                            CornerRadius="25">
+                            <Label FontSize="12" Text="{Binding}">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EditUserTagsListViewModel}}, Path=AddToTagsListCommand}"

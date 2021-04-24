@@ -47,7 +47,7 @@
         // {
         // var rand = new Random();
         // //var newList = new List<Activity>();
-        // var newList = GetAllActivities();             
+        // var newList = GetAllActivities();
 
         // return newList.OrderBy(x => rand.Next()).Take(amount).ToList();
         // }

@@ -60,7 +60,6 @@
                             FontSize="Small"
                             Text="{Binding UserTags [0], StringFormat='Likes: {0} and more!'}"
                             TextColor="{StaticResource Orange}" />
-
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

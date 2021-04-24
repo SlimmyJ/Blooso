@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     x:Class="Blooso.Views.RegisterPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
@@ -54,10 +53,8 @@
                             Text="Register"
                             VerticalOptions="Center"
                             VerticalTextAlignment="Center" />
-
                     </NeoButton>
                 </StackLayout>
-
             </Grid>
             <Label
                 Margin="20"

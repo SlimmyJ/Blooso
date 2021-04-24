@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage
     x:Class="Blooso.Views.UserFeedPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
@@ -31,9 +30,7 @@
         <ToolbarItem Text="Add" />
     </ContentPage.ToolbarItems>
     <!--  Display notes in a list  -->
-    <CollectionView
-        ItemsSource="{Binding Title}"
-        SelectionMode="Single">
+    <CollectionView ItemsSource="{Binding Title}" SelectionMode="Single">
         <CollectionView.ItemsLayout>
             <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
         </CollectionView.ItemsLayout>

@@ -1,34 +1,38 @@
-﻿<ContentPage x:Class="Blooso.Views.FriendlistPage"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:Blooso.ViewModels">
+﻿<ContentPage
+    x:Class="Blooso.Views.FriendlistPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:Blooso.ViewModels">
     <!--#region Resources-->
     <ContentPage.Resources>
         <SwipeItems x:Key="SwipeItems">
-            <SwipeItem BackgroundColor="{StaticResource Purple}"
-                       Command="{Binding OnSwipeFriendListMessage}"
-                       Text="Message" />
-            <SwipeItem BackgroundColor="OrangeRed"
-                       Text="Delete" />
+            <SwipeItem
+                BackgroundColor="{StaticResource Purple}"
+                Command="{Binding OnSwipeFriendListMessage}"
+                Text="Message" />
+            <SwipeItem BackgroundColor="OrangeRed" Text="Delete" />
         </SwipeItems>
     </ContentPage.Resources>
     <!--#endregion-->
     <ContentPage.BindingContext>
         <vm:FriendlistViewModel />
     </ContentPage.BindingContext>
-    <CollectionView x:Name="UserCollectionView"
-                    ItemsSource="{Binding FriendList}"
-                    SelectionMode="Single">
+    <CollectionView
+        x:Name="UserCollectionView"
+        ItemsSource="{Binding FriendList}"
+        SelectionMode="Single">
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <StackLayout>
                     <SwipeView LeftItems="{StaticResource SwipeItems}">
-                        <Grid BackgroundColor="{StaticResource Orange}"
-                              HeightRequest="60"
-                              WidthRequest="300">
-                            <Label HorizontalOptions="Center"
-                                   Text="{Binding Name}"
-                                   VerticalOptions="Center" />
+                        <Grid
+                            BackgroundColor="{StaticResource Orange}"
+                            HeightRequest="60"
+                            WidthRequest="300">
+                            <Label
+                                HorizontalOptions="Center"
+                                Text="{Binding Name}"
+                                VerticalOptions="Center" />
                         </Grid>
                     </SwipeView>
                     <!--  Code to act on user gestures  -->

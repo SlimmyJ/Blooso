@@ -1,9 +1,10 @@
-﻿namespace Blooso.Data.Tests
+﻿namespace Blooso.Tests.Data
 {
     #region
 
     using System.Collections.Generic;
 
+    using Blooso.Data;
     using Blooso.Models;
     using Blooso.Repositories;
 
@@ -35,7 +36,7 @@
         [TestMethod()]
         public void Repository_Activities_ReturnAllActivitiesFromDataBase()
         {
-            // Arrange            
+            // Arrange
             var repo = UserRepository.GetRepository();
             var activities = new List<Activity>();
 

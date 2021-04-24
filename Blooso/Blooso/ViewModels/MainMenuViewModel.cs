@@ -6,6 +6,7 @@
 
     using Blooso.Repositories;
     using Blooso.Views;
+    using Blooso.Views.EditProfile;
 
     using Xamarin.Forms;
 

@@ -1,87 +1,95 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
-<ContentPage x:Class="Blooso.Views.LoginPage"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:controls="clr-namespace:Blooso.Controls;assembly=Blooso"
-             xmlns:vm="clr-namespace:Blooso.ViewModels">
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Blooso.Views.LoginPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Blooso.Controls;assembly=Blooso"
+    xmlns:vm="clr-namespace:Blooso.ViewModels">
     <ContentPage.BindingContext>
         <vm:LoginViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout Padding="20"
-                     BackgroundColor="{StaticResource White}"
-                     Orientation="Vertical"
-                     Spacing="20"
-                     VerticalOptions="Center">
+        <StackLayout
+            Padding="20"
+            BackgroundColor="{StaticResource White}"
+            Orientation="Vertical"
+            Spacing="20"
+            VerticalOptions="Center">
             <StackLayout Spacing="0">
-                <Image Margin="20"
-                       Source="logo.png" />
+                <Image Margin="20" Source="logo.png" />
                 <!--#region Region User ID-->
-                <NeoFrame Padding="0,25,0,0"
-                          BackgroundColor="{StaticResource White}"
-                          CornerRadius="20,20,20,20">
+                <NeoFrame
+                    Padding="0,25,0,0"
+                    BackgroundColor="{StaticResource White}"
+                    CornerRadius="20,20,20,20">
                     <StackLayout HorizontalOptions="Center">
-                        <Label Padding="25"
-                               HorizontalTextAlignment="Center"
-                               Text="User ID"
-                               VerticalOptions="Center"
-                               FontAttributes="Bold"
-                               TextColor="{StaticResource Orange}" />
-                        <controls:BorderlessEntry x:Name="EntryUserLogin"
-                                                  FontSize="Small"
-                                                  HorizontalOptions="CenterAndExpand"
-                                                  HorizontalTextAlignment="Center"
-                                                  Keyboard="Numeric"
-                                                  PlaceholderColor="{StaticResource Orange}"
-                                                  Text="{Binding Id}"
-                                                  TextColor="{StaticResource Orange}"
-                                                  TranslationY="-15"
-                                                  WidthRequest="200" />
+                        <Label
+                            Padding="25"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            Text="User ID"
+                            TextColor="{StaticResource Orange}"
+                            VerticalOptions="Center" />
+                        <controls:BorderlessEntry
+                            x:Name="EntryUserLogin"
+                            FontSize="Small"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            Keyboard="Numeric"
+                            PlaceholderColor="{StaticResource Orange}"
+                            Text="{Binding Id}"
+                            TextColor="{StaticResource Orange}"
+                            TranslationY="-15"
+                            WidthRequest="200" />
                     </StackLayout>
                 </NeoFrame>
                 <!--#endregion-->
                 <!--#region Region User Password-->
-                <NeoFrame Padding="0,25,0,0"
-                          BackgroundColor="{StaticResource White}"
-                          CornerRadius="20,20,20,20">
-                    <StackLayout HorizontalOptions="Center"
-                                 VerticalOptions="Center">
-                        <Label Padding="25"
-                               HorizontalTextAlignment="Center"
-                               Text="Password"
-                               FontAttributes="Bold"
-                               VerticalOptions="Center"
-                               TextColor="{StaticResource Orange}" />
-                        <controls:BorderlessEntry x:Name="EntryUserPassword"
-                                                  FontSize="Small"
-                                                  HorizontalOptions="Center"
-                                                  HorizontalTextAlignment="Center"
-                                                  IsPassword="True"
-                                                  FontAttributes="Italic"
-                                                  Placeholder="Enter password"
-                                                  PlaceholderColor="{StaticResource Orange}"
-                                                  Text="{Binding Password}"
-                                                  TranslationY="-15"
-                                                  VerticalOptions="Center"
-                                                  VerticalTextAlignment="Center"
-                                                  WidthRequest="200" />
+                <NeoFrame
+                    Padding="0,25,0,0"
+                    BackgroundColor="{StaticResource White}"
+                    CornerRadius="20,20,20,20">
+                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label
+                            Padding="25"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            Text="Password"
+                            TextColor="{StaticResource Orange}"
+                            VerticalOptions="Center" />
+                        <controls:BorderlessEntry
+                            x:Name="EntryUserPassword"
+                            FontAttributes="Italic"
+                            FontSize="Small"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            IsPassword="True"
+                            Placeholder="Enter password"
+                            PlaceholderColor="{StaticResource Orange}"
+                            Text="{Binding Password}"
+                            TranslationY="-15"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center"
+                            WidthRequest="200" />
                     </StackLayout>
                 </NeoFrame>
                 <!--#endregion-->
             </StackLayout>
-            <NeoButton BackgroundColor="{StaticResource Purple}"
-                       Command="{Binding SubmitCommand}"
-                       CornerRadius="20"
-                       Elevation=".25">
-                <StackLayout Padding="25"
-                             HorizontalOptions="Center"
-                             Orientation="Vertical"
-                             VerticalOptions="Center">
-                    <Label FontSize="Large"
-                           Text="Login"
-                           TextColor="White"
-                           VerticalOptions="EndAndExpand" />
+            <NeoButton
+                BackgroundColor="{StaticResource Purple}"
+                Command="{Binding SubmitCommand}"
+                CornerRadius="20"
+                Elevation=".25">
+                <StackLayout
+                    Padding="25"
+                    HorizontalOptions="Center"
+                    Orientation="Vertical"
+                    VerticalOptions="Center">
+                    <Label
+                        FontSize="Large"
+                        Text="Login"
+                        TextColor="White"
+                        VerticalOptions="EndAndExpand" />
                 </StackLayout>
             </NeoButton>
         </StackLayout>

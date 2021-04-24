@@ -22,14 +22,12 @@
                     WidthRequest="128">
                     <Image Source="{Binding UserDetail.UserPicture}" />
                 </Frame>
-
                 <NeoFrame
                     Margin="0,0,0,10"
                     Padding="5,0"
                     BackgroundColor="{StaticResource White}"
                     CornerRadius="30"
                     HeightRequest="250">
-
                     <Grid Margin="15">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -45,7 +43,6 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-
                         <Label
                             Grid.Row="0"
                             Grid.Column="0"
@@ -67,8 +64,7 @@
                             FontSize="16">
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span FontAttributes="Bold"
-                                          Text="Looking for a friend to play tennis or squash! Add me!" />
+                                    <Span FontAttributes="Bold" Text="Looking for a friend to play tennis or squash! Add me!" />
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
@@ -89,9 +85,7 @@
                             Style="{StaticResource stlBoardTitle}"
                             Text="Activities">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MatchDetailViewModel}}, Path=ActivityTappedAccount}"
-                                    NumberOfTapsRequired="2">
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MatchDetailViewModel}}, Path=ActivityTappedAccount}" NumberOfTapsRequired="2">
                                     <TapGestureRecognizer.CommandParameter>
                                         <Binding Path=".ActivityTappedAccount" />
                                     </TapGestureRecognizer.CommandParameter>
@@ -102,7 +96,7 @@
                             Grid.Row="4"
                             Grid.Column="1"
                             Style="{StaticResource stlBoardDesc}"
-                            Text="{Binding UserDetail.ActivityList.Count}" />
+                            Text="{Binding UserDetail.Activities.Count}" />
                         <Label
                             Grid.Row="3"
                             Grid.Column="2"
@@ -177,7 +171,6 @@
                                             Text="{Binding Text}"
                                             TextColor="DimGray"
                                             VerticalOptions="Center" />
-
                                     </Grid>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
@@ -185,8 +178,6 @@
                     </StackLayout>
                 </NeoFrame>
                 <!--#endregion-->
-
-
                 <!--#region User wall / Message Feed-->
                 <!--
                 <NeoFrame BackgroundColor="{StaticResource Orange}"
