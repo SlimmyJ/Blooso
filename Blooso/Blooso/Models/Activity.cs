@@ -19,6 +19,6 @@ namespace Blooso.Models
 
         public int UserId { get; set; }
 
-        [ForeignKey("Id")] public virtual ICollection<User> ActivityUsers { get; set; }
+        [ForeignKey("UserId")] public virtual ICollection<User> ActivityUsers { get; set; }
     }
 }
