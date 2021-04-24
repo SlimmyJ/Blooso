@@ -184,14 +184,27 @@
             using (var dbContext = new BloosoContext())
             {
                 var users = GetAllUsers();
+                var activities = GetAllActivities();
+                var tags = GetAllTags();
 
                 foreach (var user in users)
                 {
-                    user.Activities = GetRandomActivities(10);                    
+                    user.Activities = GetRandomActivities(10);
+                    foreach (var activity in activities)
+                    {
+                        activity.Users.Add(user);
+                    }
+
                     user.Tags = GetRandomUserTags(12);
+                    foreach (var tag in tags)
+                    {
+                        tag.Users.Add(user);
+                    }
                 }
 
                 dbContext.Users.UpdateRange(users);
+                dbContext.Activities.UpdateRange(activities);
+                dbContext.Tags.UpdateRange(tags);
                 await dbContext.SaveChangesAsync();
             }           
 
