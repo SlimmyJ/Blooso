@@ -21,40 +21,11 @@ namespace Blooso.Data
 
         public DummyData() => userFaker = new Faker<User>();
 
-        public IEnumerable<Tag> GenerateTags() =>
-            new List<Tag>()
-            {
-                new(1, "Outdoors"),
-                new(2, "Talking"),
-                new(3, "Wine"),
-                new(4, "Clubbing"),
-                new(5, "Travel"),
-                new(6, "Movies"),
-                new(7, "Music"),
-                new(8, "Larping"),
-                new(9, "Gaming"),
-                new(10, "Inked"),
-                new(11, "Photography"),
-                new(12, "Arts"),
-                new(13, "Polyamory"),
-                new(14, "Cooking"),
-                new(15, "Books"),
-                new(16, "Conspiracies"),
-                new(17, "FlatEarther"),
-                new(18, "Gambling"),
-                new(19, "Religion"),
-                new(20, "Pets"),
-                new(21, "Smoker"),
-                new(22, "Trekkie"),
-                new(23, "Furry"),
-                new(24, "Weeb"),
-                new(25, "Festivals")
-            };
-
         public List<User> GenerateUserList()
         {
             var generatedUserList = new List<User>();
             userFaker
+                .RuleFor(x => x.Id, x => x.IndexGlobal)
                 .RuleFor(x => x.Name, x => x.Person.FullName)
                 .RuleFor(x => x.Sex, x => x.PickRandom("Male", "Female", "Gender Fluid"))
                 .RuleFor(x => x.IsVaccinated, x => x.Random.Bool())
@@ -111,6 +82,36 @@ namespace Blooso.Data
             return newList as List<Activity>;
         }
 
+        public List<Tag> GenerateTags() =>
+            new()
+            {
+                new Tag(1, "Outdoors"),
+                new Tag(2, "Talking"),
+                new Tag(3, "Wine"),
+                new Tag(4, "Clubbing"),
+                new Tag(5, "Travel"),
+                new Tag(6, "Movies"),
+                new Tag(7, "Music"),
+                new Tag(8, "Larping"),
+                new Tag(9, "Gaming"),
+                new Tag(10, "Inked"),
+                new Tag(11, "Photography"),
+                new Tag(12, "Arts"),
+                new Tag(13, "Polyamory"),
+                new Tag(14, "Cooking"),
+                new Tag(15, "Books"),
+                new Tag(16, "Conspiracies"),
+                new Tag(17, "FlatEarther"),
+                new Tag(18, "Gambling"),
+                new Tag(19, "Religion"),
+                new Tag(20, "Pets"),
+                new Tag(21, "Smoker"),
+                new Tag(22, "Trekkie"),
+                new Tag(23, "Furry"),
+                new Tag(24, "Weeb"),
+                new Tag(25, "Festivals")
+            };
+
         private void AddFakeDataToUsersInList(List<User> dummyList)
         {
             for (var i = 0; i < 20; i++)
@@ -125,5 +126,24 @@ namespace Blooso.Data
                 dummyList.Add(fakedUser);
             }
         }
+
+        // SEED METHODS
+
+        #region Seed Methods
+
+        private List<Activity> ReturnSeedActivityList(ModelBuilder modelBuilder) => GenerateActivities();
+
+        private List<Tag> ReturnSeedTagList(ModelBuilder modelBuilder) => GenerateTags();
+
+        private List<User> ReturnSeedUserList(ModelBuilder modelBuilder) => GenerateUserList();
+
+        private async void ReturnSeedDatabaseAsync(ModelBuilder modelBuilder)
+        {
+            ReturnSeedUserList(modelBuilder);
+            ReturnSeedTagList(modelBuilder);
+            ReturnSeedActivityList(modelBuilder);
+        }
+
+        #endregion
     }
 }

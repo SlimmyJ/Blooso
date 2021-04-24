@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 
 namespace Blooso.Data
 {
@@ -13,14 +14,14 @@ namespace Blooso.Data
 
     #endregion
 
-    public sealed class BloosoContext : DbContext
+    public class BloosoContext : DbContext
     {
         public BloosoContext()
         {
             Database.EnsureCreated();
         }
 
-        public static IDummyData FakerBro => new DummyData();
+        protected virtual IDummyData FakerBro => new DummyData();
 
         public DbSet<Message> Messages { get; set; }
 
@@ -35,7 +36,10 @@ namespace Blooso.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             MapSqlMethod(modelBuilder);
-            SeedDatabase(modelBuilder);
+
+            modelBuilder.Entity<Activity>().HasData(Activities);
+            modelBuilder.Entity<Tag>().HasData(Tags);
+            modelBuilder.Entity<User>().HasData(Users);
         }
 
         private static void MapSqlMethod(ModelBuilder modelBuilder)
@@ -53,37 +57,9 @@ namespace Blooso.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Blooso23.sqlite");
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Blooso26.sqlite");
             optionsBuilder.UseSqlite($"FileName = {dbPath}");
             optionsBuilder.EnableSensitiveDataLogging(true);
         }
-
-        // SEED METHODS
-
-        #region Seed Methods
-
-        private void SeedActivityList(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Activity>().HasData(FakerBro.GenerateActivities());
-        }
-
-        private void SeedTagList(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Tag>().HasData(FakerBro.GenerateTags());
-        }
-
-        private void SeedUserList(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<User>().HasData(FakerBro.GenerateUserList());
-        }
-
-        private void SeedDatabase(ModelBuilder modelBuilder)
-        {
-            SeedUserList(modelBuilder);
-            SeedTagList(modelBuilder);
-            SeedActivityList(modelBuilder);
-        }
-
-        #endregion
     }
 }

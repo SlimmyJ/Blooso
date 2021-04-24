@@ -17,8 +17,8 @@ namespace Blooso.Models
 
         public string Name { get; set; }
 
-        public int UserId { get; set; }
+        public int ActivityUserId { get; set; }
 
-        [ForeignKey("UserId")] public virtual ICollection<User> ActivityUsers { get; set; }
+        public virtual ICollection<User> ActivityUsers { get; set; }
     }
 }
