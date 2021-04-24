@@ -4,17 +4,19 @@
 
     using System.Collections.Generic;
     using System.IO;
-
-    using Blooso.Models;
-
+    using Models;
     using Microsoft.EntityFrameworkCore;
-
     using Xamarin.Essentials;
 
     #endregion
 
     public sealed class BloosoContext : DbContext
     {
+        public BloosoContext()
+        {
+            Database.EnsureCreated();
+        }
+
         public DbSet<Message> Messages { get; set; }
 
         public DbSet<Tag> Tags { get; set; }
@@ -24,11 +26,6 @@
         public DbSet<User> Users { get; set; }
 
         public DbSet<UserLocation> UserLocations { get; set; }
-
-        public BloosoContext()
-        {
-            Database.EnsureCreated();
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -41,32 +38,43 @@
             //modelBuilder.Entity<Tag>().HasMany(x => x.Users);
             //modelBuilder.Entity<Activity>().HasMany(x => x.Users);
 
-            //tussentabel users & activities/tags
-
             modelBuilder.Entity<Message>().HasOne(x => x.Author);
             modelBuilder.Entity<Message>().HasOne(x => x.Recipient);
 
             // Seed Data
-            SeedTags(modelBuilder);
-            SeedData(modelBuilder);
+            SeedTagList(modelBuilder);
+            SeedActivityList(modelBuilder);
+            SeedUserList(modelBuilder);
 
             // TODO: Seed Users
             // TODO: Fix relations with Activity and Tags
         }
 
-        private void SeedData(ModelBuilder modelBuilder)
+        private void SeedActivityList(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Activity>().HasData(GenerateActivities());
         }
 
-        private void SeedTags(ModelBuilder modelBuilder)
+        private void SeedTagList(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Tag>().HasData(GenerateTags());
         }
 
+        private void SeedUserList(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().HasData(GenerateUsers());
+        }
+
+        private List<User> GenerateUsers()
+        {
+            var temp = new DummyData();
+            List<User> thislist = temp.GenerateDummyData();
+            return thislist;
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Blooso6.sqlite");
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Blooso8.sqlite");
             optionsBuilder.UseSqlite($"FileName = {dbPath}");
         }
 

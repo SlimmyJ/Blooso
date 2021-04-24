@@ -1,4 +1,6 @@
-﻿namespace Blooso.Models
+﻿using System.Collections.Generic;
+
+namespace Blooso.Models
 {
     #region
 
@@ -16,6 +18,6 @@
 
         public string Name { get; set; }
 
-        //public ICollection<User> Users { get; set; }
+        public ICollection<User> Users { get; set; }
     }
 }

@@ -4,11 +4,9 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
-    using Blooso.Data;
-    using Blooso.Interfaces;
-    using Blooso.Models;
-
+    using Data;
+    using Interfaces;
+    using Models;
     using Microsoft.EntityFrameworkCore;
 
     public class UserRepository : IUserRepository
@@ -20,19 +18,15 @@
         private UserRepository()
         {
             _dummyData = new DummyData();
-
-            // _userList = FillListWithBogusData();
             FillDbOneTime();
 
             FillUsersWithActivitiesAndTags();
             _userList = GetAllUsers();
         }
 
-        public User CurrentlyLoggedInUser { get; set; }
-
         private static UserRepository _userRepository { get; set; } = new UserRepository();
 
-        public static UserRepository GetRepository() => _userRepository ?? (_userRepository = _userRepository);
+        public User CurrentlyLoggedInUser { get; set; }
 
         public int CountOverlapInActivitiesList(List<Activity> list)
         {
@@ -57,19 +51,6 @@
         public bool DoesUserExist(int id, string password)
         {
             return _userList.Any(user => user.Id == id && user.Password == password);
-        }
-
-        //GENERIC?! But how????!
-        public List<int> GetActivityIdList(List<Activity> list)
-        {
-            var result = new List<int>();
-
-            foreach (Activity item in list)
-            {
-                result.Add(item.Id);
-            }
-
-            return result;
         }
 
         public List<Activity> GetAllActivities()
@@ -116,18 +97,6 @@
             return GetMatchResults().Where(f => f.ToString().ToLowerInvariant().Contains(normalizedQuery)).ToList();
         }
 
-        public List<int> GetTagIdList(List<Tag> list)
-        {
-            var result = new List<int>();
-
-            foreach (Tag item in list)
-            {
-                result.Add(item.Id);
-            }
-
-            return result;
-        }
-
         public User GetUser(int id)
         {
             return _userList.FirstOrDefault(x => x.Id == id);
@@ -145,6 +114,33 @@
                 dbContext.Update(user);
                 await dbContext.SaveChangesAsync();
             }
+        }
+
+        public static UserRepository GetRepository() => _userRepository ?? (_userRepository = _userRepository);
+
+        //GENERIC?! But how????!
+        public List<int> GetActivityIdList(List<Activity> list)
+        {
+            var result = new List<int>();
+
+            foreach (Activity item in list)
+            {
+                result.Add(item.Id);
+            }
+
+            return result;
+        }
+
+        public List<int> GetTagIdList(List<Tag> list)
+        {
+            var result = new List<int>();
+
+            foreach (Tag item in list)
+            {
+                result.Add(item.Id);
+            }
+
+            return result;
         }
 
         // TODO: Put this in Seed.
