@@ -38,8 +38,10 @@
             modelBuilder.Entity<User>().HasMany(x => x.Tags);
             modelBuilder.Entity<User>().HasMany(x => x.Activities);
 
-            modelBuilder.Entity<Tag>().HasMany(x => x.Users);
-            modelBuilder.Entity<Activity>().HasMany(x => x.Users);
+            //modelBuilder.Entity<Tag>().HasMany(x => x.Users);
+            //modelBuilder.Entity<Activity>().HasMany(x => x.Users);
+
+            //tussentabel users & activities/tags
 
             modelBuilder.Entity<Message>().HasOne(x => x.Author);
             modelBuilder.Entity<Message>().HasOne(x => x.Recipient);
@@ -64,7 +66,7 @@
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Blooso5.sqlite");
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Blooso6.sqlite");
             optionsBuilder.UseSqlite($"FileName = {dbPath}");
         }
 

@@ -1,10 +1,8 @@
 ﻿namespace Blooso.Repositories
 {
-    #region
-
-    #region
-
     using System;
+    #region
+
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -14,8 +12,6 @@
     using Blooso.Models;
 
     using Microsoft.EntityFrameworkCore;
-
-    #endregion
 
     #endregion
 
@@ -29,27 +25,35 @@
 
         private UserRepository()
         {
-            this._dummyData = new DummyData();
+            _dummyData = new DummyData();
 
             // _userList = FillListWithBogusData();
-            this.FillDBOneTime();
-            this.FillUsersWithActivitiesAndTags();
-            this._userList = this.GetAllUsers();
+            FillDBOneTime();
+            FillUsersWithActivitiesAndTags();
+            _userList = GetAllUsers();            
         }
 
         public User CurrentlyLoggedInUser { get; set; }
 
-        public static UserRepository GetRepository() => _userRepository ?? (_userRepository = new UserRepository());
-
-        public bool DoesUserExist(int id, string password) =>
-            this._userList.Any(user => user.Id == id && user.Password == password);
+        public static UserRepository GetRepository()
+        {
+            return _userRepository ?? (_userRepository = new UserRepository());
+        }
+        public bool DoesUserExist(int id, string password)
+        {
+            return _userList.Any(user => user.Id == id && user.Password == password);
+        }
 
         public List<User> GetAllUsers()
         {
             using (var dbContext = new BloosoContext())
             {
-                return dbContext.Users.Include(x => x.Activities).Include(x => x.Tags).Include(x => x.UserFeedMessages)
-                    .Include(x => x.FriendList).ToList();
+                return dbContext.Users.
+                    Include(x => x.Activities)
+                    .Include(x => x.Tags)
+                    .Include(x => x.UserFeedMessages)
+                    .Include(x => x.FriendList)
+                    .ToList();
             }
         }
 
@@ -69,77 +73,76 @@
             }
         }
 
-        public User GetCurrentlyLoggedInUser() => this.CurrentlyLoggedInUser;
+        public User GetCurrentlyLoggedInUser()
+        {
+            return CurrentlyLoggedInUser;
+        }
 
         public List<User> GetMatchResults()
         {
             // TODO: Uncomment relation after fixing tags and activities
-            return this._userList.Where(user => user.Id != this.CurrentlyLoggedInUser.Id)
-                .Where(user => user.IsInfected == this.CurrentlyLoggedInUser.IsInfected).Where(
-                    user => this.CountOverlapInActivitiesList(user.Activities.ToList()) > 4
-                            && this.CountOverlapInTagsList(user.Tags.ToList()) > 4).ToList();
-        }
+            return _userList.Where(user => user.Id != CurrentlyLoggedInUser.Id)
+                .Where(user => user.IsInfected == CurrentlyLoggedInUser.IsInfected)
+                //.Where(user => CountOverlapInActivitiesList(user.Activities.ToList()) > 4
+                //            && CountOverlapInTagsList(user.Tags.ToList()) > 4)
+                .ToList();
+        }        
 
         public int CountOverlapInActivitiesList(List<Activity> list)
         {
-            List<int> activitiesIds = this.GetActivityIdList(list);
+            var activitiesIds = GetActivityIdList(list);
 
-            IEnumerable<int> overlap =
-                activitiesIds.Intersect(this.GetActivityIdList(this.CurrentlyLoggedInUser.Activities.ToList()));
-            int result = overlap.Count();
+            var overlap = activitiesIds.Intersect(GetActivityIdList(CurrentlyLoggedInUser.Activities.ToList()));
+            var result = overlap.Count();
             return result;
         }
 
         public int CountOverlapInTagsList(List<Tag> list)
         {
-            List<int> tagsIds = this.GetTagIdList(list);
+            var tagsIds = GetTagIdList(list);
 
-            IEnumerable<int> overlap = tagsIds.Intersect(this.GetTagIdList(this.CurrentlyLoggedInUser.Tags.ToList()));
+            var overlap = tagsIds.Intersect(GetTagIdList(CurrentlyLoggedInUser.Tags.ToList()));
 
-            int result = overlap.Count();
+            var result = overlap.Count();
             return result;
         }
-
-        // GENERIC?! But how????!
+        //GENERIC?! But how????!
         public List<int> GetActivityIdList(List<Activity> list)
         {
             var result = new List<int>();
 
-            foreach (Activity item in list)
+            foreach (var item in list)
             {
                 result.Add(item.Id);
             }
-
             return result;
         }
-
         public List<int> GetTagIdList(List<Tag> list)
         {
             var result = new List<int>();
 
-            foreach (Tag item in list)
+            foreach (var item in list)
             {
                 result.Add(item.Id);
             }
-
             return result;
         }
 
         public List<User> GetSearchResults(string queryString)
         {
-            string normalizedQuery = queryString?.ToLower() ?? string.Empty;
-            return this.GetMatchResults().Where(f => f.ToString().ToLowerInvariant().Contains(normalizedQuery))
+            var normalizedQuery = queryString?.ToLower() ?? string.Empty;
+            return GetMatchResults().Where(f => f.ToString().ToLowerInvariant().Contains(normalizedQuery))
                 .ToList();
         }
 
         public User GetUser(int id)
         {
-            return this._userList.FirstOrDefault(x => x.Id == id);
+            return _userList.FirstOrDefault(x => x.Id == id);
         }
 
         public void SetCurrentlyLoggedInUser(int id)
         {
-            this.CurrentlyLoggedInUser = id == 0 ? new User() : this.GetUser(id);
+            CurrentlyLoggedInUser = id == 0 ? new User() : GetUser(id);
         }
 
         public async Task UpdateUser(User user)
@@ -151,6 +154,13 @@
             }
         }
 
+
+
+        /*
+         * 
+         * * Databasa stuff
+         * *
+         */
         // TODO: Put this in Seed.
         private async void FillDBOneTime()
         {
@@ -158,51 +168,72 @@
             {
                 if (!dbContext.Users.Any())
                 {
-                    List<User> users = this.FillListWithBogusData();
+                    var users = FillListWithBogusData();
                     await dbContext.Users.AddRangeAsync(users);
                     await dbContext.SaveChangesAsync();
                 }
             }
         }
-
-        private List<User> FillListWithBogusData() => this._dummyData.GenerateDummyData();
-
-        // async task -> warnings
+        private List<User> FillListWithBogusData()
+        {
+            return _dummyData.GenerateDummyData();
+        }
+        //async task -> warnings
         private async void FillUsersWithActivitiesAndTags()
         {
             using (var dbContext = new BloosoContext())
             {
-                List<User> users = this.GetAllUsers();
+                var users = GetAllUsers();
+                //var activities = GetAllActivities();
+                //var tags = GetAllTags();
 
-                foreach (User user in users)
+                foreach (var user in users)
                 {
-                    user.Activities = this.GetRandomActivities(10);
-                    user.Tags = this.GetRandomUserTags(12);
+                    var randomactivities = GetRandomActivities(10);
+                    foreach (var activity in randomactivities)
+                    {
+                        user.Activities.Add(activity);
+                    }
+                    //user.Activities = GetRandomActivities(10);
+                    //foreach (var activity in activities)
+                    //{
+                    //    activity.Users.Add(user);
+                    //}
+                    foreach (var tags in GetRandomUserTags(12))
+                    {
+                        user.Tags.Add(tags);
+                    }
+                    //user.Tags = GetRandomUserTags(12);
+                    //foreach (var tag in tags)
+                    //{
+                    //    tag.Users.Add(user);
+                    //}
+                    //await UpdateUser(user);
                 }
 
-                await dbContext.Users.UpdateRange(users);
+                dbContext.Users.UpdateRange(users);
+                //dbContext.Activities.UpdateRange(activities);
+                //dbContext.Tags.UpdateRange(tags);
                 await dbContext.SaveChangesAsync();
-            }
-        }
+            }           
 
+        }
         private List<Activity> GetRandomActivities(int amount)
         {
             var rand = new Random();
-
-            // var newList = new List<Activity>();
-            List<Activity> newList = this.GetAllActivities();
+            //var newList = new List<Activity>();
+            var newList = GetAllActivities();
 
             return newList.OrderBy(x => rand.Next()).Take(amount).ToList();
         }
-
         private List<Tag> GetRandomUserTags(int amount)
         {
             var rand = new Random();
-
-            // var newList = new List<Tag>();
-            List<Tag> newList = this.GetAllTags();
+            //var newList = new List<Tag>();
+            var newList = GetAllTags();
 
             return newList.OrderBy(x => rand.Next()).Take(amount).ToList();
         }
+
     }
 }
