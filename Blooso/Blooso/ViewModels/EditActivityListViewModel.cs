@@ -1,16 +1,20 @@
 ﻿#region
 
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-
-using Blooso.Models;
-
-using Xamarin.Forms;
-
 #endregion
 
 namespace Blooso.ViewModels
 {
+    #region
+
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+
+    using Blooso.Models;
+
+    using Xamarin.Forms;
+
+    #endregion
+
     public class EditActivityListViewModel : BaseViewModel
     {
         private ObservableCollection<Activity> _userActivities;

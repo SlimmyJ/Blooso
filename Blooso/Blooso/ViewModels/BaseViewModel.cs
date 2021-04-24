@@ -20,7 +20,7 @@
 
         public User CurrentUser { get; set; }
 
-        protected IUserRepository _userRepo;
+        private IUserRepository _userRepo;
 
         public bool IsBusy
         {

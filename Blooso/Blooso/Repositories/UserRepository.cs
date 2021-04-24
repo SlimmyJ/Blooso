@@ -41,10 +41,8 @@
 
         public static UserRepository GetRepository() => _userRepository ?? (_userRepository = new UserRepository());
 
-        public bool DoesUserExist(int id, string password)
-        {
-            return this._userList.Any(user => user.Id == id && user.Password == password);
-        }
+        public bool DoesUserExist(int id, string password) =>
+            this._userList.Any(user => user.Id == id && user.Password == password);
 
         public List<User> GetAllUsers()
         {
@@ -77,11 +75,9 @@
         {
             // TODO: Uncomment relation after fixing tags and activities
             return this._userList.Where(user => user.Id != this.CurrentlyLoggedInUser.Id)
-                .Where(user => user.IsInfected == this.CurrentlyLoggedInUser.IsInfected)
-
-                // .Where(user => CountOverlapInActivitiesList(user.Activities.ToList()) > 4
-                // && CountOverlapInTagsList(user.Tags.ToList()) > 4)
-                .ToList();
+                .Where(user => user.IsInfected == this.CurrentlyLoggedInUser.IsInfected).Where(
+                    user => this.CountOverlapInActivitiesList(user.Activities.ToList()) > 4
+                            && this.CountOverlapInTagsList(user.Tags.ToList()) > 4).ToList();
         }
 
         public int CountOverlapInActivitiesList(List<Activity> list)
@@ -155,12 +151,6 @@
             }
         }
 
-        /*
-         *
-         * * Databasa stuff
-         * *
-         */
-
         // TODO: Put this in Seed.
         private async void FillDBOneTime()
         {
@@ -190,7 +180,7 @@
                     user.Tags = this.GetRandomUserTags(12);
                 }
 
-                dbContext.Users.UpdateRange(users);
+                await dbContext.Users.UpdateRange(users);
                 await dbContext.SaveChangesAsync();
             }
         }
