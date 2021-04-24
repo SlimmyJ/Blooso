@@ -75,9 +75,9 @@
 
         public override string ToString()
         {
-            var isInfected = this.IsInfected ? "infected" : "clean";
-            var activities = this.Activities.Aggregate(string.Empty, (current, activity) => current + $"{activity}");
-            var tags = this.Tags.Aggregate(string.Empty, (current, tag) => current + $"{tag}");
+            string isInfected = this.IsInfected ? "infected" : "clean";
+            string activities = this.Activities.Aggregate(string.Empty, (current, activity) => current + $"{activity}");
+            string tags = this.Tags.Aggregate(string.Empty, (current, tag) => current + $"{tag}");
             var toString =
                 $"{this.Name} {this.DateOfBirth} gender {this.Sex} {isInfected} {this.UserLocation} {activities} {tags}";
 

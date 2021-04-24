@@ -1,17 +1,29 @@
-﻿using Android.Content;
-using Blooso;
+﻿#region
+
 using Blooso.Controls;
 using Blooso.Droid;
+
 using Xamarin.Forms;
-using Xamarin.Forms.Platform.Android;
+
+#endregion
 
 [assembly: ExportRenderer(typeof(BorderlessPicker), typeof(BorderlessPickerRenderer))]
 
 namespace Blooso.Droid
 {
+    #region
+
+    using Android.Content;
+
+    using Xamarin.Forms;
+    using Xamarin.Forms.Platform.Android;
+
+    #endregion
+
     public class BorderlessPickerRenderer : PickerRenderer
     {
-        public BorderlessPickerRenderer(Context context) : base(context)
+        public BorderlessPickerRenderer(Context context)
+            : base(context)
         {
         }
 

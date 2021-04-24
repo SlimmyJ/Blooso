@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using Blooso.Interfaces;
-using Blooso.Models;
-
-namespace Blooso.ViewModels
+﻿namespace Blooso.ViewModels
 {
+    #region
+
+    using Blooso.Models;
+
+    #endregion
+
     public class RegisterViewModel : BaseViewModel
     {
         public User UserToBeRegistered;

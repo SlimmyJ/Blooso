@@ -1,35 +1,39 @@
-﻿using System.Windows.Input;
-
-using Blooso.Repositories;
-using Blooso.Views;
-
-using Xamarin.Forms;
-
-namespace Blooso.ViewModels
+﻿namespace Blooso.ViewModels
 {
+    #region
+
+    using System.Windows.Input;
+
+    using Blooso.Repositories;
+    using Blooso.Views;
+
+    using Xamarin.Forms;
+
+    #endregion
+
     public class MainMenuViewModel : BaseViewModel
     {
-        public ICommand LogUserOutCommand => new Command(LogUserOut);
+        public ICommand LogUserOutCommand => new Command(this.LogUserOut);
 
-        public ICommand GetMatchesCommand => new Command(GetMatches);
+        public ICommand GetMatchesCommand => new Command(this.GetMatches);
 
-        public ICommand EditProfileCommand => new Command(EditProfile);
+        public ICommand EditProfileCommand => new Command(this.EditProfile);
 
         public MainMenuViewModel()
         {
-            _userRepo = UserRepository.GetRepository();
-            CurrentUser = _userRepo.GetCurrentlyLoggedInUser();
+            this._userRepo = UserRepository.GetRepository();
+            this.CurrentUser = this._userRepo.GetCurrentlyLoggedInUser();
         }
 
         private async void GetMatches()
         {
-            //_userRepo.GetAllUsers();
+            // _userRepo.GetAllUsers();
             await Shell.Current.GoToAsync(nameof(MatchOverviewPage));
         }
 
         private async void LogUserOut()
         {
-            _userRepo.SetCurrentlyLoggedInUser(0);
+            this._userRepo.SetCurrentlyLoggedInUser(0);
 
             await Shell.Current.GoToAsync(nameof(LoginPage));
         }

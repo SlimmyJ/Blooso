@@ -1,12 +1,16 @@
-﻿using Blooso.ViewModels;
-
-using System;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-namespace Blooso.Views
+﻿namespace Blooso.Views
 {
+    #region
+
+    using System;
+
+    using Blooso.ViewModels;
+
+    using Xamarin.Forms;
+    using Xamarin.Forms.Xaml;
+
+    #endregion
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
@@ -14,22 +18,16 @@ namespace Blooso.Views
 
         public LoginPage()
         {
-            InitializeComponent();
-            loginVM = new LoginViewModel();
-            EntryUserLogin.Completed += (object sender, EventArgs e) =>
-            {
-                EntryUserPassword.Focus();
-            };
+            this.InitializeComponent();
+            this.loginVM = new LoginViewModel();
+            this.EntryUserLogin.Completed += (object sender, EventArgs e) => { this.EntryUserPassword.Focus(); };
 
-            //EntryUserPassword.Completed += (object sender, EventArgs e) =>
-            //{
-            //    loginVM.SubmitCommand.Execute(null);
-            //};
+            // EntryUserPassword.Completed += (object sender, EventArgs e) =>
+            // {
+            // loginVM.SubmitCommand.Execute(null);
+            // };
         }
 
-        protected override bool OnBackButtonPressed()
-        {
-            return true;
-        }
+        protected override bool OnBackButtonPressed() => true;
     }
 }

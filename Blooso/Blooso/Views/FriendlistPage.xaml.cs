@@ -1,12 +1,14 @@
-﻿using System;
-
-using Blooso.ViewModels;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-namespace Blooso.Views
+﻿namespace Blooso.Views
 {
+    #region
+
+    using Blooso.ViewModels;
+
+    using Xamarin.Forms;
+    using Xamarin.Forms.Xaml;
+
+    #endregion
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FriendlistPage : ContentPage
     {
@@ -14,8 +16,8 @@ namespace Blooso.Views
 
         public FriendlistPage()
         {
-            _friendlistViewModel = new FriendlistViewModel();
-            InitializeComponent();
+            this._friendlistViewModel = new FriendlistViewModel();
+            this.InitializeComponent();
         }
     }
 }

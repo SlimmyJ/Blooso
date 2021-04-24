@@ -1,15 +1,19 @@
-﻿using System;
-using Blooso.Views;
-using Blooso.Views.EditProfile;
-using Xamarin.Forms;
-
-namespace Blooso
+﻿namespace Blooso
 {
+    #region
+
+    using Blooso.Views;
+    using Blooso.Views.EditProfile;
+
+    using Xamarin.Forms;
+
+    #endregion
+
     public partial class AppShell : Shell
     {
         public AppShell()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             Routing.RegisterRoute(nameof(MatchOverviewPage), typeof(MatchOverviewPage));
             Routing.RegisterRoute(nameof(MatchDetailPage), typeof(MatchDetailPage));
             Routing.RegisterRoute(nameof(MainMenuPage), typeof(MainMenuPage));

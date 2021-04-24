@@ -1,9 +1,15 @@
-﻿using Xamarin.Forms;
-
-namespace Blooso.Controls
+﻿namespace Blooso.Controls
 {
+    #region
+
+    using Xamarin.Forms;
+
+    #endregion
+
     /// <summary>
     /// picker without borders
     /// </summary>
-    public class BorderlessPicker : Picker { }
+    public class BorderlessPicker : Picker
+    {
+    }
 }

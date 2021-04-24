@@ -1,19 +1,29 @@
-﻿using Android.Content;
+﻿#region
 
-using Blooso;
 using Blooso.Controls;
 using Blooso.Droid;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Platform.Android;
+
+#endregion
 
 [assembly: ExportRenderer(typeof(BorderlessEntry), typeof(BorderlessEntryRenderer))]
 
 namespace Blooso.Droid
 {
+    #region
+
+    using Android.Content;
+
+    using Xamarin.Forms;
+    using Xamarin.Forms.Platform.Android;
+
+    #endregion
+
     public class BorderlessEntryRenderer : EntryRenderer
     {
-        public BorderlessEntryRenderer(Context context) : base(context)
+        public BorderlessEntryRenderer(Context context)
+            : base(context)
         {
         }
 
@@ -22,7 +32,9 @@ namespace Blooso.Droid
             base.OnElementChanged(e);
 
             if (e.OldElement == null)
+            {
                 Control.Background = null;
+            }
         }
     }
 }

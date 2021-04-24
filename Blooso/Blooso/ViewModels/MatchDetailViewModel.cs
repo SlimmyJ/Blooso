@@ -1,14 +1,18 @@
-﻿using System;
-using System.Collections.ObjectModel;
-
-using Blooso.Interfaces;
-using Blooso.Models;
-using Blooso.Repositories;
-
-using Xamarin.Forms;
-
-namespace Blooso.ViewModels
+﻿namespace Blooso.ViewModels
 {
+    #region
+
+    using System;
+    using System.Collections.ObjectModel;
+
+    using Blooso.Interfaces;
+    using Blooso.Models;
+    using Blooso.Repositories;
+
+    using Xamarin.Forms;
+
+    #endregion
+
     [QueryProperty(nameof(UserId), nameof(UserId))]
     public class MatchDetailViewModel : BaseViewModel
     {
@@ -16,11 +20,11 @@ namespace Blooso.ViewModels
 
         public User UserDetail
         {
-            get => _userDetail;
+            get => this._userDetail;
             set
             {
-                _userDetail = value;
-                OnPropertyChanged(nameof(UserDetail));
+                this._userDetail = value;
+                this.OnPropertyChanged(nameof(this.UserDetail));
             }
         }
 
@@ -30,53 +34,54 @@ namespace Blooso.ViewModels
 
         public ObservableCollection<Message> UserFeed
         {
-            get => _userFeed;
+            get => this._userFeed;
             set
             {
-                _userFeed = value;
-                OnPropertyChanged(nameof(UserFeed));
+                this._userFeed = value;
+                this.OnPropertyChanged(nameof(this.UserFeed));
             }
         }
 
         private int _userId;
+
         private IUserRepository userRepo;
 
         public MatchDetailViewModel()
         {
-            UserDetail = new User();
-            UserFeed = new ObservableCollection<Message>();
-            userRepo = UserRepository.GetRepository();
+            this.UserDetail = new User();
+            this.UserFeed = new ObservableCollection<Message>();
+            this.userRepo = UserRepository.GetRepository();
         }
 
-        public Command ActivityTappedAccount => new Command(ActivityTapped);
+        public Command ActivityTappedAccount => new Command(this.ActivityTapped);
 
         public int UserId
         {
-            get => _userId;
+            get => this._userId;
             set
             {
-                _userId = value;
-                LoadUser(value);
+                this._userId = value;
+                this.LoadUser(value);
             }
         }
 
-        public Command AddUserToFavouritesCommand => new Command(AddUserToFavourites);
+        public Command AddUserToFavouritesCommand => new Command(this.AddUserToFavourites);
 
-        public Command OnPressSendMessage => new Command(SendMessageAsync);
+        public Command OnPressSendMessage => new Command(this.SendMessageAsync);
 
         private async void SendMessageAsync()
         {
             var wallMessage = new Message
-            {
-                Recipient = UserDetail,
-                Text = UserInput,
-                Author = userRepo.GetCurrentlyLoggedInUser(),
-                IsPositiveReview = true,
-                CreatedAt = DateTime.Now
-            };
+                              {
+                                  Recipient = this.UserDetail,
+                                  Text = this.UserInput,
+                                  Author = this.userRepo.GetCurrentlyLoggedInUser(),
+                                  IsPositiveReview = true,
+                                  CreatedAt = DateTime.Now
+                              };
 
-            UserDetail.UserFeedMessages.Add(wallMessage);
-            await userRepo.UpdateUser(UserDetail);
+            this.UserDetail.UserFeedMessages.Add(wallMessage);
+            await this.userRepo.UpdateUser(this.UserDetail);
         }
 
         private void ActivityTapped()
@@ -86,15 +91,19 @@ namespace Blooso.ViewModels
 
         private async void AddUserToFavourites()
         {
-            var loggedInUser = userRepo.GetCurrentlyLoggedInUser();
-            if (loggedInUser.Id != UserDetail.Id) loggedInUser.FriendList.Add(UserDetail);
+            User loggedInUser = this.userRepo.GetCurrentlyLoggedInUser();
+            if (loggedInUser.Id != this.UserDetail.Id)
+            {
+                loggedInUser.FriendList.Add(this.UserDetail);
+            }
+
             await Shell.Current.GoToAsync("..");
         }
 
         private void LoadUser(int value)
         {
-            UserDetail = userRepo.GetUser(value);
-            UserFeed = new ObservableCollection<Message>(UserDetail.UserFeedMessages);
+            this.UserDetail = this.userRepo.GetUser(value);
+            this.UserFeed = new ObservableCollection<Message>(this.UserDetail.UserFeedMessages);
         }
     }
 }

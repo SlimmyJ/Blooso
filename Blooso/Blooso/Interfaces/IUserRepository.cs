@@ -1,11 +1,14 @@
-﻿using Blooso.Models;
-using System.Collections.Generic;
-
-
-using System.Threading.Tasks;
-
-namespace Blooso.Interfaces
+﻿namespace Blooso.Interfaces
 {
+    #region
+
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
+    using Blooso.Models;
+
+    #endregion
+
     public interface IUserRepository
     {
         User CurrentlyLoggedInUser { get; set; }
@@ -22,14 +25,16 @@ namespace Blooso.Interfaces
 
         bool DoesUserExist(int id, string password);
 
-        int CountOverlapInTagsList(List<Models.Tag> list);
+        int CountOverlapInTagsList(List<Tag> list);
 
         int CountOverlapInActivitiesList(List<Activity> list);
 
         List<User> GetAllUsers();
 
         Task UpdateUser(User user);
+
         List<Activity> GetAllActivities();
-        List<Models.Tag> GetAllTags();
+
+        List<Tag> GetAllTags();
     }
 }

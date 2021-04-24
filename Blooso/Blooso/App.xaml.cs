@@ -1,15 +1,19 @@
-﻿using Blooso.Views;
-
-using Xamarin.Forms;
-
-namespace Blooso
+﻿namespace Blooso
 {
+    #region
+
+    using Blooso.Views;
+
+    using Xamarin.Forms;
+
+    #endregion
+
     public partial class App : Application
     {
         public App()
         {
-            InitializeComponent();
-            MainPage = new LoginPage();
+            this.InitializeComponent();
+            this.MainPage = new LoginPage();
         }
 
         protected override void OnStart()

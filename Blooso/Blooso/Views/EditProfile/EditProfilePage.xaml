@@ -15,9 +15,9 @@
 
         <!--Profile picture-->
         <StackLayout>
-            <Frame Padding="0" 
+            <Frame Padding="0"
                    Margin="20"
-                   CornerRadius="100" 
+                   CornerRadius="100"
                    HorizontalOptions="Center"
                    IsClippedToBounds="True"
                    WidthRequest="120">
@@ -73,9 +73,10 @@
             <Label Text="Change activities"
                    Padding="20,5">
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EditProfileViewModel}}, Path=EditActivityListCommand}"
-                                          CommandParameter="{Binding .}"
-                                          NumberOfTapsRequired="1" />
+                    <TapGestureRecognizer
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EditProfileViewModel}}, Path=EditActivityListCommand}"
+                        CommandParameter="{Binding .}"
+                        NumberOfTapsRequired="1" />
                 </Label.GestureRecognizers>
             </Label>
         </StackLayout>
@@ -88,9 +89,10 @@
             <Label Text="Change tags"
                    Padding="20,5">
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EditProfileViewModel}}, Path=EditUserTagsListCommand}"
-                                          CommandParameter="{Binding .}"
-                                          NumberOfTapsRequired="1" />
+                    <TapGestureRecognizer
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EditProfileViewModel}}, Path=EditUserTagsListCommand}"
+                        CommandParameter="{Binding .}"
+                        NumberOfTapsRequired="1" />
                 </Label.GestureRecognizers>
             </Label>
         </StackLayout>

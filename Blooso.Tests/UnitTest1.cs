@@ -1,7 +1,11 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
 namespace Blooso.Tests
 {
+    #region
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    #endregion
+
     [TestClass]
     public class UnitTest1
     {

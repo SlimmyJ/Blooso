@@ -1,32 +1,38 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
-using Blooso.Interfaces;
-using Blooso.Models;
-using Blooso.Repositories;
-using Blooso.Views;
-using Xamarin.Forms;
-
-namespace Blooso.ViewModels
+﻿namespace Blooso.ViewModels
 {
+    #region
+
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+
+    using Blooso.Models;
+    using Blooso.Repositories;
+    using Blooso.Views;
+
+    using Xamarin.Forms;
+
+    #endregion
+
     public class FriendlistViewModel : BaseViewModel
     {
         private ObservableCollection<User> _friendList;
 
         public ObservableCollection<User> FriendList
         {
-            get => _friendList;
+            get => this._friendList;
             set
             {
-                _friendList = value;
-                OnPropertyChanged(nameof(FriendList));
+                this._friendList = value;
+                this.OnPropertyChanged(nameof(this.FriendList));
             }
         }
 
-        public Command LoadUsersCommand => new Command(LoadUsers);
-        public Command<User> ItemTappedCommand => new Command<User>(ItemTapped);
+        public Command LoadUsersCommand => new Command(this.LoadUsers);
 
-        public Command<User> FriendListSwipeCommand => new Command<User>(SendMessageToUser);
+        public Command<User> ItemTappedCommand => new Command<User>(this.ItemTapped);
+
+        public Command<User> FriendListSwipeCommand => new Command<User>(this.SendMessageToUser);
 
         private async void SendMessageToUser(User user)
         {
@@ -35,9 +41,9 @@ namespace Blooso.ViewModels
 
         public FriendlistViewModel()
         {
-            _userRepo = UserRepository.GetRepository();
-            var friends = _userRepo.GetCurrentlyLoggedInUser().FriendList;
-            FriendList = new ObservableCollection<User>(friends);
+            this._userRepo = UserRepository.GetRepository();
+            ICollection<User> friends = this._userRepo.GetCurrentlyLoggedInUser().FriendList;
+            this.FriendList = new ObservableCollection<User>(friends);
         }
 
         private async void ItemTapped(User user)
@@ -47,16 +53,16 @@ namespace Blooso.ViewModels
 
         public void LoadUsers()
         {
-            IsBusy = true;
+            this.IsBusy = true;
 
             try
             {
-                var currentUser = _userRepo.GetCurrentlyLoggedInUser();
+                User currentUser = this._userRepo.GetCurrentlyLoggedInUser();
                 if (currentUser.FriendList != null)
                 {
-                    foreach (var temp in currentUser.FriendList)
+                    foreach (User temp in currentUser.FriendList)
                     {
-                        FriendList.Add(temp);
+                        this.FriendList.Add(temp);
                     }
                 }
             }
@@ -67,7 +73,7 @@ namespace Blooso.ViewModels
             }
             finally
             {
-                IsBusy = false;
+                this.IsBusy = false;
             }
         }
     }

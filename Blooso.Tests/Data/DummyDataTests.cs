@@ -1,22 +1,24 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Blooso.Data;
-using Blooso.Repositories;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Blooso.Models;
-
-namespace Blooso.Data.Tests
+﻿namespace Blooso.Data.Tests
 {
+    #region
+
+    using System.Collections.Generic;
+
+    using Blooso.Models;
+    using Blooso.Repositories;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    #endregion
+
     [TestClass()]
     public class DummyDataTests
     {
-        private DummyData testData = new DummyData();
-        private User testUser = new User();
-        private List<User> testUsers = new List<User>();
+        private DummyData testData = new();
+
+        private User testUser = new();
+
+        private List<User> testUsers = new();
 
         [TestMethod()]
         public void GenerateDummyDataTestDoesNotReturnEmpty()
@@ -41,7 +43,6 @@ namespace Blooso.Data.Tests
             activities = repo.GetAllActivities();
 
             // Assert
-            
             Assert.IsNotNull(activities);
         }
     }

@@ -3,8 +3,10 @@
     #region
 
     using System;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+
     using Blooso.Models;
     using Blooso.Repositories;
 
@@ -60,8 +62,8 @@
 
         public void GetUserTags()
         {
-            var tags = CurrentUser.Tags;
-            UserTags = new ObservableCollection<Tag>(tags);
+            ICollection<Tag> tags = this.CurrentUser.Tags;
+            this.UserTags = new ObservableCollection<Tag>(tags);
         }
 
         private void AddToTagsList(Tag tag)

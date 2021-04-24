@@ -5,7 +5,7 @@
     {
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
             LoadApplication(new Blooso.App());
         }
