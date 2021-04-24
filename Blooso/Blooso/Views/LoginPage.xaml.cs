@@ -18,9 +18,9 @@
 
         public LoginPage()
         {
-            this.InitializeComponent();
-            this.loginVM = new LoginViewModel();
-            this.EntryUserLogin.Completed += (object sender, EventArgs e) => { this.EntryUserPassword.Focus(); };
+            InitializeComponent();
+            loginVM = new LoginViewModel();
+            EntryUserLogin.Completed += (object sender, EventArgs e) => { EntryUserPassword.Focus(); };
 
             // EntryUserPassword.Completed += (object sender, EventArgs e) =>
             // {

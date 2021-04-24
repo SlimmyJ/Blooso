@@ -6,6 +6,6 @@
 
         public int AreaCode { get; set; }
 
-        public UserLocation(int areaCode = 8000) => this.AreaCode = areaCode;
+        public UserLocation(int areaCode = 8000) => AreaCode = areaCode;
     }
 }

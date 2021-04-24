@@ -22,53 +22,53 @@
 
         public EditUserTagsListViewModel()
         {
-            this.Tags = new ObservableCollection<Tag>();
-            this.UserTags = new ObservableCollection<Tag>();
-            this._userRepo = UserRepository.GetRepository();
-            this.CurrentUser = this._userRepo.GetCurrentlyLoggedInUser();
-            this.GetUserTags();
-            this.GetAllTags();
+            Tags = new ObservableCollection<Tag>();
+            UserTags = new ObservableCollection<Tag>();
+            _userRepo = UserRepository.GetRepository();
+            CurrentUser = _userRepo.GetCurrentlyLoggedInUser();
+            GetUserTags();
+            GetAllTags();
         }
 
-        public Command<Tag> AddToTagsListCommand => new Command<Tag>(this.AddToTagsList);
+        public Command<Tag> AddToTagsListCommand => new Command<Tag>(tag => AddToTagsList(tag));
 
-        public Command<Tag> DeleteTagFromListCommand => new Command<Tag>(this.DeleteTagFromList);
+        public Command<Tag> DeleteTagFromListCommand => new Command<Tag>(tag => DeleteTagFromList(tag));
 
         public ObservableCollection<Tag> Tags
         {
-            get => this._tags;
+            get => _tags;
             set
             {
-                this._tags = value;
-                this.OnPropertyChanged(nameof(this.Tags));
+                _tags = value;
+                OnPropertyChanged(nameof(Tags));
             }
         }
 
         public ObservableCollection<Tag> UserTags
         {
-            get => this._userTags;
+            get => _userTags;
             set
             {
-                this._userTags = value;
-                this.OnPropertyChanged(nameof(this.UserTags));
+                _userTags = value;
+                OnPropertyChanged(nameof(UserTags));
             }
         }
 
         public void GetAllTags()
         {
             var tags = Enum.GetValues(typeof(Tag)).Cast<Tag>().ToList();
-            this.Tags = new ObservableCollection<Tag>(tags);
+            Tags = new ObservableCollection<Tag>(tags);
         }
 
         public void GetUserTags()
         {
-            ICollection<Tag> tags = this.CurrentUser.Tags;
-            this.UserTags = new ObservableCollection<Tag>(tags);
+            ICollection<Tag> tags = CurrentUser.Tags;
+            UserTags = new ObservableCollection<Tag>(tags);
         }
 
         private void AddToTagsList(Tag tag)
         {
-            if (this.UserTags.Contains(tag))
+            if (UserTags.Contains(tag))
             {
                 Application.Current.MainPage.DisplayAlert(
                     "Glitch in the matrix",
@@ -76,14 +76,14 @@
                     "OK");
             }
 
-            this.UserTags.Add(tag);
+            UserTags.Add(tag);
         }
 
         private void DeleteTagFromList(Tag tag)
         {
-            if (this.UserTags.Count != 1)
+            if (UserTags.Count != 1)
             {
-                this.UserTags.Remove(tag);
+                UserTags.Remove(tag);
             }
             else
             {

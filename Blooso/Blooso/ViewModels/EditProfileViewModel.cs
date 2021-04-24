@@ -12,14 +12,14 @@
 
     public class EditProfileViewModel : BaseViewModel
     {
-        public ICommand EditActivityListCommand => new Command(this.EditActivityList);
+        public ICommand EditActivityListCommand => new Command(EditActivityList);
 
-        public ICommand EditUserTagsListCommand => new Command(this.EditUserTagsList);
+        public ICommand EditUserTagsListCommand => new Command(EditUserTagsList);
 
         public EditProfileViewModel()
         {
-            this._userRepo = UserRepository.GetRepository();
-            this.CurrentUser = this._userRepo.GetCurrentlyLoggedInUser();
+            _userRepo = UserRepository.GetRepository();
+            CurrentUser = _userRepo.GetCurrentlyLoggedInUser();
         }
 
         private async void EditActivityList(object obj)

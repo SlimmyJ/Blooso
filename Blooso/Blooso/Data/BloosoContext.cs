@@ -27,7 +27,7 @@
 
         public BloosoContext()
         {
-            this.Database.EnsureCreated();
+            Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -47,8 +47,8 @@
             modelBuilder.Entity<Message>().HasOne(x => x.Recipient);
 
             // Seed Data
-            this.SeedTags(modelBuilder);
-            this.SeedData(modelBuilder);
+            SeedTags(modelBuilder);
+            SeedData(modelBuilder);
 
             // TODO: Seed Users
             // TODO: Fix relations with Activity and Tags
@@ -56,12 +56,12 @@
 
         private void SeedData(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Activity>().HasData(this.GenerateActivities());
+            modelBuilder.Entity<Activity>().HasData(GenerateActivities());
         }
 
         private void SeedTags(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Tag>().HasData(this.GenerateTags());
+            modelBuilder.Entity<Tag>().HasData(GenerateTags());
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

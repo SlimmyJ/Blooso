@@ -19,27 +19,27 @@
 
         public LoginViewModel()
         {
-            this.SubmitCommand = new Command(this.OnSubmit);
-            this._userRepo = UserRepository.GetRepository();
+            SubmitCommand = new Command(OnSubmit);
+            _userRepo = UserRepository.GetRepository();
         }
 
         public int Id
         {
-            get => this._id;
+            get => _id;
             set
             {
-                this._id = value;
-                this.OnPropertyChanged(nameof(this.Id));
+                _id = value;
+                OnPropertyChanged(nameof(Id));
             }
         }
 
         public string Password
         {
-            get => this._password;
+            get => _password;
             set
             {
-                this._password = value;
-                this.OnPropertyChanged(nameof(this.Password));
+                _password = value;
+                OnPropertyChanged(nameof(Password));
             }
         }
 
@@ -47,7 +47,7 @@
 
         public async void OnSubmit()
         {
-            if (!this.DoesUserExist())
+            if (!DoesUserExist())
             {
                 // DisplayInvalidLoginPrompt();
                 await Application.Current.MainPage.DisplayAlert("Login Failed", "Id or Password incorrect", "OK");
@@ -55,13 +55,13 @@
             else
             {
                 await SecureStorage.SetAsync("isLogged", "1");
-                this._userRepo.SetCurrentlyLoggedInUser(this.Id);
+                _userRepo.SetCurrentlyLoggedInUser(Id);
 
                 Application.Current.MainPage = new AppShell();
                 await Shell.Current.GoToAsync("MainMenuPage");
             }
         }
 
-        private bool DoesUserExist() => this._userRepo.DoesUserExist(this.Id, this.Password);
+        private bool DoesUserExist() => _userRepo.DoesUserExist(Id, Password);
     }
 }

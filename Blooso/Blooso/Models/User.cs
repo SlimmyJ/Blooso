@@ -25,11 +25,11 @@
 
         public ICollection<User> FriendList
         {
-            get => this._friendList;
+            get => _friendList;
             set
             {
-                this._friendList = value;
-                this.OnPropertyChanged(nameof(this.FriendList));
+                _friendList = value;
+                OnPropertyChanged(nameof(FriendList));
             }
         }
 
@@ -41,11 +41,11 @@
 
         public string Name
         {
-            get => this._name;
+            get => _name;
             set
             {
-                this._name = value;
-                this.OnPropertyChanged(nameof(this.FriendList));
+                _name = value;
+                OnPropertyChanged(nameof(FriendList));
             }
         }
 
@@ -59,11 +59,11 @@
 
         public ICollection<Message> UserFeedMessages
         {
-            get => this._userFeedMessages;
+            get => _userFeedMessages;
             set
             {
-                this._userFeedMessages = value;
-                this.OnPropertyChanged(nameof(this.UserFeedMessages));
+                _userFeedMessages = value;
+                OnPropertyChanged(nameof(UserFeedMessages));
             }
         }
 
@@ -75,11 +75,11 @@
 
         public override string ToString()
         {
-            string isInfected = this.IsInfected ? "infected" : "clean";
-            string activities = this.Activities.Aggregate(string.Empty, (current, activity) => current + $"{activity}");
-            string tags = this.Tags.Aggregate(string.Empty, (current, tag) => current + $"{tag}");
+            string isInfected = IsInfected ? "infected" : "clean";
+            string activities = Activities.Aggregate(string.Empty, (current, activity) => current + $"{activity}");
+            string tags = Tags.Aggregate(string.Empty, (current, tag) => current + $"{tag}");
             var toString =
-                $"{this.Name} {this.DateOfBirth} gender {this.Sex} {isInfected} {this.UserLocation} {activities} {tags}";
+                $"{Name} {DateOfBirth} gender {Sex} {isInfected} {UserLocation} {activities} {tags}";
 
             return toString;
         }

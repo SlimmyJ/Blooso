@@ -19,34 +19,34 @@
 
         public ObservableCollection<User> Users
         {
-            get => this._users;
+            get => _users;
             set
             {
-                this._users = value;
-                this.OnPropertyChanged(nameof(this.Users));
+                _users = value;
+                OnPropertyChanged(nameof(Users));
             }
         }
 
         public MatchOverviewViewModel()
         {
-            this.Users = new ObservableCollection<User>();
+            Users = new ObservableCollection<User>();
 
             // with database
             // _userRepo = new UserRepository();
 
             // with singleton
-            this._userRepo = UserRepository.GetRepository();
+            _userRepo = UserRepository.GetRepository();
 
-            this.LoadUsers();
+            LoadUsers();
         }
 
-        public Command LoadUsersCommand => new Command(this.LoadUsers);
+        public Command LoadUsersCommand => new Command(LoadUsers);
 
         public Command PerformSearchCommand =>
             new Command<string>(
-                query => { this.Users = new ObservableCollection<User>(this._userRepo.GetSearchResults(query)); });
+                query => { Users = new ObservableCollection<User>(_userRepo.GetSearchResults(query)); });
 
-        public Command<User> ItemTappedCommand => new Command<User>(this.ItemTapped);
+        public Command<User> ItemTappedCommand => new Command<User>(ItemTapped);
 
         private async void ItemTapped(User user)
         {
@@ -55,12 +55,12 @@
 
         public void LoadUsers()
         {
-            this.IsBusy = true;
+            IsBusy = true;
 
             // var users = _userRepo.GetAllUsers();
-            List<User> users = this._userRepo.GetMatchResults();
-            this.Users = new ObservableCollection<User>(users);
-            this.IsBusy = false;
+            List<User> users = _userRepo.GetMatchResults();
+            Users = new ObservableCollection<User>(users);
+            IsBusy = false;
         }
     }
 }

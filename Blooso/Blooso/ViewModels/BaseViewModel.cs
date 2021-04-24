@@ -20,18 +20,18 @@
 
         public User CurrentUser { get; set; }
 
-        private IUserRepository _userRepo;
+        protected IUserRepository _userRepo;
 
         public bool IsBusy
         {
-            get => this._isBusy;
-            set => this.SetProperty(ref this._isBusy, value);
+            get => _isBusy;
+            set => SetProperty(ref _isBusy, value);
         }
 
         public string Title
         {
-            get => this._title;
-            set => this.SetProperty(ref this._title, value);
+            get => _title;
+            set => SetProperty(ref _title, value);
         }
 
         public bool SetProperty<T>(
@@ -47,21 +47,17 @@
 
             backingStore = value;
             onChanged?.Invoke();
-            this.OnPropertyChanged(propertyName);
+            OnPropertyChanged(propertyName);
             return true;
         }
-
-        #region INotifyPropertyChanged
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
-            PropertyChangedEventHandler changed = this.PropertyChanged;
+            PropertyChangedEventHandler changed = PropertyChanged;
 
             changed?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        #endregion INotifyPropertyChanged
     }
 }

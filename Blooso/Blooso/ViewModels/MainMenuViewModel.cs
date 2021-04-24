@@ -14,16 +14,16 @@
 
     public class MainMenuViewModel : BaseViewModel
     {
-        public ICommand LogUserOutCommand => new Command(this.LogUserOut);
+        public ICommand LogUserOutCommand => new Command(LogUserOut);
 
-        public ICommand GetMatchesCommand => new Command(this.GetMatches);
+        public ICommand GetMatchesCommand => new Command(GetMatches);
 
-        public ICommand EditProfileCommand => new Command(this.EditProfile);
+        public ICommand EditProfileCommand => new Command(EditProfile);
 
         public MainMenuViewModel()
         {
-            this._userRepo = UserRepository.GetRepository();
-            this.CurrentUser = this._userRepo.GetCurrentlyLoggedInUser();
+            _userRepo = UserRepository.GetRepository();
+            CurrentUser = _userRepo.GetCurrentlyLoggedInUser();
         }
 
         private async void GetMatches()
@@ -34,7 +34,7 @@
 
         private async void LogUserOut()
         {
-            this._userRepo.SetCurrentlyLoggedInUser(0);
+            _userRepo.SetCurrentlyLoggedInUser(0);
 
             await Shell.Current.GoToAsync(nameof(LoginPage));
         }

@@ -16,8 +16,8 @@
 
         public FriendlistPage()
         {
-            this._friendlistViewModel = new FriendlistViewModel();
-            this.InitializeComponent();
+            _friendlistViewModel = new FriendlistViewModel();
+            InitializeComponent();
         }
     }
 }

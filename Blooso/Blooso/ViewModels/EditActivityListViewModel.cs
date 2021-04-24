@@ -1,8 +1,4 @@
-﻿#region
-
-#endregion
-
-namespace Blooso.ViewModels
+﻿namespace Blooso.ViewModels
 {
     #region
 
@@ -21,21 +17,21 @@ namespace Blooso.ViewModels
 
         public ObservableCollection<Activity> UserActivities
         {
-            get => this._userActivities;
+            get => _userActivities;
             set
             {
-                this._userActivities = value;
-                this.OnPropertyChanged(nameof(this.UserActivities));
+                _userActivities = value;
+                OnPropertyChanged(nameof(UserActivities));
             }
         }
 
-        public Command<Activity> AddToActivityListCommand => new Command<Activity>(this.AddToActivityList);
+        public Command<Activity> AddToActivityListCommand => new Command<Activity>(AddToActivityList);
 
-        public Command<Activity> DeleteActivityFromListCommand => new Command<Activity>(this.DeleteActivityFromList);
+        public Command<Activity> DeleteActivityFromListCommand => new Command<Activity>(DeleteActivityFromList);
 
         private void AddToActivityList(Activity activity)
         {
-            if (this.UserActivities.Contains(activity))
+            if (UserActivities.Contains(activity))
             {
                 Application.Current.MainPage.DisplayAlert(
                     "Glitch in the matrix",
@@ -43,14 +39,14 @@ namespace Blooso.ViewModels
                     "OK");
             }
 
-            this.UserActivities.Add(activity);
+            UserActivities.Add(activity);
         }
 
         private void DeleteActivityFromList(Activity activity)
         {
-            if (this.UserActivities.Count != 1)
+            if (UserActivities.Count != 1)
             {
-                this.UserActivities.Remove(activity);
+                UserActivities.Remove(activity);
             }
             else
             {
@@ -60,8 +56,8 @@ namespace Blooso.ViewModels
 
         public void GetUserActivities()
         {
-            ICollection<Activity> activities = this.CurrentUser.Activities;
-            this.UserActivities = new ObservableCollection<Activity>(activities);
+            ICollection<Activity> activities = CurrentUser.Activities;
+            UserActivities = new ObservableCollection<Activity>(activities);
         }
     }
 }

@@ -16,7 +16,7 @@
             this.MainPage = new LoginPage();
         }
 
-        protected override void OnStart()
+        protected override void OnResume()
         {
         }
 
@@ -24,7 +24,7 @@
         {
         }
 
-        protected override void OnResume()
+        protected override void OnStart()
         {
         }
     }

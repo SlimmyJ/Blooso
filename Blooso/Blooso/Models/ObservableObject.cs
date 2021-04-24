@@ -12,10 +12,10 @@
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
-            if (this.PropertyChanged != null)
+            if (PropertyChanged != null)
             {
                 var e = new PropertyChangedEventArgs(propertyName);
-                this.PropertyChanged(this, e);
+                PropertyChanged(this, e);
             }
         }
     }
