@@ -30,7 +30,7 @@
             // _userList = FillListWithBogusData();
             FillDBOneTime();
             FillUsersWithActivitiesAndTags();
-            _userList = GetAllUsers();
+            _userList = GetAllUsers();            
         }
 
         public User CurrentlyLoggedInUser { get; set; }
@@ -184,27 +184,36 @@
             using (var dbContext = new BloosoContext())
             {
                 var users = GetAllUsers();
-                var activities = GetAllActivities();
-                var tags = GetAllTags();
+                //var activities = GetAllActivities();
+                //var tags = GetAllTags();
 
                 foreach (var user in users)
                 {
-                    user.Activities = GetRandomActivities(10);
-                    foreach (var activity in activities)
+                    var randomactivities = GetRandomActivities(10);
+                    foreach (var activity in randomactivities)
                     {
-                        activity.Users.Add(user);
+                        user.Activities.Add(activity);
                     }
-
-                    user.Tags = GetRandomUserTags(12);
-                    foreach (var tag in tags)
+                    //user.Activities = GetRandomActivities(10);
+                    //foreach (var activity in activities)
+                    //{
+                    //    activity.Users.Add(user);
+                    //}
+                    foreach (var tags in GetRandomUserTags(12))
                     {
-                        tag.Users.Add(user);
+                        user.Tags.Add(tags);
                     }
+                    //user.Tags = GetRandomUserTags(12);
+                    //foreach (var tag in tags)
+                    //{
+                    //    tag.Users.Add(user);
+                    //}
+                    //await UpdateUser(user);
                 }
 
                 dbContext.Users.UpdateRange(users);
-                dbContext.Activities.UpdateRange(activities);
-                dbContext.Tags.UpdateRange(tags);
+                //dbContext.Activities.UpdateRange(activities);
+                //dbContext.Tags.UpdateRange(tags);
                 await dbContext.SaveChangesAsync();
             }           
 
