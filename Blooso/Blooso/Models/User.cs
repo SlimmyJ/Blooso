@@ -10,14 +10,9 @@
 
     public class User : ObservableObject
     {
-        // [NotMapped]
-        // public List<Tags> UserTags { get; set; } = new List<Tags>();
+        private ICollection<Message> _feedMessages = new List<Message>();
 
-        // [NotMapped]
-        // public List<Activities> ActivityList { get; set; } = new List<Activities>();
         private ICollection<User> _friendList = new List<User>();
-
-        private ICollection<Message> _userFeedMessages = new List<Message>();
 
         public ICollection<Activity> Activities { get; set; } = new List<Activity>();
 
@@ -59,10 +54,10 @@
 
         public ICollection<Message> UserFeedMessages
         {
-            get => _userFeedMessages;
+            get => _feedMessages;
             set
             {
-                _userFeedMessages = value;
+                _feedMessages = value;
                 OnPropertyChanged(nameof(UserFeedMessages));
             }
         }

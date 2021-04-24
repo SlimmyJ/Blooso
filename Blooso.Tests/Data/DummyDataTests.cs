@@ -24,13 +24,13 @@
         [TestMethod()]
         public void GenerateDummyDataTestDoesNotReturnEmpty()
         {
-            testUsers = testData.GenerateDummyData();
+            testUsers = testData.GenerateUserList();
             Assert.IsNotNull(testUser);
         }
 
         public void ActivityTester()
         {
-            testUsers = testData.GenerateDummyData();
+            testUsers = testData.GenerateUserList();
         }
 
         [TestMethod()]

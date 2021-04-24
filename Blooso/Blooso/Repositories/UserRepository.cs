@@ -157,7 +157,7 @@
             }
         }
 
-        private List<User> FillListWithBogusData() => _dummyData.GenerateDummyData();
+        private List<User> FillListWithBogusData() => _dummyData.GenerateUserList();
 
         private async void FillUsersWithActivitiesAndTags()
         {
