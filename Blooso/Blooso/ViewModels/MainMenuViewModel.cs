@@ -4,9 +4,10 @@
 
     using System.Windows.Input;
 
-    using Blooso.Repositories;
-    using Blooso.Views;
-    using Blooso.Views.EditProfile;
+    using Repositories;
+
+    using Views;
+    using Views.EditProfile;
 
     using Xamarin.Forms;
 
@@ -14,21 +15,20 @@
 
     public class MainMenuViewModel : BaseViewModel
     {
-        public ICommand LogUserOutCommand => new Command(LogUserOut);
-
-        public ICommand GetMatchesCommand => new Command(GetMatches);
-
-        public ICommand EditProfileCommand => new Command(EditProfile);
-
         public MainMenuViewModel()
         {
             _userRepo = UserRepository.GetRepository();
             CurrentUser = _userRepo.GetCurrentlyLoggedInUser();
         }
 
-        private async void GetMatches()
+        public ICommand LogUserOutCommand => new Command(LogUserOut);
+
+        public ICommand GetMatchesCommand => new Command(GoToGetMatches);
+
+        public ICommand EditProfileCommand => new Command(GoToEditProfile);
+
+        private async void GoToGetMatches()
         {
-            // _userRepo.GetAllUsers();
             await Shell.Current.GoToAsync(nameof(MatchOverviewPage));
         }
 
@@ -39,7 +39,7 @@
             await Shell.Current.GoToAsync(nameof(LoginPage));
         }
 
-        private async void EditProfile(object obj)
+        private async void GoToEditProfile(object obj)
         {
             await Shell.Current.GoToAsync(nameof(EditProfilePage));
         }

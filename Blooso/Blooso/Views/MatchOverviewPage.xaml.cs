@@ -12,7 +12,7 @@
     {
         public MatchOverviewPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

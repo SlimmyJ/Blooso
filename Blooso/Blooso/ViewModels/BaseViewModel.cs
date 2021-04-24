@@ -7,20 +7,20 @@
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
 
-    using Blooso.Interfaces;
-    using Blooso.Models;
+    using Interfaces;
+
+    using Models;
 
     #endregion
 
     public class BaseViewModel : INotifyPropertyChanged
     {
+        private bool _isBusy;
         private string _title = string.Empty;
 
-        private bool _isBusy;
+        protected IUserRepository _userRepo;
 
         public User CurrentUser { get; set; }
-
-        protected IUserRepository _userRepo;
 
         public bool IsBusy
         {
@@ -33,6 +33,8 @@
             get => _title;
             set => SetProperty(ref _title, value);
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public bool SetProperty<T>(
             ref T backingStore,
@@ -50,8 +52,6 @@
             OnPropertyChanged(propertyName);
             return true;
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {

@@ -2,8 +2,8 @@
 {
     #region
 
-    using Blooso.Views;
-    using Blooso.Views.EditProfile;
+    using Views;
+    using Views.EditProfile;
 
     using Xamarin.Forms;
 

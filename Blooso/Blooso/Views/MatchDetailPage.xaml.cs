@@ -12,7 +12,7 @@
     {
         public MatchDetailPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

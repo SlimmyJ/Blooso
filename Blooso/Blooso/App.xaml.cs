@@ -2,7 +2,7 @@
 {
     #region
 
-    using Blooso.Views;
+    using Views;
 
     using Xamarin.Forms;
 
@@ -12,8 +12,8 @@
     {
         public App()
         {
-            this.InitializeComponent();
-            this.MainPage = new LoginPage();
+            InitializeComponent();
+            MainPage = new LoginPage();
         }
 
         protected override void OnResume()

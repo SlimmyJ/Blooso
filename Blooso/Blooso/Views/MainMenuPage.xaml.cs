@@ -12,7 +12,7 @@
     {
         public MainMenuPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         protected override bool OnBackButtonPressed() => true;

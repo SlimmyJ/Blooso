@@ -7,8 +7,9 @@
     using System.Collections.ObjectModel;
     using System.Linq;
 
-    using Blooso.Models;
-    using Blooso.Repositories;
+    using Models;
+
+    using Repositories;
 
     using Xamarin.Forms;
 
@@ -30,9 +31,9 @@
             GetAllTags();
         }
 
-        public Command<Tag> AddToTagsListCommand => new Command<Tag>(tag => AddToTagsList(tag));
+        public Command<Tag> AddToTagsListCommand => new(tag => AddToTagsList(tag));
 
-        public Command<Tag> DeleteTagFromListCommand => new Command<Tag>(tag => DeleteTagFromList(tag));
+        public Command<Tag> DeleteTagFromListCommand => new(tag => DeleteTagFromList(tag));
 
         public ObservableCollection<Tag> Tags
         {

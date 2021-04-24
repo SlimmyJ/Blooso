@@ -1,4 +1,7 @@
-﻿namespace Blooso.Data
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace Blooso.Data
 {
     #region
 
@@ -12,12 +15,12 @@
 
     public sealed class BloosoContext : DbContext
     {
-        public DummyData FakerBro;
-
         public BloosoContext()
         {
             Database.EnsureCreated();
         }
+
+        public IDummyData FakerBro => new DummyData();
 
         public DbSet<Message> Messages { get; set; }
 
@@ -31,25 +34,32 @@
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Map relations
+            MapSqlMethod(modelBuilder);
+            SeedDatabase(modelBuilder);
+        }
+
+        private static void MapSqlMethod(ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<User>().HasMany(x => x.FriendList);
             modelBuilder.Entity<User>().HasMany(x => x.UserFeedMessages);
             modelBuilder.Entity<User>().HasMany(x => x.Tags);
             modelBuilder.Entity<User>().HasMany(x => x.Activities);
 
-            modelBuilder.Entity<Tag>().HasMany(x => x.Users);
-            modelBuilder.Entity<Activity>().HasMany(x => x.Users);
+            modelBuilder.Entity<Tag>().HasMany(x => x.UsersObservableCollection);
+            modelBuilder.Entity<Activity>().HasMany(x => x.ActivityUsersObservableCollection);
             modelBuilder.Entity<Message>().HasOne(x => x.Author);
             modelBuilder.Entity<Message>().HasOne(x => x.Recipient);
-
-            // Seed Data
-            SeedUserList(modelBuilder);
-            SeedTagList(modelBuilder);
-            SeedActivityList(modelBuilder);
-
-            // TODO: Seed Users
-            // TODO: Fix relations with Activity and Tags
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Blooso20.sqlite");
+            optionsBuilder.UseSqlite($"FileName = {dbPath}");
+        }
+
+        // SEED METHODS
+
+        #region Seed Methods
 
         private void SeedActivityList(ModelBuilder modelBuilder)
         {
@@ -66,10 +76,13 @@
             modelBuilder.Entity<User>().HasData(FakerBro.GenerateUserList());
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        private void SeedDatabase(ModelBuilder modelBuilder)
         {
-            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Blooso11.sqlite");
-            optionsBuilder.UseSqlite($"FileName = {dbPath}");
+            SeedUserList(modelBuilder);
+            SeedTagList(modelBuilder);
+            SeedActivityList(modelBuilder);
         }
+
+        #endregion
     }
 }

@@ -1,13 +1,17 @@
-﻿namespace Blooso.ViewModels
+﻿using System.Collections.Generic;
+
+namespace Blooso.ViewModels
 {
     #region
 
     using System;
     using System.Collections.ObjectModel;
 
-    using Blooso.Interfaces;
-    using Blooso.Models;
-    using Blooso.Repositories;
+    using Interfaces;
+
+    using Models;
+
+    using Repositories;
 
     using Xamarin.Forms;
 
@@ -17,6 +21,19 @@
     public class MatchDetailViewModel : BaseViewModel
     {
         private User _userDetail;
+
+        private IEnumerable<Message> _userFeed;
+
+        private int _userId;
+
+        private IUserRepository userRepo;
+
+        public MatchDetailViewModel()
+        {
+            UserDetail = new User();
+            UserFeed = new ObservableCollection<Message>();
+            userRepo = UserRepository.GetRepository();
+        }
 
         public User UserDetail
         {
@@ -30,11 +47,9 @@
 
         public string UserInput { get; set; }
 
-        private ObservableCollection<Message> _userFeed;
-
         public ObservableCollection<Message> UserFeed
         {
-            get => _userFeed;
+            get => _userFeed as ObservableCollection<Message>;
             set
             {
                 _userFeed = value;
@@ -42,18 +57,7 @@
             }
         }
 
-        private int _userId;
-
-        private IUserRepository userRepo;
-
-        public MatchDetailViewModel()
-        {
-            UserDetail = new User();
-            UserFeed = new ObservableCollection<Message>();
-            userRepo = UserRepository.GetRepository();
-        }
-
-        public Command ActivityTappedAccount => new Command(ActivityTapped);
+        public Command ActivityTappedAccount => new(ActivityTapped);
 
         public int UserId
         {
@@ -65,9 +69,9 @@
             }
         }
 
-        public Command AddUserToFavouritesCommand => new Command(AddUserToFavourites);
+        public Command AddUserToFavouritesCommand => new(AddUserToFavourites);
 
-        public Command OnPressSendMessage => new Command(SendMessageAsync);
+        public Command OnPressSendMessage => new(SendMessageAsync);
 
         private async void SendMessageAsync()
         {

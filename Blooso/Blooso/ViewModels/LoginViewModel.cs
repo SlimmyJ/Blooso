@@ -4,7 +4,7 @@
 
     using System.Windows.Input;
 
-    using Blooso.Repositories;
+    using Repositories;
 
     using Xamarin.Essentials;
     using Xamarin.Forms;
@@ -45,11 +45,10 @@
 
         public ICommand SubmitCommand { get; protected set; }
 
-        public async void OnSubmit()
+        private async void OnSubmit()
         {
             if (!DoesUserExist())
             {
-                // DisplayInvalidLoginPrompt();
                 await Application.Current.MainPage.DisplayAlert("Login Failed", "Id or Password incorrect", "OK");
             }
             else

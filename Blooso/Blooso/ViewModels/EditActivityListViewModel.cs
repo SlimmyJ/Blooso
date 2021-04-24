@@ -5,7 +5,7 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
 
-    using Blooso.Models;
+    using Models;
 
     using Xamarin.Forms;
 
@@ -25,9 +25,9 @@
             }
         }
 
-        public Command<Activity> AddToActivityListCommand => new Command<Activity>(AddToActivityList);
+        public Command<Activity> AddToActivityListCommand => new(AddToActivityList);
 
-        public Command<Activity> DeleteActivityFromListCommand => new Command<Activity>(DeleteActivityFromList);
+        public Command<Activity> DeleteActivityFromListCommand => new(DeleteActivityFromList);
 
         private void AddToActivityList(Activity activity)
         {
@@ -56,7 +56,7 @@
 
         public void GetUserActivities()
         {
-            ICollection<Activity> activities = CurrentUser.Activities;
+            IEnumerable<Activity> activities = CurrentUser.Activities;
             UserActivities = new ObservableCollection<Activity>(activities);
         }
     }

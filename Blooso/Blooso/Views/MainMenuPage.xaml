@@ -35,17 +35,16 @@
                 </Grid.ColumnDefinitions>
                 <StackLayout>
                     <Label
-                        FontFamily="RobotoCondensedRegular"
                         FontSize="Title"
                         Text="Welcome back,"
                         TextColor="Black" />
                     <Label
-                        FontFamily="RobotoCondensedBold"
                         FontSize="Small"
-                        Text="{Binding CurrentUser.Name}"
+                        Text="{Binding CurrentUser.Activities}"
                         TextColor="Black" />
                 </StackLayout>
                 <Frame
+                    Grid.Row="0"
                     Grid.Column="1"
                     Padding="0"
                     CornerRadius="60"
@@ -78,7 +77,6 @@
                             VerticalOptions="Start" />
                         <Label
                             Margin="30"
-                            FontFamily="RobotoCondensedBold"
                             FontSize="Small"
                             HorizontalTextAlignment="Center"
                             Text="Find Matches"
@@ -106,7 +104,6 @@
                             VerticalOptions="Start" />
                         <Label
                             Margin="30"
-                            FontFamily="RobotoCondensedBold"
                             FontSize="Small"
                             HorizontalTextAlignment="Center"
                             Text="Edit Profile"
@@ -117,7 +114,6 @@
                 <!--#endregion-->
                 <Label
                     Grid.Row="5"
-                    FontFamily="RobotoCondensedRegular"
                     FontSize="Medium"
                     Text="Messages"
                     TextColor="Black"
@@ -125,7 +121,6 @@
                 <Label
                     Grid.Row="5"
                     Grid.ColumnSpan="2"
-                    FontFamily="RobotoCondensedRegular"
                     FontSize="Micro"
                     Text="You have no unread messages."
                     TextColor="Gray"
@@ -133,7 +128,6 @@
                 <Label
                     Grid.Row="5"
                     Grid.Column="1"
-                    FontFamily="RobotoCondensedLight"
                     FontSize="37"
                     HorizontalOptions="End"
                     Text="20°C"

@@ -12,7 +12,7 @@
     {
         public RegisterPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }
