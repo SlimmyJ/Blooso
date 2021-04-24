@@ -23,7 +23,7 @@ namespace Blooso.ViewModels
 
         private async void GetMatches()
         {
-            _userRepo.GetAllUsers();
+            //_userRepo.GetAllUsers();
             await Shell.Current.GoToAsync(nameof(MatchOverviewPage));
         }
 

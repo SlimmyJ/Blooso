@@ -9,21 +9,9 @@ using Xamarin.Forms;
 
     public class EditActivityListViewModel : BaseViewModel
     {
-        private ObservableCollection<Activities> _activities;
+        private ObservableCollection<Activity> _activities;
 
-        private ObservableCollection<Activity> _userActivities;
-
-        public EditActivityListViewModel()
-        {
-            this.Activities = new ObservableCollection<Activities>();
-            this.UserActivities = new ObservableCollection<Activities>();
-            this._userRepo = UserRepository.GetRepository();
-            this.CurrentUser = this._userRepo.GetCurrentlyLoggedInUser();
-            this.GetUserActivities();
-            this.GetAllActivities();
-        }
-
-        public ObservableCollection<Activities> Activities
+        public ObservableCollection<Activity> Activities
         {
             get => this._activities;
             set
@@ -33,12 +21,9 @@ using Xamarin.Forms;
             }
         }
 
-        public Command<Activities> AddToActivityListCommand => new Command<Activities>(this.AddToActivityList);
+        private ObservableCollection<Activity> _userActivities;
 
-        public Command<Activities> DeleteActivityFromListCommand =>
-            new Command<Activities>(this.DeleteActivityFromList);
-
-        public ObservableCollection<Activities> UserActivities
+        public ObservableCollection<Activity> UserActivities
         {
             get => this._userActivities;
             set
@@ -48,19 +33,20 @@ using Xamarin.Forms;
             }
         }
 
-        public void GetAllActivities()
-        {
-            var activities = Enum.GetValues(typeof(Activities)).Cast<Activities>().ToList();
-            this.Activities = new ObservableCollection<Activities>(activities);
-        }
+        public Command<Activity> AddToActivityListCommand => new Command<Activity>(AddToActivityList);
+        public Command<Activity> DeleteActivityFromListCommand => new Command<Activity>(DeleteActivityFromList);
 
         public void GetUserActivities()
         {
-            List<Activity> activities = this.CurrentUser.Activities;
-            this._userActivities = new ObservableCollection<Activity>(activities);
+            Activities = new ObservableCollection<Activity>();
+            UserActivities = new ObservableCollection<Activity>();
+            _userRepo = UserRepository.GetRepository();
+            CurrentUser = _userRepo.GetCurrentlyLoggedInUser();
+            GetUserActivities();
+            GetAllActivities();
         }
 
-        private void AddToActivityList(Activities activity)
+        private void AddToActivityList(Activity activity)
         {
             if (this.UserActivities.Contains(activity))
             {
@@ -73,7 +59,7 @@ using Xamarin.Forms;
             this.UserActivities.Add(activity);
         }
 
-        private void DeleteActivityFromList(Activities activity)
+        private void DeleteActivityFromList(Activity activity)
         {
             if (this.UserActivities.Count != 1)
             {
@@ -92,8 +78,8 @@ using Xamarin.Forms;
 
         public void GetAllActivities()
         {
-            var activities = Enum.GetValues(typeof(Activities)).Cast<Activities>().ToList();
-            Activities = new ObservableCollection<Activities>(activities);
+            var activities = _userRepo.GetAllActivities();
+            Activities = new ObservableCollection<Activity>(activities);
         }
     }
 }

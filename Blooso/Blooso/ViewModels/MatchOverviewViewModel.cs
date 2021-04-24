@@ -25,8 +25,13 @@ namespace Blooso.ViewModels
         public MatchOverviewViewModel()
         {
             Users = new ObservableCollection<User>();
-            _userRepo = new UserRepository();
-            _userRepo = Repositories.UserRepository.GetRepository();
+
+            //with database
+            //_userRepo = new UserRepository();
+
+            //with singleton
+            _userRepo = UserRepository.GetRepository(); 
+
             LoadUsers();
         }
 
@@ -46,7 +51,8 @@ namespace Blooso.ViewModels
         public void LoadUsers()
         {
             IsBusy = true;
-            var users = this._userRepo.GetAllUsers();
+            //var users = _userRepo.GetAllUsers();
+            var users = _userRepo.GetMatchResults();
             Users = new ObservableCollection<User>(users);
             IsBusy = false;
         }
