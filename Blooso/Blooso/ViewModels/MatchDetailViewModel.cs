@@ -47,7 +47,7 @@ namespace Blooso.ViewModels
 
         public string UserInput { get; set; }
 
-        public ObservableCollection<Message> UserFeed
+        public ICollection<Message> UserFeed
         {
             get => _userFeed as ObservableCollection<Message>;
             set

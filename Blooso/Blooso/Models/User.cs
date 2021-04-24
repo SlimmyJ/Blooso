@@ -12,13 +12,12 @@ namespace Blooso.Models
 
     public class User : ObservableObject
     {
-        private IEnumerable<Activity> _activitiesList = new List<Activity>();
-        private ObservableCollection<Message> _feedMessages = new();
-
+        private ICollection<Activity> _activitiesList = new List<Activity>();
+        private ICollection<Message> _feedMessages = new List<Message>();
         private ICollection<User> _friendList = new List<User>();
-        private ObservableCollection<Tag> _tagsList = new();
+        private ICollection<Tag> _tagsList = new List<Tag>();
 
-        public IEnumerable<Activity> Activities
+        public ICollection<Activity> Activities
         {
             get => _activitiesList;
             set
@@ -62,9 +61,9 @@ namespace Blooso.Models
 
         public string ShortBio { get; set; }
 
-        public ObservableCollection<Tag> Tags
+        public ICollection<Tag> Tags
         {
-            get => _tagsList;
+            get => _tagsList as ObservableCollection<Tag>;
 
             set
             {
@@ -73,9 +72,9 @@ namespace Blooso.Models
             }
         }
 
-        public ObservableCollection<Message> UserFeedMessages
+        public ICollection<Message> UserFeedMessages
         {
-            get => _feedMessages;
+            get => _feedMessages as ObservableCollection<Message>;
             set
             {
                 _feedMessages = value;

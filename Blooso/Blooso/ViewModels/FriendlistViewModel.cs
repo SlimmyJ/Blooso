@@ -18,7 +18,7 @@
 
     public class FriendlistViewModel : BaseViewModel
     {
-        private ObservableCollection<User> _friendList;
+        private ICollection<User> _friendList;
 
         public FriendlistViewModel()
         {
@@ -27,7 +27,7 @@
             FriendList = new ObservableCollection<User>(friends);
         }
 
-        public ObservableCollection<User> FriendList
+        public ICollection<User> FriendList
         {
             get => _friendList;
             set

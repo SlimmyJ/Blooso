@@ -13,11 +13,11 @@
 
     public class EditActivityListViewModel : BaseViewModel
     {
-        private ObservableCollection<Activity> _userActivities;
+        private ICollection<Activity> _userActivities;
 
         public ObservableCollection<Activity> UserActivities
         {
-            get => _userActivities;
+            get => _userActivities as ObservableCollection<Activity>;
             set
             {
                 _userActivities = value;

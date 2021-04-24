@@ -13,7 +13,7 @@
     {
         private readonly List<User> _userList;
 
-        private UserRepository() => _userList = GetAllUsers();
+        internal UserRepository() => _userList = GetAllUsers();
 
         private static UserRepository _userRepository { get; set; } = new();
 

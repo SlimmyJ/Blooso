@@ -17,24 +17,19 @@
 
     public class MatchOverviewViewModel : BaseViewModel
     {
-        private ObservableCollection<User> _users;
+        private ICollection<User> _users;
 
         public MatchOverviewViewModel()
         {
             Users = new ObservableCollection<User>();
-
-            // with database
-            // _userRepo = new UserRepository();
-
-            // with singleton
-            _userRepo = UserRepository.GetRepository();
+            _userRepo = new UserRepository();
 
             LoadUsers();
         }
 
         public ObservableCollection<User> Users
         {
-            get => _users;
+            get => _users as ObservableCollection<User>;
             set
             {
                 _users = value;

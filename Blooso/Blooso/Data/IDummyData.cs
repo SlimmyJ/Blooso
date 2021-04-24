@@ -1,24 +1,18 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-
 using Blooso.Models;
 
 namespace Blooso.Data
 {
     public interface IDummyData
     {
-        ObservableCollection<User> GenerateUserList();
+        IEnumerable<Tag> GenerateTags();
 
-        IEnumerable<Activity> GenerateActivities(int i);
+        List<User> GenerateUserList();
 
-        ObservableCollection<Activity> GenerateActivities();
+        List<Activity> GenerateActivities();
 
-        IEnumerable<Tag> GenerateTags(int i);
+        List<Tag> GenerateRandomUserTags(int amount);
 
-        ObservableCollection<Tag> GenerateTags();
-
-        ObservableCollection<Activity> GetRandomActivities(int amount);
-
-        ObservableCollection<Tag> GenerateRandomUserTags(int amount);
+        List<Activity> GetRandomActivities(int amount);
     }
 }

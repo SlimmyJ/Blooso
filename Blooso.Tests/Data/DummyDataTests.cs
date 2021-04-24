@@ -19,7 +19,7 @@ namespace Blooso.Tests.Data
 
         private User testUser = new();
 
-        private ObservableCollection<User> testUsers = new();
+        private List<User> testUsers = new();
 
         [TestMethod()]
         public void GenerateDummyDataTestDoesNotReturnEmpty()

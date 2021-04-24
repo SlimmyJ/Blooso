@@ -21,9 +21,39 @@ namespace Blooso.Data
 
         public DummyData() => userFaker = new Faker<User>();
 
-        public ObservableCollection<User> GenerateUserList()
+        public IEnumerable<Tag> GenerateTags() =>
+            new List<Tag>()
+            {
+                new(1, "Outdoors"),
+                new(2, "Talking"),
+                new(3, "Wine"),
+                new(4, "Clubbing"),
+                new(5, "Travel"),
+                new(6, "Movies"),
+                new(7, "Music"),
+                new(8, "Larping"),
+                new(9, "Gaming"),
+                new(10, "Inked"),
+                new(11, "Photography"),
+                new(12, "Arts"),
+                new(13, "Polyamory"),
+                new(14, "Cooking"),
+                new(15, "Books"),
+                new(16, "Conspiracies"),
+                new(17, "FlatEarther"),
+                new(18, "Gambling"),
+                new(19, "Religion"),
+                new(20, "Pets"),
+                new(21, "Smoker"),
+                new(22, "Trekkie"),
+                new(23, "Furry"),
+                new(24, "Weeb"),
+                new(25, "Festivals")
+            };
+
+        public List<User> GenerateUserList()
         {
-            var generatedUserList = new ObservableCollection<User>();
+            var generatedUserList = new List<User>();
             userFaker
                 .RuleFor(x => x.Name, x => x.Person.FullName)
                 .RuleFor(x => x.Sex, x => x.PickRandom("Male", "Female", "Gender Fluid"))
@@ -31,35 +61,17 @@ namespace Blooso.Data
                 .RuleFor(x => x.IsInfected, x => x.Random.Bool())
                 .RuleFor(x => x.UserLocation, x => x.Person.Address.City)
                 .RuleFor(x => x.DateOfBirth, x => x.Person.DateOfBirth)
-                .RuleFor(x => x.Activities, new ObservableCollection<Activity>())
-                .RuleFor(x => x.Tags, new ObservableCollection<Tag>())
-                .RuleFor(x => x.FriendList, new ObservableCollection<User>())
-                .RuleFor(x => x.UserFeedMessages, new ObservableCollection<Message>());
+                .RuleFor(x => x.Activities, new List<Activity>())
+                .RuleFor(x => x.Tags, new List<Tag>())
+                .RuleFor(x => x.FriendList, new List<User>())
+                .RuleFor(x => x.UserFeedMessages, new List<Message>());
 
             AddFakeDataToUsersInList(generatedUserList);
 
             return generatedUserList;
         }
 
-        public IEnumerable<Activity> GenerateActivities(int i) => GetRandomActivities(i);
-
-        public IEnumerable<Tag> GenerateTags(int i) => GenerateRandomUserTags(i);
-
-        public ObservableCollection<Activity> GetRandomActivities(int amount)
-        {
-            var rand = new Random();
-            var newList = (ObservableCollection<Activity>)GenerateActivities(10);
-            return (ObservableCollection<Activity>)newList.OrderBy(x => rand.Next()).Take(amount);
-        }
-
-        public ObservableCollection<Tag> GenerateRandomUserTags(int amount)
-        {
-            var rand = new Random();
-            ObservableCollection<Tag> newList = GenerateTags();
-            return new ObservableCollection<Tag>(newList.OrderBy(x => rand.Next()).Take(amount).ToList());
-        }
-
-        public ObservableCollection<Activity> GenerateActivities() =>
+        public List<Activity> GenerateActivities() =>
             new()
             {
                 new Activity(1, "Running"),
@@ -84,37 +96,22 @@ namespace Blooso.Data
                 new Activity(20, "Pilates")
             };
 
-        public ObservableCollection<Tag> GenerateTags() =>
-            new()
-            {
-                new Tag(1, "Outdoors"),
-                new Tag(2, "Talking"),
-                new Tag(3, "Wine"),
-                new Tag(4, "Clubbing"),
-                new Tag(5, "Travel"),
-                new Tag(6, "Movies"),
-                new Tag(7, "Music"),
-                new Tag(8, "Larping"),
-                new Tag(9, "Gaming"),
-                new Tag(10, "Inked"),
-                new Tag(11, "Photography"),
-                new Tag(12, "Arts"),
-                new Tag(13, "Polyamory"),
-                new Tag(14, "Cooking"),
-                new Tag(15, "Books"),
-                new Tag(16, "Conspiracies"),
-                new Tag(17, "FlatEarther"),
-                new Tag(18, "Gambling"),
-                new Tag(19, "Religion"),
-                new Tag(20, "Pets"),
-                new Tag(21, "Smoker"),
-                new Tag(22, "Trekkie"),
-                new Tag(23, "Furry"),
-                new Tag(24, "Weeb"),
-                new Tag(25, "Festivals")
-            };
+        public List<Tag> GenerateRandomUserTags(int amount)
+        {
+            var rand = new Random();
+            IEnumerable<Tag> newList = GenerateTags();
+            return new List<Tag>(newList.OrderBy(x => rand.Next()).Take(amount));
+        }
 
-        private void AddFakeDataToUsersInList(ICollection<User> dummyList)
+        public List<Activity> GetRandomActivities(int amount)
+        {
+            var rand = new Random();
+            IEnumerable<Activity> newList = GenerateActivities();
+            newList = newList.OrderBy(x => rand.Next()).Take(amount).ToList();
+            return newList as List<Activity>;
+        }
+
+        private void AddFakeDataToUsersInList(List<User> dummyList)
         {
             for (var i = 0; i < 20; i++)
             {

@@ -17,9 +17,9 @@
 
     public class EditUserTagsListViewModel : BaseViewModel
     {
-        private ObservableCollection<Tag> _tags;
+        private ICollection<Tag> _tags;
 
-        private ObservableCollection<Tag> _userTags;
+        private ICollection<Tag> _userTags;
 
         public EditUserTagsListViewModel()
         {
@@ -37,7 +37,7 @@
 
         public ObservableCollection<Tag> Tags
         {
-            get => _tags;
+            get => _tags as ObservableCollection<Tag>;
             set
             {
                 _tags = value;
@@ -47,7 +47,7 @@
 
         public ObservableCollection<Tag> UserTags
         {
-            get => _userTags;
+            get => _userTags as ObservableCollection<Tag>;
             set
             {
                 _userTags = value;

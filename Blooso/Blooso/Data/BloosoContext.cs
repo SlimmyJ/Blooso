@@ -20,7 +20,7 @@ namespace Blooso.Data
             Database.EnsureCreated();
         }
 
-        public IDummyData FakerBro => new DummyData();
+        public static IDummyData FakerBro => new DummyData();
 
         public DbSet<Message> Messages { get; set; }
 
@@ -45,15 +45,15 @@ namespace Blooso.Data
             modelBuilder.Entity<User>().HasMany(x => x.Tags);
             modelBuilder.Entity<User>().HasMany(x => x.Activities);
 
-            modelBuilder.Entity<Tag>().HasMany(x => x.UsersObservableCollection);
-            modelBuilder.Entity<Activity>().HasMany(x => x.ActivityUsersObservableCollection);
+            modelBuilder.Entity<Tag>().HasMany(x => x.TagUsers);
+            modelBuilder.Entity<Activity>().HasMany(x => x.ActivityUsers);
             modelBuilder.Entity<Message>().HasOne(x => x.Author);
             modelBuilder.Entity<Message>().HasOne(x => x.Recipient);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Blooso21.sqlite");
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Blooso22.sqlite");
             optionsBuilder.UseSqlite($"FileName = {dbPath}");
         }
 
