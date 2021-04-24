@@ -4,10 +4,9 @@ using System.Linq;
 
 using Blooso.Models;
 using Blooso.Repositories;
+using Blooso.ViewModels;
 
 using Xamarin.Forms;
-
-#endregion
 
 public class EditActivityListViewModel : BaseViewModel
 {
@@ -15,11 +14,11 @@ public class EditActivityListViewModel : BaseViewModel
 
     public ObservableCollection<Activity> Activities
     {
-        get => this._activities;
+        get => _activities;
         set
         {
-            this._activities = value;
-            this.OnPropertyChanged(nameof(this.Activities));
+            _activities = value;
+            OnPropertyChanged(nameof(Activities));
         }
     }
 
@@ -27,31 +26,31 @@ public class EditActivityListViewModel : BaseViewModel
 
     public ObservableCollection<Activity> UserActivities
     {
-        get => this._userActivities;
+        get => _userActivities;
         set
         {
-            this._userActivities = value;
-            this.OnPropertyChanged(nameof(this.UserActivities));
+            _userActivities = value;
+            OnPropertyChanged(nameof(UserActivities));
         }
     }
 
-    public Command<Activity> AddToActivityListCommand => new Command<Activity>(this.AddToActivityList);
+    public Command<Activity> AddToActivityListCommand => new Command<Activity>(AddToActivityList);
 
-    public Command<Activity> DeleteActivityFromListCommand => new Command<Activity>(this.DeleteActivityFromList);
+    public Command<Activity> DeleteActivityFromListCommand => new Command<Activity>(DeleteActivityFromList);
 
     public void GetUserActivities()
     {
-        this.Activities = new ObservableCollection<Activity>();
-        this.UserActivities = new ObservableCollection<Activity>();
+        Activities = new ObservableCollection<Activity>();
+        UserActivities = new ObservableCollection<Activity>();
         _userRepo = UserRepository.GetRepository();
         CurrentUser = _userRepo.GetCurrentlyLoggedInUser();
-        this.GetUserActivities();
+        GetUserActivities();
         GetAllActivities();
     }
 
     private void AddToActivityList(Activity activity)
     {
-        if (this.UserActivities.Contains(activity))
+        if (UserActivities.Contains(activity))
         {
             Application.Current.MainPage.DisplayAlert(
                 "Glitch in the matrix",
@@ -59,14 +58,14 @@ public class EditActivityListViewModel : BaseViewModel
                 "OK");
         }
 
-        this.UserActivities.Add(activity);
+        UserActivities.Add(activity);
     }
 
     private void DeleteActivityFromList(Activity activity)
     {
-        if (this.UserActivities.Count != 1)
+        if (UserActivities.Count != 1)
         {
-            this.UserActivities.Remove(activity);
+            UserActivities.Remove(activity);
         }
         else
         {
@@ -76,13 +75,13 @@ public class EditActivityListViewModel : BaseViewModel
         public void GetUserActivities()
         {
             var activities = CurrentUser.Activities;
-            this.UserActivities = new ObservableCollection<Activity>(activities);
+            UserActivities = new ObservableCollection<Activity>(activities);
         }
 
         public void GetAllActivities()
         {
             var activities = _userRepo.GetAllActivities();
-            this.Activities = new ObservableCollection<Activity>(activities);
+            Activities = new ObservableCollection<Activity>(activities);
         }
     }
 }
