@@ -1,4 +1,6 @@
-﻿namespace Blooso.Models
+﻿using System.Collections.ObjectModel;
+
+namespace Blooso.Models
 {
     #region
 
@@ -10,11 +12,21 @@
 
     public class User : ObservableObject
     {
-        private ICollection<Message> _feedMessages = new List<Message>();
+        private IEnumerable<Activity> _activitiesList = new List<Activity>();
+        private ObservableCollection<Message> _feedMessages = new();
 
         private ICollection<User> _friendList = new List<User>();
+        private ObservableCollection<Tag> _tagsList = new();
 
-        public ICollection<Activity> Activities { get; set; } = new List<Activity>();
+        public IEnumerable<Activity> Activities
+        {
+            get => _activitiesList;
+            set
+            {
+                _activitiesList = value;
+                OnPropertyChanged(nameof(Activities));
+            }
+        }
 
         public DateTime DateOfBirth { get; set; }
 
@@ -50,9 +62,18 @@
 
         public string ShortBio { get; set; }
 
-        public ICollection<Tag> Tags { get; set; } = new List<Tag>();
+        public ObservableCollection<Tag> Tags
+        {
+            get => _tagsList;
 
-        public ICollection<Message> UserFeedMessages
+            set
+            {
+                _tagsList = value;
+                OnPropertyChanged(nameof(Tags));
+            }
+        }
+
+        public ObservableCollection<Message> UserFeedMessages
         {
             get => _feedMessages;
             set

@@ -6,9 +6,11 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
 
-    using Blooso.Models;
-    using Blooso.Repositories;
-    using Blooso.Views;
+    using Models;
+
+    using Repositories;
+
+    using Views;
 
     using Xamarin.Forms;
 
@@ -18,32 +20,32 @@
     {
         private ObservableCollection<User> _friendList;
 
+        public FriendlistViewModel()
+        {
+            _userRepo = UserRepository.GetRepository();
+            ICollection<User> friends = _userRepo.GetCurrentlyLoggedInUser().FriendList;
+            FriendList = new ObservableCollection<User>(friends);
+        }
+
         public ObservableCollection<User> FriendList
         {
-            get => this._friendList;
+            get => _friendList;
             set
             {
-                this._friendList = value;
-                this.OnPropertyChanged(nameof(this.FriendList));
+                _friendList = value;
+                OnPropertyChanged(nameof(FriendList));
             }
         }
 
-        public Command LoadUsersCommand => new Command(this.LoadUsers);
+        public Command LoadUsersCommand => new(LoadUsers);
 
-        public Command<User> ItemTappedCommand => new Command<User>(this.ItemTapped);
+        public Command<User> ItemTappedCommand => new(ItemTapped);
 
-        public Command<User> FriendListSwipeCommand => new Command<User>(this.SendMessageToUser);
+        public Command<User> FriendListSwipeCommand => new(SendMessageToUser);
 
         private async void SendMessageToUser(User user)
         {
             await Shell.Current.GoToAsync($"{nameof(UserFeedPage)}?{nameof(UserFeedViewModel)}={user.Id}");
-        }
-
-        public FriendlistViewModel()
-        {
-            this._userRepo = UserRepository.GetRepository();
-            ICollection<User> friends = this._userRepo.GetCurrentlyLoggedInUser().FriendList;
-            this.FriendList = new ObservableCollection<User>(friends);
         }
 
         private async void ItemTapped(User user)
@@ -53,16 +55,16 @@
 
         public void LoadUsers()
         {
-            this.IsBusy = true;
+            IsBusy = true;
 
             try
             {
-                User currentUser = this._userRepo.GetCurrentlyLoggedInUser();
+                User currentUser = _userRepo.GetCurrentlyLoggedInUser();
                 if (currentUser.FriendList != null)
                 {
                     foreach (User temp in currentUser.FriendList)
                     {
-                        this.FriendList.Add(temp);
+                        FriendList.Add(temp);
                     }
                 }
             }
@@ -73,7 +75,7 @@
             }
             finally
             {
-                this.IsBusy = false;
+                IsBusy = false;
             }
         }
     }

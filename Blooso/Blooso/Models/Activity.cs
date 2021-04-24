@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Blooso.Models
 {
-    #region
-
-    #endregion
-
     public class Activity : ObservableObject
     {
         public Activity(int id, string name)
@@ -21,6 +19,6 @@ namespace Blooso.Models
 
         public int UserId { get; set; }
 
-        public ObservableCollection<User> Users { get; set; }
+        [ForeignKey("Id")] public virtual ObservableCollection<User> ActivityUsersObservableCollection { get; set; }
     }
 }

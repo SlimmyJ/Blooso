@@ -1,13 +1,13 @@
-﻿namespace Blooso.Tests.Data
+﻿using System.Collections.ObjectModel;
+
+namespace Blooso.Tests.Data
 {
     #region
 
     using System.Collections.Generic;
-
     using Blooso.Data;
-    using Blooso.Models;
-    using Blooso.Repositories;
-
+    using Models;
+    using Repositories;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     #endregion
@@ -19,7 +19,7 @@
 
         private User testUser = new();
 
-        private List<User> testUsers = new();
+        private ObservableCollection<User> testUsers = new();
 
         [TestMethod()]
         public void GenerateDummyDataTestDoesNotReturnEmpty()
@@ -38,10 +38,9 @@
         {
             // Arrange
             var repo = UserRepository.GetRepository();
-            var activities = new List<Activity>();
 
             // Act
-            activities = repo.GetAllActivities();
+            List<Activity> activities = repo.GetAllActivities();
 
             // Assert
             Assert.IsNotNull(activities);

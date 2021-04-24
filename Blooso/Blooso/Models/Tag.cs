@@ -21,6 +21,6 @@ namespace Blooso.Models
 
         public string Name { get; set; }
 
-        public ObservableCollection<User> Users { get; set; }
+        public virtual ObservableCollection<User> UsersObservableCollection { get; set; }
     }
 }

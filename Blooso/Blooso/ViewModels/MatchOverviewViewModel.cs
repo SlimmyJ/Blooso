@@ -5,9 +5,11 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
 
-    using Blooso.Models;
-    using Blooso.Repositories;
-    using Blooso.Views;
+    using Models;
+
+    using Repositories;
+
+    using Views;
 
     using Xamarin.Forms;
 
@@ -16,16 +18,6 @@
     public class MatchOverviewViewModel : BaseViewModel
     {
         private ObservableCollection<User> _users;
-
-        public ObservableCollection<User> Users
-        {
-            get => _users;
-            set
-            {
-                _users = value;
-                OnPropertyChanged(nameof(Users));
-            }
-        }
 
         public MatchOverviewViewModel()
         {
@@ -40,13 +32,23 @@
             LoadUsers();
         }
 
-        public Command LoadUsersCommand => new Command(LoadUsers);
+        public ObservableCollection<User> Users
+        {
+            get => _users;
+            set
+            {
+                _users = value;
+                OnPropertyChanged(nameof(Users));
+            }
+        }
+
+        public Command LoadUsersCommand => new(LoadUsers);
 
         public Command PerformSearchCommand =>
             new Command<string>(
                 query => { Users = new ObservableCollection<User>(_userRepo.GetSearchResults(query)); });
 
-        public Command<User> ItemTappedCommand => new Command<User>(ItemTapped);
+        public Command<User> ItemTappedCommand => new(ItemTapped);
 
         private async void ItemTapped(User user)
         {

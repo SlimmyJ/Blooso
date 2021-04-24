@@ -12,7 +12,7 @@
     {
         public EditActivityListPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

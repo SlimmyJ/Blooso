@@ -107,33 +107,33 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="a0.jpg" />
-    <Content Include="a1.jpg" />
-    <Content Include="a10.jpg" />
-    <Content Include="a11.jpg" />
-    <Content Include="a12.jpg" />
-    <Content Include="a13.jpg" />
-    <Content Include="a14.jpg" />
-    <Content Include="a15.jpg" />
-    <Content Include="a16.jpg" />
-    <Content Include="a17.jpg" />
-    <Content Include="a18.jpg" />
-    <Content Include="a19.jpg" />
-    <Content Include="a2.jpg" />
-    <Content Include="a3.jpg" />
-    <Content Include="a4.jpg" />
-    <Content Include="a5.jpg" />
-    <Content Include="a6.jpg" />
-    <Content Include="a7.jpg" />
-    <Content Include="a8.jpg" />
-    <Content Include="a9.jpg" />
-    <Content Include="Correo.png" />
-    <Content Include="editicon.png" />
-    <Content Include="find.png" />
-    <Content Include="iconedit_white.png" />
-    <Content Include="iconedit_whitealt.png" />
-    <Content Include="iconfind_whitealt.png" />
-    <Content Include="Phone.png" />
+    <Content Include="Assets\a0.jpg" />
+    <Content Include="Assets\a1.jpg" />
+    <Content Include="Assets\a10.jpg" />
+    <Content Include="Assets\a11.jpg" />
+    <Content Include="Assets\a12.jpg" />
+    <Content Include="Assets\a13.jpg" />
+    <Content Include="Assets\a14.jpg" />
+    <Content Include="Assets\a15.jpg" />
+    <Content Include="Assets\a16.jpg" />
+    <Content Include="Assets\a17.jpg" />
+    <Content Include="Assets\a18.jpg" />
+    <Content Include="Assets\a19.jpg" />
+    <Content Include="Assets\a2.jpg" />
+    <Content Include="Assets\a3.jpg" />
+    <Content Include="Assets\a4.jpg" />
+    <Content Include="Assets\a5.jpg" />
+    <Content Include="Assets\a6.jpg" />
+    <Content Include="Assets\a7.jpg" />
+    <Content Include="Assets\a8.jpg" />
+    <Content Include="Assets\a9.jpg" />
+    <Content Include="Assets\Correo.png" />
+    <Content Include="Assets\editicon.png" />
+    <Content Include="Assets\find.png" />
+    <Content Include="Assets\iconedit_white.png" />
+    <Content Include="Assets\iconedit_whitealt.png" />
+    <Content Include="Assets\iconfind_whitealt.png" />
+    <Content Include="Assets\Phone.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
@@ -162,10 +162,10 @@
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
-    <Content Include="templogoblooso.png" />
-    <Content Include="xamarin_logo.png" />
-    <Content Include="icon_about.png" />
-    <Content Include="icon_feed.png" />
+    <Content Include="Assets\templogoblooso.png" />
+    <Content Include="Assets\xamarin_logo.png" />
+    <Content Include="Assets\icon_about.png" />
+    <Content Include="Assets\icon_feed.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

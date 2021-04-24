@@ -4,7 +4,7 @@
 
     using System.Windows.Input;
 
-    using Blooso.Repositories;
+    using Repositories;
 
     using Xamarin.Forms;
 
@@ -12,15 +12,14 @@
 
     public class EditProfileViewModel : BaseViewModel
     {
+        public EditProfileViewModel()
+        {
+            CurrentUser = _userRepo.CurrentlyLoggedInUser;
+        }
+
         public ICommand EditActivityListCommand => new Command(EditActivityList);
 
         public ICommand EditUserTagsListCommand => new Command(EditUserTagsList);
-
-        public EditProfileViewModel()
-        {
-            _userRepo = UserRepository.GetRepository();
-            CurrentUser = _userRepo.GetCurrentlyLoggedInUser();
-        }
 
         private async void EditActivityList(object obj)
         {

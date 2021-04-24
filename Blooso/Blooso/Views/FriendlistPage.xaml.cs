@@ -2,7 +2,7 @@
 {
     #region
 
-    using Blooso.ViewModels;
+    using ViewModels;
 
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
@@ -12,11 +12,9 @@
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FriendlistPage : ContentPage
     {
-        private FriendlistViewModel _friendlistViewModel;
-
         public FriendlistPage()
         {
-            _friendlistViewModel = new FriendlistViewModel();
+            var _ = new FriendlistViewModel();
             InitializeComponent();
         }
     }

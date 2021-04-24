@@ -78,7 +78,7 @@
                             Grid.Row="4"
                             Grid.Column="0"
                             Style="{StaticResource stlBoardDesc}"
-                            Text="{Binding UserDetail.UserTags.Count}" />
+                            Text="{Binding UserDetail.Activities}" />
                         <Label
                             Grid.Row="3"
                             Grid.Column="1"

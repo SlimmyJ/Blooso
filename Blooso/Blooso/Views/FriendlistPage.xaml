@@ -8,7 +8,7 @@
         <SwipeItems x:Key="SwipeItems">
             <SwipeItem
                 BackgroundColor="{StaticResource Purple}"
-                Command="{Binding OnSwipeFriendListMessage}"
+                Command="{Binding FriendListSwipeCommand}"
                 Text="Message" />
             <SwipeItem BackgroundColor="OrangeRed" Text="Delete" />
         </SwipeItems>
@@ -19,7 +19,7 @@
     </ContentPage.BindingContext>
     <CollectionView
         x:Name="UserCollectionView"
-        ItemsSource="{Binding FriendList}"
+        ItemsSource="{Binding CurrentUser.FriendList}"
         SelectionMode="Single">
         <CollectionView.ItemTemplate>
             <DataTemplate>
