@@ -40,7 +40,7 @@
 
         public bool DoesUserExist(int id, string password)
         {
-            return _userList.Any(user => user.Id == id && user.Password == password);
+            return _userList.Any(user => user.UserId == id && user.Password == password);
         }
 
         public List<Activity> GetAllActivities()
@@ -72,7 +72,7 @@
 
         public List<User> GetMatchResults()
         {
-            return _userList.Where(user => user.Id != CurrentlyLoggedInUser.Id)
+            return _userList.Where(user => user.UserId != CurrentlyLoggedInUser.UserId)
                 .Where(user => user.IsInfected == CurrentlyLoggedInUser.IsInfected)
                 .Where(
                     user => CountOverlapInActivitiesList(user.Activities.ToList()) > 4
@@ -88,7 +88,7 @@
 
         public User GetUser(int id)
         {
-            return _userList.FirstOrDefault(x => x.Id == id);
+            return _userList.FirstOrDefault(x => x.UserId == id);
         }
 
         public void SetCurrentlyLoggedInUser(int id)
@@ -111,7 +111,7 @@
 
             foreach (Activity item in list)
             {
-                result.Add(item.Id);
+                result.Add(item.ActivityId);
             }
 
             return result;
@@ -123,7 +123,7 @@
 
             foreach (Tag item in list)
             {
-                result.Add(item.Id);
+                result.Add(item.TagId);
             }
 
             return result;

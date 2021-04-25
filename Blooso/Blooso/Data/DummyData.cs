@@ -25,7 +25,7 @@ namespace Blooso.Data
         {
             var generatedUserList = new List<User>();
             userFaker
-                .RuleFor(x => x.Id, x => x.IndexGlobal)
+                .RuleFor(x => x.UserId, x => x.IndexGlobal)
                 .RuleFor(x => x.Name, x => x.Person.FullName)
                 .RuleFor(x => x.Sex, x => x.PickRandom("Male", "Female", "Gender Fluid"))
                 .RuleFor(x => x.IsVaccinated, x => x.Random.Bool())
@@ -117,7 +117,7 @@ namespace Blooso.Data
             for (var i = 0; i < 20; i++)
             {
                 User fakedUser = userFaker.Generate();
-                fakedUser.Id = i + 1;
+                fakedUser.UserId = i + 1;
                 fakedUser.UserPicture = $"a{i}.jpg";
                 fakedUser.Activities = GetRandomActivities(10);
                 fakedUser.Tags = GenerateRandomUserTags(12);

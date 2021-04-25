@@ -47,7 +47,7 @@
 
         private async void ItemTapped(User user)
         {
-            await Shell.Current.GoToAsync($"{nameof(MatchDetailPage)}?{nameof(MatchDetailViewModel.UserId)}={user.Id}");
+            await Shell.Current.GoToAsync($"{nameof(MatchDetailPage)}?{nameof(MatchDetailViewModel.UserId)}={user.UserId}");
         }
 
         public void LoadUsers()

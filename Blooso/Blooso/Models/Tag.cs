@@ -10,18 +10,20 @@ namespace Blooso.Models
 
     public class Tag : ObservableObject
     {
-        public Tag(int id, string name)
+        public Tag(int tagId, string tagName)
         {
-            Id = id;
-            Name = name;
+            TagId = tagId;
+            TagName = tagName;
         }
 
-        public int Id { get; set; }
+        public int TagId { get; set; }
 
         public int TagUserId { get; set; }
 
-        public string Name { get; set; }
+        public string TagName { get; set; }
 
-        [ForeignKey("TagUserId")] public virtual ICollection<User> TagUsers { get; set; }
+        public User TagUser { get; set; }
+
+        [NotMapped] public virtual ICollection<User> TagUsers { get; set; }
     }
 }

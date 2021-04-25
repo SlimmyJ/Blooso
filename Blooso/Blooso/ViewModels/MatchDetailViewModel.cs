@@ -96,7 +96,7 @@ namespace Blooso.ViewModels
         private async void AddUserToFavourites()
         {
             User loggedInUser = userRepo.GetCurrentlyLoggedInUser();
-            if (loggedInUser.Id != UserDetail.Id)
+            if (loggedInUser.UserId != UserDetail.UserId)
             {
                 loggedInUser.FriendList.Add(UserDetail);
             }

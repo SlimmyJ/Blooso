@@ -9,16 +9,18 @@ namespace Blooso.Models
     {
         public Activity(int id, string name)
         {
-            Id = id;
+            ActivityId = id;
             Name = name;
         }
 
-        public int Id { get; set; }
+        public int ActivityId { get; set; }
 
         public string Name { get; set; }
 
-        public int ActivityUserId { get; set; }
+        [ForeignKey("UserId")] public int ActivityUserId { get; set; }
 
-        public virtual ICollection<User> ActivityUsers { get; set; }
+        public User ActivityUser { get; set; }
+
+        [NotMapped] public virtual ICollection<User> ActivityUsers { get; set; }
     }
 }

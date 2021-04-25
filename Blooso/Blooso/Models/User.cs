@@ -1,12 +1,15 @@
-﻿using System.Collections.ObjectModel;
+﻿#region
+
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+
+#endregion
 
 namespace Blooso.Models
 {
     #region
-
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
 
     #endregion
 
@@ -39,7 +42,7 @@ namespace Blooso.Models
             }
         }
 
-        public int Id { get; set; }
+        public int UserId { get; set; }
 
         public bool IsInfected { get; set; }
 
