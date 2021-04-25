@@ -1,7 +1,7 @@
-﻿using Blooso.Repositories;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Blooso.Repositories;
 using Xamarin.Forms;
 
 namespace Blooso.ViewModels
@@ -47,7 +47,9 @@ namespace Blooso.ViewModels
 
         private void AddToTagsList(Tags tag)
         {
-            if (UserTags.Contains(tag)) Application.Current.MainPage.DisplayAlert("Glitch in the matrix", "You can only have one of each as your favorite tag", "OK");
+            if (UserTags.Contains(tag))
+                Application.Current.MainPage.DisplayAlert("Glitch in the matrix",
+                    "You can only have one of each as your favorite tag", "OK");
             UserTags.Add(tag);
         }
 

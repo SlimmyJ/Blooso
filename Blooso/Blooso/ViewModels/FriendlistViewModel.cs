@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
-using Blooso.Interfaces;
 using Blooso.Models;
 using Blooso.Repositories;
 using Blooso.Views;
@@ -27,6 +25,7 @@ namespace Blooso.ViewModels
         public Command<User> ItemTappedCommand => new Command<User>(ItemTapped);
 
         public Command<User> FriendListSwipeCommand => new Command<User>(SendMessageToUser);
+        public Command<User> DeleteFriendCommand => new Command<User>(DeleteFriend);
 
         private async void SendMessageToUser(User user)
         {
@@ -37,11 +36,17 @@ namespace Blooso.ViewModels
         {
             _userRepo = UserRepository.GetRepository();
             FriendList = _userRepo.GetCurrentlyLoggedInUser().FriendList;
+            CurrentUser = _userRepo.GetCurrentlyLoggedInUser();
         }
 
         private async void ItemTapped(User user)
         {
             await Shell.Current.GoToAsync($"{nameof(MatchDetailPage)}?{nameof(MatchDetailViewModel.UserId)}={user.Id}");
+        }
+
+        private void DeleteFriend(User user)
+        {
+            CurrentUser.FriendList.Remove(user);
         }
 
         public void LoadUsers()
@@ -51,13 +56,8 @@ namespace Blooso.ViewModels
             try
             {
                 var currentUser = _userRepo.GetCurrentlyLoggedInUser();
-                if (currentUser.FriendList != null)
-                {
-                    foreach (var temp in currentUser.FriendList)
-                    {
-                        FriendList.Add(temp);
-                    }
-                }
+                if (currentUser.FriendList == null) return;
+                foreach (var temp in currentUser.FriendList) FriendList.Add(temp);
             }
             catch (Exception e)
             {

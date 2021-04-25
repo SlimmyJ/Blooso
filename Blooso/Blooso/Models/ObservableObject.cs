@@ -8,11 +8,9 @@ namespace Blooso.Models
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
-            if (this.PropertyChanged != null)
-            {
-                var e = new PropertyChangedEventArgs(propertyName);
-                this.PropertyChanged(this, e);
-            }
+            if (this.PropertyChanged == null) return;
+            var e = new PropertyChangedEventArgs(propertyName);
+            this.PropertyChanged(this, e);
         }
     }
 }

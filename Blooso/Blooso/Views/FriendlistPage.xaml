@@ -6,7 +6,8 @@
     <ContentPage.Resources>
         <SwipeItems x:Key="SwipeLeftItems">
             <SwipeItem BackgroundColor="OrangeRed"
-                       Text="Delete" />
+                       Text="Delete"
+                       Command="{Binding DeleteFriendCommand}" />
         </SwipeItems>
         <SwipeItems x:Key="SwipeRightItems">
             <SwipeItem BackgroundColor="{StaticResource Purple}"
@@ -41,7 +42,7 @@
                                    HorizontalOptions="Start"
                                    VerticalOptions="Center"
                                    Grid.Column="1"
-                                   TextColor="#a5a2a2"/>
+                                   TextColor="#a5a2a2" />
                         </Grid>
                     </SwipeView>
                     <StackLayout.GestureRecognizers>

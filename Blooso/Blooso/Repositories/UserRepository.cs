@@ -54,11 +54,7 @@ namespace Blooso.Repositories
 
         public bool DoesUserExist(int id, string password)
         {
-            foreach (var user in _userlist)
-                if (user.Id == id && user.Password == password)
-                    return true;
-
-            return false;
+            return _userlist.Any(user => user.Id == id && user.Password == password);
         }
 
         public static UserRepository GetRepository()
