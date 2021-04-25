@@ -17,13 +17,17 @@ namespace Blooso.Models
             TagName = tagName;
         }
 
-        [Key] public int TagId { get; set; }
+        public Tag()
+        {
+        }
 
-        [ForeignKey("UserId")] private int TagUserId { get; set; }
+        public int TagId { get; set; }
+
+        private int TagUserId { get; set; }
 
         public string TagName { get; set; }
 
-        [Key] public User TagUser { get; set; }
+        public User TagUser { get; set; }
 
         [NotMapped] public virtual ICollection<User> TagUsers { get; set; }
     }

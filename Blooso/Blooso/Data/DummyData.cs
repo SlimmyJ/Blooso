@@ -45,8 +45,8 @@ namespace Blooso.Data
         public List<Activity> GenerateActivities() =>
             new()
             {
-                new Activity(1, "Running"),
-                new Activity(2, "Walking"),
+                new Activity(1, "Running", 1),
+                new Activity(2, "Walking", 2),
                 new Activity(3, "Tennis"),
                 new Activity(4, "Golf"),
                 new Activity(5, "Padel"),
@@ -126,24 +126,5 @@ namespace Blooso.Data
                 dummyList.Add(fakedUser);
             }
         }
-
-        // SEED METHODS
-
-        #region Seed Methods
-
-        private List<Activity> ReturnSeedActivityList(ModelBuilder modelBuilder) => GenerateActivities();
-
-        private List<Tag> ReturnSeedTagList(ModelBuilder modelBuilder) => GenerateTags();
-
-        private List<User> ReturnSeedUserList(ModelBuilder modelBuilder) => GenerateUserList();
-
-        private async void ReturnSeedDatabaseAsync(ModelBuilder modelBuilder)
-        {
-            ReturnSeedUserList(modelBuilder);
-            ReturnSeedTagList(modelBuilder);
-            ReturnSeedActivityList(modelBuilder);
-        }
-
-        #endregion
     }
 }

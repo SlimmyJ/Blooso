@@ -2,6 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
+using Microsoft.EntityFrameworkCore.Sqlite.Scaffolding.Internal;
+using Microsoft.EntityFrameworkCore.Storage.Internal;
+
 namespace Blooso.Data
 {
     #region
@@ -16,6 +19,8 @@ namespace Blooso.Data
 
     public sealed class BloosoContext : DbContext
     {
+        public SqliteCodeGenerator test;
+
         public BloosoContext()
         {
             Database.EnsureCreated();
@@ -35,30 +40,52 @@ namespace Blooso.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Activity>().HasData(FakerBro.GenerateActivities());
-            modelBuilder.Entity<Tag>().HasData(FakerBro.GenerateTags());
-            modelBuilder.Entity<User>().HasData(FakerBro.GenerateUserList());
-            MapSqlMethod(modelBuilder);
-        }
-
-        private static void MapSqlMethod(ModelBuilder modelBuilder)
-        {
+            modelBuilder.Entity<User>(x => x.Property(user => user.UserId).IsRequired());
+            modelBuilder.Entity<User>(x => x.HasMany<Activity>(x => x.Activities).WithOne(x => x.ActivityUser));
+            modelBuilder.Entity<User>(x => x.HasMany<Tag>(x => x.Tags).WithOne(x => x.TagUser));
             modelBuilder.Entity<User>().HasMany(x => x.Activities);
             modelBuilder.Entity<User>().HasMany(x => x.UserFeedMessages);
             modelBuilder.Entity<User>().HasMany(x => x.FriendList);
             modelBuilder.Entity<User>().HasMany(x => x.Tags);
 
-            modelBuilder.Entity<Tag>().HasOne(x => x.TagUser);
+            modelBuilder.Entity<Activity>().HasMany(x => x.ActivityUsers);
             modelBuilder.Entity<Activity>().HasOne(x => x.ActivityUser);
+            modelBuilder.Entity<Activity>().HasKey(x => x.ActivityId);
+            modelBuilder.Entity<Activity>().HasIndex(x => x.ActivityId);
+            ;
+
             modelBuilder.Entity<Message>().HasOne(x => x.Author);
             modelBuilder.Entity<Message>().HasOne(x => x.Recipient);
+
+            modelBuilder.Entity<Activity>().HasData(FakerBro.GenerateActivities());
+            modelBuilder.Entity<Tag>().HasData(FakerBro.GenerateTags());
+            modelBuilder.Entity<User>().HasData(FakerBro.GenerateUserList());
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Blooso28.sqlite");
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Blooso37.sqlite");
             optionsBuilder.UseSqlite($"FileName = {dbPath}");
             optionsBuilder.EnableSensitiveDataLogging(true);
         }
+
+        // SEED METHODS
+
+        #region Seed Methods
+
+        private List<Activity> ReturnSeedActivityList(ModelBuilder modelBuilder) => FakerBro.GenerateActivities();
+
+        private List<Tag> ReturnSeedTagList(ModelBuilder modelBuilder) => FakerBro.GenerateTags();
+
+        private List<User> ReturnSeedUserList(ModelBuilder modelBuilder) => FakerBro.GenerateUserList();
+
+        private async void ReturnSeedDatabaseAsync(ModelBuilder modelBuilder)
+        {
+            ReturnSeedUserList(modelBuilder);
+            ReturnSeedTagList(modelBuilder);
+            ReturnSeedActivityList(modelBuilder);
+        }
+
+        #endregion
     }
 }

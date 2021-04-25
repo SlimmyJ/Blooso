@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 #endregion
@@ -43,7 +44,7 @@ namespace Blooso.Models
             }
         }
 
-        [Key] public int UserId { get; set; }
+        public int UserId { get; set; }
 
         public bool IsInfected { get; set; }
 
