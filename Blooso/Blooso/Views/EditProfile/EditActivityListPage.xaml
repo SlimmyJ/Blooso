@@ -8,11 +8,20 @@
         <viewModels:EditActivityListViewModel />
     </ContentPage.BindingContext>
     <StackLayout>
+<<<<<<< HEAD
         <StackLayout Padding="10,20" BackgroundColor="#ededed">
             <Label FontAttributes="None" Text="Let us match you up with people that like the same activities. Add more to your profile to make better connections." />
+=======
+        <StackLayout BackgroundColor="#ededed"
+                     Padding="10,20">
+            <Label Text="Let us match you up with people that like the same activities. Add more to your profile to make better connections."
+                   FontAttributes="None"
+                   TextColor="#a5a2a2"/>
+>>>>>>> origin/master
         </StackLayout>
         <!--  Users chosen activities  -->
         <StackLayout Margin="0,40,0,0">
+<<<<<<< HEAD
             <Label
                 Padding="20,5"
                 BackgroundColor="#ededed"
@@ -31,6 +40,26 @@
                             BorderColor="LightSlateGray"
                             CornerRadius="25">
                             <Label FontSize="12" Text="{Binding}">
+=======
+            <Label Text="Your favorite activities"
+                   HorizontalOptions="Center"
+                   Padding="20,5"
+                   FontAttributes="Italic"
+                   BackgroundColor="#ededed"
+                   TextColor="#a5a2a2"/>
+            <FlexLayout BindableLayout.ItemsSource="{Binding UserActivities}"
+                        Wrap="Wrap"
+                        JustifyContent="SpaceEvenly"
+                        Padding="10">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="LightSlateGray"
+                               CornerRadius="25"
+                               Padding="10">
+                            <Label Text="{Binding}"
+                                   FontSize="12"
+                                   TextColor="#a5a2a2">
+>>>>>>> origin/master
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EditActivityListViewModel}}, Path=DeleteActivityFromListCommand}"
@@ -43,6 +72,7 @@
                 </BindableLayout.ItemTemplate>
             </FlexLayout>
         </StackLayout>
+<<<<<<< HEAD
         <!--  All activities  -->
         <StackLayout Margin="0,0,0,80" VerticalOptions="EndAndExpand">
             <Label
@@ -63,6 +93,30 @@
                             BorderColor="LightSlateGray"
                             CornerRadius="25">
                             <Label FontSize="12" Text="{Binding}">
+=======
+
+        <!--All activities-->
+        <StackLayout VerticalOptions="EndAndExpand"
+                     Margin="0,0,0,80">
+            <Label Text="All activities"
+                   HorizontalOptions="Center"
+                   Padding="20,5"
+                   FontAttributes="Italic"
+                   BackgroundColor="#ededed"
+                   TextColor="#a5a2a2"/>
+            <FlexLayout BindableLayout.ItemsSource="{Binding Activities}"
+                        Wrap="Wrap"
+                        JustifyContent="SpaceEvenly"
+                        Padding="10">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="LightSlateGray"
+                               CornerRadius="25"
+                               Padding="10">
+                            <Label Text="{Binding}"
+                                   FontSize="12"
+                                   TextColor="#a5a2a2">
+>>>>>>> origin/master
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EditActivityListViewModel}}, Path=AddToActivityListCommand}"

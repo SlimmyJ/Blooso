@@ -15,6 +15,12 @@
 
     public class MainMenuViewModel : BaseViewModel
     {
+        public ICommand LogUserOutCommand => new Command(LogUserOut);
+
+        public ICommand GetMatchesCommand => new Command(GetMatches);
+
+        public ICommand EditProfileCommand => new Command(EditProfile);
+
         public MainMenuViewModel()
         {
             _userRepo = UserRepository.GetRepository();

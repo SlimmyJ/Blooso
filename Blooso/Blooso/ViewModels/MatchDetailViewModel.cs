@@ -57,6 +57,16 @@ namespace Blooso.ViewModels
             }
         }
 
+        private int _userId;
+
+        public MatchDetailViewModel()
+        {
+            UserDetail = new User();
+            UserFeed = new ObservableCollection<Message>();
+            _userRepo = UserRepository.GetRepository();
+            CurrentUser = _userRepo.GetCurrentlyLoggedInUser();
+        }
+
         public Command ActivityTappedAccount => new(ActivityTapped);
 
         public int UserId
@@ -79,7 +89,7 @@ namespace Blooso.ViewModels
             {
                 Recipient = UserDetail,
                 Text = UserInput,
-                Author = userRepo.GetCurrentlyLoggedInUser(),
+                Author = _userRepo.GetCurrentlyLoggedInUser(),
                 IsPositiveReview = true,
                 CreatedAt = DateTime.Now
             };
@@ -106,8 +116,8 @@ namespace Blooso.ViewModels
 
         private void LoadUser(int value)
         {
-            UserDetail = userRepo.GetUser(value);
-            UserFeed = new ObservableCollection<Message>(UserDetail.UserFeedMessages);
+            UserDetail = _userRepo.GetUser(value);
+            UserFeed = UserDetail.UserFeedMessages;
         }
     }
 }

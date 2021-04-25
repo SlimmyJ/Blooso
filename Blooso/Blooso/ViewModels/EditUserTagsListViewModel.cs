@@ -67,6 +67,11 @@
             UserTags = new ObservableCollection<Tag>(tags);
         }
 
+        private void AddToTagsList(Tags tag)
+        {
+            if (UserTags.Contains(tag))
+                Application.Current.MainPage.DisplayAlert("Glitch in the matrix",
+                    "You can only have one of each as your favorite tag", "OK");
         private void AddToTagsList(Tag tag)
         {
             if (UserTags.Contains(tag))

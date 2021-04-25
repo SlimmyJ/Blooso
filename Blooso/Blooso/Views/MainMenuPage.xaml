@@ -9,6 +9,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Command="{Binding LogUserOutCommand}" Text="Logout" />
     </ContentPage.ToolbarItems>
+    <RefreshView>
     <FlexLayout Direction="Column">
         <FlexLayout
             AlignContent="Center"
@@ -43,6 +44,7 @@
                         Text="{Binding CurrentUser.Activities}"
                         TextColor="Black" />
                 </StackLayout>
+<<<<<<< HEAD
                 <Frame
                     Grid.Row="0"
                     Grid.Column="1"
@@ -55,6 +57,18 @@
                         HorizontalOptions="Center"
                         Source="{Binding CurrentUser.UserPicture}"
                         VerticalOptions="Center" />
+=======
+                <Frame Grid.Column="1"
+                       Grid.Row="0"
+                       Padding="0"
+                       CornerRadius="60"
+                       HorizontalOptions="End"
+                       IsClippedToBounds="True"
+                       WidthRequest="90">
+                    <Image HorizontalOptions="Center"
+                           Source="{Binding CurrentUser.UserPicture}"
+                           VerticalOptions="Center" />
+>>>>>>> origin/master
                 </Frame>
                 <!--#region Buttons-->
                 <NeoButton
@@ -136,4 +150,5 @@
             </Grid>
         </FlexLayout>
     </FlexLayout>
+    </RefreshView>
 </ContentPage>
