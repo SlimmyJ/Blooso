@@ -1,4 +1,6 @@
-﻿namespace Blooso.ViewModels
+﻿using Blooso.Data.Repositories;
+
+namespace Blooso.ViewModels
 {
     #region
 
@@ -8,8 +10,6 @@
     using System.Linq;
 
     using Models;
-
-    using Repositories;
 
     using Xamarin.Forms;
 
@@ -33,7 +33,7 @@
 
         public Command<Tag> AddToTagsListCommand => new(tag => AddToTagsList(tag));
 
-        public Command<Tag> DeleteTagFromListCommand => new(tag => DeleteTagFromList(tag));
+        public Command<Tag> DeleteTagFromListCommand => new(tag => AddToTagsList(tag));
 
         public ObservableCollection<Tag> Tags
         {
@@ -67,11 +67,6 @@
             UserTags = new ObservableCollection<Tag>(tags);
         }
 
-        private void AddToTagsList(Tags tag)
-        {
-            if (UserTags.Contains(tag))
-                Application.Current.MainPage.DisplayAlert("Glitch in the matrix",
-                    "You can only have one of each as your favorite tag", "OK");
         private void AddToTagsList(Tag tag)
         {
             if (UserTags.Contains(tag))
@@ -82,18 +77,29 @@
                     "OK");
             }
 
-            UserTags.Add(tag);
-        }
+            void ThisAddToTagsList(Tag thisTag)
+            {
+                if (UserTags.Contains(thisTag))
+                {
+                    Application.Current.MainPage.DisplayAlert(
+                        "Glitch in the matrix",
+                        "You can only have one of each as your favorite tag",
+                        "OK");
+                }
 
-        private void DeleteTagFromList(Tag tag)
-        {
-            if (UserTags.Count != 1)
-            {
-                UserTags.Remove(tag);
+                UserTags.Add(thisTag);
             }
-            else
+
+            void ThisDeleteTagFromList(Tag todeleteTag)
             {
-                Application.Current.MainPage.DisplayAlert("Hold up!", "You need at least one tag", "OK");
+                if (UserTags.Count != 1)
+                {
+                    UserTags.Remove(todeleteTag);
+                }
+                else
+                {
+                    Application.Current.MainPage.DisplayAlert("Hold up!", "You need at least one tag", "OK");
+                }
             }
         }
     }

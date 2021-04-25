@@ -8,26 +8,21 @@
         <viewModels:EditUserTagsListViewModel />
     </ContentPage.BindingContext>
     <StackLayout>
-<<<<<<< HEAD
         <StackLayout Padding="10,20" BackgroundColor="#ededed">
-            <Label FontAttributes="None" Text="Tags let us match you up with people that have the same interests. Add more to your profile to make better connections." />
-=======
-        <StackLayout BackgroundColor="#ededed"
-                     Padding="10,20">
-            <Label Text="Tags let us match you up with people that have the same interests. Add more to your profile to make better connections."
-                   FontAttributes="None"
-                   TextColor="#a5a2a2"/>
->>>>>>> origin/master
+            <Label
+                FontAttributes="None"
+                Text="Tags let us match you up with people that have the same interests. Add more to your profile to make better connections."
+                TextColor="#a5a2a2" />
         </StackLayout>
         <!--  Users chosen tags  -->
         <StackLayout Margin="0,40,0,0">
-<<<<<<< HEAD
             <Label
                 Padding="20,5"
                 BackgroundColor="#ededed"
                 FontAttributes="Italic"
                 HorizontalOptions="Center"
-                Text="Your favorite tags" />
+                Text="Your favorite tags"
+                TextColor="#a5a2a2" />
             <FlexLayout
                 Padding="10"
                 BindableLayout.ItemsSource="{Binding UserTags}"
@@ -39,27 +34,10 @@
                             Padding="10"
                             BorderColor="LightSlateGray"
                             CornerRadius="25">
-                            <Label FontSize="12" Text="{Binding}">
-=======
-            <Label Text="Your favorite tags"
-                   HorizontalOptions="Center"
-                   Padding="20,5"
-                   FontAttributes="Italic"
-                   BackgroundColor="#ededed"
-                   TextColor="#a5a2a2"/>
-            <FlexLayout BindableLayout.ItemsSource="{Binding UserTags}"
-                        Wrap="Wrap"
-                        JustifyContent="SpaceEvenly"
-                        Padding="10">
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate>
-                        <Frame BorderColor="LightSlateGray"
-                               CornerRadius="25"
-                               Padding="10">
-                            <Label Text="{Binding}"
-                                   FontSize="12"
-                                   TextColor="#a5a2a2">
->>>>>>> origin/master
+                            <Label
+                                FontSize="12"
+                                Text="{Binding}"
+                                TextColor="#a5a2a2">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EditUserTagsListViewModel}}, Path=DeleteTagFromListCommand}"
@@ -72,7 +50,6 @@
                 </BindableLayout.ItemTemplate>
             </FlexLayout>
         </StackLayout>
-<<<<<<< HEAD
         <!--  All tags  -->
         <StackLayout Margin="0,0,0,80" VerticalOptions="EndAndExpand">
             <Label
@@ -80,7 +57,8 @@
                 BackgroundColor="#ededed"
                 FontAttributes="Italic"
                 HorizontalOptions="Center"
-                Text="All tags" />
+                Text="All tags"
+                TextColor="#a5a2a2" />
             <FlexLayout
                 Padding="10"
                 BindableLayout.ItemsSource="{Binding Tags}"
@@ -92,31 +70,10 @@
                             Padding="10"
                             BorderColor="LightSlateGray"
                             CornerRadius="25">
-                            <Label FontSize="12" Text="{Binding}">
-=======
-
-        <!--All tags-->
-        <StackLayout VerticalOptions="EndAndExpand"
-                     Margin="0,0,0,80">
-            <Label Text="All tags"
-                   HorizontalOptions="Center"
-                   Padding="20,5"
-                   FontAttributes="Italic"
-                   BackgroundColor="#ededed"
-                   TextColor="#a5a2a2"/>
-            <FlexLayout BindableLayout.ItemsSource="{Binding Tags}"
-                        Wrap="Wrap"
-                        JustifyContent="SpaceEvenly"
-                        Padding="10">
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate>
-                        <Frame BorderColor="LightSlateGray"
-                               CornerRadius="25"
-                               Padding="10">
-                            <Label Text="{Binding}"
-                                   FontSize="12"
-                                   TextColor="#a5a2a2">
->>>>>>> origin/master
+                            <Label
+                                FontSize="12"
+                                Text="{Binding}"
+                                TextColor="#a5a2a2">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EditUserTagsListViewModel}}, Path=AddToTagsListCommand}"

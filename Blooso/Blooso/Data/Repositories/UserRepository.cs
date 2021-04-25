@@ -1,19 +1,107 @@
-﻿namespace Blooso.Repositories
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+using Blooso.Models;
+
+using Microsoft.EntityFrameworkCore;
+
+namespace Blooso.Data.Repositories
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using Data;
-    using Interfaces;
-    using Models;
-    using Microsoft.EntityFrameworkCore;
+    //using System.Collections.Generic;
+    //using System.Linq;
+    //using Blooso.Data;
+    //using Blooso.Interfaces;
+    //using Blooso.Models;
+
+    //namespace Blooso.Repositories
+    //{
+    //    public class UserRepository : IUserRepository
+    //    {
+    //        private static UserRepository _userRepository;
+    //        private readonly DummyData _dummyData;
+
+    //        private readonly List<User> _userlist;
+
+    //        public UserRepository()
+    //        {
+    //            _dummyData = new DummyData();
+    //            _userlist = FillListWithBogusData();
+    //        }
+
+    //        public User CurrentlyLoggedInUser { get; set; }
+
+    //        public User GetCurrentlyLoggedInUser()
+    //        {
+    //            return CurrentlyLoggedInUser;
+    //        }
+
+    //        public void SetCurrentlyLoggedInUser(int id)
+    //        {
+    //            CurrentlyLoggedInUser = id == 0 ? new User() : GetUser(id);
+    //        }
+
+    //        public User GetUser(int id)
+    //        {
+    //            return _userlist.FirstOrDefault(x => x.Id == id);
+    //        }
+
+    //        public List<User> GetSearchResults(string queryString)
+    //        {
+    //            var normalizedQuery = queryString?.ToLower() ?? "";
+    //            return GetMatchResults().Where(f => f.ToString().ToLowerInvariant().Contains(normalizedQuery)).ToList();
+    //        }
+
+    //        public List<User> GetMatchResults()
+    //        {
+    //            return _userlist
+    //                .Where(user => user.Id != CurrentlyLoggedInUser.Id)
+    //                .Where(user => user.IsInfected == CurrentlyLoggedInUser.IsInfected)
+    //                .Where(user =>
+    //                    CountOverlapInActivitiesList(user.ActivityList) > 4 && CountOverlapInTagsList(user.UserTags) > 4)
+    //                .ToList();
+    //        }
+
+    //        public bool DoesUserExist(int id, string password)
+    //        {
+    //            return _userlist.Any(user => user.Id == id && user.Password == password);
+    //        }
+
+    //        public static UserRepository GetRepository()
+    //        {
+    //            return _userRepository ?? (_userRepository = new UserRepository());
+    //        }
+
+    //        public int CountOverlapInTagsList(List<Tags> list)
+    //        {
+    //            var overlap = list.Intersect(CurrentlyLoggedInUser.UserTags);
+    //            var result = overlap.Count();
+    //            return result;
+    //        }
+
+    //        public int CountOverlapInActivitiesList(List<Activities> list)
+    //        {
+    //            var overlap = list.Intersect(CurrentlyLoggedInUser.ActivityList);
+    //            var result = overlap.Count();
+    //            return result;
+    //        }
+
+    //        private List<User> FillListWithBogusData()
+    //        {
+    //            return _dummyData.GenerateDummyData();
+    //        }
+    //    }
+    //}
 
     public class UserRepository : IUserRepository
     {
         private readonly List<User> _userList;
 
-        internal UserRepository() => _userList = GetAllUsers();
+        public UserRepository()
+        {
+            PullUserListFromDataBase();
+            _userList = GetAllUsers();
+        }
 
         private static UserRepository _userRepository { get; set; } = new();
 
@@ -101,6 +189,17 @@
             await using var dbContext = new BloosoContext();
             dbContext.Update(user);
             await dbContext.SaveChangesAsync();
+        }
+
+        private async void PullUserListFromDataBase()
+        {
+            await using var dbContext = new BloosoContext();
+            if (!dbContext.Users.Any())
+            {
+                List<User> users = GetAllUsers();
+                await dbContext.Users.AddRangeAsync(users);
+                await dbContext.SaveChangesAsync();
+            }
         }
 
         public static UserRepository GetRepository() => _userRepository ??= _userRepository;

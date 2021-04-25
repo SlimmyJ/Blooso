@@ -2,7 +2,7 @@
     x:Class="Blooso.Views.LoginPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:Blooso.Controls;assembly=Blooso"
+    xmlns:controls="clr-namespace:Blooso.Views.Controls;assembly=Blooso"
     xmlns:vm="clr-namespace:Blooso.ViewModels">
     <ContentPage.BindingContext>
         <vm:LoginViewModel />

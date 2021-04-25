@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 
+using Blooso.Data.Repositories;
+
 namespace Blooso.ViewModels
 {
     #region
@@ -7,11 +9,7 @@ namespace Blooso.ViewModels
     using System;
     using System.Collections.ObjectModel;
 
-    using Interfaces;
-
     using Models;
-
-    using Repositories;
 
     using Xamarin.Forms;
 
@@ -32,7 +30,8 @@ namespace Blooso.ViewModels
         {
             UserDetail = new User();
             UserFeed = new ObservableCollection<Message>();
-            userRepo = UserRepository.GetRepository();
+            _userRepo = UserRepository.GetRepository();
+            CurrentUser = _userRepo.GetCurrentlyLoggedInUser();
         }
 
         public User UserDetail
@@ -55,16 +54,6 @@ namespace Blooso.ViewModels
                 _userFeed = value;
                 OnPropertyChanged(nameof(UserFeed));
             }
-        }
-
-        private int _userId;
-
-        public MatchDetailViewModel()
-        {
-            UserDetail = new User();
-            UserFeed = new ObservableCollection<Message>();
-            _userRepo = UserRepository.GetRepository();
-            CurrentUser = _userRepo.GetCurrentlyLoggedInUser();
         }
 
         public Command ActivityTappedAccount => new(ActivityTapped);

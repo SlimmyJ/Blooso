@@ -1,4 +1,6 @@
-﻿namespace Blooso.ViewModels
+﻿using Blooso.Data.Repositories;
+
+namespace Blooso.ViewModels
 {
     #region
 
@@ -6,8 +8,6 @@
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
-
-    using Interfaces;
 
     using Models;
 

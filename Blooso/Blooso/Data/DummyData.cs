@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-using Blooso.Interfaces;
+using Blooso.Data.Repositories;
 
 namespace Blooso.Data
 {
@@ -18,6 +18,9 @@ namespace Blooso.Data
     public class DummyData : IDummyData
     {
         private readonly Faker<User> userFaker;
+        private IUserRepository userRepository;
+
+        private ReadOnlyCollection<User> GeneratedUsersList;
 
         public DummyData() => userFaker = new Faker<User>();
 
@@ -26,6 +29,7 @@ namespace Blooso.Data
             var generatedUserList = new List<User>();
             userFaker
                 .RuleFor(x => x.UserId, x => x.IndexGlobal)
+                .RuleFor(x => x.Password, x => "log")
                 .RuleFor(x => x.Name, x => x.Person.FullName)
                 .RuleFor(x => x.Sex, x => x.PickRandom("Male", "Female", "Gender Fluid"))
                 .RuleFor(x => x.IsVaccinated, x => x.Random.Bool())
@@ -37,7 +41,16 @@ namespace Blooso.Data
                 .RuleFor(x => x.FriendList, new List<User>())
                 .RuleFor(x => x.UserFeedMessages, new List<Message>());
 
-            AddFakeDataToUsersInList(generatedUserList);
+            for (var i = 0; i < 20; i++)
+            {
+                User fakedUser = userFaker.Generate();
+                fakedUser.UserPicture = $"a{i}.jpg";
+                fakedUser.Activities = GetRandomActivities(10);
+                fakedUser.Tags = GenerateRandomUserTags(12);
+                fakedUser.ShortBio = string.Empty;
+                fakedUser.Password = "log";
+                generatedUserList.Add(fakedUser);
+            }
 
             return generatedUserList;
         }
@@ -114,17 +127,6 @@ namespace Blooso.Data
 
         private void AddFakeDataToUsersInList(List<User> dummyList)
         {
-            for (var i = 0; i < 20; i++)
-            {
-                User fakedUser = userFaker.Generate();
-                fakedUser.UserId = i + 1;
-                fakedUser.UserPicture = $"a{i}.jpg";
-                fakedUser.Activities = GetRandomActivities(10);
-                fakedUser.Tags = GenerateRandomUserTags(12);
-                fakedUser.ShortBio = string.Empty;
-                fakedUser.Password = "log";
-                dummyList.Add(fakedUser);
-            }
         }
     }
 }

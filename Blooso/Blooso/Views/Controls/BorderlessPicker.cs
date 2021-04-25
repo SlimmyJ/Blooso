@@ -1,8 +1,8 @@
-﻿namespace Blooso.Controls
+﻿using Xamarin.Forms;
+
+namespace Blooso.Views.Controls
 {
     #region
-
-    using Xamarin.Forms;
 
     #endregion
 

@@ -1,4 +1,6 @@
-﻿namespace Blooso.ViewModels
+﻿using Blooso.Data.Repositories;
+
+namespace Blooso.ViewModels
 {
     #region
 
@@ -7,8 +9,6 @@
     using System.Collections.ObjectModel;
 
     using Models;
-
-    using Repositories;
 
     using Views;
 
@@ -41,26 +41,19 @@
 
         public Command<User> ItemTappedCommand => new(ItemTapped);
 
-        public Command<User> FriendListSwipeCommand => new Command<User>(SendMessageToUser);
-        public Command<User> DeleteFriendCommand => new Command<User>(DeleteFriend);
+        public Command<User> DeleteFriendCommand => new(DeleteFriend);
+
         public Command<User> FriendListSwipeCommand => new(SendMessageToUser);
 
         private async void SendMessageToUser(User user)
         {
-            await Shell.Current.GoToAsync($"{nameof(UserFeedPage)}?{nameof(UserFeedViewModel)}={user.Id}");
-        }
-
-        public FriendlistViewModel()
-        {
-            _userRepo = UserRepository.GetRepository();
-            FriendList = _userRepo.GetCurrentlyLoggedInUser().FriendList;
-            CurrentUser = _userRepo.GetCurrentlyLoggedInUser();
             await Shell.Current.GoToAsync($"{nameof(UserFeedPage)}?{nameof(UserFeedViewModel)}={user.UserId}");
         }
 
         private async void ItemTapped(User user)
         {
-            await Shell.Current.GoToAsync($"{nameof(MatchDetailPage)}?{nameof(MatchDetailViewModel.UserId)}={user.UserId}");
+            await Shell.Current.GoToAsync(
+                $"{nameof(MatchDetailPage)}?{nameof(MatchDetailViewModel.UserId)}={user.UserId}");
         }
 
         private void DeleteFriend(User user)
@@ -74,16 +67,15 @@
 
             try
             {
-                var currentUser = _userRepo.GetCurrentlyLoggedInUser();
-                if (currentUser.FriendList == null) return;
-                foreach (var temp in currentUser.FriendList) FriendList.Add(temp);
                 User currentUser = _userRepo.GetCurrentlyLoggedInUser();
-                if (currentUser.FriendList != null)
+                if (currentUser.FriendList == null)
                 {
-                    foreach (User temp in currentUser.FriendList)
-                    {
-                        FriendList.Add(temp);
-                    }
+                    return;
+                }
+
+                foreach (User temp in currentUser.FriendList)
+                {
+                    FriendList.Add(temp);
                 }
             }
             catch (Exception e)

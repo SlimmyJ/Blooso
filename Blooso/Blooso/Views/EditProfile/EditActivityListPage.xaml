@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
+﻿<ContentPage
     x:Class="Blooso.Views.EditProfile.EditActivityListPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -8,26 +7,21 @@
         <viewModels:EditActivityListViewModel />
     </ContentPage.BindingContext>
     <StackLayout>
-<<<<<<< HEAD
         <StackLayout Padding="10,20" BackgroundColor="#ededed">
-            <Label FontAttributes="None" Text="Let us match you up with people that like the same activities. Add more to your profile to make better connections." />
-=======
-        <StackLayout BackgroundColor="#ededed"
-                     Padding="10,20">
-            <Label Text="Let us match you up with people that like the same activities. Add more to your profile to make better connections."
-                   FontAttributes="None"
-                   TextColor="#a5a2a2"/>
->>>>>>> origin/master
+            <Label
+                FontAttributes="None"
+                Text="Let us match you up with people that like the same activities. Add more to your profile to make better connections."
+                TextColor="#a5a2a2" />
         </StackLayout>
         <!--  Users chosen activities  -->
         <StackLayout Margin="0,40,0,0">
-<<<<<<< HEAD
             <Label
                 Padding="20,5"
                 BackgroundColor="#ededed"
                 FontAttributes="Italic"
                 HorizontalOptions="Center"
-                Text="Your favorite activities" />
+                Text="Your favorite activities"
+                TextColor="#a5a2a2" />
             <FlexLayout
                 Padding="10"
                 BindableLayout.ItemsSource="{Binding UserActivities}"
@@ -39,27 +33,10 @@
                             Padding="10"
                             BorderColor="LightSlateGray"
                             CornerRadius="25">
-                            <Label FontSize="12" Text="{Binding}">
-=======
-            <Label Text="Your favorite activities"
-                   HorizontalOptions="Center"
-                   Padding="20,5"
-                   FontAttributes="Italic"
-                   BackgroundColor="#ededed"
-                   TextColor="#a5a2a2"/>
-            <FlexLayout BindableLayout.ItemsSource="{Binding UserActivities}"
-                        Wrap="Wrap"
-                        JustifyContent="SpaceEvenly"
-                        Padding="10">
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate>
-                        <Frame BorderColor="LightSlateGray"
-                               CornerRadius="25"
-                               Padding="10">
-                            <Label Text="{Binding}"
-                                   FontSize="12"
-                                   TextColor="#a5a2a2">
->>>>>>> origin/master
+                            <Label
+                                FontSize="12"
+                                Text="{Binding}"
+                                TextColor="#a5a2a2">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EditActivityListViewModel}}, Path=DeleteActivityFromListCommand}"
@@ -72,7 +49,6 @@
                 </BindableLayout.ItemTemplate>
             </FlexLayout>
         </StackLayout>
-<<<<<<< HEAD
         <!--  All activities  -->
         <StackLayout Margin="0,0,0,80" VerticalOptions="EndAndExpand">
             <Label
@@ -80,7 +56,8 @@
                 BackgroundColor="#ededed"
                 FontAttributes="Italic"
                 HorizontalOptions="Center"
-                Text="All activities" />
+                Text="All activities"
+                TextColor="#a5a2a2" />
             <FlexLayout
                 Padding="10"
                 BindableLayout.ItemsSource="{Binding Activities}"
@@ -92,31 +69,10 @@
                             Padding="10"
                             BorderColor="LightSlateGray"
                             CornerRadius="25">
-                            <Label FontSize="12" Text="{Binding}">
-=======
-
-        <!--All activities-->
-        <StackLayout VerticalOptions="EndAndExpand"
-                     Margin="0,0,0,80">
-            <Label Text="All activities"
-                   HorizontalOptions="Center"
-                   Padding="20,5"
-                   FontAttributes="Italic"
-                   BackgroundColor="#ededed"
-                   TextColor="#a5a2a2"/>
-            <FlexLayout BindableLayout.ItemsSource="{Binding Activities}"
-                        Wrap="Wrap"
-                        JustifyContent="SpaceEvenly"
-                        Padding="10">
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate>
-                        <Frame BorderColor="LightSlateGray"
-                               CornerRadius="25"
-                               Padding="10">
-                            <Label Text="{Binding}"
-                                   FontSize="12"
-                                   TextColor="#a5a2a2">
->>>>>>> origin/master
+                            <Label
+                                FontSize="12"
+                                Text="{Binding}"
+                                TextColor="#a5a2a2">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:EditActivityListViewModel}}, Path=AddToActivityListCommand}"

@@ -1,7 +1,7 @@
 ﻿#region
 
-using Blooso.Controls;
 using Blooso.Droid;
+using Blooso.Views.Controls;
 
 using Xamarin.Forms;
 

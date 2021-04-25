@@ -1,11 +1,12 @@
-﻿namespace Blooso.Interfaces
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Blooso.Models;
+
+namespace Blooso.Data.Repositories
 {
     #region
-
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-
-    using Models;
 
     #endregion
 

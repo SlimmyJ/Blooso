@@ -1,4 +1,6 @@
-﻿namespace Blooso.ViewModels
+﻿using Blooso.Data.Repositories;
+
+namespace Blooso.ViewModels
 {
     #region
 
@@ -6,8 +8,6 @@
     using System.Collections.ObjectModel;
 
     using Models;
-
-    using Repositories;
 
     using Views;
 
@@ -40,14 +40,14 @@
         public Command LoadUsersCommand => new(LoadUsers);
 
         public Command PerformSearchCommand =>
-            new Command<string>(
-                query => { Users = new ObservableCollection<User>(_userRepo.GetSearchResults(query)); });
+            new Command<string>(query => Users = new ObservableCollection<User>(_userRepo.GetSearchResults(query)));
 
         public Command<User> ItemTappedCommand => new(ItemTapped);
 
         private async void ItemTapped(User user)
         {
-            await Shell.Current.GoToAsync($"{nameof(MatchDetailPage)}?{nameof(MatchDetailViewModel.UserId)}={user.UserId}");
+            await Shell.Current.GoToAsync(
+                $"{nameof(MatchDetailPage)}?{nameof(MatchDetailViewModel.UserId)}={user.UserId}");
         }
 
         public void LoadUsers()

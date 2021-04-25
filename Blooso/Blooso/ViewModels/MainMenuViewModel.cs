@@ -1,10 +1,10 @@
-﻿namespace Blooso.ViewModels
+﻿using Blooso.Data.Repositories;
+
+namespace Blooso.ViewModels
 {
     #region
 
     using System.Windows.Input;
-
-    using Repositories;
 
     using Views;
     using Views.EditProfile;
@@ -15,12 +15,6 @@
 
     public class MainMenuViewModel : BaseViewModel
     {
-        public ICommand LogUserOutCommand => new Command(LogUserOut);
-
-        public ICommand GetMatchesCommand => new Command(GetMatches);
-
-        public ICommand EditProfileCommand => new Command(EditProfile);
-
         public MainMenuViewModel()
         {
             _userRepo = UserRepository.GetRepository();

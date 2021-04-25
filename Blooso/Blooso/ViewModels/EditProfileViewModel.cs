@@ -1,24 +1,20 @@
 ﻿using System.Windows.Input;
-using Blooso.Repositories;
+
 using Blooso.Views.EditProfile;
+
 using Xamarin.Forms;
 
-    #endregion
-
+namespace Blooso.ViewModels
+{
     public class EditProfileViewModel : BaseViewModel
     {
+        public EditProfileViewModel() => CurrentUser = _userRepo.CurrentlyLoggedInUser;
+
         public ICommand EditActivityListCommand => new Command(EditActivityList);
+
         public ICommand EditUserTagsListCommand => new Command(EditUserTagsList);
+
         public ICommand SaveProfileCommand => new Command(SaveProfile);
-
-        public EditProfileViewModel()
-        {
-            CurrentUser = _userRepo.CurrentlyLoggedInUser;
-        }
-
-        public ICommand EditActivityListCommand => new Command(EditActivityList);
-
-        public ICommand EditUserTagsListCommand => new Command(EditUserTagsList);
 
         private async void EditActivityList(object obj)
         {

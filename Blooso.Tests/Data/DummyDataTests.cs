@@ -1,5 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 
+using Blooso.Data.Repositories;
+
 namespace Blooso.Tests.Data
 {
     #region
@@ -7,7 +9,6 @@ namespace Blooso.Tests.Data
     using System.Collections.Generic;
     using Blooso.Data;
     using Models;
-    using Repositories;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     #endregion
