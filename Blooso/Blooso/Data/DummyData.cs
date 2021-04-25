@@ -32,8 +32,8 @@ namespace Blooso.Data
                 .RuleFor(x => x.IsInfected, x => x.Random.Bool())
                 .RuleFor(x => x.UserLocation, x => x.Person.Address.City)
                 .RuleFor(x => x.DateOfBirth, x => x.Person.DateOfBirth)
-                .RuleFor(x => x.Activities, new List<Activity>())
-                .RuleFor(x => x.Tags, new List<Tag>())
+                .RuleFor(x => x.Activities, new List<Activity>(GenerateActivities()))
+                .RuleFor(x => x.Tags, new List<Tag>(GenerateTags()))
                 .RuleFor(x => x.FriendList, new List<User>())
                 .RuleFor(x => x.UserFeedMessages, new List<Message>());
 

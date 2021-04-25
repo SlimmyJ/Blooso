@@ -1,4 +1,6 @@
-﻿namespace Blooso.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Blooso.Models
 {
     #region
 
@@ -8,6 +10,7 @@
 
     public class Message
     {
+        [Key]
         public int Id { get; set; }
 
         public DateTime CreatedAt { get; set; }

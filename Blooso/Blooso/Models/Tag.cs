@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Blooso.Models
@@ -16,13 +17,13 @@ namespace Blooso.Models
             TagName = tagName;
         }
 
-        public int TagId { get; set; }
+        [Key] public int TagId { get; set; }
 
-        public int TagUserId { get; set; }
+        [ForeignKey("UserId")] private int TagUserId { get; set; }
 
         public string TagName { get; set; }
 
-        public User TagUser { get; set; }
+        [Key] public User TagUser { get; set; }
 
         [NotMapped] public virtual ICollection<User> TagUsers { get; set; }
     }

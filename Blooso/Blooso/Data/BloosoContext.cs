@@ -35,10 +35,10 @@ namespace Blooso.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            MapSqlMethod(modelBuilder);
             modelBuilder.Entity<Activity>().HasData(FakerBro.GenerateActivities());
             modelBuilder.Entity<Tag>().HasData(FakerBro.GenerateTags());
             modelBuilder.Entity<User>().HasData(FakerBro.GenerateUserList());
+            MapSqlMethod(modelBuilder);
         }
 
         private static void MapSqlMethod(ModelBuilder modelBuilder)
@@ -56,7 +56,7 @@ namespace Blooso.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Blooso27.sqlite");
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Blooso28.sqlite");
             optionsBuilder.UseSqlite($"FileName = {dbPath}");
             optionsBuilder.EnableSensitiveDataLogging(true);
         }
