@@ -1,0 +1,57 @@
+﻿<ContentPage x:Class="Blooso.Views.FriendlistPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Blooso.ViewModels">
+    <!--#region Resources-->
+    <ContentPage.Resources>
+        <SwipeItems x:Key="SwipeLeftItems">
+            <SwipeItem BackgroundColor="OrangeRed"
+                       Text="Delete"
+                       Command="{Binding DeleteFriendCommand}" />
+        </SwipeItems>
+        <SwipeItems x:Key="SwipeRightItems">
+            <SwipeItem BackgroundColor="{StaticResource Purple}"
+                       Command="{Binding OnSwipeFriendListMessage}"
+                       Text="Message" />
+        </SwipeItems>
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <vm:FriendlistViewModel />
+    </ContentPage.BindingContext>
+    <!--#endregion-->
+    <CollectionView ItemsSource="{Binding FriendList}"
+                    SelectionMode="Single">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <StackLayout>
+                    <SwipeView RightItems="{StaticResource SwipeLeftItems}"
+                               LeftItems="{StaticResource SwipeRightItems}">
+                        <Grid BackgroundColor="{StaticResource White}"
+                              HeightRequest="100"
+                              ColumnDefinitions="*,*"
+                              Padding="20">
+                            <Frame Padding="0"
+                                   CornerRadius="60"
+                                   HorizontalOptions="End"
+                                   IsClippedToBounds="True"
+                                   WidthRequest="100">
+                                <Image Source="{Binding UserPicture}" />
+                            </Frame>
+
+                            <Label Text="{Binding Name}"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center"
+                                   Grid.Column="1"
+                                   TextColor="#a5a2a2" />
+                        </Grid>
+                    </SwipeView>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:FriendlistViewModel}}, Path=ItemTappedCommand}"
+                                              CommandParameter="{Binding .}"
+                                              NumberOfTapsRequired="1" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>

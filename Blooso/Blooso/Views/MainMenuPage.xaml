@@ -1,17 +1,131 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Class="Blooso.Views.MainMenuPage"
+﻿<ContentPage x:Class="Blooso.Views.MainMenuPage"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:Blooso.ViewModels;assembly=Blooso">
     <ContentPage.BindingContext>
         <viewModels:MainMenuViewModel />
     </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding LogUserOutCommand}"
+                     Text="Logout" />
+    </ContentPage.ToolbarItems>
     <RefreshView>
-        <StackLayout BackgroundColor="{StaticResource BaseOrange}">
-            <Button Command="{Binding LoadUsersCommand}"
-                    HorizontalOptions="Center"
-                    Text="Click me"
-                    VerticalOptions="Center" />
-        </StackLayout>
+    <FlexLayout Direction="Column">
+        <FlexLayout AlignContent="Center"
+                    Direction="Column"
+                    FlexLayout.Grow="1">
+            <Grid Padding="20"
+                  ColumnSpacing="10"
+                  HorizontalOptions="FillAndExpand"
+                  RowSpacing="5"
+                  VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25*" />
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="40*" />
+                    <RowDefinition Height="40*" />
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="15*" />
+                    <RowDefinition Height="12*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*" />
+                    <ColumnDefinition Width="50*" />
+                </Grid.ColumnDefinitions>
+                <StackLayout>
+                    <Label FontFamily="RobotoCondensedRegular"
+                           FontSize="Title"
+                           Text="Welcome back,"
+                           TextColor="Black" />
+                    <Label FontFamily="RobotoCondensedBold"
+                           FontSize="Small"
+                           Text="{Binding CurrentUser.Name}"
+                           TextColor="Black" />
+                </StackLayout>
+                <Frame Grid.Column="1"
+                       Grid.Row="0"
+                       Padding="0"
+                       CornerRadius="60"
+                       HorizontalOptions="End"
+                       IsClippedToBounds="True"
+                       WidthRequest="90">
+                    <Image HorizontalOptions="Center"
+                           Source="{Binding CurrentUser.UserPicture}"
+                           VerticalOptions="Center" />
+                </Frame>
+                <!--#region Buttons-->
+                <NeoButton Grid.Row="2"
+                           Grid.RowSpan="2"
+                           Grid.Column="0"
+                           BackgroundColor="{StaticResource White}"
+                           Command="{Binding GetMatchesCommand}"
+                           CornerRadius="20,20,20,20"
+                           Elevation=".35">
+                    <StackLayout Padding="30"
+                                 HorizontalOptions="FillAndExpand"
+                                 Orientation="Vertical"
+                                 VerticalOptions="FillAndExpand">
+                        <Image HeightRequest="65"
+                               HorizontalOptions="Center"
+                               Source="findicon.png"
+                               VerticalOptions="Start" />
+                        <Label Margin="30"
+                               FontFamily="RobotoCondensedBold"
+                               FontSize="Small"
+                               HorizontalTextAlignment="Center"
+                               Text="Find Matches"
+                               TextColor="{StaticResource Orange}"
+                               VerticalOptions="EndAndExpand" />
+                    </StackLayout>
+                </NeoButton>
+                <NeoButton Grid.Row="2"
+                           Grid.RowSpan="2"
+                           Grid.Column="1"
+                           BackgroundColor="{StaticResource White}"
+                           Command="{Binding EditProfileCommand}"
+                           CornerRadius="20,20,20,20"
+                           Elevation=".35">
+                    <StackLayout Padding="30"
+                                 HorizontalOptions="FillAndExpand"
+                                 Orientation="Vertical"
+                                 VerticalOptions="FillAndExpand">
+                        <Image HeightRequest="60"
+                               HorizontalOptions="Center"
+                               Source="editicon.png"
+                               VerticalOptions="Start" />
+                        <Label Margin="30"
+                               FontFamily="RobotoCondensedBold"
+                               FontSize="Small"
+                               HorizontalTextAlignment="Center"
+                               Text="Edit Profile"
+                               TextColor="{StaticResource Orange}"
+                               VerticalOptions="EndAndExpand" />
+                    </StackLayout>
+                </NeoButton>
+                <!--#endregion-->
+                <Label Grid.Row="5"
+                       FontFamily="RobotoCondensedRegular"
+                       FontSize="Medium"
+                       Text="Messages"
+                       TextColor="Black"
+                       VerticalOptions="Center" />
+                <Label Grid.Row="5"
+                       Grid.ColumnSpan="2"
+                       FontFamily="RobotoCondensedRegular"
+                       FontSize="Micro"
+                       Text="You have no unread messages."
+                       TextColor="Gray"
+                       VerticalOptions="End" />
+                <Label Grid.Row="5"
+                       Grid.Column="1"
+                       FontFamily="RobotoCondensedLight"
+                       FontSize="37"
+                       HorizontalOptions="End"
+                       Text="20°C"
+                       TextColor="Gray"
+                       VerticalOptions="Center" />
+            </Grid>
+        </FlexLayout>
+    </FlexLayout>
     </RefreshView>
 </ContentPage>

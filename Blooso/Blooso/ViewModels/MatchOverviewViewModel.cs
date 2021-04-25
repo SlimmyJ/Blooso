@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.ObjectModel;
-
-using Blooso.Interfaces;
+﻿using System.Collections.ObjectModel;
 using Blooso.Models;
 using Blooso.Repositories;
-
+using Blooso.Views;
 using Xamarin.Forms;
 
 namespace Blooso.ViewModels
@@ -15,7 +12,7 @@ namespace Blooso.ViewModels
 
         public ObservableCollection<User> Users
         {
-            get { return _users; }
+            get => _users;
             set
             {
                 _users = value;
@@ -23,35 +20,33 @@ namespace Blooso.ViewModels
             }
         }
 
-        private IUserRepository _userRepository;
-
         public MatchOverviewViewModel()
         {
             Users = new ObservableCollection<User>();
-            _userRepository = UserRepository.GetRepository();
+            _userRepo = new UserRepository();
+            _userRepo = Repositories.UserRepository.GetRepository();
             LoadUsers();
         }
 
         public Command LoadUsersCommand => new Command(LoadUsers);
 
+        public Command PerformSearchCommand =>
+            new Command<string>(
+                query => { Users = new ObservableCollection<User>(_userRepo.GetSearchResults(query)); });
+
+        public Command<User> ItemTappedCommand => new Command<User>(ItemTapped);
+
+        private async void ItemTapped(User user)
+        {
+            await Shell.Current.GoToAsync($"{nameof(MatchDetailPage)}?{nameof(MatchDetailViewModel.UserId)}={user.Id}");
+        }
+
         public void LoadUsers()
         {
             IsBusy = true;
-
-            try
-            {
-                var users = _userRepository.GetAllUsers();
-                Users = new ObservableCollection<User>(users);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-            finally
-            {
-                IsBusy = false;
-            }
+            var users = _userRepo.GetMatchResults();
+            Users = new ObservableCollection<User>(users);
+            IsBusy = false;
         }
     }
 }

@@ -1,0 +1,184 @@
+﻿<ContentPage x:Class="Blooso.Views.MatchDetailPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Blooso.ViewModels"
+             xmlns:controls="clr-namespace:Blooso.Controls;assembly=Blooso"
+             BackgroundColor="{StaticResource White}">
+    <ContentPage.BindingContext>
+        <vm:MatchDetailViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout BackgroundColor="{StaticResource White}"
+                         VerticalOptions="Center">
+                <!--Profile picture-->
+                <Frame Padding="0"
+                       Margin="0,40"
+                       CornerRadius="100"
+                       HorizontalOptions="Center"
+                       IsClippedToBounds="True"
+                       WidthRequest="128">
+                    <Image Source="{Binding UserDetail.UserPicture}" />
+                </Frame>
+
+                <NeoFrame BackgroundColor="{StaticResource White}"
+                          CornerRadius="30"
+                          HeightRequest="250"
+                          Padding="5,0"
+                          Margin="0,0,0,10">
+
+                    <Grid Margin="20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="3"
+                               FontAttributes="Bold"
+                               TextColor="#a5a2a2"
+                               FontSize="30"
+                               Text="{Binding UserDetail.Name}" />
+                        <Label Grid.Row="1"
+                               Grid.Column="0"
+                               FontSize="16"
+                               Text="Ghent, Belgium"
+                               TextColor="#a5a2a2" />
+                        <Label Grid.Row="2"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="3"
+                               TextColor="#a5a2a2"
+                               Padding="0,10,0,0"
+                               FontSize="16">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span FontAttributes="Bold"
+                                          Text="Looking for a friend to play tennis or squash! Add me!" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <!--  4. Contact information: Board information  -->
+                        <Label Grid.Row="3"
+                               Grid.Column="0"
+                               Style="{StaticResource stlBoardTitle}"
+                               TextColor="#a5a2a2"
+                               Text="Likes" />
+                        <Label Grid.Row="4"
+                               Grid.Column="0"
+                               Style="{StaticResource stlBoardDesc}"
+                               Text="{Binding UserDetail.UserTags.Count}"
+                               TextColor="#a5a2a2"/>
+                        <Label Grid.Row="3"
+                               Grid.Column="1"
+                               Style="{StaticResource stlBoardTitle}"
+                               Text="Activities">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MatchDetailViewModel}}, Path=ActivityTappedAccount}"
+                                    NumberOfTapsRequired="2">
+                                    <TapGestureRecognizer.CommandParameter>
+                                        <Binding Path=".ActivityTappedAccount" />
+                                    </TapGestureRecognizer.CommandParameter>
+                                </TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Grid.Row="4"
+                               Grid.Column="1"
+                               Style="{StaticResource stlBoardDesc}"
+                               Text="{Binding UserDetail.ActivityList.Count}"
+                               TextColor="#a5a2a2"/>
+                        <Label Grid.Row="3"
+                               Grid.Column="2"
+                               Style="{StaticResource stlBoardTitle}"
+                               Text="Friends" />
+                        <Label Grid.Row="4"
+                               Grid.Column="2"
+                               Style="{StaticResource stlBoardDesc}"
+                               Text="{Binding UserDetail.FriendList.Count}"
+                               TextColor="#a5a2a2"/>
+                        <!--  4. Contact information: Follow button  -->
+                    </Grid>
+                </NeoFrame>
+                <NeoButton BackgroundColor="{StaticResource Purple}"
+                           Command="{Binding AddUserToFavouritesCommand}"
+                           CornerRadius="10"
+                           Elevation=".35">
+                    <StackLayout Padding="20"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center">
+                        <Label Text="Add friend"
+                               TextColor="White" />
+                    </StackLayout>
+                </NeoButton>
+                <Grid ColumnDefinitions="*,*"
+                      Margin="5,20">
+                    <controls:BorderlessEntry Placeholder="Enter message"
+                                              PlaceholderColor="#a5a2a2"
+                                              FontSize="Small"
+                                              Text="{Binding UserInput}"
+                                              TextColor="#a5a2a2"
+                                              VerticalTextAlignment="Center" />
+                    <NeoButton Command="{Binding OnPressSendMessage}"
+                               Grid.Column="1">
+                        <Image Source="sendicon.png" HeightRequest="30"
+                               HorizontalOptions="End"  />
+                    </NeoButton>
+                </Grid>
+                <!--#region User wall / Message Feed-->
+                <NeoFrame BackgroundColor="{StaticResource Orange}"
+                          CornerRadius="40">
+                    <StackLayout>
+                        <CollectionView ItemsSource="{Binding UserDetail.UserFeedMessages}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Padding="10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Image
+                                            Grid.RowSpan="3"
+                                            Source="{Binding Author.UserPicture}"
+                                            WidthRequest="100" />
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            FontAttributes="Bold"
+                                            Text="{Binding Author.Name}"
+                                            TextColor="{StaticResource Black}" />
+                                        <Label
+                                            Grid.RowSpan="2"
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            FontAttributes="Italic"
+                                            VerticalOptions="Center"
+                                            FontSize="Small"
+                                            Text="{Binding Text}"
+                                            TextColor="DimGray" />
+
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                </NeoFrame>
+                <!--#endregion-->
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

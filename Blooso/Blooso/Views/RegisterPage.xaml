@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Blooso.Views.RegisterPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="{StaticResource White}">
+            <Image
+                HeightRequest="200"
+                HorizontalOptions="EndAndExpand"
+                Source="shape.png" />
+            <Label
+                Margin="20"
+                FontAttributes="Bold"
+                FontSize="Title"
+                Text="Create Account"
+                TextColor="#2C2C2C" />
+            <Entry
+                x:Name="EntUsername"
+                Margin="20,10,20,10"
+                Placeholder="Full Name" />
+            <Entry
+                x:Name="EntEmail"
+                Margin="20,10,20,10"
+                Keyboard="Email"
+                Placeholder="Email" />
+            <Entry
+                x:Name="EntPassword"
+                Margin="20,10,20,10"
+                IsPassword="True"
+                Placeholder="Password" />
+            <Grid ColumnDefinitions="*" RowDefinitions="*">
+                <StackLayout
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand">
+                    <NeoButton
+                        Margin="20,10,20,10"
+                        BackgroundColor="{StaticResource Purple}"
+                        CornerRadius="20"
+                        Elevation="0.45"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
+                        <Label
+                            Margin="20,10,20,10"
+                            FontSize="Large"
+                            HorizontalOptions="Center"
+                            Text="Register"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center" />
+
+                    </NeoButton>
+                </StackLayout>
+
+            </Grid>
+            <Label
+                Margin="20"
+                HorizontalOptions="Center"
+                VerticalOptions="EndAndExpand">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span
+                            FontSize="Small"
+                            Text="Already have an account? "
+                            TextColor="#2C2C2C" />
+                        <Span
+                            FontSize="Small"
+                            Text=" Sign in "
+                            TextColor="#FA6400">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer x:Name="SpanSignin" />
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
