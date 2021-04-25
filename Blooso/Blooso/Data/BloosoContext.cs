@@ -51,12 +51,14 @@ namespace Blooso.Data
             modelBuilder.Entity<Message>().HasOne(x => x.Recipient);
 
             // Seed Data
-            ReturnSeedDatabaseAsync(modelBuilder);
+            ReturnSeedUserList(modelBuilder);
+            ReturnSeedTagList(modelBuilder);
+            ReturnSeedActivityList(modelBuilder);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Blooso41.sqlite");
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Blooso43.sqlite");
             optionsBuilder.UseSqlite($"FileName = {dbPath}");
             optionsBuilder.EnableSensitiveDataLogging(true);
         }
@@ -70,13 +72,6 @@ namespace Blooso.Data
         private List<Tag> ReturnSeedTagList(ModelBuilder modelBuilder) => FakerBro.GenerateTags();
 
         private List<User> ReturnSeedUserList(ModelBuilder modelBuilder) => FakerBro.GenerateUserList();
-
-        private async void ReturnSeedDatabaseAsync(ModelBuilder modelBuilder)
-        {
-            ReturnSeedUserList(modelBuilder);
-            ReturnSeedTagList(modelBuilder);
-            ReturnSeedActivityList(modelBuilder);
-        }
 
         #endregion
     }

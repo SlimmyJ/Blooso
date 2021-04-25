@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-
 using Blooso.Data.Repositories;
 
 namespace Blooso.Data
@@ -18,9 +17,9 @@ namespace Blooso.Data
     public class DummyData : IDummyData
     {
         private readonly Faker<User> userFaker;
-        private IUserRepository userRepository;
 
         private ReadOnlyCollection<User> GeneratedUsersList;
+        private IUserRepository userRepository;
 
         public DummyData() => userFaker = new Faker<User>();
 

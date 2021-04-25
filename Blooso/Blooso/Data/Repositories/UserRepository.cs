@@ -8,21 +8,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Blooso.Data.Repositories
 {
-    //using System.Collections.Generic;
-    //using System.Linq;
-    //using Blooso.Data;
-    //using Blooso.Interfaces;
-    //using Blooso.Models;
-
-    //namespace Blooso.Repositories
     //{
     //    public class UserRepository : IUserRepository
     //    {
-    //        private static UserRepository _userRepository;
-    //        private readonly DummyData _dummyData;
-
-    //        private readonly List<User> _userlist;
-
     //        public UserRepository()
     //        {
     //            _dummyData = new DummyData();
@@ -95,15 +83,14 @@ namespace Blooso.Data.Repositories
 
     public class UserRepository : IUserRepository
     {
-        private readonly List<User> _userList;
+        private List<User> _userList;
 
-        public UserRepository()
+        private UserRepository()
         {
-            PullUserListFromDataBase();
-            _userList = GetAllUsers();
+            GetAllUsers();
         }
 
-        private static UserRepository _userRepository { get; set; } = new();
+        public static UserRepository Instance { get; } = GetRepository();
 
         public User CurrentlyLoggedInUser { get; set; }
 
@@ -144,16 +131,16 @@ namespace Blooso.Data.Repositories
             return dbContext.Tags.ToList();
         }
 
-        public List<User> GetAllUsers()
+        public async void GetAllUsers()
         {
-            using var dbContext = new BloosoContext();
+            await using var dbContext = new BloosoContext();
 
-            return dbContext.Users
-                .Include(x => x.Activities)
-                .Include(x => x.Tags)
-                .Include(x => x.UserFeedMessages)
-                .Include(x => x.FriendList)
-                .ToList();
+            _userList = new List<User>(
+                dbContext.Users
+                    .Include(x => x.Activities)
+                    .Include(x => x.Tags)
+                    .Include(x => x.UserFeedMessages)
+                    .Include(x => x.FriendList));
         }
 
         public User GetCurrentlyLoggedInUser() => CurrentlyLoggedInUser;
@@ -191,18 +178,7 @@ namespace Blooso.Data.Repositories
             await dbContext.SaveChangesAsync();
         }
 
-        private async void PullUserListFromDataBase()
-        {
-            await using var dbContext = new BloosoContext();
-            if (!dbContext.Users.Any())
-            {
-                List<User> users = GetAllUsers();
-                await dbContext.Users.AddRangeAsync(users);
-                await dbContext.SaveChangesAsync();
-            }
-        }
-
-        public static UserRepository GetRepository() => _userRepository ??= _userRepository;
+        internal static UserRepository GetRepository() => new();
 
         public List<int> GetActivityIdList(List<Activity> list)
         {

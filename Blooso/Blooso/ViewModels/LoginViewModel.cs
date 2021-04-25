@@ -47,11 +47,11 @@ namespace Blooso.ViewModels
 
         private async void OnSubmit()
         {
-            if (!DoesUserExist())
-            {
-                await Application.Current.MainPage.DisplayAlert("Login Failed", "Id or Password incorrect", "OK");
-            }
-            else
+            //if (!DoesUserExist())
+            //{
+            //    await Application.Current.MainPage.DisplayAlert("Login Failed", "Id or Password incorrect", "OK");
+            //}
+            //else
             {
                 await SecureStorage.SetAsync("isLogged", "1");
                 _userRepo.SetCurrentlyLoggedInUser(Id);
@@ -61,9 +61,6 @@ namespace Blooso.ViewModels
             }
         }
 
-        private bool DoesUserExist()
-        {
-            return _userRepo.DoesUserExist(Id, Password);
-        }
+        private bool DoesUserExist() => _userRepo.DoesUserExist(Id, Password);
     }
 }

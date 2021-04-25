@@ -5,10 +5,8 @@ namespace Blooso.ViewModels
     #region
 
     using System.Windows.Input;
-
     using Views;
     using Views.EditProfile;
-
     using Xamarin.Forms;
 
     #endregion

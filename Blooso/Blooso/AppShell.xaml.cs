@@ -4,7 +4,6 @@
 
     using Views;
     using Views.EditProfile;
-
     using Xamarin.Forms;
 
     #endregion

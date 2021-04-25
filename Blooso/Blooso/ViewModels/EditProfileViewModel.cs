@@ -1,7 +1,5 @@
 ﻿using System.Windows.Input;
-
 using Blooso.Views.EditProfile;
-
 using Xamarin.Forms;
 
 namespace Blooso.ViewModels

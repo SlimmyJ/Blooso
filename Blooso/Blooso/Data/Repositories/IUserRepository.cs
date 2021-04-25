@@ -6,13 +6,11 @@ using Blooso.Models;
 
 namespace Blooso.Data.Repositories
 {
-    #region
-
-    #endregion
-
     public interface IUserRepository
     {
         User CurrentlyLoggedInUser { get; set; }
+
+        void GetAllUsers();
 
         User GetCurrentlyLoggedInUser();
 
@@ -29,8 +27,6 @@ namespace Blooso.Data.Repositories
         int CountOverlapInTagsList(List<Tag> list);
 
         int CountOverlapInActivitiesList(List<Activity> list);
-
-        List<User> GetAllUsers();
 
         Task UpdateUser(User user);
 

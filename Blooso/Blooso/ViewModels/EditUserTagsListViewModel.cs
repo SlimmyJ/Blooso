@@ -18,14 +18,12 @@ namespace Blooso.ViewModels
     public class EditUserTagsListViewModel : BaseViewModel
     {
         private ICollection<Tag> _tags;
-
         private ICollection<Tag> _userTags;
 
         public EditUserTagsListViewModel()
         {
             Tags = new ObservableCollection<Tag>();
             UserTags = new ObservableCollection<Tag>();
-            _userRepo = UserRepository.GetRepository();
             CurrentUser = _userRepo.GetCurrentlyLoggedInUser();
             GetUserTags();
             GetAllTags();

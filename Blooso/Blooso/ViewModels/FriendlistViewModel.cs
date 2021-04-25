@@ -7,11 +7,8 @@ namespace Blooso.ViewModels
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-
     using Models;
-
     using Views;
-
     using Xamarin.Forms;
 
     #endregion

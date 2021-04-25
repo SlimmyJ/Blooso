@@ -3,7 +3,6 @@
     #region
 
     using Views;
-
     using Xamarin.Forms;
 
     #endregion

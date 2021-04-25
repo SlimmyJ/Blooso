@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-
 using Blooso.Models;
 
 namespace Blooso.Data

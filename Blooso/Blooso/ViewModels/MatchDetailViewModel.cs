@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-
 using Blooso.Data.Repositories;
 
 namespace Blooso.ViewModels
@@ -8,9 +7,7 @@ namespace Blooso.ViewModels
 
     using System;
     using System.Collections.ObjectModel;
-
     using Models;
-
     using Xamarin.Forms;
 
     #endregion

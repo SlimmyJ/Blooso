@@ -4,9 +4,7 @@
 
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-
     using Models;
-
     using Xamarin.Forms;
 
     #endregion

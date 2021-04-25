@@ -3,7 +3,6 @@
     #region
 
     using ViewModels;
-
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
 

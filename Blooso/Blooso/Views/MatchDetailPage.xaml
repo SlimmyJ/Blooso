@@ -65,7 +65,8 @@
                             TextColor="#a5a2a2">
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span FontAttributes="Bold" Text="Looking for a friend to play tennis or squash! Add me!" />
+                                    <Span FontAttributes="Bold"
+                                          Text="Looking for a friend to play tennis or squash! Add me!" />
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
@@ -88,7 +89,9 @@
                             Style="{StaticResource stlBoardTitle}"
                             Text="Activities">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MatchDetailViewModel}}, Path=ActivityTappedAccount}" NumberOfTapsRequired="2">
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MatchDetailViewModel}}, Path=ActivityTappedAccount}"
+                                    NumberOfTapsRequired="2">
                                     <TapGestureRecognizer.CommandParameter>
                                         <Binding Path=".ActivityTappedAccount" />
                                     </TapGestureRecognizer.CommandParameter>

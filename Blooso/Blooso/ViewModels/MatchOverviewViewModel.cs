@@ -22,7 +22,7 @@ namespace Blooso.ViewModels
         public MatchOverviewViewModel()
         {
             Users = new ObservableCollection<User>();
-            _userRepo = new UserRepository();
+            _userRepo = UserRepository.Instance;
 
             LoadUsers();
         }

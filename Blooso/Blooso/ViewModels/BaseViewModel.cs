@@ -17,7 +17,6 @@ namespace Blooso.ViewModels
     {
         private bool _isBusy;
         private string _title = string.Empty;
-
         protected IUserRepository _userRepo;
 
         public User CurrentUser { get; set; }
