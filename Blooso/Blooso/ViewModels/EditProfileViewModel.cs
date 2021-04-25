@@ -1,5 +1,6 @@
 ﻿using System.Windows.Input;
 using Blooso.Repositories;
+using Blooso.Views.EditProfile;
 using Xamarin.Forms;
 
 namespace Blooso.ViewModels
@@ -8,6 +9,7 @@ namespace Blooso.ViewModels
     {
         public ICommand EditActivityListCommand => new Command(EditActivityList);
         public ICommand EditUserTagsListCommand => new Command(EditUserTagsList);
+        public ICommand SaveProfileCommand => new Command(SaveProfile);
 
         public EditProfileViewModel()
         {
@@ -17,12 +19,17 @@ namespace Blooso.ViewModels
 
         private async void EditActivityList(object obj)
         {
-            await Shell.Current.GoToAsync("EditActivityListPage");
+            await Shell.Current.GoToAsync(nameof(EditActivityListPage));
         }
 
         private async void EditUserTagsList(object obj)
         {
-            await Shell.Current.GoToAsync("EditUserTagsListPage");
+            await Shell.Current.GoToAsync(nameof(EditUserTagsListPage));
+        }
+
+        private async void SaveProfile(object obj)
+        {
+            await Shell.Current.GoToAsync("..");
         }
     }
 }

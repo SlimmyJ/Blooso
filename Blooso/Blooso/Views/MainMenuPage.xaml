@@ -9,6 +9,7 @@
         <ToolbarItem Command="{Binding LogUserOutCommand}"
                      Text="Logout" />
     </ContentPage.ToolbarItems>
+    <RefreshView>
     <FlexLayout Direction="Column">
         <FlexLayout AlignContent="Center"
                     Direction="Column"
@@ -42,6 +43,7 @@
                            TextColor="Black" />
                 </StackLayout>
                 <Frame Grid.Column="1"
+                       Grid.Row="0"
                        Padding="0"
                        CornerRadius="60"
                        HorizontalOptions="End"
@@ -125,4 +127,5 @@
             </Grid>
         </FlexLayout>
     </FlexLayout>
+    </RefreshView>
 </ContentPage>

@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <Application x:Class="Blooso.App"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
@@ -7,17 +8,6 @@
     -->
     <Application.Resources>
         <ResourceDictionary>
-            <!--#region Colors-->
-            <!--<Color x:Key="WhiteFill">#FFFFFF</Color>
-            <Color x:Key="BaseOrange">#ff8c42</Color>
-            <Color x:Key="DarkerOrange">#c65d11</Color>
-            <Color x:Key="LighterOrange">#ffbd70</Color>
-            <Color x:Key="BleakOrange">#F9C784</Color>
-            <Color x:Key="AccentBlue">#4E598C</Color>
-            <Color x:Key="TextBlack">Black</Color>
-            <Color x:Key="CollectionViewColor">#80ffbd20</Color>-->
-            <!--#endregion-->
-
             <!--#region Colors-->
             <Color x:Key="White">#fcfbf7</Color>
             <Color x:Key="Orange">#ef941e</Color>

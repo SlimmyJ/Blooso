@@ -14,7 +14,6 @@
                 <!--Profile picture-->
                 <Frame Padding="0"
                        Margin="0,40"
-                       Background="red"
                        CornerRadius="100"
                        HorizontalOptions="Center"
                        IsClippedToBounds="True"
@@ -43,21 +42,11 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <!--  Icons  -->
-                        <!--<StackLayout Grid.Row="0"
-                                     Grid.Column="2"
-                                     Orientation="Horizontal">
-                            <Button ImageSource="Phone"
-                                    Style="{StaticResource stlContactBtn}" />
-                            <Button Command="{Binding OnPressSendMessage}"
-                                    ImageSource="Correo"
-                                    Style="{StaticResource stlContactBtn}" />
-                        </StackLayout>-->
-                        <!--  4. Contact information  -->
                         <Label Grid.Row="0"
                                Grid.Column="0"
                                Grid.ColumnSpan="3"
                                FontAttributes="Bold"
+                               TextColor="#a5a2a2"
                                FontSize="30"
                                Text="{Binding UserDetail.Name}" />
                         <Label Grid.Row="1"
@@ -68,6 +57,7 @@
                         <Label Grid.Row="2"
                                Grid.Column="0"
                                Grid.ColumnSpan="3"
+                               TextColor="#a5a2a2"
                                Padding="0,10,0,0"
                                FontSize="16">
                             <Label.FormattedText>
@@ -81,11 +71,13 @@
                         <Label Grid.Row="3"
                                Grid.Column="0"
                                Style="{StaticResource stlBoardTitle}"
+                               TextColor="#a5a2a2"
                                Text="Likes" />
                         <Label Grid.Row="4"
                                Grid.Column="0"
                                Style="{StaticResource stlBoardDesc}"
-                               Text="{Binding UserDetail.UserTags.Count}" />
+                               Text="{Binding UserDetail.UserTags.Count}"
+                               TextColor="#a5a2a2"/>
                         <Label Grid.Row="3"
                                Grid.Column="1"
                                Style="{StaticResource stlBoardTitle}"
@@ -103,7 +95,8 @@
                         <Label Grid.Row="4"
                                Grid.Column="1"
                                Style="{StaticResource stlBoardDesc}"
-                               Text="{Binding UserDetail.ActivityList.Count}" />
+                               Text="{Binding UserDetail.ActivityList.Count}"
+                               TextColor="#a5a2a2"/>
                         <Label Grid.Row="3"
                                Grid.Column="2"
                                Style="{StaticResource stlBoardTitle}"
@@ -111,7 +104,8 @@
                         <Label Grid.Row="4"
                                Grid.Column="2"
                                Style="{StaticResource stlBoardDesc}"
-                               Text="{Binding UserDetail.FriendList.Count}" />
+                               Text="{Binding UserDetail.FriendList.Count}"
+                               TextColor="#a5a2a2"/>
                         <!--  4. Contact information: Follow button  -->
                     </Grid>
                 </NeoFrame>
@@ -128,10 +122,11 @@
                 </NeoButton>
                 <Grid ColumnDefinitions="*,*"
                       Margin="5,20">
-                    <controls:BorderlessEntry x:Name="EntryMessageField"
-                                              Placeholder="Enter message"
+                    <controls:BorderlessEntry Placeholder="Enter message"
+                                              PlaceholderColor="#a5a2a2"
                                               FontSize="Small"
                                               Text="{Binding UserInput}"
+                                              TextColor="#a5a2a2"
                                               VerticalTextAlignment="Center" />
                     <NeoButton Command="{Binding OnPressSendMessage}"
                                Grid.Column="1">
@@ -183,27 +178,6 @@
                     </StackLayout>
                 </NeoFrame>
                 <!--#endregion-->
-
-
-                <!--#region User wall / Message Feed--><!--
-                <NeoFrame BackgroundColor="{StaticResource Orange}"
-                          CornerRadius="40">
-                    <StackLayout>
-                        <CollectionView ItemsSource="{Binding UserDetail.UserFeedMessages}">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <StackLayout HorizontalOptions="Center"
-                                                 Orientation="Horizontal">
-                                        <Image Source="{Binding Author.UserPicture}" />
-                                        <Label Text="{Binding Author.Name}" />
-                                        <Label Text="{Binding Text}" />
-                                    </StackLayout>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-                    </StackLayout>
-                </NeoFrame>
-                --><!--#endregion-->
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

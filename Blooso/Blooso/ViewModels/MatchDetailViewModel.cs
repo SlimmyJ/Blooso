@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-
-using Blooso.Interfaces;
 using Blooso.Models;
 using Blooso.Repositories;
-
 using Xamarin.Forms;
 
 namespace Blooso.ViewModels
@@ -39,13 +36,13 @@ namespace Blooso.ViewModels
         }
 
         private int _userId;
-        private IUserRepository userRepo;
 
         public MatchDetailViewModel()
         {
             UserDetail = new User();
             UserFeed = new ObservableCollection<Message>();
-            userRepo = UserRepository.GetRepository();
+            _userRepo = UserRepository.GetRepository();
+            CurrentUser = _userRepo.GetCurrentlyLoggedInUser();
         }
 
         public Command ActivityTappedAccount => new Command(ActivityTapped);
@@ -70,7 +67,7 @@ namespace Blooso.ViewModels
             {
                 Recipient = UserDetail,
                 Text = UserInput,
-                Author = userRepo.GetCurrentlyLoggedInUser(),
+                Author = _userRepo.GetCurrentlyLoggedInUser(),
                 IsPositiveReview = true,
                 CreatedAt = DateTime.Now
             };
@@ -85,14 +82,14 @@ namespace Blooso.ViewModels
 
         private async void AddUserToFavourites()
         {
-            var loggedInUser = userRepo.GetCurrentlyLoggedInUser();
+            var loggedInUser = _userRepo.GetCurrentlyLoggedInUser();
             if (loggedInUser.Id != UserDetail.Id) loggedInUser.FriendList.Add(UserDetail);
             await Shell.Current.GoToAsync("..");
         }
 
         private void LoadUser(int value)
         {
-            UserDetail = userRepo.GetUser(value);
+            UserDetail = _userRepo.GetUser(value);
             UserFeed = UserDetail.UserFeedMessages;
         }
     }

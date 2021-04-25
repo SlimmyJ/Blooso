@@ -4,41 +4,50 @@
              xmlns:vm="clr-namespace:Blooso.ViewModels">
     <!--#region Resources-->
     <ContentPage.Resources>
-        <SwipeItems x:Key="SwipeItems">
-            <SwipeItem BackgroundColor="{StaticResource Purple}"
-                       Command="{Binding OnSwipeFriendListMessage}"
-                       Text="Message" />
+        <SwipeItems x:Key="SwipeLeftItems">
             <SwipeItem BackgroundColor="OrangeRed"
                        Text="Delete" />
         </SwipeItems>
+        <SwipeItems x:Key="SwipeRightItems">
+            <SwipeItem BackgroundColor="{StaticResource Purple}"
+                       Command="{Binding OnSwipeFriendListMessage}"
+                       Text="Message" />
+        </SwipeItems>
     </ContentPage.Resources>
-    <!--#endregion-->
     <ContentPage.BindingContext>
         <vm:FriendlistViewModel />
     </ContentPage.BindingContext>
-    <CollectionView x:Name="UserCollectionView"
-                    ItemsSource="{Binding FriendList}"
+    <!--#endregion-->
+    <CollectionView ItemsSource="{Binding FriendList}"
                     SelectionMode="Single">
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <StackLayout>
-                    <SwipeView LeftItems="{StaticResource SwipeItems}">
-                        <Grid BackgroundColor="{StaticResource Orange}"
-                              HeightRequest="60"
-                              WidthRequest="300">
-                            <Label HorizontalOptions="Center"
-                                   Text="{Binding Name}"
-                                   VerticalOptions="Center" />
+                    <SwipeView RightItems="{StaticResource SwipeLeftItems}"
+                               LeftItems="{StaticResource SwipeRightItems}">
+                        <Grid BackgroundColor="{StaticResource White}"
+                              HeightRequest="100"
+                              ColumnDefinitions="*,*"
+                              Padding="20">
+                            <Frame Padding="0"
+                                   CornerRadius="60"
+                                   HorizontalOptions="End"
+                                   IsClippedToBounds="True"
+                                   WidthRequest="100">
+                                <Image Source="{Binding UserPicture}" />
+                            </Frame>
+
+                            <Label Text="{Binding Name}"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center"
+                                   Grid.Column="1"
+                                   TextColor="#a5a2a2"/>
                         </Grid>
                     </SwipeView>
-                    <!--  Code to act on user gestures  -->
                     <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:FriendlistViewModel}}, Path=ItemTappedCommand}"
-                            CommandParameter="{Binding .}"
-                            NumberOfTapsRequired="1">
-                            <!--  CommandParameter is used to pass an object with the command. "." is used to select the root, in this case, the whole object  -->
-                        </TapGestureRecognizer>
+                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:FriendlistViewModel}}, Path=ItemTappedCommand}"
+                                              CommandParameter="{Binding .}"
+                                              NumberOfTapsRequired="1" />
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
             </DataTemplate>
