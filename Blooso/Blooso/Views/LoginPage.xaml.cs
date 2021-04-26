@@ -21,10 +21,10 @@ namespace Blooso.Views
                 EntryUserPassword.Focus();
             };
 
-            EntryUserLogin.Completed += (object sender, EventArgs e) =>
-            {
-                loginVM.SubmitCommand.Execute(null);
-            };
+            //EntryUserPassword.Completed += (object sender, EventArgs e) =>
+            //{
+            //    loginVM.SubmitCommand.Execute(null);
+            //};
         }
 
         protected override bool OnBackButtonPressed()
