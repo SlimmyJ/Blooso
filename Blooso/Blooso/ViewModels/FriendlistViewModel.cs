@@ -7,8 +7,11 @@ namespace Blooso.ViewModels
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+
     using Models;
+
     using Views;
+
     using Xamarin.Forms;
 
     #endregion
@@ -19,7 +22,7 @@ namespace Blooso.ViewModels
 
         public FriendlistViewModel()
         {
-            _userRepo = UserRepository.GetRepository();
+            _userRepo = new UserRepository();
             ICollection<User> friends = _userRepo.GetCurrentlyLoggedInUser().FriendList;
             FriendList = new ObservableCollection<User>(friends);
         }

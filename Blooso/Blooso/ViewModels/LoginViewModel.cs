@@ -25,7 +25,7 @@ namespace Blooso.ViewModels
             UserRepository.GetAllUsers();
         }
 
-        private IUserRepository UserRepository => new UserRepository();
+        private static IUserRepository UserRepository => new UserRepository();
 
         public int Id
         {

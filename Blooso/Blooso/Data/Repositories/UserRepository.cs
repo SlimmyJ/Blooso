@@ -12,14 +12,6 @@ namespace Blooso.Data.Repositories
     {
         private List<User> _userList;
 
-        public UserRepository()
-        {
-            _userList = new List<User>();
-            GetAllUsers();
-        }
-
-        public static UserRepository Instance { get; } = GetRepository();
-
         public User CurrentlyLoggedInUser { get; set; }
 
         public int CountOverlapInActivitiesList(List<Activity> list)
@@ -43,13 +35,13 @@ namespace Blooso.Data.Repositories
 
         public List<Activity> GetAllActivities()
         {
-            using var dbContext = new BloosoContext();
+            using var dbContext = BloosoContext.CreateInstance();
             return dbContext.Activities.ToList();
         }
 
         public List<Tag> GetAllTags()
         {
-            using var dbContext = new BloosoContext();
+            using var dbContext = BloosoContext.CreateInstance();
 
             return dbContext.Tags.ToList();
         }
@@ -84,7 +76,7 @@ namespace Blooso.Data.Repositories
 
         public async Task UpdateUser(User user)
         {
-            await using var dbContext = new BloosoContext();
+            await using var dbContext = BloosoContext.CreateInstance();
             dbContext.Update(user);
             await dbContext.SaveChangesAsync();
         }
@@ -115,7 +107,7 @@ namespace Blooso.Data.Repositories
 
         public async Task<List<User>> GetAllUsers()
         {
-            await using (var dbContext = new BloosoContext())
+            await using (var dbContext = BloosoContext.CreateInstance())
             {
                 var userlist = dbContext.Users
                     .Include(x => x.UserId)
@@ -126,7 +118,6 @@ namespace Blooso.Data.Repositories
                     .Include(x => x.Password).ToList();
 
                 _userList = userlist;
-                await dbContext.AddRangeAsync(Instance);
             }
 
             return _userList;
@@ -134,12 +125,10 @@ namespace Blooso.Data.Repositories
 
         public async Task<bool> DoesUserExist(int id, string password)
         {
-            await using (var dbContext = new BloosoContext())
+            await using (var dbContext = BloosoContext.CreateInstance())
             {
                 return _userList.Any(user => user.UserId == id);
             }
         }
-
-        public static UserRepository GetRepository() => new();
     }
 }

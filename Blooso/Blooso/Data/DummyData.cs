@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+
 using Blooso.Data.Repositories;
 
 namespace Blooso.Data
@@ -18,8 +19,9 @@ namespace Blooso.Data
     {
         private readonly Faker<User> userFaker;
 
-        private ReadOnlyCollection<User> GeneratedUsersList;
-        private IUserRepository userRepository;
+        public ReadOnlyCollection<User> GeneratedUsersList;
+
+        public IUserRepository userRepository;
 
         public DummyData() => userFaker = new Faker<User>();
 
@@ -123,9 +125,5 @@ namespace Blooso.Data
                 new Tag(24, "Weeb"),
                 new Tag(25, "Festivals")
             };
-
-        private void AddFakeDataToUsersInList(List<User> dummyList)
-        {
-        }
     }
 }

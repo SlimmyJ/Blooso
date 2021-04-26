@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Blooso.Data.Repositories.UserRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="30.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAgAAAAEAAAgAEAAAABAIAQgAIIAAEAAAQAEAAAA=</HashCode>
+      <FileName>Data\Repositories\UserRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Blooso.Data.BloosoContext" Collapsed="true">
+    <Position X="28.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAABCAAAQAAAAAEAAEAAAAAEAAAAEAAAAAAAYAAAAA=</HashCode>
+      <FileName>Data\BloosoContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blooso.Data.DummyData" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="25.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AMAAAAQAAAICAAAAQAAAAAAAAAAAAAAAAAAAAIAAIAA=</HashCode>
+      <FileName>Data\DummyData.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Blooso.Models.Activity" Collapsed="true">
+    <Position X="5.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAACEAAAAAAAAQAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Models\Activity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blooso.Models.Message" Collapsed="true">
+    <Position X="32.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACBAAQQAAAgAAAgCAAAAAAAAAAAAAAABAACAAAAAA=</HashCode>
+      <FileName>Models\Message.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blooso.Models.ObservableObject" Collapsed="true">
+    <Position X="4" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ObservableObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Blooso.Models.Tag" Collapsed="true">
+    <Position X="1.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAgAAAAAAAAABAAAAACAE=</HashCode>
+      <FileName>Models\Tag.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blooso.Models.User" Collapsed="true">
+    <Position X="4" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAIAAAAAIABAAEAAIAAAwABAFQEEACgAAAAKAAAQQ=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blooso.Models.UserLocation" Collapsed="true">
+    <Position X="28.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\UserLocation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blooso.ViewModels.BaseViewModel" Collapsed="true">
+    <Position X="12.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAEAAIAAAAARAgAEAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>ViewModels\BaseViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Blooso.ViewModels.EditActivityListViewModel" Collapsed="true">
+    <Position X="2.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAgAAAAAAIAAgAAAABAAAAAIAAAAAAAAACAAA=</HashCode>
+      <FileName>ViewModels\EditActivityListViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blooso.ViewModels.EditProfileViewModel" Collapsed="true">
+    <Position X="2.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAQAAAAAAAAAAAAABIAAAACAAAAAAAAAAACA=</HashCode>
+      <FileName>ViewModels\EditProfileViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blooso.ViewModels.EditUserTagsListViewModel" Collapsed="true">
+    <Position X="12" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAACABQAAgAAAAAAAAAAAAiAAEAAQAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\EditUserTagsListViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blooso.ViewModels.FriendlistViewModel" Collapsed="true">
+    <Position X="16.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAEAAAAAAAgAAACABAAAgAAAAEIAAACAAEA=</HashCode>
+      <FileName>ViewModels\FriendlistViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blooso.ViewModels.LoginViewModel" Collapsed="true">
+    <Position X="20.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQCEAAAAAIAAAAAAABAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\LoginViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blooso.ViewModels.MainMenuViewModel" Collapsed="true">
+    <Position X="22.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAIACEAQAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\MainMenuViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blooso.ViewModels.MatchDetailViewModel" Collapsed="true">
+    <Position X="8" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAACAAgwAADAACAAIAAIgAADABAg=</HashCode>
+      <FileName>ViewModels\MatchDetailViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blooso.ViewModels.MatchOverviewViewModel" Collapsed="true">
+    <Position X="10" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAQAAAAAAgIAAAAIAAACAAEA=</HashCode>
+      <FileName>ViewModels\MatchOverviewViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blooso.ViewModels.RegisterViewModel" Collapsed="true">
+    <Position X="14.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\RegisterViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blooso.ViewModels.UserFeedViewModel" Collapsed="true">
+    <Position X="19" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\UserFeedViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blooso.Views.Controls.BorderlessEntry" Collapsed="true">
+    <Position X="30.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\Controls\BorderlessEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blooso.Views.Controls.BorderlessPicker" Collapsed="true">
+    <Position X="32.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\Controls\BorderlessPicker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blooso.Views.EditProfile.EditActivityListPage" Collapsed="true">
+    <Position X="27" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\EditProfile\EditActivityListPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blooso.Views.EditProfile.EditProfilePage" Collapsed="true">
+    <Position X="28.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\EditProfile\EditProfilePage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blooso.Views.EditProfile.EditUserTagsListPage" Collapsed="true">
+    <Position X="30.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\EditProfile\EditUserTagsListPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blooso.Views.FriendlistPage" Collapsed="true">
+    <Position X="32.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\FriendlistPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blooso.Views.LoginPage" Collapsed="true">
+    <Position X="25.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Views\LoginPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blooso.Views.MainMenuPage" Collapsed="true">
+    <Position X="27" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Views\MainMenuPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blooso.Views.MatchDetailPage" Collapsed="true">
+    <Position X="28.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\MatchDetailPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blooso.Views.MatchOverviewPage" Collapsed="true">
+    <Position X="30.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\MatchOverviewPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blooso.Views.RegisterPage" Collapsed="true">
+    <Position X="25.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\RegisterPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blooso.Views.UserFeedPage" Collapsed="true">
+    <Position X="27" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\UserFeedPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blooso.App" Collapsed="true">
+    <Position X="25.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAgAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Blooso.AppShell" Collapsed="true">
+    <Position X="27" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AppShell.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Blooso.Data.Repositories.IUserRepository" Collapsed="true">
+    <Position X="27" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAgAAAAEAAAgAEAAAABAIAQgAIIAAEAAAQAEAAAA=</HashCode>
+      <FileName>Data\Repositories\IUserRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Blooso.Data.IDummyData" Collapsed="true">
+    <Position X="25.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAICAAAAQAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Data\IDummyData.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

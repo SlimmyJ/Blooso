@@ -5,8 +5,10 @@ namespace Blooso.ViewModels
     #region
 
     using System.Windows.Input;
+
     using Views;
     using Views.EditProfile;
+
     using Xamarin.Forms;
 
     #endregion
@@ -15,7 +17,7 @@ namespace Blooso.ViewModels
     {
         public MainMenuViewModel()
         {
-            _userRepo = UserRepository.GetRepository();
+            _userRepo = new UserRepository();
             CurrentUser = _userRepo.GetCurrentlyLoggedInUser();
         }
 

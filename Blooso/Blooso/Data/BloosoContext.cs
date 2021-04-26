@@ -1,27 +1,24 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.IO;
 
-using Microsoft.EntityFrameworkCore.Sqlite.Scaffolding.Internal;
-using Microsoft.EntityFrameworkCore.Storage.Internal;
+using Blooso.Models;
+
+using Microsoft.EntityFrameworkCore;
+
+using Xamarin.Essentials;
 
 namespace Blooso.Data
 {
-    #region
-
-    using System.Collections.Generic;
-    using System.IO;
-    using Models;
-    using Microsoft.EntityFrameworkCore;
-    using Xamarin.Essentials;
-
-    #endregion
-
     public sealed class BloosoContext : DbContext
     {
-        public BloosoContext()
+        private BloosoContext()
         {
             Database.EnsureCreated();
+        }
+
+        public static BloosoContext CreateInstance()
+        {
+            return new BloosoContext();
         }
 
         private IDummyData FakerBro => new DummyData();
@@ -34,14 +31,12 @@ namespace Blooso.Data
 
         public DbSet<User> Users { get; set; }
 
-        public DbSet<UserLocation> UserLocations { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Map relations
             modelBuilder.Entity<User>().HasMany(x => x.FriendList);
             modelBuilder.Entity<User>().HasMany(x => x.UserFeedMessages);
-
+            modelBuilder.Entity<User>().OwnsMany<Message>(x => x.UserFeedMessages);
             modelBuilder.Entity<User>().HasMany(x => x.Tags);
             modelBuilder.Entity<Tag>().HasMany(x => x.TagUsers);
             modelBuilder.Entity<Activity>().HasMany(x => x.ActivityUsers);
@@ -58,9 +53,8 @@ namespace Blooso.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Blooso44.sqlite");
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Blooso46.sqlite");
             optionsBuilder.UseSqlite($"FileName = {dbPath}");
-            optionsBuilder.EnableSensitiveDataLogging(true);
         }
 
         // SEED METHODS
