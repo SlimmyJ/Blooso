@@ -1,21 +1,25 @@
-﻿using Blooso.Data.Repositories;
+﻿#region
+
+using System.Windows.Input;
+
+using Blooso.Data;
+using Blooso.Data.Repositories;
+using Blooso.Views;
+using Blooso.Views.EditProfile;
+
+using Xamarin.Forms;
+
+#endregion
 
 namespace Blooso.ViewModels
 {
     #region
 
-    using System.Windows.Input;
-
-    using Views;
-    using Views.EditProfile;
-
-    using Xamarin.Forms;
-
     #endregion
 
     public class MainMenuViewModel : BaseViewModel
     {
-        public MainMenuViewModel()
+        public MainMenuViewModel() : base(DummyData.Instance)
         {
             _userRepo = new UserRepository();
             CurrentUser = _userRepo.GetCurrentlyLoggedInUser();

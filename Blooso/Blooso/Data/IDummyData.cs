@@ -1,12 +1,15 @@
-﻿using System.Collections.Generic;
+﻿#region
+
+using System.Collections.Generic;
+
 using Blooso.Models;
+
+#endregion
 
 namespace Blooso.Data
 {
     public interface IDummyData
     {
-        List<Tag> GenerateTags();
-
         List<User> GenerateUserList();
 
         List<Activity> GenerateActivities();
@@ -14,5 +17,7 @@ namespace Blooso.Data
         List<Tag> GenerateRandomUserTags(int amount);
 
         List<Activity> GetRandomActivities(int amount);
+
+        List<Tag> GenerateTags();
     }
 }

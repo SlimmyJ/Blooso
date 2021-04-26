@@ -1,9 +1,13 @@
-﻿namespace Blooso.Views
+﻿#region
+
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+#endregion
+
+namespace Blooso.Views
 {
     #region
-
-    using Xamarin.Forms;
-    using Xamarin.Forms.Xaml;
 
     #endregion
 

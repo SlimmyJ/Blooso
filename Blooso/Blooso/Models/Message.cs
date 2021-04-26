@@ -1,10 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿#region
+
+using System;
+
+#endregion
 
 namespace Blooso.Models
 {
     #region
-
-    using System;
 
     #endregion
 

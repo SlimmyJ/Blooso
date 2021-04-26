@@ -1,17 +1,20 @@
-﻿using Blooso.Data.Repositories;
+﻿#region
+
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+
+using Blooso.Data;
+using Blooso.Models;
+
+using Xamarin.Forms;
+
+#endregion
 
 namespace Blooso.ViewModels
 {
     #region
-
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Linq;
-
-    using Models;
-
-    using Xamarin.Forms;
 
     #endregion
 
@@ -20,7 +23,7 @@ namespace Blooso.ViewModels
         private ICollection<Tag> _tags;
         private ICollection<Tag> _userTags;
 
-        public EditUserTagsListViewModel()
+        public EditUserTagsListViewModel() : base(DummyData.Instance)
         {
             Tags = new ObservableCollection<Tag>();
             UserTags = new ObservableCollection<Tag>();

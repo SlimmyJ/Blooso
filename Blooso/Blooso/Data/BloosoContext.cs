@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿#region
+
+using System.Collections.Generic;
 using System.IO;
 
 using Blooso.Models;
@@ -7,21 +9,18 @@ using Microsoft.EntityFrameworkCore;
 
 using Xamarin.Essentials;
 
+#endregion
+
 namespace Blooso.Data
 {
     public sealed class BloosoContext : DbContext
     {
-        private BloosoContext()
+        public BloosoContext()
         {
             Database.EnsureCreated();
         }
 
-        public static BloosoContext CreateInstance()
-        {
-            return new BloosoContext();
-        }
-
-        private IDummyData FakerBro => new DummyData();
+        private static DummyData FakerBro => DummyData.CreateInstance();
 
         public DbSet<Message> Messages { get; set; }
 
@@ -53,7 +52,7 @@ namespace Blooso.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Blooso46.sqlite");
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Blooso49.sqlite");
             optionsBuilder.UseSqlite($"FileName = {dbPath}");
         }
 
@@ -61,11 +60,12 @@ namespace Blooso.Data
 
         #region Seed Methods
 
-        private List<Activity> ReturnSeedActivityList(ModelBuilder modelBuilder) => FakerBro.GenerateActivities();
+        private static List<Activity> ReturnSeedActivityList(ModelBuilder modelBuilder) =>
+            FakerBro.GenerateActivities();
 
-        private List<Tag> ReturnSeedTagList(ModelBuilder modelBuilder) => FakerBro.GenerateTags();
+        private static List<Tag> ReturnSeedTagList(ModelBuilder modelBuilder) => FakerBro.GenerateTags();
 
-        private List<User> ReturnSeedUserList(ModelBuilder modelBuilder) => FakerBro.GenerateUserList();
+        private static List<User> ReturnSeedUserList(ModelBuilder modelBuilder) => FakerBro.GenerateUserList();
 
         #endregion
     }

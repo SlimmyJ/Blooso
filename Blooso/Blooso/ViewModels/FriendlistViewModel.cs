@@ -1,18 +1,21 @@
-﻿using Blooso.Data.Repositories;
+﻿#region
+
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
+using Blooso.Data;
+using Blooso.Data.Repositories;
+using Blooso.Models;
+using Blooso.Views;
+
+using Xamarin.Forms;
+
+#endregion
 
 namespace Blooso.ViewModels
 {
     #region
-
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-
-    using Models;
-
-    using Views;
-
-    using Xamarin.Forms;
 
     #endregion
 
@@ -20,7 +23,7 @@ namespace Blooso.ViewModels
     {
         private ICollection<User> _friendList;
 
-        public FriendlistViewModel()
+        public FriendlistViewModel() : base(DummyData.Instance)
         {
             _userRepo = new UserRepository();
             ICollection<User> friends = _userRepo.GetCurrentlyLoggedInUser().FriendList;

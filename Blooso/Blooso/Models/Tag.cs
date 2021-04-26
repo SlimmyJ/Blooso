@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+﻿#region
+
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+
+#endregion
 
 namespace Blooso.Models
 {

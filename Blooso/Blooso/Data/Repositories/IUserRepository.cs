@@ -1,25 +1,27 @@
-﻿using System.Collections.Generic;
+﻿#region
+
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using Blooso.Models;
+
+#endregion
 
 namespace Blooso.Data.Repositories
 {
     public interface IUserRepository
     {
+        List<User> _userList { get; set; }
+
         User CurrentlyLoggedInUser { get; set; }
 
         int CountOverlapInActivitiesList(List<Activity> list);
 
         int CountOverlapInTagsList(List<Tag> list);
 
-        Task<bool> DoesUserExist(int id, string password);
-
         List<Activity> GetAllActivities();
 
         List<Tag> GetAllTags();
-
-        Task<List<User>> GetAllUsers();
 
         User GetCurrentlyLoggedInUser();
 
@@ -36,5 +38,9 @@ namespace Blooso.Data.Repositories
         List<int> GetActivityIdList(List<Activity> list);
 
         List<int> GetTagIdList(List<Tag> list);
+
+        Task<List<User>> GetAllUsers();
+
+        Task<bool> DoesUserExist(int id, string password);
     }
 }

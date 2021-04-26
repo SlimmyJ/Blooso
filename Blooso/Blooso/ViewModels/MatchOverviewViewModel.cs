@@ -1,17 +1,19 @@
-﻿using Blooso.Data.Repositories;
+﻿#region
+
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
+using Blooso.Data;
+using Blooso.Models;
+using Blooso.Views;
+
+using Xamarin.Forms;
+
+#endregion
 
 namespace Blooso.ViewModels
 {
     #region
-
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-
-    using Models;
-
-    using Views;
-
-    using Xamarin.Forms;
 
     #endregion
 
@@ -19,7 +21,7 @@ namespace Blooso.ViewModels
     {
         private ICollection<User> _users;
 
-        public MatchOverviewViewModel()
+        public MatchOverviewViewModel() : base(DummyData.Instance)
         {
             Users = new ObservableCollection<User>();
             _userRepo.GetAllUsers();

@@ -26,8 +26,7 @@
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <StackLayout>
-                    <SwipeView LeftItems="{StaticResource SwipeRightItems}"
-                               RightItems="{StaticResource SwipeLeftItems}">
+                    <SwipeView LeftItems="{StaticResource SwipeRightItems}" RightItems="{StaticResource SwipeLeftItems}">
                         <Grid
                             Padding="20"
                             BackgroundColor="{StaticResource White}"

@@ -1,17 +1,20 @@
-﻿using System.Collections.Generic;
+﻿#region
 
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
+using Blooso.Data;
 using Blooso.Data.Repositories;
+using Blooso.Models;
+
+using Xamarin.Forms;
+
+#endregion
 
 namespace Blooso.ViewModels
 {
     #region
-
-    using System;
-    using System.Collections.ObjectModel;
-
-    using Models;
-
-    using Xamarin.Forms;
 
     #endregion
 
@@ -26,7 +29,7 @@ namespace Blooso.ViewModels
 
         private IUserRepository userRepo;
 
-        public MatchDetailViewModel()
+        public MatchDetailViewModel() : base(DummyData.Instance)
         {
             UserDetail = new User();
             UserFeed = new ObservableCollection<Message>();

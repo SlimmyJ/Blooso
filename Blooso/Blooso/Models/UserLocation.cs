@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Blooso.Models
+﻿namespace Blooso.Models
 {
     public class UserLocation
     {

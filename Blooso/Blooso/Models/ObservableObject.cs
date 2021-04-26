@@ -1,8 +1,12 @@
-﻿namespace Blooso.Models
+﻿#region
+
+using System.ComponentModel;
+
+#endregion
+
+namespace Blooso.Models
 {
     #region
-
-    using System.ComponentModel;
 
     #endregion
 
@@ -12,9 +16,13 @@
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
-            if (this.PropertyChanged == null) return;
+            if (PropertyChanged == null)
+            {
+                return;
+            }
+
             var e = new PropertyChangedEventArgs(propertyName);
-            this.PropertyChanged(this, e);
+            PropertyChanged(this, e);
         }
     }
 }

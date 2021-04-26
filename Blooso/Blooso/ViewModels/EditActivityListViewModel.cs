@@ -1,17 +1,32 @@
-﻿namespace Blooso.ViewModels
+﻿#region
+
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
+using Blooso.Data;
+using Blooso.Models;
+
+using Xamarin.Forms;
+
+#endregion
+
+namespace Blooso.ViewModels
 {
     #region
-
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using Models;
-    using Xamarin.Forms;
 
     #endregion
 
     public class EditActivityListViewModel : BaseViewModel
     {
         private ICollection<Activity> _userActivities;
+
+        public EditActivityListViewModel(DummyData fakerBroDummyData, ICollection<Activity> userActivities) : base(
+            fakerBroDummyData) =>
+            _userActivities = userActivities;
+
+        public EditActivityListViewModel() : base(DummyData.Instance)
+        {
+        }
 
         public ObservableCollection<Activity> UserActivities
         {

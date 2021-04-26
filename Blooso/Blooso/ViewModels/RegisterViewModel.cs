@@ -1,8 +1,18 @@
-﻿namespace Blooso.ViewModels
+﻿#region
+
+using Blooso.Data;
+
+#endregion
+
+namespace Blooso.ViewModels
 {
     #region
 
+    #region
+
     using Models;
+
+    #endregion
 
     #endregion
 
@@ -10,7 +20,7 @@
     {
         public User UserToBeRegistered;
 
-        private RegisterViewModel()
+        private RegisterViewModel() : base(DummyData.Instance)
         {
         }
 

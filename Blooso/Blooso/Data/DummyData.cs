@@ -1,29 +1,33 @@
-﻿using System;
+﻿#region
+
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using Blooso.Data.Repositories;
+using Blooso.Models;
+
+using Bogus;
+
+#endregion
 
 namespace Blooso.Data
 {
-    #region
-
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using Models;
-    using Bogus;
-    using Microsoft.EntityFrameworkCore;
-
-    #endregion
-
     public class DummyData : IDummyData
     {
         private readonly Faker<User> userFaker;
 
-        public ReadOnlyCollection<User> GeneratedUsersList;
+        public List<User> GeneratedUsersList;
 
         public IUserRepository userRepository;
 
-        public DummyData() => userFaker = new Faker<User>();
+        private DummyData()
+        {
+            GeneratedUsersList = new List<User>();
+            userFaker = new Faker<User>();
+        }
+
+        internal static DummyData Instance { get; } = new();
 
         public List<User> GenerateUserList()
         {
@@ -53,6 +57,7 @@ namespace Blooso.Data
                 generatedUserList.Add(fakedUser);
             }
 
+            GeneratedUsersList = generatedUserList;
             return generatedUserList;
         }
 
@@ -125,5 +130,7 @@ namespace Blooso.Data
                 new Tag(24, "Weeb"),
                 new Tag(25, "Festivals")
             };
+
+        public static DummyData CreateInstance() => Instance;
     }
 }

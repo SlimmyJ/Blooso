@@ -1,15 +1,19 @@
-﻿using Blooso.Data.Repositories;
+﻿#region
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
+using Blooso.Data;
+using Blooso.Data.Repositories;
+using Blooso.Models;
+
+#endregion
 
 namespace Blooso.ViewModels
 {
     #region
-
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Runtime.CompilerServices;
-
-    using Models;
 
     #endregion
 
@@ -17,10 +21,12 @@ namespace Blooso.ViewModels
     {
         private bool _isBusy;
         private string _title = string.Empty;
+        private DummyData FakerBroDummyData;
 
-        public BaseViewModel()
+        protected BaseViewModel(DummyData fakerBroDummyData)
         {
-            _userRepo.GetAllUsers();
+            FakerBroDummyData = fakerBroDummyData;
+            _userRepo._userList = FakerBroDummyData.GeneratedUsersList;
         }
 
         protected IUserRepository _userRepo

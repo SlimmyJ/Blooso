@@ -1,16 +1,20 @@
-﻿using System.Collections.Generic;
+﻿#region
+
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Windows.Devices.Display.Core;
+
 using Blooso.Models;
+
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query;
+
+#endregion
 
 namespace Blooso.Data.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private List<User> _userList;
+        public List<User> _userList { get; set; }
 
         public User CurrentlyLoggedInUser { get; set; }
 
@@ -35,13 +39,13 @@ namespace Blooso.Data.Repositories
 
         public List<Activity> GetAllActivities()
         {
-            using var dbContext = BloosoContext.CreateInstance();
+            using var dbContext = new BloosoContext();
             return dbContext.Activities.ToList();
         }
 
         public List<Tag> GetAllTags()
         {
-            using var dbContext = BloosoContext.CreateInstance();
+            using var dbContext = new BloosoContext();
 
             return dbContext.Tags.ToList();
         }
@@ -66,7 +70,7 @@ namespace Blooso.Data.Repositories
 
         public User GetUser(int id)
         {
-            return _userList.FirstOrDefault(x => x.UserId == id);
+            return GetAllUsers().Result.FirstOrDefault(x => x.UserId == id);
         }
 
         public void SetCurrentlyLoggedInUser(int id)
@@ -76,7 +80,7 @@ namespace Blooso.Data.Repositories
 
         public async Task UpdateUser(User user)
         {
-            await using var dbContext = BloosoContext.CreateInstance();
+            await using var dbContext = new BloosoContext();
             dbContext.Update(user);
             await dbContext.SaveChangesAsync();
         }
@@ -107,12 +111,12 @@ namespace Blooso.Data.Repositories
 
         public async Task<List<User>> GetAllUsers()
         {
-            await using (var dbContext = BloosoContext.CreateInstance())
+            await using (var dbContext = new BloosoContext())
             {
                 var userlist = dbContext.Users
                     .Include(x => x.UserId)
-                    .Include(x => x.Activities).ThenInclude(x => x.ActivityUser)
-                    .Include(x => x.Tags).ThenInclude(x => x.TagUsers)
+                    .Include(x => x.Activities).ThenInclude<User, Activity, User>(x => x.ActivityUser)
+                    .Include(x => x.Tags).ThenInclude<User, Tag, ICollection<User>>(x => x.TagUsers)
                     .Include(x => x.FriendList)
                     .Include(x => x.Name)
                     .Include(x => x.Password).ToList();
@@ -125,10 +129,10 @@ namespace Blooso.Data.Repositories
 
         public async Task<bool> DoesUserExist(int id, string password)
         {
-            await using (var dbContext = BloosoContext.CreateInstance())
-            {
-                return _userList.Any(user => user.UserId == id);
-            }
+            await using var dbContext = new BloosoContext();
+            User find = await dbContext.Users.FindAsync(id);
+
+            return find != null;
         }
     }
 }

@@ -1,15 +1,19 @@
-﻿using System.Threading.Tasks;
+﻿#region
 
+using System.Threading.Tasks;
+using System.Windows.Input;
+
+using Blooso.Data;
 using Blooso.Data.Repositories;
+
+using Xamarin.Essentials;
+using Xamarin.Forms;
+
+#endregion
 
 namespace Blooso.ViewModels
 {
     #region
-
-    using System.Windows.Input;
-
-    using Xamarin.Essentials;
-    using Xamarin.Forms;
 
     #endregion
 
@@ -19,7 +23,7 @@ namespace Blooso.ViewModels
 
         private string _password;
 
-        public LoginViewModel()
+        public LoginViewModel() : base(DummyData.Instance)
         {
             SubmitCommand = new Command(OnSubmit);
             UserRepository.GetAllUsers();
