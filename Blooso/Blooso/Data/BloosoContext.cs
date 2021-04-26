@@ -58,7 +58,7 @@ namespace Blooso.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Blooso43.sqlite");
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Blooso44.sqlite");
             optionsBuilder.UseSqlite($"FileName = {dbPath}");
             optionsBuilder.EnableSensitiveDataLogging(true);
         }

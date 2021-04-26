@@ -1,4 +1,6 @@
-﻿using Blooso.Data.Repositories;
+﻿using System.Threading.Tasks;
+
+using Blooso.Data.Repositories;
 
 namespace Blooso.ViewModels
 {
@@ -20,8 +22,10 @@ namespace Blooso.ViewModels
         public LoginViewModel()
         {
             SubmitCommand = new Command(OnSubmit);
-            _userRepo = UserRepository.GetRepository();
+            UserRepository.GetAllUsers();
         }
+
+        private IUserRepository UserRepository => new UserRepository();
 
         public int Id
         {
@@ -61,6 +65,6 @@ namespace Blooso.ViewModels
             }
         }
 
-        private bool DoesUserExist() => _userRepo.DoesUserExist(Id, Password);
+        private Task<bool> DoesUserExist() => _userRepo.DoesUserExist(Id, Password);
     }
 }

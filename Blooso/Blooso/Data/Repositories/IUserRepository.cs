@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+
 using Blooso.Models;
 
 namespace Blooso.Data.Repositories
@@ -10,28 +9,32 @@ namespace Blooso.Data.Repositories
     {
         User CurrentlyLoggedInUser { get; set; }
 
-        void GetAllUsers();
+        int CountOverlapInActivitiesList(List<Activity> list);
+
+        int CountOverlapInTagsList(List<Tag> list);
+
+        Task<bool> DoesUserExist(int id, string password);
+
+        List<Activity> GetAllActivities();
+
+        List<Tag> GetAllTags();
+
+        Task<List<User>> GetAllUsers();
 
         User GetCurrentlyLoggedInUser();
-
-        void SetCurrentlyLoggedInUser(int id);
-
-        User GetUser(int id);
 
         List<User> GetMatchResults();
 
         List<User> GetSearchResults(string queryString);
 
-        bool DoesUserExist(int id, string password);
+        User GetUser(int id);
 
-        int CountOverlapInTagsList(List<Tag> list);
-
-        int CountOverlapInActivitiesList(List<Activity> list);
+        void SetCurrentlyLoggedInUser(int id);
 
         Task UpdateUser(User user);
 
-        List<Activity> GetAllActivities();
+        List<int> GetActivityIdList(List<Activity> list);
 
-        List<Tag> GetAllTags();
+        List<int> GetTagIdList(List<Tag> list);
     }
 }
